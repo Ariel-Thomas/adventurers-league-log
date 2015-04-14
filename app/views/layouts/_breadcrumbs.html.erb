@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-sm-12">
+    <% unless crumbs.size <= 1 %>
+      <ol class='breadcrumb'>
+        <%= render_crumbs format: :html, :class => 'breadcrumb', separator: ' > ', last_crumb_linked: false %>
+      </ol>
+    <% end %>
+  </div>
+</div>

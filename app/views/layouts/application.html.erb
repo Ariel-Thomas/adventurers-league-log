@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AdventurersLeagueLog</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+      <% if user_signed_in? %>
+        <script type="text/javascript">
+          window.user = <%= raw(current_user.to_json) %>
+        </script>
+      <% end %>
+  </head>
+  <body>
+    <% if @show_jumbotron %>
+      <div class="special">
+        <div class="jumbotron jumbotron-art">
+          <h1 style="margin-top:10%;">Adventurer's League Log</h1>
+
+          <p>A web app to record your successes and failures.</p>
+
+          <p>
+            <a class="btn btn-primary btn-lg" href="<%= new_registration_path(User) %>" role="button">Sign Up</a>
+            <a class="btn btn-primary btn-lg" href="<%= user_session_path %>" role="button">Log In</a>
+          </p>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="main-wrapper">
+      <header>
+        <%= render 'layouts/navigation' %>
+      </header>
+      <main role="main">
+        <div class="container">
+          <div id="messages-block"><%= render 'layouts/messages' %></div>
+          <%= render 'layouts/breadcrumbs' %>
+          <%= yield %>
+        </div>
+      </main>
+      <%= render 'layouts/footer' %>
+    </div>
+  </body>
+</html>

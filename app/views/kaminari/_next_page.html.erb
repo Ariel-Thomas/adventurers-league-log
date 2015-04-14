@@ -1,0 +1,7 @@
+<li class="<%=(current_page.last? ? "disabled" : "")%>">
+  <% unless current_page.last? %>
+    <%= link_to raw(t 'views.pagination.next'), url, { :rel => 'next', :remote => remote } %>
+  <% else %>
+    <%= link_to "Next ›", "", { :remote => remote } %>
+  <% end %>
+</li>

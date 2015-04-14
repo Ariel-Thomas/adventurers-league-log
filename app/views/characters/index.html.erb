@@ -1,0 +1,43 @@
+<div class="row" id="characters-index">
+  <h1 class='col-md-offset-1 col-md-10'>Characters</h1>
+
+  <div class='col-md-offset-1 col-md-10'>
+    <div id='characters_list'>
+      <div class="table-responsive">
+        <table class="table table-bordered table-responsive">
+          <tr>
+            <th><%= sort_link @search, :name, "Name", {}, {} %></th>
+            <th><%= sort_link @search, :race, "Race", {}, {} %></th>
+            <th><%= sort_link @search, :class_and_levels, "Class", {}, {} %></th>
+            <th><%= sort_link @search, :faction, "Faction", {}, {} %></th>
+            <th></th>
+          </tr>
+
+          <tbody id='menu_items'>
+            <% @characters.each do |character| %>
+              <tr>
+                <td><%= character.name %></td>
+                <td><%= character.race %></td>
+                <td><%= character.class_and_levels %></td>
+                <td><%= character.faction %></td>
+                <td>
+                  <%= link_to "Show", user_character_path(current_user, character) %>
+                  <%= link_to "Edit", edit_user_character_path(current_user, character) %>
+                  <%= link_to "Delete", user_character_path(current_user, character), method: :delete, data: { confirm: "Are you sure you want to delete #{character.name}?" } %>
+                </td>
+              </tr>
+            <% end %>
+
+            <%= paginate @characters %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class='col-md-offset-1 col-md-10'>
+    <%= link_to 'New Character', new_user_character_path(current_user), class: 'btn btn-primary' %>
+  </div>
+</div>

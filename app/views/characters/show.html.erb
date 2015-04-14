@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-3" style="margin-top:25px">
+    <img src="<%= @character.portrait_url %>" height="245">
+  </div>
+
+  <div class="col-md-6">
+    <div class="row">
+      <h2 class="col-md-12"><%= @character.name %></h2>
+    </div>
+
+    <%= display_attribute "Race",  @character.race %>
+    <%= display_attribute "Class", @character.class_and_levels %>
+    <%= display_attribute "Current Level", @character.current_level %>
+    <%= display_attribute "Total XP",  @character.total_xp %>
+    <%= display_attribute "XP to Level", @character.xp_to_next_level %>
+    <%= display_attribute "XP for Next",  @character.xp_for_next_level %>
+    <%= display_attribute "Magic Items", @character.magic_items_list %>
+    <%= display_attribute "Total Magic Items",  @character.total_magic_items %>
+    <%= display_attribute "Total GP", @character.total_gp %>
+    <%= display_attribute "Total Renown",  @character.total_renown %>
+    <%= display_attribute "Total Downtime",  @character.total_downtime %>
+  </div>
+
+  <div class="col-md-3" style="margin-top:25px">
+    <img src="<%= asset_path(@character.faction_image) %>" height="245">
+  </div>
+</div>
+
+<div class="row">
+  <h3 class='col-md-12'>Log Entries</h3>
+</div>
+
+<div class="row">
+  <div class='col-md-12'>
+    <div id='log_entires_list'>
+      <%= render partial: 'log_entries/list' %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class='col-md-12'>
+     <%= link_to "New Log Entry", new_user_character_log_entry_path(current_user, @character), class: "btn btn-primary" %>
+  </div>
+</div>
