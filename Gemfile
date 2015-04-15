@@ -28,3 +28,7 @@ group :development, :test do
   gem 'byebug'
   gem 'pry-byebug'
 end
+
+group :production do
+  gem 'rails_12factor'
+end
