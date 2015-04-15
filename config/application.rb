@@ -9,7 +9,7 @@ Bundler.require(:default, Rails.env)
 module AdventurersLeagueLog
   class Application < Rails::Application
 
-    config.serve_static_assets = true
+    config.serve_static_files = true
 
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore

@@ -21,6 +21,9 @@ gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem 'font-awesome-rails'
 
+gem 'honeybadger', '~> 2.0'
+
+
 gem 'pry-rails'
 group :development, :test do
   gem 'dotenv-rails'
