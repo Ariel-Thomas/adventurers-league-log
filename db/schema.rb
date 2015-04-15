@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150414135122) do
+ActiveRecord::Schema.define(version: 20150415065926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150414135122) do
     t.string  "faction"
     t.integer "user_id"
     t.string  "portrait_url"
+    t.boolean "publicly_visible", default: false, null: false
   end
 
   create_table "log_entries", force: :cascade do |t|

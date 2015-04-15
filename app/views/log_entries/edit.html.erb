@@ -53,11 +53,11 @@
   </div>
 
   <div class="row">
-    <div class="form-group col-md-offset-2 col-md-3">
+    <div class="form-group col-md-offset-2 col-md-2">
       <%= f.label :location_played, 'Location Played' %>
       <%= f.text_field :location_played, class: 'form-control' %>
     </div>
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-2">
       <%= f.label :dm_name, 'DM Name' %>
       <%= f.text_field :dm_name, class: 'form-control' %>
     </div>
@@ -67,6 +67,12 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="form-group col-md-offset-2 col-md-8">
+      <%= f.label :notes, 'Notes' %>
+      <%= f.text_area :notes, class: 'form-control' %>
+    </div>
+  </div>
 
   <div class="row top-buffer-md">
     <div class="col-md-offset-2 col-md-8 text-right">

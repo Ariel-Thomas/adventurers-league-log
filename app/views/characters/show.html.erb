@@ -42,8 +42,10 @@
   </div>
 </div>
 
-<div class="row">
-  <div class='col-xs-12'>
-     <%= link_to "New Log Entry", new_user_character_log_entry_path(current_user, @character), class: "btn btn-primary" %>
+<% if @character.user == current_user %>
+  <div class="row">
+    <div class='col-xs-12'>
+       <%= link_to "New Log Entry", new_user_character_log_entry_path(current_user, @character), class: "btn btn-primary" %>
+    </div>
   </div>
-</div>
+<% end %>

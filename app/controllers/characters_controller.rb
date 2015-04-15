@@ -1,11 +1,17 @@
 class CharactersController < AuthenticationController
+  skip_before_action :authenticate_user!, only: [:show]
+
   def index
     @search     = current_user.characters.search(params[:q])
     @characters = @search.result(distinct: false).page params[:page]
   end
 
   def show
-    @character   = current_user.characters.find(params[:id])
+    @character   = Character.find(params[:id])
+
+    unless (@character.publicly_visible)
+      redirect_to :root and return unless (@character.user == current_user)
+    end
 
     @search      = @character.log_entries.search(params[:q])
     @log_entries = @search.result(distinct: false).page params[:page]
@@ -51,6 +57,6 @@ class CharactersController < AuthenticationController
   protected
 
     def character_params
-      params.require(:character).permit(:name, :race, :class_and_levels, :faction, :portrait_url)
+      params.require(:character).permit(:name, :race, :class_and_levels, :faction, :portrait_url, :publicly_visible)
     end
 end
