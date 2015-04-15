@@ -4,7 +4,7 @@ ruby '2.2.0'
 gem 'rails', '4.2.1'
 gem 'puma'
 
-gem 'sqlite3'
+gem 'pg'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
