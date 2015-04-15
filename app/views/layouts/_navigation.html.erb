@@ -1,39 +1,48 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#adventurers-league-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
       <%= link_to root_path do %>
         <span class="navbar-brand adventurers-league-logo"></span>
       <% end %>
     </div>
 
-    <ul class="nav navbar-nav navbar-left">
-      <li>
-        <% if user_signed_in? %>
-          <%= link_to 'Character Logs', user_characters_path(current_user) %>
-        <% end %>
-      </li>
-      <li>
-        <% if user_signed_in? %>
-          <%= link_to 'DM Log', '', class: 'disabled' %>
-        <% end %>
-      </li>
-    </ul>
-
-    <ul class="nav navbar-nav navbar-right navbar-user-logged-in">
-      <% if user_signed_in? %>
-        <li class="dropdown">
-          <a href class="dropdown-toggle" data-toggle="dropdown" id="user-dropdown">
-            <%= current_user.email %> <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            <li><%= link_to "Change My Password", edit_user_registration_path %></li>
-            <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
-          </ul>
+    <div class="collapse navbar-collapse" id="adventurers-league-navbar">
+      <ul class="nav navbar-nav navbar-left">
+        <li>
+          <% if user_signed_in? %>
+            <%= link_to 'Character Logs', user_characters_path(current_user) %>
+          <% end %>
         </li>
-      <% else %>
-        <li><%= link_to 'Log In', user_session_path unless request.fullpath == user_session_path %></li>
-      <% end %>
-    </ul>
+        <li>
+          <% if user_signed_in? %>
+            <%= link_to 'DM Log', '', class: 'disabled' %>
+          <% end %>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right navbar-user-logged-in">
+        <% if user_signed_in? %>
+          <li class="dropdown">
+            <a href class="dropdown-toggle" data-toggle="dropdown" id="user-dropdown">
+              <%= current_user.email %> <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><%= link_to "Change My Password", edit_user_registration_path %></li>
+              <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to 'Log In', user_session_path unless request.fullpath == user_session_path %></li>
+        <% end %>
+      </ul>
+    </div>
 
   </div>
 </nav>
