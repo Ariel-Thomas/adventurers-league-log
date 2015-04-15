@@ -1,0 +1,18 @@
+<% if @show_jumbotron %>
+  <div class="special">
+    <div class="jumbotron jumbotron-art">
+      <h1 style="margin-top:10%;">Adventurer's League Log</h1>
+
+      <p>A web app to record your successes and failures.</p>
+
+      <p>
+        <a class="btn btn-primary btn-lg" href="<%= new_registration_path(User) %>" role="button">Sign Up</a>
+        <a class="btn btn-primary btn-lg" href="<%= user_session_path %>" role="button">Log In</a>
+      </p>
+
+      <p>
+        <a class="fa fa-chevron-down" href="#the-adventure-logsheet"></a>
+      </p>
+    </div>
+  </div>
+<% end %>
