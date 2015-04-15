@@ -37,7 +37,7 @@ class CharactersController < AuthenticationController
       redirect_to user_characters_path(current_user), flash: { notice: "Successfully updated character #{@character.name}" }
     else
       flash.now[:error] = "Failed to update character #{@character.name}: #{@character.errors.full_messages.join(',')}"
-      render :new
+      render :edit
     end
   end
 

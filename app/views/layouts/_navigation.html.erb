@@ -14,7 +14,7 @@
       </li>
       <li>
         <% if user_signed_in? %>
-          <%= link_to 'DM Log', user_characters_path(current_user) %>
+          <%= link_to 'DM Log', '', class: 'disabled' %>
         <% end %>
       </li>
     </ul>

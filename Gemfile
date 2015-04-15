@@ -19,6 +19,7 @@ gem 'ransack'
 gem 'crummy'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
+gem 'font-awesome-rails'
 
 gem 'pry-rails'
 group :development, :test do

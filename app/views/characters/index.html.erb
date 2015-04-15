@@ -4,7 +4,7 @@
   <div class='col-md-offset-1 col-md-10'>
     <div id='characters_list'>
       <div class="table-responsive">
-        <table class="table table-bordered table-responsive">
+        <table class="table table-bordered table-responsive table-striped">
           <tr>
             <th><%= sort_link @search, :name, "Name", {}, {} %></th>
             <th><%= sort_link @search, :race, "Race", {}, {} %></th>
@@ -21,9 +21,9 @@
                 <td><%= character.class_and_levels %></td>
                 <td><%= character.faction %></td>
                 <td>
-                  <%= link_to "Show", user_character_path(current_user, character) %>
-                  <%= link_to "Edit", edit_user_character_path(current_user, character) %>
-                  <%= link_to "Delete", user_character_path(current_user, character), method: :delete, data: { confirm: "Are you sure you want to delete #{character.name}?" } %>
+                  <%= link_to "", user_character_path(current_user, character), class: "fa fa-eye" %>
+                  <%= link_to "", edit_user_character_path(current_user, character), class: "fa fa-pencil-square-o" %>
+                  <%= link_to "", user_character_path(current_user, character), method: :delete, data: { confirm: "Are you sure you want to delete #{character.name}?" }, class: "fa fa-trash-o" %>
                 </td>
               </tr>
             <% end %>

@@ -11,5 +11,7 @@
  *= require_self
  *= require bootstrap
  *= require bootstrap-theme
+ *= require font-awesome
+ *= require custom_checkboxes
  *= require navigation
  */
