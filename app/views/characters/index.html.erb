@@ -16,7 +16,7 @@
           <tbody id='menu_items'>
             <% @characters.each do |character| %>
               <tr>
-                <td><%= character.name %></td>
+                <td><%= link_to character.name, user_character_path(current_user, character) %></td>
                 <td><%= character.race %></td>
                 <td><%= character.class_and_levels %></td>
                 <td><%= character.faction %></td>
