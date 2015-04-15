@@ -1,6 +1,8 @@
 <div class="row">
-  <div class="col-sm-3" style="margin-top:25px">
-    <% unless @character.portrait_url == "" %>
+  <div class="col-sm-3" style="margin-top:25px;">
+    <% if @character.portrait_url == "" %>
+      <img src="<%= asset_path('Human_female_99.jpg') %>" height="245">
+    <% else %>
       <img src="<%= @character.portrait_url %>" height="245">
     <% end %>
   </div>
