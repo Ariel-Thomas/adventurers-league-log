@@ -1,2 +1,2 @@
 ---
-api_key: 'aca01d79'
+api_key: ENV['HONEYBADGER_API_KEY']
