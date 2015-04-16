@@ -56,8 +56,9 @@
 }
 
 .print-log-entry-box label{
-  font-size: 10px;
+  font-size: 9px;
   padding-left: 5px;
+  margin-bottom:0px;
 }
 
 .print-log-entry-box .print-notes{
@@ -76,8 +77,4 @@ body{
 }
 .container{
   position: relative;
-}
-.page-break{
-  page-break-after: always;
-  position:relative;
 }
