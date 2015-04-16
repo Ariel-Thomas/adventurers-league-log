@@ -60,6 +60,6 @@ class LogEntriesController < AuthenticationController
     end
 
     def log_entries_params
-      params.require(:log_entry).permit(:adventure_title, :session_num, :date_played, :xp_gained, :gp_gained, :renown_gained, :downtime_gained, :num_magic_items_gained, :desc_magic_items_gained, :location_played, :dm_name, :dm_dci_number, :notes)
+      params.require(:log_entry).permit(:adventure_title, :session_num, :date_played, :xp_gained, :gp_gained, :renown_gained, :downtime_gained, :num_secret_missions, :num_magic_items_gained, :desc_magic_items_gained, :location_played, :dm_name, :dm_dci_number, :notes)
     end
 end

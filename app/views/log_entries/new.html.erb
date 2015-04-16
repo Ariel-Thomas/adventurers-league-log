@@ -38,6 +38,10 @@
       <%= f.label :downtime_gained, 'Downtime Gained' %>
       <%= f.number_field :downtime_gained, class: 'form-control' %>
     </div>
+    <div class="form-group col-md-2">
+      <%= f.label :num_secret_missions, 'Completed Secret Missions' %>
+      <%= f.number_field :num_secret_missions, class: 'form-control' %>
+    </div>
   </div>
 
 
@@ -53,7 +57,7 @@
   </div>
 
   <div class="row">
-    <div class="form-group col-md-offset-2 col-md-2">
+    <div class="form-group col-md-offset-2 col-md-4">
       <%= f.label :location_played, 'Location Played' %>
       <%= f.text_field :location_played, class: 'form-control' %>
     </div>
