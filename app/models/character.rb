@@ -57,6 +57,10 @@ class Character < ActiveRecord::Base
     log_entries.pluck(:downtime_gained).compact.inject(:+) || 0
   end
 
+  def total_secret_missions
+    log_entries.pluck(:num_secret_missions).compact.inject(:+) || 0
+  end
+
   def total_magic_items
     log_entries.pluck(:num_magic_items_gained).compact.inject(:+) || 0
   end
