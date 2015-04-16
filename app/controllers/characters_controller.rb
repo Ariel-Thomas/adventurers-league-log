@@ -1,5 +1,5 @@
 class CharactersController < AuthenticationController
-  skip_before_action :authenticate_user!, only: [:show]
+  skip_before_action :authenticate_user!, only: [:show, :print]
 
   def index
     @search     = current_user.characters.search(params[:q])
@@ -17,6 +17,22 @@ class CharactersController < AuthenticationController
 
     @search      = @character.log_entries.search(params[:q])
     @log_entries = @search.result(distinct: false).page params[:page]
+  end
+
+  def print
+    @character   = Character.find(params[:id])
+
+    unless (@character.publicly_visible)
+      redirect_to :root and return unless (@character.user == current_user)
+    end
+
+    @log_entries = @character.log_entries.order(date_played: :asc).all
+
+    @total_xp          = 0;
+    @total_gp          = 0;
+    @total_downtime    = 0;
+    @total_renown      = 0;
+    @total_magic_items = 0;
   end
 
   def new

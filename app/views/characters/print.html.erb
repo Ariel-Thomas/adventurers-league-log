@@ -1,0 +1,118 @@
+<style>
+  nav { display: none }
+  .navbar-text { display: none }
+
+  body{ padding-top: 0px; }
+</style>
+
+<% @index = 0 %>
+
+<% if(@log_entries.length == 0) %>
+  <%= render "print_header" %>
+  <%= render 'blank_print_log_entry' %>
+<% end %>
+
+<% @log_entries.each_with_index do |log_entry, index| %>
+  <% @index = index %>
+  <% if(index == 0 || index % 3 == 0) %>
+    <%= render "print_header" %>
+  <% end %>
+
+  <div class="row print-log-entry-box">
+    <div class="row">
+      <div class="col-xs-4">
+        <%= display_attribute_for_print "Adventure Name",  log_entry.adventure_title %>
+      </div>
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Session #",  log_entry.session_num %>
+      </div>
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Date",  log_entry.date_played %>
+      </div>
+      <div class="col-xs-4">
+        <%= display_attribute_for_print "DM Name and DCI #", (log_entry.dm_name + " " +log_entry.dm_dci_number) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Starting XP",  @total_xp %>
+      </div>
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Starting Gold",  @total_gp %>
+      </div>
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Starting Downtime",  @total_downtime %>
+      </div>
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Starting Renown", @total_renown %>
+      </div>
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Starting M Items", @total_magic_items %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "XP Earned",  log_entry.xp_gained %>
+      </div>
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Gold +/-",  log_entry.gp_gained %>
+      </div>
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Downtime +/-",  log_entry.downtime_gained %>
+      </div>
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Renown Earned", log_entry.renown_gained %>
+      </div>
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Magic Items +/-", log_entry.num_magic_items_gained %>
+      </div>
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Magic Item Gained", log_entry.desc_magic_items_gained %>
+      </div>
+    </div>
+
+    <% @total_xp          = @total_xp       + (log_entry.xp_gained || 0) %>
+    <% @total_gp          = @total_gp       + (log_entry.gp_gained || 0) %>
+    <% @total_downtime    = @total_downtime + (log_entry.downtime_gained || 0) %>
+    <% @total_renown      = @total_renown   + (log_entry.renown_gained || 0) %>
+    <% @total_magic_items = @total_magic_items + (log_entry.num_magic_items_gained || 0) %>
+
+    <div class="row">
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "XP Total",  @total_xp %>
+      </div>
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Gold Total",  @total_gp %>
+      </div>
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Downtime Total",  @total_downtime %>
+      </div>
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Renown Total", @total_renown %>
+      </div>
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Magic Items Total", @total_magic_items %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+          <label>Adventure Notes / Downtime Activites</label>
+          <p class='print-notes'><%= log_entry.notes %></p>
+      </div>
+    </div>
+  </div>
+
+  <% if((index + 1) % 3 == 0) %>
+    <br class="page-break">
+  <% end %>
+<% end %>
+
+<% while((@index + 1) % 3 != 0) %>
+  <% @index = @index + 1 %>
+  <%= render 'blank_print_log_entry' %>
+<% end %>
+
+<br class="page-break">

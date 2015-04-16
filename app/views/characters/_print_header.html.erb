@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-xs-4">
+    <span class="print-brand adventurers-league-logo"></span>
+  </div>
+
+  <div class="col-xs-8">
+    <h2>Adventure Logsheet</h2>
+  </div>
+</div>
+
+<div class="row print-character-box">
+  <div class="col-xs-4">
+    <%= display_attribute_for_print "Character Name",  @character.name %>
+  </div>
+  <div class="col-xs-4">
+    <%= display_attribute_for_print "Class and Levels",  @character.class_and_levels %>
+  </div>
+  <div class="col-xs-4">
+    <%= display_attribute_for_print "Faction",  @character.faction %>
+  </div>
+
+  <div class="col-xs-4">
+    <%= display_attribute_for_print "Player Name", @character.user.email %>
+  </div>
+  <div class="col-xs-4">
+    <%= display_attribute_for_print "DCI #",  @character.user.email %>
+  </div>
+  <div class="col-xs-4">
+    <%= display_attribute_for_print "Sheet #",  @character.user.email %>
+  </div>
+</div>
+
+<br>

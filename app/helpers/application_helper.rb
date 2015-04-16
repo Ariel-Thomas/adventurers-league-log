@@ -9,4 +9,10 @@ module ApplicationHelper
         "</div>
       </div>").html_safe
   end
+
+
+  def display_attribute_for_print attribute_name, attribute_value
+    ("<div class='text-box'>" + attribute_value.to_s + "</div>" +
+     "<label>" + attribute_name + "</label>").html_safe
+  end
 end

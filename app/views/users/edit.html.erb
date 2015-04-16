@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-offset-3 col-md-6">
+    <h2>Edit User</h2>
+  </div>
+</div>
+
+<%= form_for @user do |f| %>
+  <div class="row">
+    <div class="form-group col-md-offset-3 col-md-6">
+      <%= f.label :email, 'Email *' %>
+      <%= f.text_field :email, class: 'form-control', disabled: true %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-offset-3 col-md-6">
+      <%= f.label :name, 'Player Name' %>
+      <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-offset-3 col-md-6">
+      <%= f.label :dci_num, 'DCI #' %>
+      <%= f.text_field :dci_num, autofocus: true, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="row top-buffer-md">
+    <div class="col-md-6 col-md-offset-3 text-right">
+      <%= f.submit 'Save', class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
