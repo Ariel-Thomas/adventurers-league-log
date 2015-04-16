@@ -6,6 +6,7 @@
 </style>
 
 <% @index = 0 %>
+<% @sheet_num = 1 %>
 
 <% if(@log_entries.length == 0) %>
   <%= render "print_header" %>
@@ -16,6 +17,7 @@
   <% @index = index %>
   <% if(index == 0 || index % 3 == 0) %>
     <%= render "print_header" %>
+    <% @sheet_num = @sheet_num + 1 %>
   <% end %>
 
   <div class="row print-log-entry-box">
