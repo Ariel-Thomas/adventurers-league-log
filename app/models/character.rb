@@ -66,7 +66,7 @@ class Character < ActiveRecord::Base
   end
 
   def magic_items_list
-    list = log_entries.pluck(:desc_magic_items_gained).delete_if{ |x| x == "" }.join(',')
+    list = log_entries.pluck(:desc_magic_items_gained).delete_if{ |x| x == "" }.join(', ')
     if (list == "")
       return "None"
     else
