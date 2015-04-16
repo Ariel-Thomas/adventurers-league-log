@@ -44,17 +44,6 @@
 </div>
 
 <div class="row">
-  <h3 class='col-xs-4'>Log Entries</h3>
-
-  <div class='col-xs-8'>
-    <% if @character.user == current_user %>
-     <%= link_to "New Log Entry", new_user_character_log_entry_path(current_user, @character), class: "btn btn-primary pull-right" %>
-    <% end %>
-  </div>
-
-</div>
-
-<div class="row">
   <div class='col-xs-12'>
     <div id='log_entires_list'>
       <%= render partial: 'log_entries/list' %>
