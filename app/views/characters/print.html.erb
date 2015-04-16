@@ -12,6 +12,11 @@
     font-size: 1px;
     color: #fff;
   }
+
+  .page {
+    page-break-after: always;
+    page-break-inside: avoid;
+  }
 </style>
 
 <% @index = 0 %>
@@ -25,6 +30,7 @@
 <% @log_entries.each_with_index do |log_entry, index| %>
   <% @index = index %>
   <% if(index == 0 || index % 3 == 0) %>
+    <%= "<div class='page'>".html_safe %>
     <%= render "print_header" %>
     <% @sheet_num = @sheet_num + 1 %>
   <% end %>
@@ -117,7 +123,7 @@
   </div>
 
   <% if((index + 1) % 3 == 0) %>
-    <br class="page-break">
+    </div>
   <% end %>
 <% end %>
 
@@ -126,4 +132,4 @@
   <%= render 'blank_print_log_entry' %>
 <% end %>
 
-<br class="page-break">
+</div>
