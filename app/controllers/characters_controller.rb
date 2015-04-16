@@ -13,6 +13,8 @@ class CharactersController < AuthenticationController
       redirect_to :root and return unless (@character.user == current_user)
     end
 
+    params[:q] = { "s"=>"date_played asc" } unless params[:q]
+
     @search      = @character.log_entries.search(params[:q])
     @log_entries = @search.result(distinct: false).page params[:page]
   end
