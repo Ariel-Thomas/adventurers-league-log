@@ -1,8 +1,17 @@
-<style>
+<style type="text/css">
   nav { display: none }
   .navbar-text { display: none }
 
   body{ padding-top: 0px; }
+
+  .adventurers-league-print-logo{
+    display: list-item;
+    list-style-image: url(<%= asset_path 'DnD_ADVL.png' %>);
+    list-style-position: inside;
+    letter-spacing: -1000em;
+    font-size: 1px;
+    color: #fff;
+  }
 </style>
 
 <% @index = 0 %>

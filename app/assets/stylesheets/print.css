@@ -6,20 +6,22 @@
 .print-character-box {
   padding: 10px;
   background-color: #d3d3d3;
+  border: 1px solid black;
+
   border-radius: 10px;
 
-  font-size: 18px;
+  font-size: 14px;
 
   padding-bottom: 0px;
 }
 
 .print-character-box .text-box {
   height: 26px;
+  border-bottom: 1px solid gray;
 
   padding: 2px;
-  padding-left: 10px;
+  padding-left: 5px;
   background-color: white;
-  border-radius: 5px;
 }
 
 .print-character-box label{
@@ -59,8 +61,19 @@
 }
 
 
-
-
+body{
+  position: relative;
+}
+.main-wrapper{
+  position: relative;
+}
+.main{
+  position: relative;
+}
+.container{
+  position: relative;
+}
 .page-break{
   page-break-after: always;
+  position:relative;
 }
