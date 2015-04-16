@@ -22,9 +22,7 @@ class Character < ActiveRecord::Base
   end
 
   def total_xp
-    total = log_entries.pluck(:xp_gained).compact.inject(:+)
-    return 0 if total == nil
-    total
+    log_entries.pluck(:xp_gained).compact.inject(:+) || 0
   end
 
   def current_level
@@ -48,19 +46,19 @@ class Character < ActiveRecord::Base
   end
 
   def total_gp
-    log_entries.pluck(:gp_gained).compact.inject(:+)
+    log_entries.pluck(:gp_gained).compact.inject(:+) || 0
   end
 
   def total_renown
-    log_entries.pluck(:renown_gained).compact.inject(:+)
+    log_entries.pluck(:renown_gained).compact.inject(:+) || 0
   end
 
   def total_downtime
-    log_entries.pluck(:downtime_gained).compact.inject(:+)
+    log_entries.pluck(:downtime_gained).compact.inject(:+) || 0
   end
 
   def total_magic_items
-    log_entries.pluck(:num_magic_items_gained).compact.inject(:+)
+    log_entries.pluck(:num_magic_items_gained).compact.inject(:+) || 0
   end
 
   def magic_items_list
