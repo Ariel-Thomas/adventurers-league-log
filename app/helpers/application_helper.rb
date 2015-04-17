@@ -16,6 +16,12 @@ module ApplicationHelper
      "<label>" + attribute_name + "</label>").html_safe
   end
 
+  def make_dm_and_dci_string dm, dci
+    string = ""
+    string = string + dm if dm
+    string = string + " - " + dci if dci
+  end
+
   def humanize_decimal decimal_number
     return nil unless decimal_number
     floor = decimal_number.floor

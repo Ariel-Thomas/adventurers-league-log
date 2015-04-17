@@ -7,6 +7,7 @@ AdventurersLeagueLog::Application.routes.draw do
 
       member do
         get 'print'
+        get 'print_condensed'
       end
     end
 

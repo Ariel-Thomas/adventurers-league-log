@@ -22,6 +22,7 @@ class CharacterLogEntriesController < AuthenticationController
   end
 
   def create
+    @user        = current_user
     @log_entry   = @character.character_log_entries.build(log_entries_params)
 
     if @log_entry.save
