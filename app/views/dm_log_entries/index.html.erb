@@ -38,7 +38,8 @@
           <td><%= log_entry.xp_gained %></td>
           <td><%= humanize_decimal log_entry.gp_gained %></td>
           <td><%= log_entry.downtime_gained %></td>
-          <td><%= link_to log_entry.character.name, [log_entry.user, log_entry.character] if log_entry.character %></td>
+          <td><%= link_to_character_if_public log_entry.character, @user, current_user %></td>
+
           <td>
             <%= link_to "", [@user, log_entry], class: "fa fa-eye" %>
             <% if (@user == current_user) %>

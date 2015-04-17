@@ -26,4 +26,14 @@ module ApplicationHelper
       decimal_number
     end
   end
+
+  def link_to_character_if_public character, user, current_user
+    if character
+      if (character.publicly_visible? || @user == current_user)
+        link_to character.name, [user, character]
+      else
+        character.name
+      end
+    end
+  end
 end
