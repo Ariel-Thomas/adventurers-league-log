@@ -18,8 +18,8 @@ module ApplicationHelper
 
   def make_dm_and_dci_string dm, dci
     string = ""
-    string = string + dm if dm
-    string = string + " - " + dci if dci
+    string = string + dm          if dm  && dm  != ''
+    string = string + " - " + dci if dci && dci != ''
   end
 
   def humanize_decimal decimal_number

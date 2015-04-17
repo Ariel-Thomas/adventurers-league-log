@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-xs-3">
+    <span class="print-brand adventurers-league-print-logo"></span>
+  </div>
+
+  <div class="col-xs-6" style="text-align:center">
+    <h2>Adventure Logsheet</h2>
+  </div>
+</div>
+
+<div class="row row print-character-box">
+  <div class="col-xs-4">
+    <%= display_attribute_for_print "Character Name",  @character.name %>
+  </div>
+  <div class="col-xs-4">
+    <%= display_attribute_for_print "Class and Levels",  @character.class_and_levels %>
+  </div>
+  <div class="col-xs-4">
+    <%= display_attribute_for_print "Faction",  @character.faction %>
+  </div>
+
+  <div class="col-xs-4">
+    <%= display_attribute_for_print "Player Name", @character.user.name %>
+  </div>
+  <div class="col-xs-4">
+    <%= display_attribute_for_print "DCI #",  @character.user.dci_num %>
+  </div>
+  <div class="col-xs-4">
+    <%= display_attribute_for_print "Faction Rank",  @character.faction_rank %>
+  </div>
+
+  <div class="col-xs-2">
+    <%= display_attribute_for_print "Current Level",  @character.current_level %>
+  </div>
+  <div class="col-xs-2">
+    <%= display_attribute_for_print "XP Total",  @character.total_xp %>
+  </div>
+  <div class="col-xs-2">
+    <%= display_attribute_for_print "Gold Total",  humanize_decimal(@character.total_gp) %>
+  </div>
+  <div class="col-xs-2">
+    <%= display_attribute_for_print "Downtime Total",  @character.total_downtime %>
+  </div>
+  <div class="col-xs-2">
+    <%= display_attribute_for_print "Renown Total", @character.total_renown %>
+  </div>
+  <div class="col-xs-2">
+    <%= display_attribute_for_print "Magic Items", @character.total_magic_items %>
+  </div>
+
+  <div class="col-xs-12">
+    <%= display_attribute_for_print "Magic Items",  @character.magic_items_list %>
+  </div>
+
+</div>
+
+<br>

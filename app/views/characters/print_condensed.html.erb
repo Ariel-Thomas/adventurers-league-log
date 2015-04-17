@@ -14,28 +14,16 @@
   }
 
   .page {
-    page-break-after: always;
     page-break-inside: avoid;
   }
 </style>
 
-<% @index = 0 %>
-<% @sheet_num = 1 %>
+<div class='page'>
+  <%= render "print_condensed_header" %>
+</div>
 
-<% if(@log_entries.length == 0) %>
-  <%= render "print_header" %>
-  <%= render 'blank_print_log_entry' %>
-<% end %>
-
-<% @log_entries.each_with_index do |log_entry, index| %>
-  <% @index = index %>
-  <% if(index == 0 || index % 3 == 0) %>
-    <%= "<div class='page'>".html_safe %>
-    <%= render "print_header" %>
-    <% @sheet_num = @sheet_num + 1 %>
-  <% end %>
-
-  <div class="row print-log-entry-box">
+<% @log_entries.each do |log_entry| %>
+  <div class="row print-log-entry-box page">
     <div class="row">
       <div class="col-xs-4">
         <%= display_attribute_for_print "Adventure Name",  log_entry.adventure_title %>
@@ -56,7 +44,7 @@
         <%= display_attribute_for_print "XP Earned",  log_entry.xp_gained %>
       </div>
       <div class="col-xs-2">
-        <%= display_attribute_for_print "Gold +/-",  log_entry.gp_gained %>
+        <%= display_attribute_for_print "Gold +/-",  humanize_decimal(log_entry.gp_gained) %>
       </div>
       <div class="col-xs-2">
         <%= display_attribute_for_print "Downtime +/-",  log_entry.downtime_gained %>
@@ -72,22 +60,13 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-          <label>Adventure Notes / Downtime Activites</label>
-          <p class='print-notes'><%= log_entry.notes %></p>
+    <% if log_entry.notes && log_entry.notes != '' %>
+      <div class="row">
+        <div class="col-xs-12">
+            <label>Adventure Notes / Downtime Activites</label>
+            <p class='print-notes'><%= log_entry.notes %></p>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
-
-  <% if((index + 1) % 3 == 0) %>
-    </div>
-  <% end %>
 <% end %>
-
-<% while((@index + 1) % 3 != 0) %>
-  <% @index = @index + 1 %>
-  <%= render 'blank_print_log_entry' %>
-<% end %>
-
-</div>
