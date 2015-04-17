@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-md-offset-2 col-md-8">
-    <h2>New Log Entry</h2>
+    <h2>Edit DM Log Entry</h2>
   </div>
 </div>
 
-<%= form_for [current_user, @character, @log_entry] do |f| %>
+<%= form_for [@user, @log_entry] do |f| %>
   <div class="row">
     <div class="form-group col-md-offset-2 col-md-5">
       <%= f.label :adventure_title, 'Adventure Title' %>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="form-group col-md-2">
-      <%= f.label :date_played, 'Date Played' %>
+      <%= f.label :date_played, 'Date DMed' %>
       <%= f.date_field :date_played, class: 'form-control' %>
     </div>
   </div>
@@ -28,46 +28,23 @@
     </div>
     <div class="form-group col-md-2">
       <%= f.label :gp_gained, 'GP Gained' %>
-      <%= f.number_field :gp_gained, class: 'form-control' %>
-    </div>
-    <div class="form-group col-md-2">
-      <%= f.label :renown_gained, 'Renown Gained' %>
-      <%= f.number_field :renown_gained, class: 'form-control' %>
+      <%= f.number_field :gp_gained, class: 'form-control', :step => 'any' %>
     </div>
     <div class="form-group col-md-2">
       <%= f.label :downtime_gained, 'Downtime Gained' %>
       <%= f.number_field :downtime_gained, class: 'form-control' %>
     </div>
-    <div class="form-group col-md-2">
-      <%= f.label :num_secret_missions, 'Secret Missions' %>
-      <%= f.number_field :num_secret_missions, class: 'form-control' %>
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="form-group col-md-offset-2 col-md-2">
-      <%= f.label :num_magic_items_gained, 'Num Magic Items' %>
-      <%= f.number_field :num_magic_items_gained, class: 'form-control' %>
-    </div>
-    <div class="form-group col-md-6">
-      <%= f.label :desc_magic_items_gained, 'Magic Items Descriptions' %>
-      <%= f.text_field :desc_magic_items_gained, class: 'form-control' %>
-    </div>
   </div>
 
   <div class="row">
     <div class="form-group col-md-offset-2 col-md-4">
-      <%= f.label :location_played, 'Location Played' %>
+      <%= f.label :location_played, 'Location DMed' %>
       <%= f.text_field :location_played, class: 'form-control' %>
     </div>
-    <div class="form-group col-md-2">
-      <%= f.label :dm_name, 'DM Name' %>
-      <%= f.text_field :dm_name, class: 'form-control' %>
-    </div>
-    <div class="form-group col-md-2">
-      <%= f.label :dm_dci_number, 'DM DCI Number' %>
-      <%= f.text_field :dm_dci_number, class: 'form-control' %>
+
+    <div class="form-group col-md-4">
+      <%= f.label :character_id, 'Character to Apply Rewards' %>
+      <%= f.select :character_id, @characters.map{|character| [character.name, character.id]},  { include_blank: true }, { class: 'form-control' } %>
     </div>
   </div>
 

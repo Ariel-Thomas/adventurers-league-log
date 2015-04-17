@@ -25,6 +25,6 @@ class UsersController < AuthenticationController
   protected
 
     def user_params
-      params.require(:user).permit(:name, :dci_num)
+      params.require(:user).permit(:name, :dci_num, :publicly_visible)
     end
 end

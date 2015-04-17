@@ -1,0 +1,61 @@
+<div class="row">
+  <h1 class='col-xs-9'>DM Log Entries</h1>
+  <% if @log_entries.total_pages > 1 %>
+    <div class='col-xs-9'>
+      <%= paginate @log_entries %>
+    </div>
+   <% end %>
+
+  <div class='col-xs-3'>
+    <div class="pull-right">
+      <% if @user == current_user %>
+         <%= link_to "New Log Entry", [current_user, DmLogEntry, action: :new], class: "btn btn-primary" %>
+      <% end %>
+   </div>
+  </div>
+</div>
+
+
+<div class="table-responsive">
+  <table class="table table-bordered table-responsive table-striped">
+    <tr>
+      <th><%= sort_link @search, :date_played, "Date", {}, {} %></th>
+      <th><%= sort_link @search, :adventure_title, "Adventure Title", {}, {} %></th>
+      <th><%= sort_link @search, :session_num, "Session", {}, {} %></th>
+      <th><%= sort_link @search, :xp_gained, "XP", {}, {} %></th>
+      <th><%= sort_link @search, :gp_gained, "GP", {}, {} %></th>
+      <th><%= sort_link @search, :downtime_gained, "Downtime", {}, {} %></th>
+      <th><%= sort_link @search, :character, "Character Rewarded", {}, {} %></th>
+      <th></th>
+    </tr>
+
+    <tbody id='menu_items'>
+      <% @log_entries.each do |log_entry| %>
+        <tr>
+          <td><%= log_entry.date_played %></td>
+          <td><%= log_entry.adventure_title %></td>
+          <td><%= log_entry.session_num %></td>
+          <td><%= log_entry.xp_gained %></td>
+          <td><%= humanize_decimal log_entry.gp_gained %></td>
+          <td><%= log_entry.downtime_gained %></td>
+          <td><%= link_to log_entry.character.name, [log_entry.user, log_entry.character] if log_entry.character %></td>
+          <td>
+            <%= link_to "", [current_user, log_entry], class: "fa fa-eye" %>
+            <% if (@user == current_user) %>
+              <%= link_to "", [current_user, log_entry, action: :edit], class: "fa fa-pencil-square-o" %>
+              <%= link_to "", [current_user, log_entry], method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o" %>
+            <% end %>
+          </td>
+        </tr>
+        <% unless log_entry.notes.empty? %>
+          <tr>
+            <td colspan='9'>
+              <strong>Notes:</strong>
+              <%= log_entry.notes %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

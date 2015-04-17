@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416085946) do
+ActiveRecord::Schema.define(version: 20150417091621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20150416085946) do
     t.string  "adventure_title"
     t.integer "session_num"
     t.integer "xp_gained"
-    t.integer "gp_gained"
+    t.decimal "gp_gained",               precision: 20, scale: 4
     t.integer "num_magic_items_gained"
     t.string  "desc_magic_items_gained"
     t.integer "renown_gained"
@@ -41,8 +41,10 @@ ActiveRecord::Schema.define(version: 20150416085946) do
     t.string  "location_played"
     t.string  "dm_name"
     t.string  "dm_dci_number"
-    t.string  "notes",                   default: "", null: false
+    t.string  "notes",                                            default: "", null: false
     t.integer "num_secret_missions"
+    t.string  "type"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -60,6 +62,7 @@ ActiveRecord::Schema.define(version: 20150416085946) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "dci_num"
+    t.boolean  "publicly_visible"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

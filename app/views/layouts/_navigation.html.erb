@@ -22,7 +22,7 @@
         </li>
         <li>
           <% if user_signed_in? %>
-            <%= link_to 'DM Log', '', class: 'disabled' %>
+            <%= link_to 'DM Logs', user_dm_log_entries_path(current_user) %>
           <% end %>
         </li>
       </ul>

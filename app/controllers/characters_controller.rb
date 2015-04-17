@@ -15,7 +15,7 @@ class CharactersController < AuthenticationController
 
     params[:q] = { "s"=>"date_played asc" } unless params[:q]
 
-    @search      = @character.log_entries.search(params[:q])
+    @search      = @character.character_log_entries.search(params[:q])
     @log_entries = @search.result(distinct: false).page params[:page]
   end
 

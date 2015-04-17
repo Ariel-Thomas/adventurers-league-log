@@ -16,11 +16,13 @@
 }
 
 .print-character-box .text-box {
-  height: 26px;
+  height: 22px;
   border-bottom: 1px solid gray;
 
   padding: 2px;
   padding-left: 5px;
+  padding-bottom: 0px;
+
   background-color: white;
 
   text-overflow: clip;

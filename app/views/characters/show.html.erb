@@ -22,7 +22,7 @@
         <%= display_attribute "XP to Level", @character.xp_to_next_level %>
         <%= display_attribute "XP for Next",  @character.xp_for_next_level %>
         <br>
-        <%= display_attribute "Total GP", @character.total_gp %>
+        <%= display_attribute "Total GP", humanize_decimal(@character.total_gp) %>
       </div>
 
       <div class="col-sm-6">
@@ -46,7 +46,7 @@
 <div class="row">
   <div class='col-xs-12'>
     <div id='log_entires_list'>
-      <%= render partial: 'log_entries/list' %>
+      <%= render partial: 'character_log_entries/list' %>
     </div>
   </div>
 </div>

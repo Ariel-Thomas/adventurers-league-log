@@ -1,4 +1,4 @@
-class LogEntriesController < AuthenticationController
+class CharacterLogEntriesController < AuthenticationController
   skip_before_action :authenticate_user!, only: [:show]
 
   add_crumb('Home', '/')
@@ -8,7 +8,7 @@ class LogEntriesController < AuthenticationController
   before_filter { add_crumb @character.name, user_character_path(@character.user, @character) }
 
   before_filter(only: [:new]) { add_crumb "New Log Entry" }
-  before_filter(only: [:show, :edit]) { add_crumb @log_entry.adventure_title, user_character_log_entry_path(@character.user, @character, @log_entry) }
+  before_filter(only: [:show, :edit]) { add_crumb @log_entry.adventure_title, user_character_character_log_entry_path(@character.user, @character, @log_entry) }
 
   def show
     unless (@character.publicly_visible)
@@ -60,6 +60,6 @@ class LogEntriesController < AuthenticationController
     end
 
     def log_entries_params
-      params.require(:log_entry).permit(:adventure_title, :session_num, :date_played, :xp_gained, :gp_gained, :renown_gained, :downtime_gained, :num_secret_missions, :num_magic_items_gained, :desc_magic_items_gained, :location_played, :dm_name, :dm_dci_number, :notes)
+      params.require(:character_log_entry).permit(:adventure_title, :session_num, :date_played, :xp_gained, :gp_gained, :renown_gained, :downtime_gained, :num_secret_missions, :num_magic_items_gained, :desc_magic_items_gained, :location_played, :dm_name, :dm_dci_number, :notes)
     end
 end

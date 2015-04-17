@@ -15,4 +15,15 @@ module ApplicationHelper
     ("<div class='text-box'>" + attribute_value.to_s + "</div>" +
      "<label>" + attribute_name + "</label>").html_safe
   end
+
+  def humanize_decimal decimal_number
+    return nil unless decimal_number
+    floor = decimal_number.floor
+
+    if (floor == decimal_number)
+      floor
+    else
+      decimal_number
+    end
+  end
 end

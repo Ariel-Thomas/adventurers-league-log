@@ -1,6 +1,7 @@
 class Character < ActiveRecord::Base
   belongs_to :user
   has_many   :log_entries
+  has_many   :character_log_entries
   validates :name, presence: true
 
   FACTIONS = ["Harpers", "Order of the Guantlet", "Emerald Enclave", "Lord's Alliance", "Zhentarim"]
