@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<%= form_for [current_user, @character, @log_entry] do |f| %>
+<%= form_for [@user, @character, @log_entry] do |f| %>
   <div class="row">
     <div class="form-group col-md-offset-2 col-md-5">
       <%= f.label :adventure_title, 'Adventure Title' %>
@@ -27,16 +27,12 @@
       <%= f.number_field :xp_gained, class: 'form-control' %>
     </div>
     <div class="form-group col-md-2">
-      <%= f.label :gp_gained, 'GP Gained' %>
+      <%= f.label :gp_gained, 'GP +/-' %>
       <%= f.number_field :gp_gained, class: 'form-control', :step => 'any' %>
     </div>
     <div class="form-group col-md-2">
       <%= f.label :renown_gained, 'Renown Gained' %>
       <%= f.number_field :renown_gained, class: 'form-control' %>
-    </div>
-    <div class="form-group col-md-2">
-      <%= f.label :downtime_gained, 'Downtime Gained' %>
-      <%= f.number_field :downtime_gained, class: 'form-control' %>
     </div>
     <div class="form-group col-md-2">
       <%= f.label :num_secret_missions, 'Secret Missions' %>
@@ -50,9 +46,13 @@
       <%= f.label :num_magic_items_gained, 'Num Magic Items' %>
       <%= f.number_field :num_magic_items_gained, class: 'form-control' %>
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
       <%= f.label :desc_magic_items_gained, 'Magic Items Descriptions' %>
       <%= f.text_field :desc_magic_items_gained, class: 'form-control' %>
+    </div>
+    <div class="form-group col-md-2">
+      <%= f.label :downtime_gained, 'Downtime +/-' %>
+      <%= f.number_field :downtime_gained, class: 'form-control' %>
     </div>
   </div>
 

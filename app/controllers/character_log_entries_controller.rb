@@ -17,11 +17,12 @@ class CharacterLogEntriesController < AuthenticationController
   end
 
   def new
-    @log_entry   = @character.log_entries.new
+    @user        = current_user
+    @log_entry   = @character.character_log_entries.new
   end
 
   def create
-    @log_entry   = @character.log_entries.build(log_entries_params)
+    @log_entry   = @character.character_log_entries.build(log_entries_params)
 
     if @log_entry.save
       redirect_to user_character_path(current_user, @character), flash: { notice: "Successfully created character #{@log_entry.adventure_title}" }
