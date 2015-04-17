@@ -40,10 +40,10 @@
           <td><%= log_entry.downtime_gained %></td>
           <td><%= link_to log_entry.character.name, [log_entry.user, log_entry.character] if log_entry.character %></td>
           <td>
-            <%= link_to "", [current_user, log_entry], class: "fa fa-eye" %>
+            <%= link_to "", [@user, log_entry], class: "fa fa-eye" %>
             <% if (@user == current_user) %>
-              <%= link_to "", [current_user, log_entry, action: :edit], class: "fa fa-pencil-square-o" %>
-              <%= link_to "", [current_user, log_entry], method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o" %>
+              <%= link_to "", [@user, log_entry, action: :edit], class: "fa fa-pencil-square-o" %>
+              <%= link_to "", [@user, log_entry], method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o" %>
             <% end %>
           </td>
         </tr>
