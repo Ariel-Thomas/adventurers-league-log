@@ -1,12 +1,12 @@
 <div class="row">
-  <h3 class='col-xs-9'>Log Entries</h3>
+  <h3 class='col-xs-6'>Log Entries</h3>
   <% if @log_entries.total_pages > 1 %>
     <div class='col-xs-9'>
       <%= paginate @log_entries %>
     </div>
    <% end %>
 
-  <div class='col-xs-3'>
+  <div class='col-xs-6'>
     <div class="pull-right">
       <div class="btn-group">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -17,8 +17,6 @@
           <li><%= link_to "Print Condensed", print_condensed_user_character_path(@character.user, @character) %></li>
         </ul>
       </div>
-
-
       <% if @character.user == current_user %>
          <%= link_to "New Log Entry", new_user_character_character_log_entry_path(current_user, @character), class: "btn btn-primary" %>
       <% end %>
