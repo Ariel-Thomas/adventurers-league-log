@@ -1,6 +1,6 @@
 module ApplicationHelper
-  def display_attribute attribute_name, attribute_value
-    ("<div class='row'>
+  def display_attribute attribute_name, attribute_value, options={}
+    ("<div class='row " + options[:class].to_s + "'>
         <div class='col-xs-5'>
           <strong>" + attribute_name + ":</strong>
         </div>
