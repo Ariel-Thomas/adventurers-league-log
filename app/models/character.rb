@@ -6,7 +6,7 @@ class Character < ActiveRecord::Base
 
   FACTIONS = ["Harpers", "Order of the Gauntlet", "Emerald Enclave", "Lord's Alliance", "Zhentarim"]
   FACTION_IMAGES = {"Harpers":               "harpers.jpg",
-                    "Order of the Guantlet": "orderofthegauntlet.jpg",
+                    "Order of the Gauntlet": "orderofthegauntlet.jpg",
                     "Emerald Enclave":       "emeraldenclave.jpg",
                     "Lord's Alliance":       "lordsalliance.jpg",
                     "Zhentarim":             "zhentarim.jpg"               }
