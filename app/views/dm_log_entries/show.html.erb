@@ -42,7 +42,7 @@
   </div>
   <div class="form-group col-md-4">
     <strong>Character to Apply Rewards</strong> <br>
-    <%= @log_entry.character.name %>
+    <%= @log_entry.character.name if @log_entry.character %>
   </div>
 </div>
 
