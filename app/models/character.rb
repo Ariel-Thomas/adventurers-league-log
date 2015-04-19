@@ -4,7 +4,7 @@ class Character < ActiveRecord::Base
   has_many   :character_log_entries
   validates :name, presence: true
 
-  FACTIONS = ["Harpers", "Order of the Guantlet", "Emerald Enclave", "Lord's Alliance", "Zhentarim"]
+  FACTIONS = ["Harpers", "Order of the Gauntlet", "Emerald Enclave", "Lord's Alliance", "Zhentarim"]
   FACTION_IMAGES = {"Harpers":               "harpers.jpg",
                     "Order of the Guantlet": "orderofthegauntlet.jpg",
                     "Emerald Enclave":       "emeraldenclave.jpg",
