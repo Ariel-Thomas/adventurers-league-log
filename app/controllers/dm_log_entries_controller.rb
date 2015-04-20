@@ -7,7 +7,7 @@ class DmLogEntriesController < AuthenticationController
   before_filter :load_log_entry,  only: [:show, :edit, :update, :destroy]
 
   before_filter() { add_crumb('DM Logs', user_dm_log_entries_path(@user)) }
-  before_filter(only: [:new]) { add_crumb "New Log Entry" }
+  before_filter(only: [:new])  { add_crumb "New Log Entry" }
   before_filter(only: [:edit]) { add_crumb "Edit Log Entry" }
   before_filter(only: [:show]) { add_crumb "Show Log Entry" }
 
@@ -54,13 +54,13 @@ class DmLogEntriesController < AuthenticationController
     end
   end
 
-
   def destroy
     authorize @log_entry
     @log_entry.destroy
 
     redirect_to [@user, DmLogEntry], flash: { notice: "Successfully deleted DM Log Entry #{@log_entry.id}" }
   end
+
 
   protected
     def load_user

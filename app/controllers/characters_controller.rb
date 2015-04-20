@@ -85,7 +85,7 @@ class CharactersController < AuthenticationController
   end
 
   def destroy
-    redirect_to :root and return unless (@character.user == current_user)
+    authorize @character
 
     @character.destroy
 

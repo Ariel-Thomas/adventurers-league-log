@@ -27,9 +27,20 @@ gem 'phil_columns'
 gem 'phil_columns-activerecord'
 
 gem 'pry-rails'
-group :development, :test do
-  gem 'dotenv-rails'
 
+group :development, :test do
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'faker'
+  gem 'database_cleaner'
+
+  gem 'phantomjs', require: 'phantomjs/poltergeist'
+  gem 'poltergeist'
+
+  gem 'dotenv-rails'
   gem 'byebug'
   gem 'pry-byebug'
 end
