@@ -11,19 +11,19 @@ class CharacterLogEntriesController < AuthenticationController
   before_filter(only: [:show, :edit]) { add_crumb @log_entry.adventure_title, user_character_character_log_entry_path(@character.user, @character, @log_entry) }
 
   def show
-    unless (@character.publicly_visible)
-      redirect_to :root and return unless (@character.user == current_user)
-    end
+    authorize @log_entry
   end
 
   def new
     @user        = current_user
     @log_entry   = @character.character_log_entries.new
+    authorize @log_entry
   end
 
   def create
     @user        = current_user
     @log_entry   = @character.character_log_entries.build(log_entries_params)
+    authorize @log_entry
 
     if @log_entry.save
       redirect_to user_character_path(current_user, @character), flash: { notice: "Successfully created character #{@log_entry.adventure_title}" }
@@ -34,9 +34,12 @@ class CharacterLogEntriesController < AuthenticationController
   end
 
   def edit
+    authorize @log_entry
   end
 
   def update
+    authorize @log_entry
+
     if @log_entry.update_attributes(log_entries_params)
       redirect_to user_character_path(current_user, @character), flash: { notice: "Successfully updated character #{@log_entry.adventure_title}" }
     else
@@ -47,6 +50,7 @@ class CharacterLogEntriesController < AuthenticationController
 
 
   def destroy
+    authorize @log_entry
     @log_entry.destroy
 
     redirect_to user_character_path(current_user, @character), flash: { notice: "Successfully deleted #{@log_entry.adventure_title}" }

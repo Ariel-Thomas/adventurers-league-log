@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
   include ActionController::MimeResponds
 
   def redirect_to(*args)
@@ -6,7 +7,4 @@ class ApplicationController < ActionController::Base
     super
   end
 
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
 end

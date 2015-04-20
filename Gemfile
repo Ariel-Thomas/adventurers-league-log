@@ -14,6 +14,7 @@ gem 'turbolinks'
 gem 'jbuilder'
 
 gem 'devise', '~> 3.4.1'
+gem 'pundit'
 
 gem 'ransack'
 gem 'crummy'

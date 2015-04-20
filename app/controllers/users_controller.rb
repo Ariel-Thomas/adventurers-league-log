@@ -1,6 +1,7 @@
 class UsersController < AuthenticationController
   def edit
     @user = User.find(params[:id])
+    authorize @user
 
     unless (@user == current_user)
       redirect_to :root and return
@@ -9,6 +10,7 @@ class UsersController < AuthenticationController
 
   def update
     @user = User.find(params[:id])
+    authorize @user
 
     unless (@user == current_user)
       redirect_to :root and return

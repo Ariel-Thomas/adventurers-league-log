@@ -1,7 +1,7 @@
 class CharactersController < AuthenticationController
   skip_before_action :authenticate_user!, only: [:show, :print, :print_condensed]
 
-  before_action :load_user, except: [:show, :print, :print_condensed]
+  before_action :load_user
   before_action :load_character,   only: [:show, :print, :print_condensed, :edit, :update, :destroy]
 
   before_action :load_overrides,    only: [:edit]
@@ -10,14 +10,14 @@ class CharactersController < AuthenticationController
   before_action :load_factions,   only: [:new, :create, :edit, :update]
 
   def index
-    @search     = @user.characters.search(params[:q])
+    authorize @user
+
+    @search     = policy_scope(Character).search(params[:q])
     @characters = @search.result(distinct: false).page params[:page]
   end
 
   def show
-    unless (@character.publicly_visible)
-      redirect_to :root and return unless (@character.user == current_user)
-    end
+    authorize @character
 
     params[:q] = { "s"=>"date_played asc" } unless params[:q]
 
@@ -26,6 +26,8 @@ class CharactersController < AuthenticationController
   end
 
   def print
+    authorize @character, :print?
+
     unless (@character.publicly_visible)
       redirect_to :root and return unless (@character.user == current_user)
     end
@@ -40,6 +42,8 @@ class CharactersController < AuthenticationController
   end
 
   def print_condensed
+    authorize @character, :print?
+
     unless (@character.publicly_visible)
       redirect_to :root and return unless (@character.user == current_user)
     end
@@ -50,10 +54,12 @@ class CharactersController < AuthenticationController
 
   def new
     @character = @user.characters.new
+    authorize @character
   end
 
   def create
     @character = @user.characters.build(character_params)
+    authorize @character
 
     if @character.save
       redirect_to user_characters_path(@user), flash: { notice: "Successfully created character #{@character.name}" }
@@ -64,11 +70,11 @@ class CharactersController < AuthenticationController
   end
 
   def edit
-    redirect_to :root and return unless (@character.user == current_user)
+    authorize @character
   end
 
   def update
-    redirect_to :root and return unless (@character.user == current_user)
+    authorize @character
 
     if @character.update_attributes(character_params)
       redirect_to user_characters_path(@user), flash: { notice: "Successfully updated character #{@character.name}" }
@@ -88,11 +94,11 @@ class CharactersController < AuthenticationController
 
   protected
     def load_user
-      @user = current_user
+      @user = User.find(params[:user_id])
     end
 
     def load_character
-      @character = Character.find(params[:id])
+      @character = @user.characters.find(params[:id])
     end
 
     def load_overrides

@@ -1,3 +1,3 @@
 class AuthenticationController < ApplicationController
-  before_action :authenticate_user!
+  include Restricted
 end

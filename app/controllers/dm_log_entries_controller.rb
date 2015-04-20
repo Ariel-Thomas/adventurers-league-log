@@ -11,22 +11,25 @@ class DmLogEntriesController < AuthenticationController
   before_filter(only: [:edit]) { add_crumb "Edit Log Entry" }
   before_filter(only: [:show]) { add_crumb "Show Log Entry" }
 
-  before_filter :redirect_bad_users
-
   def index
+    authorize @user, :publicly_visible_user?
+
     @search      = @user.dm_log_entries.search(params[:q])
     @log_entries = @search.result(distinct: false).page params[:page]
   end
 
   def show
+    authorize @log_entry
   end
 
   def new
     @log_entry   = @user.dm_log_entries.new
+    authorize @log_entry
   end
 
   def create
     @log_entry   = @user.dm_log_entries.build(log_entries_params)
+    authorize @log_entry
 
     if @log_entry.save
       redirect_to [@user, DmLogEntry], flash: { notice: "Successfully created log entry #{@log_entry.id}" }
@@ -37,9 +40,12 @@ class DmLogEntriesController < AuthenticationController
   end
 
   def edit
+    authorize @log_entry
   end
 
   def update
+    authorize @log_entry
+
     if @log_entry.update_attributes(log_entries_params)
       redirect_to [@user, DmLogEntry], flash: { notice: "Successfully updated log entry #{@log_entry.id}" }
     else
@@ -50,18 +56,13 @@ class DmLogEntriesController < AuthenticationController
 
 
   def destroy
+    authorize @log_entry
     @log_entry.destroy
 
     redirect_to [@user, DmLogEntry], flash: { notice: "Successfully deleted DM Log Entry #{@log_entry.id}" }
   end
 
   protected
-    def redirect_bad_users
-      unless (@user.publicly_visible)
-        redirect_to :root and return unless (@user == current_user)
-      end
-    end
-
     def load_user
       @user   = User.find(params[:user_id])
     end
