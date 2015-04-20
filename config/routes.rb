@@ -14,5 +14,6 @@ AdventurersLeagueLog::Application.routes.draw do
     resources :dm_log_entries
   end
 
+  get 'stats', controller: 'home'
   root to: 'home#index'
 end
