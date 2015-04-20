@@ -1,20 +1,36 @@
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
+}
+
 .table{
   margin-bottom:15px;
 }
 
 .table > tbody > tr > th{
-  font-size: 18px;
+  font-size: 16px;
 }
+
+.table > tbody > tr > th > a:not(.btn) {
+  color: #2c3e50;
+}
+
+.table > tbody > tr > th > a:not(.btn):hover {
+  color: #337AB7;
+}
+
 
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
   padding-top: 0px;
   padding-bottom: 0px;
 }
 
+tr.log-entry-notes > td{
+  width:10px;
+}
+
 .table-bordered, .table > tbody + tbody, table-bordered > thead > tr > th, .table-bordered > thead > tr > th, table-bordered > tbody > tr > th, .table-bordered > tbody > tr > th, table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > th, table-bordered > thead > tr > td, .table-bordered > thead > tr > td, table-bordered > tbody > tr > td, .table-bordered > tbody > tr > td, table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > td{
   border: 1px solid #aaaaaa;
 }
-
 
 .pagination {
   margin-top:    10px;
@@ -25,3 +41,4 @@
   padding-top: 5px;
   padding-bottom: 5px;
 }
+

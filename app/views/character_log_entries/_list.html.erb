@@ -29,12 +29,12 @@
   <div class="table-responsive">
     <table class="table table-bordered table-responsive table-striped">
       <tr>
-        <th><%= sort_link @search, :date_played, "Date Played", {}, {} %></th>
-        <th><%= sort_link @search, :adventure_title, "Adventure Title", {}, {} %></th>
+        <th><%= sort_link @search, :date_played, "Date&nbsp;Played".html_safe, {}, {} %></th>
+        <th><%= sort_link @search, :adventure_title, "Adventure&nbsp;Title".html_safe, {}, {} %></th>
         <th><%= sort_link @search, :session_num, "Session", {}, {} %></th>
         <th><%= sort_link @search, :xp_gained, "XP", {}, {} %></th>
         <th><%= sort_link @search, :gp_gained, "GP", {}, {} %></th>
-        <th><%= sort_link @search, :desc_magic_items_gained, "Magic Items", {}, {} %></th>
+        <th><%= sort_link @search, :desc_magic_items_gained, "Magic&nbsp;Items".html_safe, {}, {} %></th>
         <th><%= sort_link @search, :renown_gained, "Renown", {}, {} %></th>
         <th><%= sort_link @search, :downtime_gained, "Downtime", {}, {} %></th>
         <th></th>
@@ -60,7 +60,7 @@
             </td>
           </tr>
           <% unless log_entry.notes.empty? %>
-            <tr>
+            <tr class="log-entry-notes">
               <td colspan='9'>
                 <strong>Notes:</strong>
                 <%= log_entry.notes %>
