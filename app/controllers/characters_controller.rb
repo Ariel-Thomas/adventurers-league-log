@@ -64,9 +64,12 @@ class CharactersController < AuthenticationController
   end
 
   def edit
+    redirect_to :root and return unless (@character.user == current_user)
   end
 
   def update
+    redirect_to :root and return unless (@character.user == current_user)
+
     if @character.update_attributes(character_params)
       redirect_to user_characters_path(@user), flash: { notice: "Successfully updated character #{@character.name}" }
     else
@@ -76,6 +79,8 @@ class CharactersController < AuthenticationController
   end
 
   def destroy
+    redirect_to :root and return unless (@character.user == current_user)
+
     @character.destroy
 
     redirect_to user_characters_path(@user), notice: "Successfully deleted #{@character.name}"
