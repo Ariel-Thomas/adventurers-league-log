@@ -1,3 +1,25 @@
+[role=main]{
+  min-height: 600px;
+}
+
+body{
+  padding-top: 75px;
+}
+
+h1, .h1, h2, .h2, h3, .h3{
+  margin-top:15px;
+}
+
+html,body {
+  height:100%;
+  width: 100%;
+}
+
+.special,
+.special .jumbotron {
+  height:100%;
+}
+
 .adventurers-league-logo {
   background-image: url(<%= asset_path 'DnD_ADVL.png' %>);
   background-position: center;
@@ -9,9 +31,6 @@
   margin-top:10px;
   margin-bottom:10px;
 }
-
-html,body { height:100%; width: 100%; }
-.special,.special .jumbotron { height:100%; }
 
 .jumbotron-art{
   background-image: url(<%= asset_path 'DnD_DMG_Art.jpg' %>);
@@ -69,57 +88,3 @@ html,body { height:100%; width: 100%; }
   cursor: default;
 }
 
-
-.pagination {
-  margin-top:    10px;
-  margin-bottom: 10px;
-}
-
-.pagination > li > a, .pagination > li > span{
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-h1, .h1, h2, .h2, h3, .h3{
-  margin-top:15px;
-}
-
-.table{
-  margin-bottom:15px;
-}
-
-.table > tbody > tr > th{
-  font-size: 18px;
-}
-
-.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
-.table-bordered, .table > tbody + tbody, table-bordered > thead > tr > th, .table-bordered > thead > tr > th, table-bordered > tbody > tr > th, .table-bordered > tbody > tr > th, table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > th, table-bordered > thead > tr > td, .table-bordered > thead > tr > td, table-bordered > tbody > tr > td, .table-bordered > tbody > tr > td, table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > td{
-  border: 1px solid #aaaaaa;
-}
-
-.form-control{
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-[role=main]{
-  min-height: 600px;
-}
-
-body{
-  padding-top: 75px;
-}
-
-.btn-default{
-  background-color: #fff;
-  border-color: #2c3e50;
-  color: #2c3e50;
-}
-
-.btn-default:hover{
-  background-color:rgba(0, 0, 0, 0.3);
-}

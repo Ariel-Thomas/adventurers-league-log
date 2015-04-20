@@ -25,7 +25,7 @@
     <%= display_attribute "Magic Items", @character.magic_items_list %>
     <%= display_attribute "Total Magic Items",  @character.total_magic_items %>
     <br>
-    <%= display_attribute "Faction",  @character.faction %>
+    <%= display_attribute "Faction",  @character.faction_name %>
     <%= display_attribute "Faction Rank",  @character.faction_rank %>
     <%= display_attribute "Total Renown",  @character.total_renown %>
     <%= display_attribute "Secret Missions",  @character.total_secret_missions %>
@@ -34,7 +34,9 @@
   </div>
 
   <div class="col-md-2 hidden-xs hidden-sm" style="margin-top:-40px;">
-    <img src="<%= asset_path(@character.faction_image) %>" height="245">
+    <% if @character.faction_image %>
+      <img src="<%= asset_path(@character.faction_image) %>" height="245">
+    <% end %>
   </div>
 </div>
 

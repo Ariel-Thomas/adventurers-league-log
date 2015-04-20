@@ -19,7 +19,7 @@
                 <td><%= link_to character.name, user_character_path(current_user, character) %></td>
                 <td><%= character.race %></td>
                 <td><%= character.class_and_levels %></td>
-                <td><%= character.faction %></td>
+                <td><%= character.faction_name %></td>
                 <td>
                   <%= link_to "", user_character_path(current_user, character), class: "fa fa-eye" %>
                   <%= link_to "", edit_user_character_path(current_user, character), class: "fa fa-pencil-square-o" %>

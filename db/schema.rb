@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150417091621) do
+ActiveRecord::Schema.define(version: 20150419202028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,11 +20,17 @@ ActiveRecord::Schema.define(version: 20150417091621) do
     t.string  "name"
     t.string  "race"
     t.string  "class_and_levels"
-    t.string  "faction"
+    t.string  "faction_override"
     t.integer "user_id"
     t.string  "portrait_url"
     t.boolean "publicly_visible", default: false, null: false
     t.string  "faction_rank"
+    t.integer "faction_id"
+  end
+
+  create_table "factions", force: :cascade do |t|
+    t.string "name"
+    t.string "flag_url"
   end
 
   create_table "log_entries", force: :cascade do |t|

@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 ruby '2.2.0'
 gem 'rails', '4.2.1'
+gem 'pg'
 gem 'puma'
 
-gem 'pg'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
@@ -22,7 +22,8 @@ gem 'kaminari-bootstrap'
 gem 'font-awesome-rails'
 
 gem 'honeybadger', '~> 2.0'
-
+gem 'phil_columns'
+gem 'phil_columns-activerecord'
 
 gem 'pry-rails'
 group :development, :test do

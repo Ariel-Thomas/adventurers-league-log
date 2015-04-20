@@ -1,25 +1,25 @@
 class Character < ActiveRecord::Base
   belongs_to :user
+  belongs_to :faction
   has_many   :log_entries
   has_many   :character_log_entries
   validates :name, presence: true
 
-  FACTIONS = ["Harpers", "Order of the Gauntlet", "Emerald Enclave", "Lord's Alliance", "Zhentarim"]
-  FACTION_IMAGES = {"Harpers":               "harpers.jpg",
-                    "Order of the Gauntlet": "orderofthegauntlet.jpg",
-                    "Emerald Enclave":       "emeraldenclave.jpg",
-                    "Lord's Alliance":       "lordsalliance.jpg",
-                    "Zhentarim":             "zhentarim.jpg"               }
-
   XP_BY_LEVEL =
    [0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000]
 
-  def self.faction_list
-    FACTIONS
+  def faction_image
+    faction.flag_url if faction
   end
 
-  def faction_image
-    FACTION_IMAGES[faction.to_sym]
+  def faction_name
+    if faction_override
+      faction_override
+    elsif faction
+      faction.name
+    else
+      "None"
+    end
   end
 
   def total_xp

@@ -1,14 +1,20 @@
 class CharactersController < AuthenticationController
   skip_before_action :authenticate_user!, only: [:show, :print, :print_condensed]
 
+  before_action :load_user, except: [:show, :print, :print_condensed]
+  before_action :load_character,   only: [:show, :print, :print_condensed, :edit, :update, :destroy]
+
+  before_action :load_overrides,    only: [:edit]
+  before_action :enforce_overrides, only: [:create, :update]
+
+  before_action :load_factions,   only: [:new, :create, :edit, :update]
+
   def index
-    @search     = current_user.characters.search(params[:q])
+    @search     = @user.characters.search(params[:q])
     @characters = @search.result(distinct: false).page params[:page]
   end
 
   def show
-    @character   = Character.find(params[:id])
-
     unless (@character.publicly_visible)
       redirect_to :root and return unless (@character.user == current_user)
     end
@@ -20,8 +26,6 @@ class CharactersController < AuthenticationController
   end
 
   def print
-    @character   = Character.find(params[:id])
-
     unless (@character.publicly_visible)
       redirect_to :root and return unless (@character.user == current_user)
     end
@@ -36,8 +40,6 @@ class CharactersController < AuthenticationController
   end
 
   def print_condensed
-    @character   = Character.find(params[:id])
-
     unless (@character.publicly_visible)
       redirect_to :root and return unless (@character.user == current_user)
     end
@@ -47,14 +49,14 @@ class CharactersController < AuthenticationController
 
 
   def new
-    @character = current_user.characters.new
+    @character = @user.characters.new
   end
 
   def create
-    @character = current_user.characters.build(character_params)
+    @character = @user.characters.build(character_params)
 
     if @character.save
-      redirect_to user_characters_path(current_user), flash: { notice: "Successfully created character #{@character.name}" }
+      redirect_to user_characters_path(@user), flash: { notice: "Successfully created character #{@character.name}" }
     else
       flash.now[:error] = "Failed to create character #{@character.name}: #{@character.errors.full_messages.join(',')}"
       render :new
@@ -62,14 +64,11 @@ class CharactersController < AuthenticationController
   end
 
   def edit
-    @character = current_user.characters.find(params[:id])
   end
 
   def update
-    @character = current_user.characters.find(params[:id])
-
     if @character.update_attributes(character_params)
-      redirect_to user_characters_path(current_user), flash: { notice: "Successfully updated character #{@character.name}" }
+      redirect_to user_characters_path(@user), flash: { notice: "Successfully updated character #{@character.name}" }
     else
       flash.now[:error] = "Failed to update character #{@character.name}: #{@character.errors.full_messages.join(',')}"
       render :edit
@@ -77,15 +76,41 @@ class CharactersController < AuthenticationController
   end
 
   def destroy
-    @character = current_user.characters.find(params[:id])
     @character.destroy
 
-    redirect_to user_characters_path(current_user), notice: "Successfully deleted #{@character.name}"
+    redirect_to user_characters_path(@user), notice: "Successfully deleted #{@character.name}"
   end
 
   protected
+    def load_user
+      @user = current_user
+    end
+
+    def load_character
+      @character = Character.find(params[:id])
+    end
+
+    def load_overrides
+      if @character.faction_override
+        @use_faction_override = true
+      else
+        @use_faction_override = false
+      end
+    end
+
+    def enforce_overrides
+      if params[:use_faction_override]
+        params[:character][:faction_id] = nil
+      else
+        params[:character][:faction_override] = nil
+      end
+    end
+
+    def load_factions
+      @factions = Faction.all
+    end
 
     def character_params
-      params.require(:character).permit(:name, :race, :class_and_levels, :faction, :faction_rank, :portrait_url, :publicly_visible)
+      params.require(:character).permit(:name, :race, :class_and_levels, :faction_override, :faction_id, :faction_rank, :portrait_url, :publicly_visible)
     end
 end

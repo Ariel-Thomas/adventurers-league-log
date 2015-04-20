@@ -1,0 +1,10 @@
+---
+default_tags:
+- default
+env_files:
+- config/environment
+- config/phil_columns
+schema_load_strategy: load
+schema_unload_strategy: drop
+seeds_path: db/seeds
+skip_tables_on_purge: []
