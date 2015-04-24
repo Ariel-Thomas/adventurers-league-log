@@ -39,11 +39,11 @@ class Character < ActiveRecord::Base
   end
 
   def xp_to_next_level
-    XP_BY_LEVEL[current_level] - total_xp
+    xp_for_next_level - total_xp
   end
 
   def xp_for_next_level
-    XP_BY_LEVEL[current_level]
+    XP_BY_LEVEL[current_level] || 0
   end
 
   def total_gp
