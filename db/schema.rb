@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150425120517) do
+ActiveRecord::Schema.define(version: 20150425145940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,13 @@ ActiveRecord::Schema.define(version: 20150425120517) do
     t.integer  "num_secret_missions"
     t.string   "type"
     t.integer  "user_id"
+    t.integer  "player_dm_id"
+  end
+
+  create_table "player_dms", force: :cascade do |t|
+    t.string  "name"
+    t.string  "dci"
+    t.integer "user_id"
   end
 
   create_table "schema_seeds", id: false, force: :cascade do |t|

@@ -6,6 +6,7 @@ class CharacterLogEntriesController < AuthenticationController
   before_filter :load_character
   before_filter :load_log_entry, only: [:show, :edit, :update, :destroy]
   before_filter :load_adventure_form_inputs, only: [:new, :create, :edit, :update]
+  before_filter :load_player_dms, only: [:new, :create, :edit, :update]
   before_filter :load_overrides, only: [:edit, :update]
 
   before_filter { add_crumb @character.name, user_character_path(@character.user, @character) }
@@ -25,6 +26,7 @@ class CharacterLogEntriesController < AuthenticationController
   def create
     @log_entry   = @character.character_log_entries.build(log_entries_params)
     authorize @log_entry
+    manage_player_dms
 
     if @log_entry.save
       redirect_to user_character_path(current_user, @character), flash: { notice: "Successfully created character #{@log_entry.adventure_title}" }
@@ -40,6 +42,7 @@ class CharacterLogEntriesController < AuthenticationController
 
   def update
     authorize @log_entry
+    manage_player_dms
 
     if @log_entry.update_attributes(log_entries_params)
       redirect_to user_character_path(current_user, @character), flash: { notice: "Successfully updated character #{@log_entry.adventure_title}" }
@@ -74,11 +77,35 @@ class CharacterLogEntriesController < AuthenticationController
       @adventure_form_inputs  = AdventureFormInput.all
     end
 
+    def load_player_dms
+      @player_dms  = @user.player_dms.all
+    end
+
     def load_overrides
       @use_adventure_override = !@adventure_form_inputs.find_by(name: @log_entry.adventure_title)
     end
 
+    def manage_player_dms
+      if params[:character_log_entry][:player_dm_id] && params[:character_log_entry][:player_dm_id] != ""
+        @player_dm = @user.player_dms.find(params[:character_log_entry][:player_dm_id])
+
+        params[:character_log_entry][:dm_name]       = @player_dm.name
+        params[:character_log_entry][:dm_dci_number] = @player_dm.dci
+      elsif params[:character_log_entry][:dm_dci_number]
+        @player_dm = @user.player_dms.find_by(dci: params[:character_log_entry][:dm_dci_number])
+
+        unless @player_dm
+          @player_dm = @user.player_dms.create!(
+            name: params[:character_log_entry][:dm_name],
+            dci: params[:character_log_entry][:dm_dci_number])
+          params[:character_log_entry][:player_dm_id]
+        end
+
+        params[:character_log_entry][:player_dm_id] = @player_dm.id
+      end
+    end
+
     def log_entries_params
-      params.require(:character_log_entry).permit(:adventure_title, :session_num, :date_played, :xp_gained, :gp_gained, :renown_gained, :downtime_gained, :num_secret_missions, :num_magic_items_gained, :desc_magic_items_gained, :location_played, :dm_name, :dm_dci_number, :notes)
+      params.require(:character_log_entry).permit(:adventure_title, :session_num, :date_played, :xp_gained, :gp_gained, :renown_gained, :downtime_gained, :num_secret_missions, :num_magic_items_gained, :desc_magic_items_gained, :location_played, :dm_name, :dm_dci_number, :player_dm_id, :notes)
     end
 end
