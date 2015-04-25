@@ -49,7 +49,7 @@
 
       <tbody id='menu_items'>
         <% @log_entries.each do |log_entry| %>
-          <tr>
+          <tr class='<%= "dm_log" if log_entry.type == "DmLogEntry" %>'>
             <td><%= log_entry.date_played %></td>
             <td>
               <% unless log_entry.type == "DmLogEntry" %>
@@ -72,7 +72,7 @@
                   <%= link_to "", user_character_character_log_entry_path(current_user, @character, log_entry), method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o" %>
                 <% end %>
               <% else %>
-                <div class='label label-default'>DM Log</div>
+                <div class='label label-danger'>DM Log</div>
               <% end %>
             </td>
           </tr>
