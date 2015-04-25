@@ -19,9 +19,10 @@ class CharactersController < AuthenticationController
   def show
     authorize @character
 
-    params[:q] = { "s"=>"date_played asc" } unless params[:q]
+    params[:q] = { "type_eq"=> "CharacterLogEntry", "s"=>"date_played asc" } unless params[:q]
+    @dm_logs_enabled = params[:q][:type_eq] != "CharacterLogEntry"
 
-    @search      = @character.character_log_entries.search(params[:q])
+    @search      = @character.log_entries.search(params[:q])
     @log_entries = @search.result(distinct: false).page params[:page]
   end
 
