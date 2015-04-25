@@ -38,6 +38,8 @@ GEM
       tzinfo (~> 1.1)
     arel (6.0.0)
     bcrypt (3.1.10)
+    bootstrap3-datetimepicker-rails (4.0.0)
+      momentjs-rails (>= 2.8.1)
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
@@ -108,6 +110,8 @@ GEM
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.6.0)
+    momentjs-rails (2.10.2)
+      railties (>= 3.1)
     multi_json (1.11.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -243,6 +247,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap3-datetimepicker-rails (~> 4.0.0)
   byebug
   capybara
   coffee-rails
@@ -258,6 +263,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   kaminari-bootstrap
+  momentjs-rails (>= 2.8.1)
   pg
   phantomjs
   phil_columns

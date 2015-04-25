@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150425100244) do
+ActiveRecord::Schema.define(version: 20150425120517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,23 +39,23 @@ ActiveRecord::Schema.define(version: 20150425100244) do
   end
 
   create_table "log_entries", force: :cascade do |t|
-    t.integer "character_id"
-    t.date    "date_played"
-    t.string  "adventure_title"
-    t.integer "session_num"
-    t.integer "xp_gained"
-    t.decimal "gp_gained",               precision: 20, scale: 4
-    t.integer "num_magic_items_gained"
-    t.string  "desc_magic_items_gained"
-    t.integer "renown_gained"
-    t.integer "downtime_gained"
-    t.string  "location_played"
-    t.string  "dm_name"
-    t.string  "dm_dci_number"
-    t.string  "notes",                                            default: "", null: false
-    t.integer "num_secret_missions"
-    t.string  "type"
-    t.integer "user_id"
+    t.integer  "character_id"
+    t.datetime "date_played"
+    t.string   "adventure_title"
+    t.integer  "session_num"
+    t.integer  "xp_gained"
+    t.decimal  "gp_gained",               precision: 20, scale: 4
+    t.integer  "num_magic_items_gained"
+    t.string   "desc_magic_items_gained"
+    t.integer  "renown_gained"
+    t.integer  "downtime_gained"
+    t.string   "location_played"
+    t.string   "dm_name"
+    t.string   "dm_dci_number"
+    t.string   "notes",                                            default: "", null: false
+    t.integer  "num_secret_missions"
+    t.string   "type"
+    t.integer  "user_id"
   end
 
   create_table "schema_seeds", id: false, force: :cascade do |t|

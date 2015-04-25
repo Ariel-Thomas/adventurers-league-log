@@ -9,7 +9,7 @@
 
     <div class="form-group col-md-2">
       <%= f.label :date_played, 'Date DMed' %>
-      <%= f.date_field :date_played, class: 'form-control' %>
+      <%= f.text_field :date_played, class: 'form-control' %>
     </div>
   </div>
 
@@ -53,3 +53,19 @@
     </div>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $(function () {
+    $('#dm_log_entry_date_played').datetimepicker({
+      format: 'YYYY-MM-DD HH:mm ',
+      icons: {
+          time: "fa fa-clock-o",
+          date: "fa fa-calendar",
+          up: "fa fa-arrow-up",
+          down: "fa fa-arrow-down",
+          previous: "fa fa-arrow-left",
+          next: "fa fa-arrow-right",
+      }
+    });
+  });
+</script>

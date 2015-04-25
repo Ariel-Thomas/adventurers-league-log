@@ -50,7 +50,7 @@
       <tbody id='menu_items'>
         <% @log_entries.each do |log_entry| %>
           <tr class='<%= "dm_log" if log_entry.type == "DmLogEntry" %>'>
-            <td><%= log_entry.date_played %></td>
+            <td><%= format_date log_entry.date_played %></td>
             <td>
               <% unless log_entry.type == "DmLogEntry" %>
                 <%= link_to log_entry.adventure_title || "", user_character_character_log_entry_path(@character.user, @character, log_entry) %>

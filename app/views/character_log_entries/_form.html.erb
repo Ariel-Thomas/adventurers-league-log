@@ -9,7 +9,10 @@
 
     <div class="form-group col-md-2">
       <%= f.label :date_played, 'Date Played' %>
-      <%= f.date_field :date_played, class: 'form-control' %>
+
+      <div class='input-group date'>
+        <%= f.text_field :date_played, class: 'form-control' %>
+      </div>
     </div>
   </div>
 
@@ -31,7 +34,6 @@
       <%= f.number_field :num_secret_missions, class: 'form-control' %>
     </div>
   </div>
-
 
   <div class="row">
     <div class="form-group col-md-offset-2 col-md-2">
@@ -76,3 +78,19 @@
     </div>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $(function () {
+    $('#character_log_entry_date_played').datetimepicker({
+      format: 'YYYY-MM-DD HH:mm ',
+      icons: {
+          time: "fa fa-clock-o",
+          date: "fa fa-calendar",
+          up: "fa fa-arrow-up",
+          down: "fa fa-arrow-down",
+          previous: "fa fa-arrow-left",
+          next: "fa fa-arrow-right",
+      }
+    });
+  });
+</script>

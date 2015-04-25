@@ -33,6 +33,10 @@ module ApplicationHelper
     end
   end
 
+  def format_date date
+    date.strftime("%Y-%m-%d %H:%M") if date
+  end
+
   def link_to_character_if_public character, user, current_user
     if character
       if (character.publicly_visible? || @user == current_user)

@@ -22,6 +22,9 @@ gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem 'font-awesome-rails'
 
+gem 'momentjs-rails',                  '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
+
 gem 'honeybadger', '~> 2.0'
 gem 'phil_columns'
 gem 'phil_columns-activerecord'

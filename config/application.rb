@@ -8,6 +8,7 @@ Bundler.require(:default, Rails.env)
 
 module AdventurersLeagueLog
   class Application < Rails::Application
+    # config.assets.paths << Rails.root.join("vendor","assets", "fonts")
 
     config.serve_static_files = true
 

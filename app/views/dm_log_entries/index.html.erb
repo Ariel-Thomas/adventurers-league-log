@@ -32,7 +32,7 @@
     <tbody id='menu_items'>
       <% @log_entries.each do |log_entry| %>
         <tr>
-          <td><%= log_entry.date_played %></td>
+          <td><%= format_date log_entry.date_played %></td>
           <td><%= log_entry.adventure_title %></td>
           <td><%= log_entry.session_num %></td>
           <td><%= log_entry.xp_gained %></td>
