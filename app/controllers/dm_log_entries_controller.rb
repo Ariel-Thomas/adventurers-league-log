@@ -5,6 +5,8 @@ class DmLogEntriesController < AuthenticationController
   before_filter :load_user
   before_filter :load_characters, only: [:new, :create, :edit, :update]
   before_filter :load_log_entry,  only: [:show, :edit, :update, :destroy]
+  before_filter :load_adventure_form_inputs, only: [:new, :create, :edit, :update]
+  before_filter :load_overrides, only: [:edit, :update]
 
   before_filter() { add_crumb('DM Logs', user_dm_log_entries_path(@user)) }
   before_filter(only: [:new])  { add_crumb "New Log Entry" }
@@ -73,6 +75,14 @@ class DmLogEntriesController < AuthenticationController
 
     def load_log_entry
       @log_entry   = LogEntry.find(params[:id])
+    end
+
+    def load_adventure_form_inputs
+      @adventure_form_inputs  = AdventureFormInput.all
+    end
+
+    def load_overrides
+      @use_adventure_override = !@adventure_form_inputs.find_by(name: @log_entry.adventure_title)
     end
 
     def log_entries_params

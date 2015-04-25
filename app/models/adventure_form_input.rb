@@ -1,0 +1,2 @@
+class AdventureFormInput < FormInput
+end

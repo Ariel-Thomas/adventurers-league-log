@@ -2,8 +2,11 @@ class CharacterLogEntriesController < AuthenticationController
   skip_before_action :authenticate_user!, only: [:show]
 
   add_crumb('Home', '/')
+  before_filter :load_user
   before_filter :load_character
   before_filter :load_log_entry, only: [:show, :edit, :update, :destroy]
+  before_filter :load_adventure_form_inputs, only: [:new, :create, :edit, :update]
+  before_filter :load_overrides, only: [:edit, :update]
 
   before_filter { add_crumb @character.name, user_character_path(@character.user, @character) }
 
@@ -15,13 +18,11 @@ class CharacterLogEntriesController < AuthenticationController
   end
 
   def new
-    @user        = current_user
     @log_entry   = @character.character_log_entries.new
     authorize @log_entry
   end
 
   def create
-    @user        = current_user
     @log_entry   = @character.character_log_entries.build(log_entries_params)
     authorize @log_entry
 
@@ -57,12 +58,24 @@ class CharacterLogEntriesController < AuthenticationController
   end
 
   protected
+    def load_user
+      @user   = User.find(params[:user_id])
+    end
+
     def load_character
       @character   = Character.find(params[:character_id])
     end
 
     def load_log_entry
       @log_entry   = LogEntry.find(params[:id])
+    end
+
+    def load_adventure_form_inputs
+      @adventure_form_inputs  = AdventureFormInput.all
+    end
+
+    def load_overrides
+      @use_adventure_override = !@adventure_form_inputs.find_by(name: @log_entry.adventure_title)
     end
 
     def log_entries_params
