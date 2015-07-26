@@ -38,10 +38,6 @@
         <div class="col-xs-4">
           <%= display_attribute_for_print "DM Name and DCI #", make_dm_and_dci_string(log_entry.dm_name, log_entry.dm_dci_number) %>
         </div>
-      <% else %>
-        <div class="col-xs-4">
-          <h4>*** DM ENTRY ***</h3>
-        </div>
       <% end %>
     </div>
 
@@ -64,6 +60,10 @@
         </div>
         <div class="col-xs-2">
           <%= display_attribute_for_print "Magic Item Gained", log_entry.desc_magic_items_gained %>
+        </div>
+      <% else %>
+        <div class="col-xs-offset-2 col-xs-4">
+          <h4>*** DM ENTRY ***</h4>
         </div>
       <% end %>
     </div>
