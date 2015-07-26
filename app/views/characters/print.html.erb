@@ -46,9 +46,11 @@
       <div class="col-xs-2">
         <%= display_attribute_for_print "Date",  log_entry.date_played %>
       </div>
-      <div class="col-xs-4">
-        <%= display_attribute_for_print "DM Name and DCI #", make_dm_and_dci_string(log_entry.dm_name, log_entry.dm_dci_number) %>
-      </div>
+      <% if !log_entry.is_dm_log_entry? %>
+        <div class="col-xs-4">
+          <%= display_attribute_for_print "DM Name and DCI #", make_dm_and_dci_string(log_entry.dm_name, log_entry.dm_dci_number) %>
+        </div>
+      <% end %>
     </div>
 
     <div class="row">
@@ -61,12 +63,18 @@
       <div class="col-xs-2">
         <%= display_attribute_for_print "Starting Downtime",  @total_downtime %>
       </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Starting Renown", @total_renown %>
-      </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Starting M Items", @total_magic_items %>
-      </div>
+      <% if !log_entry.is_dm_log_entry? %>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Starting Renown", @total_renown %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Starting M Items", @total_magic_items %>
+        </div>
+      <% else %>
+        <div class="col-xs-4">
+          <h4>*** DM ENTRY ***</h4>
+        </div>
+      <% end %>
     </div>
 
     <div class="row">
@@ -79,15 +87,17 @@
       <div class="col-xs-2">
         <%= display_attribute_for_print "Downtime +/-",  log_entry.downtime_gained %>
       </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Renown Earned", log_entry.renown_gained %>
-      </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Magic Items +/-", log_entry.num_magic_items_gained %>
-      </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Magic Item Gained", log_entry.desc_magic_items_gained %>
-      </div>
+      <% if !log_entry.is_dm_log_entry? %>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Renown Earned", log_entry.renown_gained %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Magic Items +/-", log_entry.num_magic_items_gained %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Magic Item Gained", log_entry.desc_magic_items_gained %>
+        </div>
+      <% end %>
     </div>
 
     <% @total_xp          = @total_xp       + (log_entry.xp_gained || 0) %>
@@ -106,12 +116,14 @@
       <div class="col-xs-2">
         <%= display_attribute_for_print "Downtime Total",  @total_downtime %>
       </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Renown Total", @total_renown %>
-      </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Magic Items Total", @total_magic_items %>
-      </div>
+      <% if !log_entry.is_dm_log_entry? %>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Renown Total", @total_renown %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Magic Items Total", @total_magic_items %>
+        </div>
+      <% end %>
     </div>
 
     <div class="row">
