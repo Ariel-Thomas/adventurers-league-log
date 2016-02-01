@@ -7,6 +7,10 @@ class HomeController < ApplicationController
     end
   end
 
+  def adventures
+    @adventures = AdventureFormInput.all
+  end
+
   def stats
     @users_count             = User.count
     @public_users_count      = User.where(publicly_visible: true).count
@@ -15,6 +19,5 @@ class HomeController < ApplicationController
     @log_entries_count       = LogEntry.count
 
     @factions_count          = Faction.all.map{ |faction| [faction.name, faction.characters.count] }
-
   end
 end

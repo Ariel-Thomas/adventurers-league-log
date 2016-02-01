@@ -15,5 +15,6 @@ AdventurersLeagueLog::Application.routes.draw do
   end
 
   get 'stats', controller: 'home'
+  get 'adventures', controller: 'home'
   root to: 'home#index'
 end
