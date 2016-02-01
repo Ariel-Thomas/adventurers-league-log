@@ -32,7 +32,7 @@
         <%= display_attribute_for_print "Session #",  log_entry.session_num %>
       </div>
       <div class="col-xs-2">
-        <%= display_attribute_for_print "Date",  log_entry.date_played %>
+        <%= display_attribute_for_print "Date",  log_entry.date_played.strftime("%F") %>
       </div>
       <% if !log_entry.is_dm_log_entry? %>
         <div class="col-xs-4">
@@ -55,10 +55,7 @@
         <div class="col-xs-2">
           <%= display_attribute_for_print "Renown Earned", log_entry.renown_gained %>
         </div>
-        <div class="col-xs-2">
-          <%= display_attribute_for_print "Magic Items +/-", log_entry.num_magic_items_gained %>
-        </div>
-        <div class="col-xs-2">
+        <div class="col-xs-4">
           <%= display_attribute_for_print "Magic Item Gained", log_entry.desc_magic_items_gained %>
         </div>
       <% else %>
