@@ -117,7 +117,7 @@ GEM
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
     pg (0.17.1)
-    phantomjs (1.9.7.0)
+    phantomjs (2.1.1.0)
     phil_columns (0.5.0)
       activesupport
       hashie
@@ -282,3 +282,9 @@ DEPENDENCIES
   shoulda-matchers
   turbolinks
   uglifier
+
+RUBY VERSION
+   ruby 2.2.0p0
+
+BUNDLED WITH
+   1.12.5

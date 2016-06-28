@@ -66,10 +66,6 @@ ActiveRecord::Schema.define(version: 20160201224424) do
     t.integer "user_id"
   end
 
-  create_table "schema_seeds", id: false, force: :cascade do |t|
-    t.string "version", limit: 20, null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
