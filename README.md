@@ -3,6 +3,8 @@ README
 
 Install postgres first. Create user and database for shell login user.
 
+Save `.env.example` as `.env`
+
 SET UP COMMANDS
 ---------------
 
