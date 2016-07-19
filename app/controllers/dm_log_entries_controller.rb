@@ -16,6 +16,7 @@ class DmLogEntriesController < AuthenticationController
   def index
     authorize @user, :publicly_visible_user?
 
+    params[:q] = { "s"=>"date_played desc" } unless params[:q]
     @search      = @user.dm_log_entries.search(params[:q])
     @log_entries = @search.result(distinct: false).page params[:page]
   end
