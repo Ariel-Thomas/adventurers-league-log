@@ -47,6 +47,8 @@
     </div>
   </div>
 
+  <%= hidden_field_tag :q, params[:q] %>
+
   <div class="row top-buffer-md">
     <div class="col-md-offset-2 col-md-8 text-right">
       <%= f.submit 'Save', class: 'btn btn-primary' %>

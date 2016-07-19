@@ -16,7 +16,8 @@ class DmLogEntriesController < AuthenticationController
   def index
     authorize @user, :publicly_visible_user?
 
-    params[:q] = { "s"=>"date_played desc" } unless params[:q]
+    params[:q] = JSON.parse(params[:q].gsub('=>', ': ')).symbolize_keys if params[:q].class == String
+    params[:q] = { s: "date_played desc" } unless params[:q]
     @search      = @user.dm_log_entries.search(params[:q])
     @log_entries = @search.result(distinct: false).page params[:page]
   end
@@ -35,10 +36,10 @@ class DmLogEntriesController < AuthenticationController
     authorize @log_entry
 
     if @log_entry.save
-      redirect_to [@user, DmLogEntry], flash: { notice: "Successfully created log entry #{@log_entry.id}" }
+      redirect_to [@user, DmLogEntry, q: params[:q]], flash: { notice: "Successfully created log entry #{@log_entry.id}" }
     else
       flash.now[:error] = "Failed to create log_entry #{@log_entry.id}: #{@log_entry.errors.full_messages.join(',')}"
-      render :new
+      render :new, q: params[:q]
     end
   end
 
@@ -50,10 +51,10 @@ class DmLogEntriesController < AuthenticationController
     authorize @log_entry
 
     if @log_entry.update_attributes(log_entries_params)
-      redirect_to [@user, DmLogEntry], flash: { notice: "Successfully updated log entry #{@log_entry.id}" }
+      redirect_to [@user, DmLogEntry, q: params[:q]], flash: { notice: "Successfully updated log entry #{@log_entry.id}" }
     else
       flash.now[:error] = "Failed to update log_entry #{@log_entry.id}: #{@log_entry.errors.full_messages.join(',')}"
-      render :edit
+      render :edit, q: params[:q]
     end
   end
 
@@ -61,7 +62,7 @@ class DmLogEntriesController < AuthenticationController
     authorize @log_entry
     @log_entry.destroy
 
-    redirect_to [@user, DmLogEntry], flash: { notice: "Successfully deleted DM Log Entry #{@log_entry.id}" }
+    redirect_to [@user, DmLogEntry, q: params[:q]], flash: { notice: "Successfully deleted DM Log Entry #{@log_entry.id}" }
   end
 
 
