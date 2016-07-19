@@ -29,10 +29,10 @@ class CharacterLogEntriesController < AuthenticationController
     manage_player_dms
 
     if @log_entry.save
-      redirect_to user_character_path(current_user, @character), flash: { notice: "Successfully created character #{@log_entry.adventure_title}" }
+      redirect_to user_character_path(current_user, @character, q: params[:q]), flash: { notice: "Successfully created character #{@log_entry.adventure_title}" }
     else
       flash.now[:error] = "Failed to create log_entry #{@log_entry.adventure_title}: #{@log_entry.errors.full_messages.join(',')}"
-      render :new
+      render :new, q: params[:q]
     end
   end
 
@@ -45,10 +45,10 @@ class CharacterLogEntriesController < AuthenticationController
     manage_player_dms
 
     if @log_entry.update_attributes(log_entries_params)
-      redirect_to user_character_path(current_user, @character), flash: { notice: "Successfully updated character #{@log_entry.adventure_title}" }
+      redirect_to user_character_path(current_user, @character, q: params[:q]), flash: { notice: "Successfully updated character #{@log_entry.adventure_title}" }
     else
       flash.now[:error] = "Failed to update log_entry #{@log_entry.adventure_title}: #{@log_entry.errors.full_messages.join(',')}"
-      render :edit
+      render :edit, q: params[:q]
     end
   end
 
@@ -57,7 +57,7 @@ class CharacterLogEntriesController < AuthenticationController
     authorize @log_entry
     @log_entry.destroy
 
-    redirect_to user_character_path(current_user, @character), flash: { notice: "Successfully deleted #{@log_entry.adventure_title}" }
+    redirect_to user_character_path(current_user, @character, q: params[:q]), flash: { notice: "Successfully deleted #{@log_entry.adventure_title}" }
   end
 
   protected

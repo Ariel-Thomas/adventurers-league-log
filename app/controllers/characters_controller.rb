@@ -19,6 +19,7 @@ class CharactersController < AuthenticationController
   def show
     authorize @character
 
+    params[:q] = JSON.parse(params[:q].gsub('=>', ': ')).symbolize_keys if params[:q].class == String
     params[:q] = { "type_eq"=> "CharacterLogEntry", "s"=>"date_played desc" } unless params[:q]
     @dm_logs_enabled = params[:q][:type_eq] != "CharacterLogEntry"
 
