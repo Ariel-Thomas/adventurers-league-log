@@ -35,8 +35,11 @@ RSpec.feature "Characters page", :type => :feature, js: true do
     click_link "New Character"
 
     fill_in "Name *",             :with => "Rum"
+    select  "Rage of Demons",     :from => "Season Origin"
     fill_in "Race",               :with => "Human (variant)"
     fill_in "Classes and Levels", :with => "Fighter 1"
+    fill_in "Backgrond",          :with => "Acolyte"
+    select  "Modest",             :from => "Lifestyle"
     select  "Harpers",            :from => "Faction"
 
     click_button "Save"
@@ -56,8 +59,11 @@ RSpec.feature "Characters page", :type => :feature, js: true do
     click_link "Edit"
 
     fill_in "Name *",             :with => "Rum"
+    select  "Tyranny of Dragons", :from => "Season Origin"
     fill_in "Race",               :with => "Human (variant)"
     fill_in "Classes and Levels", :with => "Fighter 1"
+    fill_in "Backgrond",          :with => "Criminal"
+    select  "Poor",               :from => "Lifestyle"
     select  "Zhentarim",          :from => "Faction"
 
     click_button "Save"
