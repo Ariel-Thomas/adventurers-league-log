@@ -27,21 +27,6 @@ RSpec.feature "Characters page", :type => :feature, js: true do
     expect(page).to have_text(@other_character.faction.name)
   end
 
-  scenario "Character show page should have more information" do
-    @character       = FactoryGirl.create(:character, user: @user)
-    visit user_characters_path(@user)
-
-    click_link "Show"
-
-    expect(page).to have_text(@character.name)
-    expect(page).to have_text(@character.season_origin_name)
-    expect(page).to have_text(@character.race)
-    expect(page).to have_text(@character.class_and_levels)
-    expect(page).to have_text(@character.background)    
-    expect(page).to have_text(@character.lifestyle_name)
-    expect(page).to have_text(@character.faction_name)
-  end
-
   scenario "Create a character" do
     @season_origin = FactoryGirl.create :season_origin
     @lifestyle = FactoryGirl.create :lifestyle
