@@ -77,8 +77,6 @@ RSpec.feature "Characters page", :type => :feature, js: true do
 
     click_link "Edit"
 
-    puts page.text.to_s
-
     fill_in "Name *",             :with => "Rum"
     select  "Tyranny of Dragons", :from => "Season Origin"
     fill_in "Race",               :with => "Human (variant)"
@@ -89,8 +87,6 @@ RSpec.feature "Characters page", :type => :feature, js: true do
 
     click_button "Save"
     click_link "Show"
-
-    puts page.text.to_s
 
     expect(page).to have_text("Rum")
     expect(page).to have_text("Tyranny of Dragons")
