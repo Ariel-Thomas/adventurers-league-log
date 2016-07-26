@@ -34,15 +34,17 @@ RSpec.feature "Characters page", :type => :feature, js: true do
     click_link "Show"
 
     expect(page).to have_text(@character.name)
-    expect(page).to have_text(@character.season_origin.name)
+    expect(page).to have_text(@character.season_origin_name)
     expect(page).to have_text(@character.race)
     expect(page).to have_text(@character.class_and_levels)
     expect(page).to have_text(@character.background)    
-    expect(page).to have_text(@character.lifestyle.name)
-    expect(page).to have_text(@character.faction.name)
+    expect(page).to have_text(@character.lifestyle_name)
+    expect(page).to have_text(@character.faction_name)
   end
 
   scenario "Create a character" do
+    @season_origin = FactoryGirl.create :season_origin
+    @lifestyle = FactoryGirl.create :lifestyle
     @faction = FactoryGirl.create :faction
     @character_count = Character.count
     visit user_characters_path(@user)
@@ -68,7 +70,9 @@ RSpec.feature "Characters page", :type => :feature, js: true do
 
   scenario "Edit an existing character" do
     @character = FactoryGirl.create(:character, user: @user)
-    @faction   = FactoryGirl.create :faction, name: 'Zhentarim'
+    @season_origin = FactoryGirl.create :season_origin, name: 'Tyranny of Dragons'
+    @lifestyle     = FactoryGirl.create :lifestyle,     name: 'Poor'
+    @faction       = FactoryGirl.create :faction,       name: 'Zhentarim'
     visit user_characters_path(@user)
 
     click_link "Edit"
