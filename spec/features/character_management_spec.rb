@@ -27,6 +27,21 @@ RSpec.feature "Characters page", :type => :feature, js: true do
     expect(page).to have_text(@other_character.faction.name)
   end
 
+  scenario "Character show page should have more information" do
+    @character       = FactoryGirl.create(:character, user: @user)
+    visit user_characters_path(@user)
+
+    click_link "Show"
+
+    expect(page).to have_text(@character.name)
+    expect(page).to have_text(@character.season_origin.name)
+    expect(page).to have_text(@character.race)
+    expect(page).to have_text(@character.class_and_levels)
+    expect(page).to have_text(@character.background)    
+    expect(page).to have_text(@character.lifestyle.name)
+    expect(page).to have_text(@character.faction.name)
+  end
+
   scenario "Create a character" do
     @faction = FactoryGirl.create :faction
     @character_count = Character.count
@@ -38,7 +53,7 @@ RSpec.feature "Characters page", :type => :feature, js: true do
     select  "Rage of Demons",     :from => "Season Origin"
     fill_in "Race",               :with => "Human (variant)"
     fill_in "Classes and Levels", :with => "Fighter 1"
-    fill_in "Backgrond",          :with => "Acolyte"
+    fill_in "Background",         :with => "Acolyte"
     select  "Modest",             :from => "Lifestyle"
     select  "Harpers",            :from => "Faction"
 
@@ -58,19 +73,27 @@ RSpec.feature "Characters page", :type => :feature, js: true do
 
     click_link "Edit"
 
+    puts page.text.to_s
+
     fill_in "Name *",             :with => "Rum"
     select  "Tyranny of Dragons", :from => "Season Origin"
     fill_in "Race",               :with => "Human (variant)"
     fill_in "Classes and Levels", :with => "Fighter 1"
-    fill_in "Backgrond",          :with => "Criminal"
+    fill_in "Background",         :with => "Criminal"
     select  "Poor",               :from => "Lifestyle"
     select  "Zhentarim",          :from => "Faction"
 
     click_button "Save"
+    click_link "Show"
+
+    puts page.text.to_s
 
     expect(page).to have_text("Rum")
+    expect(page).to have_text("Tyranny of Dragons")
     expect(page).to have_text("Human (variant)")
     expect(page).to have_text("Fighter 1")
+    expect(page).to have_text("Criminal")
+    expect(page).to have_text("Poor")
     expect(page).to have_text("Zhentarim")
   end
 
