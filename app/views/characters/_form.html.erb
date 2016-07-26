@@ -8,6 +8,30 @@
 
   <div class="row">
     <div class="form-group col-md-offset-3 col-md-6">
+      <%= f.label :season_origin_id, 'Season Origin' %>
+      <label class='pull-right css3-checkboxes'><%= check_box_tag :use_season_origin_override, '1', @use_season_origin_override %> <span class="link-like">Manual Entry</span></label>
+      <%= f.text_field :season_origin_override, class: 'form-control' %>
+      <%= f.select :season_origin_id, @season_origins.map {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'form-control ' } %>
+    </div>
+  </div>
+
+<script>
+  $('#use_season_origin_override').change( function(){
+    var formGroupParent = $(this).parent().parent();
+    if($(this).is(':checked')) {
+      formGroupParent.find('#character_season_origin_override').removeClass('hide');
+      formGroupParent.find('#character_season_origin_id').addClass('hide');
+    } else {
+      formGroupParent.find('#character_season_origin_override').addClass('hide');
+      formGroupParent.find('#character_season_origin_id').removeClass('hide');
+    }
+  });
+
+  $('#use_season_origin_override').change();
+</script>
+
+  <div class="row">
+    <div class="form-group col-md-offset-3 col-md-6">
       <%= f.label :race, 'Race' %>
       <%= f.text_field :race, class: 'form-control' %>
     </div>
@@ -20,7 +44,46 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="form-group col-md-offset-3 col-md-6">
+      <%= f.label :background, 'Background' %>
+      <%= f.text_field :background, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-offset-3 col-md-6">
+      <%= f.label :lifestyle_id, 'Lifestyle' %>
+      <label class='pull-right css3-checkboxes'><%= check_box_tag :use_lifestyle_override, '1', @use_season_origin_override %> <span class="link-like">Manual Entry</span></label>
+      <%= f.text_field :lifestyle_override, class: 'form-control' %>
+      <%= f.select :lifestyle_id, @lifestyles.map {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'form-control ' } %>
+    </div>
+  </div>
+
+<script>
+  $('#use_lifestyle_override').change( function(){
+    var formGroupParent = $(this).parent().parent();
+    if($(this).is(':checked')) {
+      formGroupParent.find('#character_lifestyle_override').removeClass('hide');
+      formGroupParent.find('#character_lifestyle_id').addClass('hide');
+    } else {
+      formGroupParent.find('#character_lifestyle_override').addClass('hide');
+      formGroupParent.find('#character_lifestyle_id').removeClass('hide');
+    }
+  });
+
+  $('#use_lifestyle_override').change();
+</script>
+
   <%= render partial: 'characters/form_faction', locals: { f: f } %>
+
+  <div class="row">
+    <div class="form-group col-md-offset-3 col-md-6">
+      <%= f.label :portrait_url, 'Portrait Url' %>
+      <%= f.text_field :portrait_url, class: 'form-control' %>
+      <div class="help-block">(245 x 155)</div>
+    </div>
+  </div>
 
   <div class="row">
     <div class="form-group col-md-offset-3 col-md-6">

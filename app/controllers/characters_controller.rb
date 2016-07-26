@@ -7,7 +7,9 @@ class CharactersController < AuthenticationController
   before_action :load_overrides,    only: [:edit]
   before_action :enforce_overrides, only: [:create, :update]
 
+  before_action :load_season_origins,   only: [:new, :create, :edit, :update]
   before_action :load_factions,   only: [:new, :create, :edit, :update]
+  before_action :load_lifestyles,   only: [:new, :create, :edit, :update]
 
   def index
     authorize @user
@@ -104,26 +106,58 @@ class CharactersController < AuthenticationController
     end
 
     def load_overrides
+      if @character.season_origin_override
+        @use_season_origin_override = true
+      else
+        @use_season_origin_override = false
+      end
+
       if @character.faction_override
         @use_faction_override = true
       else
         @use_faction_override = false
       end
+
+      if @character.lifestyle_override
+        @use_lifestyle_override = true
+      else
+        @use_lifestyle_override = false
+      end
     end
 
     def enforce_overrides
+      if params[:use_season_origin_override]
+        params[:character][:season_origin_id] = nil
+      else
+        params[:character][:season_origin_override] = nil
+      end
+
       if params[:use_faction_override]
         params[:character][:faction_id] = nil
       else
         params[:character][:faction_override] = nil
       end
+
+      if params[:use_lifestyle_override]
+        params[:character][:lifestyle_id] = nil
+      else
+        params[:character][:lifestyle_override] = nil
+      end
+    end
+
+    def load_season_origins
+      @season_origins = SeasonOrigin.all
     end
 
     def load_factions
       @factions = Faction.all
     end
 
+    def load_lifestyles
+      @lifestyles = Lifestyle.all
+    end
+
     def character_params
-      params.require(:character).permit(:name, :race, :class_and_levels, :faction_override, :faction_id, :faction_rank, :portrait_url, :publicly_visible)
+      params.require(:character).permit(:name, :season_origin_override, :season_origin_id, :race, :class_and_levels, :faction_override, :faction_id, :faction_rank, :background, :lifestyle_override, :lifestyle_id,  :portrait_url, :publicly_visible)
     end
 end

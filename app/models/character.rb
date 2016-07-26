@@ -1,6 +1,10 @@
 class Character < ActiveRecord::Base
   belongs_to :user
+
+  belongs_to :season_origin
   belongs_to :faction
+  belongs_to :lifestyle
+
   has_many   :log_entries
   has_many   :character_log_entries
   validates :name, presence: true
@@ -12,11 +16,31 @@ class Character < ActiveRecord::Base
     faction.flag_url if faction
   end
 
+  def season_origin_name
+    if season_origin_override
+      season_origin_override
+    elsif season_origin
+      season_origin.name
+    else
+      "Unknown"
+    end
+  end
+
   def faction_name
     if faction_override
       faction_override
     elsif faction
       faction.name
+    else
+      "None"
+    end
+  end
+
+  def lifestyle_name
+    if lifestyle_override
+      lifestyle_override
+    elsif lifestyle
+      lifestyle.name
     else
       "None"
     end

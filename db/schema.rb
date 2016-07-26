@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201224424) do
+ActiveRecord::Schema.define(version: 20160726201143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,9 +23,14 @@ ActiveRecord::Schema.define(version: 20160201224424) do
     t.string  "faction_override"
     t.integer "user_id"
     t.string  "portrait_url"
-    t.boolean "publicly_visible", default: false, null: false
+    t.boolean "publicly_visible",       default: false, null: false
     t.string  "faction_rank"
     t.integer "faction_id"
+    t.string  "background"
+    t.integer "season_origin_id"
+    t.string  "season_origin_override"
+    t.integer "lifestyle_id"
+    t.string  "lifestyle_override"
   end
 
   create_table "factions", force: :cascade do |t|
@@ -37,6 +42,10 @@ ActiveRecord::Schema.define(version: 20160201224424) do
     t.string  "name",                  null: false
     t.string  "type",                  null: false
     t.boolean "active", default: true, null: false
+  end
+
+  create_table "lifestyles", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "log_entries", force: :cascade do |t|
@@ -64,6 +73,14 @@ ActiveRecord::Schema.define(version: 20160201224424) do
     t.string  "name"
     t.string  "dci"
     t.integer "user_id"
+  end
+
+  create_table "schema_seeds", id: false, force: :cascade do |t|
+    t.string "version", limit: 20, null: false
+  end
+
+  create_table "season_origins", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|
