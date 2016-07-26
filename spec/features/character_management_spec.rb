@@ -80,6 +80,7 @@ RSpec.feature "Characters page", :type => :feature, js: true do
     expect(page).to have_text("Criminal")
     expect(page).to have_text("Poor")
     expect(page).to have_text("Zhentarim")
+    expect(page).to have_text("Rank 1")
   end
 
   scenario "Delete an existing character" do

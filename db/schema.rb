@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160726201143) do
+ActiveRecord::Schema.define(version: 20160726215547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20160726201143) do
     t.integer "user_id"
     t.string  "portrait_url"
     t.boolean "publicly_visible",       default: false, null: false
-    t.string  "faction_rank"
     t.integer "faction_id"
     t.string  "background"
     t.integer "season_origin_id"

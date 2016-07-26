@@ -16,6 +16,14 @@ class Character < ActiveRecord::Base
     faction.flag_url if faction
   end
 
+  def faction_rank
+    return "None" unless faction
+    args = {renown: total_renown,
+            secret_missions: total_secret_missions,
+            level: current_level}
+    faction.rank args
+  end
+
   def season_origin_name
     if season_origin_override
       season_origin_override

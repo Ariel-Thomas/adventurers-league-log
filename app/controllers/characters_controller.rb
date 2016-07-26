@@ -158,6 +158,6 @@ class CharactersController < AuthenticationController
     end
 
     def character_params
-      params.require(:character).permit(:name, :season_origin_override, :season_origin_id, :race, :class_and_levels, :faction_override, :faction_id, :faction_rank, :background, :lifestyle_override, :lifestyle_id,  :portrait_url, :publicly_visible)
+      params.require(:character).permit(:name, :season_origin_override, :season_origin_id, :race, :class_and_levels, :faction_override, :faction_id, :background, :lifestyle_override, :lifestyle_id,  :portrait_url, :publicly_visible)
     end
 end
