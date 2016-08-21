@@ -6,6 +6,7 @@ class Character < ActiveRecord::Base
 
   has_many   :log_entries
   has_many   :character_log_entries
+  has_many   :magic_items, through: :log_entries
   validates :name, presence: true
 
   XP_BY_LEVEL =
@@ -84,11 +85,12 @@ class Character < ActiveRecord::Base
   end
 
   def total_magic_items
-    log_entries.pluck(:num_magic_items_gained).compact.inject(:+) || 0
+    magic_items.count
   end
 
   def magic_items_list
-    list = log_entries.pluck(:desc_magic_items_gained).delete_if{ |x| x == "" || x == nil }.join(', ')
+    list = magic_items.pluck(:name).join(', ')
+
     if (list == "")
       return "None"
     else

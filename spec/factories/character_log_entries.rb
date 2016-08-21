@@ -8,8 +8,6 @@ FactoryGirl.define do
     session_num { Faker::Number.between(1, 10) }
     xp_gained { Faker::Number.between(200, 10000) }
     gp_gained { Faker::Number.between(200, 10000) }
-    num_magic_items_gained { Faker::Number.between(0, 1) }
-    desc_magic_items_gained { Faker::Company.name }
     renown_gained { 1 }
     downtime_gained { 10 }
     location_played { "GenCon" }
