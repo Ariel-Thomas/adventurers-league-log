@@ -9,8 +9,8 @@ class AddLifestyles < PhilColumns::Seed
                     "Poor",
                     "Modest",
                     "Comfortable",
-               	    "Wealthy",
-               		"Aristocratic"]
+                     "Wealthy",
+                   "Aristocratic"]
 
     lifestyles.each do |lifestyle|
       Lifestyle.create!(name: lifestyle)

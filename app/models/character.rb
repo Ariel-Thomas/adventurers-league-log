@@ -1,7 +1,6 @@
 class Character < ActiveRecord::Base
   belongs_to :user
 
-  belongs_to :season_origin
   belongs_to :faction
   belongs_to :lifestyle
 
@@ -22,16 +21,6 @@ class Character < ActiveRecord::Base
             secret_missions: total_secret_missions,
             level: current_level}
     faction.rank args
-  end
-
-  def season_origin_name
-    if season_origin_override
-      season_origin_override
-    elsif season_origin
-      season_origin.name
-    else
-      "Unknown"
-    end
   end
 
   def faction_name
