@@ -17,7 +17,7 @@ class DmLogEntriesController < AuthenticationController
     authorize @user, :publicly_visible_user?
 
     params[:q] = JSON.parse(params[:q].gsub('=>', ': ')).symbolize_keys if params[:q].class == String
-    params[:q] = { s: "date_played desc" } unless params[:q]
+    params[:q] = { s: "date_dmed desc" } unless params[:q]
     @search      = @user.dm_log_entries.search(params[:q])
     @log_entries = @search.result(distinct: false).page params[:page]
   end
