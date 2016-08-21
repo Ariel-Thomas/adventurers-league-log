@@ -1,7 +1,6 @@
 class Character < ActiveRecord::Base
   belongs_to :user
 
-  belongs_to :season_origin
   belongs_to :faction
   belongs_to :lifestyle
 
@@ -16,14 +15,12 @@ class Character < ActiveRecord::Base
     faction.flag_url if faction
   end
 
-  def season_origin_name
-    if season_origin_override
-      season_origin_override
-    elsif season_origin
-      season_origin.name
-    else
-      "Unknown"
-    end
+  def faction_rank
+    return "None" unless faction
+    args = {renown: total_renown,
+            secret_missions: total_secret_missions,
+            level: current_level}
+    faction.rank args
   end
 
   def faction_name

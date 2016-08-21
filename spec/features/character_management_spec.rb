@@ -27,23 +27,7 @@ RSpec.feature "Characters page", :type => :feature, js: true do
     expect(page).to have_text(@other_character.faction.name)
   end
 
-  scenario "Character show page should have more information" do
-    @character       = FactoryGirl.create(:character, user: @user)
-    visit user_characters_path(@user)
-
-    click_link "Show"
-
-    expect(page).to have_text(@character.name)
-    expect(page).to have_text(@character.season_origin_name)
-    expect(page).to have_text(@character.race)
-    expect(page).to have_text(@character.class_and_levels)
-    expect(page).to have_text(@character.background)    
-    expect(page).to have_text(@character.lifestyle_name)
-    expect(page).to have_text(@character.faction_name)
-  end
-
   scenario "Create a character" do
-    @season_origin = FactoryGirl.create :season_origin
     @lifestyle = FactoryGirl.create :lifestyle
     @faction = FactoryGirl.create :faction
     @character_count = Character.count
@@ -52,7 +36,6 @@ RSpec.feature "Characters page", :type => :feature, js: true do
     click_link "New Character"
 
     fill_in "Name *",             :with => "Rum"
-    select  "Rage of Demons",     :from => "Season Origin"
     fill_in "Race",               :with => "Human (variant)"
     fill_in "Classes and Levels", :with => "Fighter 1"
     fill_in "Background",         :with => "Acolyte"
@@ -70,15 +53,14 @@ RSpec.feature "Characters page", :type => :feature, js: true do
 
   scenario "Edit an existing character" do
     @character = FactoryGirl.create(:character, user: @user)
-    @season_origin = FactoryGirl.create :season_origin, name: 'Tyranny of Dragons'
     @lifestyle     = FactoryGirl.create :lifestyle,     name: 'Poor'
     @faction       = FactoryGirl.create :faction,       name: 'Zhentarim'
     visit user_characters_path(@user)
 
-    click_link "Edit"
+    #click_link "Edit"
+    find_link('Edit').trigger('click') #hack to fix previous line
 
     fill_in "Name *",             :with => "Rum"
-    select  "Tyranny of Dragons", :from => "Season Origin"
     fill_in "Race",               :with => "Human (variant)"
     fill_in "Classes and Levels", :with => "Fighter 1"
     fill_in "Background",         :with => "Criminal"
@@ -86,15 +68,17 @@ RSpec.feature "Characters page", :type => :feature, js: true do
     select  "Zhentarim",          :from => "Faction"
 
     click_button "Save"
-    click_link "Show"
+    
+    #click_link "Show"
+    find_link('Show').trigger('click') #hack to fix previous line
 
     expect(page).to have_text("Rum")
-    expect(page).to have_text("Tyranny of Dragons")
     expect(page).to have_text("Human (variant)")
     expect(page).to have_text("Fighter 1")
     expect(page).to have_text("Criminal")
     expect(page).to have_text("Poor")
     expect(page).to have_text("Zhentarim")
+    expect(page).to have_text("rank 1")
   end
 
   scenario "Delete an existing character" do
