@@ -80,7 +80,7 @@ class DmLogEntriesController < AuthenticationController
     end
 
     def load_adventure_form_inputs
-      @adventure_form_inputs  = AdventureFormInput.all
+      @adventure_form_inputs  = AdventureFormInput.order(:position_num).all
     end
 
     def load_overrides
