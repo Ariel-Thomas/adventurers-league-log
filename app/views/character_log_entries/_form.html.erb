@@ -33,9 +33,7 @@
       <%= f.label :num_secret_missions, 'Secret Missions' %>
       <%= f.number_field :num_secret_missions, class: 'form-control' %>
     </div>
-  </div>
 
-  <div class="row">
     <div class="form-group col-md-2">
       <%= f.label :downtime_gained, 'Downtime +/-' %>
       <%= f.number_field :downtime_gained, class: 'form-control' %>
@@ -56,6 +54,8 @@
       <%= f.text_area :notes, class: 'form-control' %>
     </div>
   </div>
+
+  <%= render partial: 'magic_items/form_adventure', locals: { f: f } %>
 
   <%= hidden_field_tag :q, params[:q] %>
 

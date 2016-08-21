@@ -21,6 +21,7 @@ class CharacterLogEntriesController < AuthenticationController
   def new
     @log_entry   = @character.character_log_entries.new
     authorize @log_entry
+    @magic_items = [MagicItem.new]
   end
 
   def create
@@ -38,6 +39,7 @@ class CharacterLogEntriesController < AuthenticationController
 
   def edit
     authorize @log_entry
+    @magic_items = [MagicItem.new] + @log_entry.magic_items
   end
 
   def update
@@ -106,6 +108,6 @@ class CharacterLogEntriesController < AuthenticationController
     end
 
     def log_entries_params
-      params.require(:character_log_entry).permit(:adventure_title, :session_num, :date_played, :xp_gained, :gp_gained, :renown_gained, :downtime_gained, :num_secret_missions, :location_played, :dm_name, :dm_dci_number, :player_dm_id, :notes)
+      params.require(:character_log_entry).permit(:adventure_title, :session_num, :date_played, :xp_gained, :gp_gained, :renown_gained, :downtime_gained, :num_secret_missions, :location_played, :dm_name, :dm_dci_number, :player_dm_id, :notes, magic_items_attributes: [:name])
     end
 end

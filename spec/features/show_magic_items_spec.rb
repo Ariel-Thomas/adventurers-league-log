@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Magic items", :type => :feature, js: true do
+RSpec.feature "Show Magic items", :type => :feature, js: true do
   before(:each) do
     @user = FactoryGirl.create(:user)
     login_as(@user, :scope => :user)
@@ -28,6 +28,12 @@ RSpec.feature "Magic items", :type => :feature, js: true do
       expect(page).to have_text("Total Magic Items: 1")
       expect(page).to have_text(@magic_item.name)
     end
+
+    scenario 'Should be shown on log page' do
+      visit user_character_character_log_entry_path(@user, @character, @log_entry)
+
+      expect(page).to have_text(@magic_item.name)
+    end
   end
 
   context "Character has log entries with many magic items" do
@@ -50,6 +56,25 @@ RSpec.feature "Magic items", :type => :feature, js: true do
       expect(page).to have_text("Total Magic Items: 4")
       expect(page).to have_text(@magic_item1.name)
       expect(page).to have_text(@magic_item2.name)
+      expect(page).to have_text(@magic_item3.name)
+      expect(page).to have_text(@magic_item4.name)
+    end
+
+    scenario 'Should be shown on log pages' do
+      visit user_character_character_log_entry_path(@user, @character, @log_entry1)
+
+      expect(page).to have_text(@magic_item1.name)
+      expect(page).to have_text(@magic_item2.name)
+
+      visit user_character_character_log_entry_path(@user, @character, @log_entry2)
+
+      expect(page).to_not have_text(@magic_item1.name)
+      expect(page).to_not have_text(@magic_item2.name)
+      expect(page).to_not have_text(@magic_item3.name)
+      expect(page).to_not have_text(@magic_item4.name)
+
+      visit user_character_character_log_entry_path(@user, @character, @log_entry3)
+
       expect(page).to have_text(@magic_item3.name)
       expect(page).to have_text(@magic_item4.name)
     end

@@ -1,0 +1,10 @@
+<div id="magic-items-form">
+  <%= f.fields_for :magic_items, @magic_items do |magic_item_form| %>
+    <div class="row">
+      <div class="form-group col-md-offset-2 col-md-4">
+        <%= magic_item_form.label :name, 'Name' %>
+        <%= magic_item_form.text_field :name, class: 'form-control' %>
+      </div>
+    </div>
+  <% end %>
+</div>
