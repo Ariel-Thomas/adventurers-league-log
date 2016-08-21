@@ -19,7 +19,7 @@
 <div class="table-responsive">
   <table class="table table-bordered table-responsive table-striped">
     <tr>
-      <th><%= sort_link @search, :date_played, "Date", {}, {} %></th>
+      <th><%= sort_link @search, :date_dmed, "Date", {}, {} %></th>
       <th><%= sort_link @search, :adventure_title, "Adventure Title", {}, {} %></th>
       <th><%= sort_link @search, :session_num, "Session", {}, {} %></th>
       <th><%= sort_link @search, :xp_gained, "XP", {}, {} %></th>
@@ -32,7 +32,7 @@
     <tbody id='menu_items'>
       <% @log_entries.each do |log_entry| %>
         <tr>
-          <td><%= format_date log_entry.date_played %></td>
+          <td><%= format_date log_entry.date_dmed %></td>
           <td><%= log_entry.adventure_title %></td>
           <td><%= log_entry.session_num %></td>
           <td><%= log_entry.xp_gained %></td>

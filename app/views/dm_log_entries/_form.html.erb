@@ -8,8 +8,8 @@
     </div>
 
     <div class="form-group col-md-2">
-      <%= f.label :date_played, 'Date DMed' %>
-      <%= f.text_field :date_played, class: 'form-control' %>
+      <%= f.label :date_dmed, 'Date DMed' %>
+      <%= f.text_field :date_dmed, class: 'form-control' %>
     </div>
   </div>
 
@@ -25,6 +25,11 @@
     <div class="form-group col-md-2">
       <%= f.label :downtime_gained, 'Downtime Gained' %>
       <%= f.number_field :downtime_gained, class: 'form-control' %>
+    </div>
+
+    <div class="form-group col-md-2">
+      <%= f.label :date_played, 'Date Assigned' %>
+      <%= f.text_field :date_played, class: 'form-control' %>
     </div>
   </div>
 
@@ -58,6 +63,18 @@
 
 <script type="text/javascript">
   $(function () {
+    $('#dm_log_entry_date_dmed').datetimepicker({
+      format: 'YYYY-MM-DD HH:mm ',
+      icons: {
+          time: "fa fa-clock-o",
+          date: "fa fa-calendar",
+          up: "fa fa-arrow-up",
+          down: "fa fa-arrow-down",
+          previous: "fa fa-arrow-left",
+          next: "fa fa-arrow-right",
+      }
+    });
+
     $('#dm_log_entry_date_played').datetimepicker({
       format: 'YYYY-MM-DD HH:mm ',
       icons: {
