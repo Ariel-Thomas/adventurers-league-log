@@ -74,7 +74,7 @@ class CharacterLogEntriesController < AuthenticationController
     end
 
     def load_adventure_form_inputs
-      @adventure_form_inputs  = AdventureFormInput.order(:id).all
+      @adventure_form_inputs  = AdventureFormInput.order(:position_num).all
     end
 
     def load_player_dms
