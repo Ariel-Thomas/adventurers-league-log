@@ -13,7 +13,7 @@
   <div id="magic-items">
     <% @magic_items.each.with_index do |magic_item, index| %>
       <%= f.fields_for :magic_items, magic_item do |magic_item_form| %>
-        <div class="well col-md-offset-2 col-md-8 <%=  'hidden' if index == 0 %>">
+        <div class="magic-item well col-md-offset-2 col-md-8 <%=  'hidden' if index == 0 %>">
           <%= render partial: 'magic_items/form', locals: { magic_item_form: magic_item_form } %>
         </div>
       <% end %>

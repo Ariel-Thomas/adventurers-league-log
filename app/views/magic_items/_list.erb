@@ -16,7 +16,7 @@
         <% @magic_items.each do |magic_item| %>
           <tr>
             <td><%= magic_item.name %></td>
-            <td><%= magic_item.rarity %></td>
+            <td><%= magic_item.rarity.titleize %></td>
             <td><%= magic_item.notes %></td>
           </tr>
         <% end %>

@@ -116,13 +116,7 @@ class CharacterLogEntriesController < AuthenticationController
       end
     end
 
-    def purge_empty_magic_items
-      params[:character_log_entry][:magic_items_attributes].each do |_,magic_item_hash|
-        magic_item_hash[:_destory] = true if magic_item_hash[:name] == ""
-      end
-    end
-
     def log_entries_params
-      params.require(:character_log_entry).permit(:adventure_title, :session_num, :date_played, :xp_gained, :gp_gained, :renown_gained, :downtime_gained, :num_secret_missions, :location_played, :dm_name, :dm_dci_number, :player_dm_id, :notes, magic_items_attributes: [:id, :name, :rarity, :notes, :_destory])
+      params.require(:character_log_entry).permit(:adventure_title, :session_num, :date_played, :xp_gained, :gp_gained, :renown_gained, :downtime_gained, :num_secret_missions, :location_played, :dm_name, :dm_dci_number, :player_dm_id, :notes, magic_items_attributes: [:id, :name, :rarity, :notes, :_destroy])
     end
 end
