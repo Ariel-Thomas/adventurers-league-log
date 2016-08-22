@@ -52,6 +52,8 @@
     </div>
   </div>
 
+  <%= render partial: 'magic_items/form_adventure', locals: { f: f } %>
+
   <%= hidden_field_tag :q, params[:q] %>
 
   <div class="row top-buffer-md">

@@ -66,10 +66,10 @@
             <td><%= log_entry.downtime_gained %></td>
             <td>
               <% unless log_entry.type == "DmLogEntry" %>
-                <%= link_to "", user_character_character_log_entry_path(@character.user, @character, log_entry), class: "fa fa-eye" %>
+                <%= link_to "<span class='sr-only'>Show<span>".html_safe, user_character_character_log_entry_path(@character.user, @character, log_entry), class: "fa fa-eye" %>
                 <% if @character.user == current_user %>
-                  <%= link_to "", edit_user_character_character_log_entry_path(current_user, @character, log_entry, q: params[:q]), class: "fa fa-pencil-square-o" %>
-                  <%= link_to "", user_character_character_log_entry_path(current_user, @character, log_entry, q: params[:q]), method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o" %>
+                  <%= link_to "<span class='sr-only'>Edit<span>".html_safe, edit_user_character_character_log_entry_path(current_user, @character, log_entry, q: params[:q]), class: "fa fa-pencil-square-o" %>
+                  <%= link_to "<span class='sr-only'>Delete<span>".html_safe, user_character_character_log_entry_path(current_user, @character, log_entry, q: params[:q]), method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o" %>
                 <% end %>
               <% else %>
                 <div class='label label-danger'>DM Log</div>

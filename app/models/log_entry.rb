@@ -2,7 +2,7 @@ class LogEntry < ActiveRecord::Base
   belongs_to :character
   belongs_to :user
   has_many   :magic_items
-  accepts_nested_attributes_for :magic_items
+  accepts_nested_attributes_for :magic_items, reject_if: proc { |attributes| attributes[:name].blank? }
 
   self.inheritance_column = :type
   def self.types

@@ -1,10 +1,38 @@
 <div id="magic-items-form">
-  <%= f.fields_for :magic_items, @magic_items do |magic_item_form| %>
-    <div class="row">
-      <div class="form-group col-md-offset-2 col-md-4">
-        <%= magic_item_form.label :name, 'Name' %>
-        <%= magic_item_form.text_field :name, class: 'form-control' %>
+  <div class="row">
+    <div class="col-md-offset-2 col-md-4 col-xs-8">
+      <h3>Magic Items</h3>
+    </div>
+
+    <div class='col-xs-4'>
+      <div class="pull-right" style="padding-top:15px">
+        <%= link_to "Add Magic Item", '#', class: 'btn btn-sm btn-default', id: 'add_magic_item' %>
       </div>
     </div>
-  <% end %>
+  </div>
+  <div id="magic-items">
+    <% @magic_items.each.with_index do |magic_item, index| %>
+      <%= f.fields_for :magic_items, magic_item do |magic_item_form| %>
+        <div class="well col-md-offset-2 col-md-8 <%=  'hidden' if index == 0 %>">
+          <%= render partial: 'magic_items/form', locals: { magic_item_form: magic_item_form } %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>
+
+<script>
+  magic_item_index       = <%= @magic_item_count %>;
+
+  $('#add_magic_item').click(function(event){
+    event.preventDefault();
+
+    list      = $('div#magic-items');
+    base_form = $('div#magic-items > div.hidden');
+
+    magic_item_index = magic_item_index + 1;
+    new_pattern = "[" + (magic_item_index) + "]";
+
+    $( base_form.get(0).outerHTML.replace(/[0]/g, new_pattern)).removeClass('hidden').appendTo(list);
+  });
+</script>

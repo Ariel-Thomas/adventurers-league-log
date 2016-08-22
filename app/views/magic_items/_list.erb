@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-offset-2 col-md-8">
+    <h3>Magic Items</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-offset-2 col-md-8">
+    <div class="table-responsive">
+      <table class="table table-bordered table-responsive table-striped">
+        <tr>
+          <th>Name</th>
+          <th>Rarity</th>
+          <th>Notes</th>
+        </tr>
+        <% @magic_items.each do |magic_item| %>
+          <tr>
+            <td><%= magic_item.name %></td>
+            <td><%= magic_item.rarity %></td>
+            <td><%= magic_item.notes %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

@@ -16,12 +16,14 @@ class CharacterLogEntriesController < AuthenticationController
 
   def show
     authorize @log_entry
+    @magic_items = @log_entry.magic_items
   end
 
   def new
     @log_entry   = @character.character_log_entries.new
     authorize @log_entry
     @magic_items = [MagicItem.new]
+    @magic_item_count = 0;
   end
 
   def create
@@ -32,6 +34,9 @@ class CharacterLogEntriesController < AuthenticationController
     if @log_entry.save
       redirect_to user_character_path(current_user, @character, q: params[:q]), flash: { notice: "Successfully created character #{@log_entry.adventure_title}" }
     else
+      @magic_items = @log_entry.magic_items
+      @magic_item_count = @log_entry.magic_items.count;
+
       flash.now[:error] = "Failed to create log_entry #{@log_entry.adventure_title}: #{@log_entry.errors.full_messages.join(',')}"
       render :new, q: params[:q]
     end
@@ -40,6 +45,7 @@ class CharacterLogEntriesController < AuthenticationController
   def edit
     authorize @log_entry
     @magic_items = [MagicItem.new] + @log_entry.magic_items
+    @magic_item_count = @log_entry.magic_items.count;
   end
 
   def update
@@ -49,6 +55,9 @@ class CharacterLogEntriesController < AuthenticationController
     if @log_entry.update_attributes(log_entries_params)
       redirect_to user_character_path(current_user, @character, q: params[:q]), flash: { notice: "Successfully updated character #{@log_entry.adventure_title}" }
     else
+      @magic_items = [MagicItem.new] + @log_entry.magic_items
+      @magic_item_count = @log_entry.magic_items.count;
+
       flash.now[:error] = "Failed to update log_entry #{@log_entry.adventure_title}: #{@log_entry.errors.full_messages.join(',')}"
       render :edit, q: params[:q]
     end
@@ -107,7 +116,13 @@ class CharacterLogEntriesController < AuthenticationController
       end
     end
 
+    def purge_empty_magic_items
+      params[:character_log_entry][:magic_items_attributes].each do |_,magic_item_hash|
+        magic_item_hash[:_destory] = true if magic_item_hash[:name] == ""
+      end
+    end
+
     def log_entries_params
-      params.require(:character_log_entry).permit(:adventure_title, :session_num, :date_played, :xp_gained, :gp_gained, :renown_gained, :downtime_gained, :num_secret_missions, :location_played, :dm_name, :dm_dci_number, :player_dm_id, :notes, magic_items_attributes: [:name])
+      params.require(:character_log_entry).permit(:adventure_title, :session_num, :date_played, :xp_gained, :gp_gained, :renown_gained, :downtime_gained, :num_secret_missions, :location_played, :dm_name, :dm_dci_number, :player_dm_id, :notes, magic_items_attributes: [:id, :name, :rarity, :notes, :_destory])
     end
 end

@@ -24,11 +24,15 @@ class DmLogEntriesController < AuthenticationController
 
   def show
     authorize @log_entry
+    @magic_items = @log_entry.magic_items
   end
 
   def new
     @log_entry   = @user.dm_log_entries.new
     authorize @log_entry
+
+    @magic_items = [MagicItem.new]
+    @magic_item_count = 0;
   end
 
   def create
@@ -38,6 +42,9 @@ class DmLogEntriesController < AuthenticationController
     if @log_entry.save
       redirect_to [@user, DmLogEntry, q: params[:q]], flash: { notice: "Successfully created log entry #{@log_entry.id}" }
     else
+      @magic_items = @log_entry.magic_items
+      @magic_item_count = @log_entry.magic_items.count;
+
       flash.now[:error] = "Failed to create log_entry #{@log_entry.id}: #{@log_entry.errors.full_messages.join(',')}"
       render :new, q: params[:q]
     end
@@ -45,6 +52,9 @@ class DmLogEntriesController < AuthenticationController
 
   def edit
     authorize @log_entry
+
+    @magic_items = [MagicItem.new] + @log_entry.magic_items
+    @magic_item_count = @log_entry.magic_items.count;
   end
 
   def update
@@ -53,6 +63,9 @@ class DmLogEntriesController < AuthenticationController
     if @log_entry.update_attributes(log_entries_params)
       redirect_to [@user, DmLogEntry, q: params[:q]], flash: { notice: "Successfully updated log entry #{@log_entry.id}" }
     else
+      @magic_items = [MagicItem.new] + @log_entry.magic_items
+      @magic_item_count = @log_entry.magic_items.count;
+
       flash.now[:error] = "Failed to update log_entry #{@log_entry.id}: #{@log_entry.errors.full_messages.join(',')}"
       render :edit, q: params[:q]
     end
@@ -88,6 +101,6 @@ class DmLogEntriesController < AuthenticationController
     end
 
     def log_entries_params
-      params.require(:dm_log_entry).permit(:adventure_title, :session_num, :date_played, :xp_gained, :gp_gained, :renown_gained, :downtime_gained, :num_secret_missions, :location_played, :dm_name, :dm_dci_number, :notes, :character_id)
+      params.require(:dm_log_entry).permit(:adventure_title, :session_num, :date_played, :xp_gained, :gp_gained, :renown_gained, :downtime_gained, :num_secret_missions, :location_played, :dm_name, :dm_dci_number, :notes, :character_id, magic_items_attributes: [:id, :name, :rarity, :notes, :_destory])
     end
 end

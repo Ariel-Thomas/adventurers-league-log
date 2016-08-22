@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="form-group col-md-8">
+    <%= magic_item_form.label :name, 'Name' %>
+    <%= magic_item_form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-4">
+    <%= magic_item_form.label :rarity, 'Rarity' %>
+    <%= magic_item_form.select :rarity, MagicItem.rarities.map{ |rarity| [rarity[0].titleize, rarity[0]] }, { include_blank: true }, { class: 'form-control ' } %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-md-12">
+    <%= magic_item_form.label :notes, 'Notes' %>
+    <%= magic_item_form.text_area :notes, class: 'form-control' %>
+  </div>
+</div>
