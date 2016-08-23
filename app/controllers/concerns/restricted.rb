@@ -11,6 +11,6 @@ module Restricted
   private
 
   def user_not_authorized
-    redirect_to (current_user ? user_characters_path(current_user) : root_path), :flash =>  { :error => "You are not authorized to perform this action." }
+    redirect_to (current_user ? user_characters_path(current_user) : root_path), flash: { error: 'You are not authorized to perform this action.' }
   end
 end

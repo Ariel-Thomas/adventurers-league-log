@@ -1,5 +1,4 @@
 class AddPositionNumToFormInputs < PhilColumns::Seed
-
   envs :test, :development, :production
   tags :default
 
@@ -11,5 +10,4 @@ class AddPositionNumToFormInputs < PhilColumns::Seed
 
   def down
   end
-
 end

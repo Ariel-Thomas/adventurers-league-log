@@ -3,18 +3,14 @@ class UsersController < AuthenticationController
     @user = User.find(params[:id])
     authorize @user
 
-    unless (@user == current_user)
-      redirect_to :root and return
-    end
+    redirect_to(:root) && return unless @user == current_user
   end
 
   def update
     @user = User.find(params[:id])
     authorize @user
 
-    unless (@user == current_user)
-      redirect_to :root and return
-    end
+    redirect_to(:root) && return unless @user == current_user
 
     if @user.update_attributes(user_params)
       redirect_to user_characters_path(current_user), notice: "Successfully updated user #{@user.email}"
@@ -26,7 +22,7 @@ class UsersController < AuthenticationController
 
   protected
 
-    def user_params
-      params.require(:user).permit(:name, :dci_num, :publicly_visible)
-    end
+  def user_params
+    params.require(:user).permit(:name, :dci_num, :publicly_visible)
+  end
 end

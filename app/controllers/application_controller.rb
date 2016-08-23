@@ -6,5 +6,4 @@ class ApplicationController < ActionController::Base
     flash.keep
     super
   end
-
 end

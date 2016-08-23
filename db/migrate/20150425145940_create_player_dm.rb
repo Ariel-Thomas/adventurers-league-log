@@ -11,7 +11,7 @@ class CreatePlayerDm < ActiveRecord::Migration
     User.all.each do |user|
       user.characters.all.each do |character|
         character.character_log_entries.all.each do |log_entry|
-          next unless log_entry.dm_dci_number && log_entry.dm_dci_number != ""
+          next unless log_entry.dm_dci_number && log_entry.dm_dci_number != ''
 
           player_dm = user.player_dms.find_by(dci: log_entry.dm_dci_number)
 
@@ -21,7 +21,8 @@ class CreatePlayerDm < ActiveRecord::Migration
           else
             player_dm = user.player_dms.create!(
               name: log_entry.dm_name,
-              dci:  log_entry.dm_dci_number)
+              dci:  log_entry.dm_dci_number
+            )
 
             log_entry.player_dm = player_dm
             log_entry.save!

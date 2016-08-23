@@ -11,17 +11,17 @@ class Character < ActiveRecord::Base
   validates :name, presence: true
 
   XP_BY_LEVEL =
-   [0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000]
+    [0, 300, 900, 2700, 6500, 14_000, 23_000, 34_000, 48_000, 64_000, 85_000, 100_000, 120_000, 140_000, 165_000, 195_000, 225_000, 265_000, 305_000, 355_000].freeze
 
   def faction_image
     faction.flag_url if faction
   end
 
   def faction_rank
-    return "None" unless faction
-    args = {renown: total_renown,
-            secret_missions: total_secret_missions,
-            level: current_level}
+    return 'None' unless faction
+    args = { renown: total_renown,
+             secret_missions: total_secret_missions,
+             level: current_level }
     faction.rank args
   end
 
@@ -31,7 +31,7 @@ class Character < ActiveRecord::Base
     elsif faction
       faction.name
     else
-      "None"
+      'None'
     end
   end
 
@@ -41,7 +41,7 @@ class Character < ActiveRecord::Base
     elsif lifestyle
       lifestyle.name
     else
-      "None"
+      'None'
     end
   end
 
@@ -53,12 +53,10 @@ class Character < ActiveRecord::Base
     current_xp = total_xp
 
     XP_BY_LEVEL.each_with_index do |xp_amount, index|
-      if current_xp < xp_amount
-        return index
-      end
+      return index if current_xp < xp_amount
     end
 
-    return 20
+    20
   end
 
   def xp_to_next_level
@@ -92,8 +90,8 @@ class Character < ActiveRecord::Base
   def magic_items_list
     list = magic_items.where(trade_log_entry_id: nil).pluck(:name).join(', ')
 
-    if (list == "")
-      return "None"
+    if list == ''
+      return 'None'
     else
       return list
     end

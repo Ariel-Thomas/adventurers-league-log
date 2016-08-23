@@ -9,7 +9,6 @@ class LogEntry < ActiveRecord::Base
     %w(CharacterLogEntry DmLogEntry)
   end
 
-
   def user
     temp = super
     return character.user unless temp
@@ -27,8 +26,8 @@ class LogEntry < ActiveRecord::Base
   def magic_items_list
     list = magic_items.pluck(:name).join(', ')
 
-    if (list == "")
-      return ""
+    if list == ''
+      return ''
     else
       return list
     end
