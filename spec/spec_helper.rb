@@ -1,5 +1,5 @@
-ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
@@ -7,7 +7,7 @@ require 'capybara/poltergeist'
 require 'database_cleaner'
 
 Capybara.javascript_driver = :poltergeist
-Capybara.default_wait_time = 6
+Capybara.default_max_wait_time = 6
 
 RSpec.configure do |config|
   config.include Warden::Test::Helpers
@@ -35,9 +35,7 @@ RSpec.configure do |config|
 
   config.disable_monkey_patching!
 
-  if config.files_to_run.one?
-    config.default_formatter = 'doc'
-  end
+  config.default_formatter = 'doc' if config.files_to_run.one?
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
@@ -60,7 +58,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  config.order = "random"
+  config.order = 'random'
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = false
   config.infer_base_class_for_anonymous_controllers = false

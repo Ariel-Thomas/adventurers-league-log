@@ -1,5 +1,4 @@
 class AddDateDmedToLogEntries < PhilColumns::Seed
-
   envs :test, :development, :production
   tags :default
 
@@ -11,5 +10,4 @@ class AddDateDmedToLogEntries < PhilColumns::Seed
 
   def down
   end
-
 end

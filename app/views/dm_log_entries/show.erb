@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-offset-2 col-md-8">
-    <h2>Show Log Entry</h2>
+    <h2>Show DM Log Entry</h2>
   </div>
 </div>
 
@@ -30,24 +30,8 @@
     <%= humanize_decimal @log_entry.gp_gained %>
   </div>
   <div class="form-group col-md-2">
-    <strong>Renown Gained</strong> <br>
-    <%= @log_entry.renown_gained %>
-  </div>
-  <div class="form-group col-md-2">
     <strong>Downtime Gained</strong> <br>
     <%= @log_entry.downtime_gained %>
-  </div>
-</div>
-
-
-<div class="row">
-  <div class="form-group col-md-offset-2 col-md-2">
-    <strong>Num Magic Items</strong> <br>
-    <%= @log_entry.num_magic_items_gained %>
-  </div>
-  <div class="form-group col-md-6">
-    <strong>Magic Items Descriptions</strong> <br>
-    <%= @log_entry.desc_magic_items_gained %>
   </div>
 </div>
 
@@ -56,13 +40,9 @@
     <strong>Location Played</strong> <br>
     <%= @log_entry.location_played %>
   </div>
-  <div class="form-group col-md-2">
-    <strong>DM Name</strong> <br>
-    <%= @log_entry.dm_name %>
-  </div>
-  <div class="form-group col-md-2">
-    <strong>DM DCI Number</strong> <br>
-    <%= @log_entry.dm_dci_number %>
+  <div class="form-group col-md-4">
+    <strong>Character to Apply Rewards</strong> <br>
+    <%= @log_entry.character.name if @log_entry.character %>
   </div>
 </div>
 
@@ -72,3 +52,5 @@
     <%= @log_entry.notes %>
   </div>
 </div>
+
+<%= render partial: 'magic_items/list' unless @magic_items.empty? %>

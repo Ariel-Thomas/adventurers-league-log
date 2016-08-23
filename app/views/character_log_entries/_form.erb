@@ -1,4 +1,4 @@
-<%= form_for [@user, @log_entry] do |f| %>
+<%= form_for [@user, @character, @log_entry] do |f| %>
   <div class="row">
     <%= render partial: 'log_entries/form_adventure', locals: { f: f } %>
 
@@ -8,8 +8,11 @@
     </div>
 
     <div class="form-group col-md-2">
-      <%= f.label :date_dmed, 'Date DMed' %>
-      <%= f.text_field :date_dmed, class: 'form-control' %>
+      <%= f.label :date_played, 'Date Played' %>
+
+      <div class='input-group date'>
+        <%= f.text_field :date_played, class: 'form-control' %>
+      </div>
     </div>
   </div>
 
@@ -19,30 +22,29 @@
       <%= f.number_field :xp_gained, class: 'form-control' %>
     </div>
     <div class="form-group col-md-2">
-      <%= f.label :gp_gained, 'GP Gained' %>
+      <%= f.label :gp_gained, 'GP +/-' %>
       <%= f.number_field :gp_gained, class: 'form-control', :step => 'any' %>
     </div>
     <div class="form-group col-md-2">
-      <%= f.label :downtime_gained, 'Downtime Gained' %>
+      <%= f.label :downtime_gained, 'Downtime +/-' %>
       <%= f.number_field :downtime_gained, class: 'form-control' %>
     </div>
-
-    <div class="form-group col-md-2">
-      <%= f.label :date_played, 'Date Assigned' %>
-      <%= f.text_field :date_played, class: 'form-control' %>
+    <div class="form-group col-md-1">
+      <%= f.label :renown_gained, 'Renown' %>
+      <%= f.number_field :renown_gained, class: 'form-control' %>
+    </div>
+    <div class="form-group col-md-1">
+      <%= f.label :num_secret_missions, 'Missions' %>
+      <%= f.number_field :num_secret_missions, class: 'form-control' %>
     </div>
   </div>
 
   <div class="row">
     <div class="form-group col-md-offset-2 col-md-4">
-      <%= f.label :location_played, 'Location DMed' %>
+      <%= f.label :location_played, 'Location Played' %>
       <%= f.text_field :location_played, class: 'form-control' %>
     </div>
-
-    <div class="form-group col-md-4">
-      <%= f.label :character_id, 'Character to Apply Rewards' %>
-      <%= f.select :character_id, @characters.map{|character| [character.name, character.id]},  { include_blank: true }, { class: 'form-control' } %>
-    </div>
+    <%= render partial: 'player_dms/form', locals: { f: f } %>
   </div>
 
   <div class="row">
@@ -51,6 +53,8 @@
       <%= f.text_area :notes, class: 'form-control' %>
     </div>
   </div>
+
+  <%= render partial: 'magic_items/form_adventure', locals: { f: f } %>
 
   <%= hidden_field_tag :q, params[:q] %>
 
@@ -63,19 +67,7 @@
 
 <script type="text/javascript">
   $(function () {
-    $('#dm_log_entry_date_dmed').datetimepicker({
-      format: 'YYYY-MM-DD HH:mm ',
-      icons: {
-          time: "fa fa-clock-o",
-          date: "fa fa-calendar",
-          up: "fa fa-arrow-up",
-          down: "fa fa-arrow-down",
-          previous: "fa fa-arrow-left",
-          next: "fa fa-arrow-right",
-      }
-    });
-
-    $('#dm_log_entry_date_played').datetimepicker({
+    $('#character_log_entry_date_played').datetimepicker({
       format: 'YYYY-MM-DD HH:mm ',
       icons: {
           time: "fa fa-clock-o",

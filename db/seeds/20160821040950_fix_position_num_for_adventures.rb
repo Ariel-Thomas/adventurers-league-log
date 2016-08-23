@@ -1,5 +1,4 @@
 class FixPositionNumForAdventures < PhilColumns::Seed
-
   envs :test, :development, :production
   tags :default
 
@@ -8,10 +7,9 @@ class FixPositionNumForAdventures < PhilColumns::Seed
       form_input.update!(position_num: (index + 1) * 10)
     end
 
-    AdventureFormInput.find_by(name: "Dungeon Master Quest").update(position_num: 1)
+    AdventureFormInput.find_by(name: 'Dungeon Master Quest').update(position_num: 1)
   end
 
   def down
   end
-
 end

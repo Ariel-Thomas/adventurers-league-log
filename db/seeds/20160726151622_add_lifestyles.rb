@@ -1,16 +1,15 @@
 class AddLifestyles < PhilColumns::Seed
-
   envs :test, :development, :production
   tags :default
 
   def up
-    lifestyles =   ["Wretched",
-                    "Squalid",
-                    "Poor",
-                    "Modest",
-                    "Comfortable",
-                     "Wealthy",
-                   "Aristocratic"]
+    lifestyles = %w(Wretched
+                    Squalid
+                    Poor
+                    Modest
+                    Comfortable
+                    Wealthy
+                    Aristocratic)
 
     lifestyles.each do |lifestyle|
       Lifestyle.create!(name: lifestyle)
@@ -20,5 +19,4 @@ class AddLifestyles < PhilColumns::Seed
   def down
     Lifestyle.all.delete_all
   end
-
 end

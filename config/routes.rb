@@ -4,6 +4,7 @@ AdventurersLeagueLog::Application.routes.draw do
   resources :users do
     resources :characters do
       resources :character_log_entries
+      resources :trade_log_entries
 
       member do
         get 'print'

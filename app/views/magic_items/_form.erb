@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="form-group col-md-8">
+    <%= magic_item_form.label :name, 'Name' %>
+    <%= magic_item_form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-4">
+    <%= magic_item_form.label :rarity, 'Rarity' %>
+    <%= magic_item_form.select :rarity, MagicItem.rarities.map{ |rarity| [rarity[0].titleize, rarity[0]] }, { include_blank: true }, { class: 'form-control ' } %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-md-12">
+    <%= magic_item_form.label :notes, 'Notes' %>
+    <%= magic_item_form.text_area :notes, class: 'form-control' %>
+  </div>
+</div>
+
+<%= magic_item_form.hidden_field :_destroy, class: "_destroy" %>
+
+<div class="row">  
+  <div class='col-xs-12'>
+    <div class="pull-right">
+      <%= link_to "Remove", '#', class: 'remove-magic-item btn btn-sm btn-default' %>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('.remove-magic-item').click(function(event){
+    event.preventDefault();
+
+    magic_item_el = $(this).closest('.magic-item');
+    magic_item_el.children('._destroy').val(true);
+    magic_item_el.addClass('hidden')
+  });
+</script>

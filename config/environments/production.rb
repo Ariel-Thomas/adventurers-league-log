@@ -81,14 +81,13 @@ AdventurersLeagueLog::Application.configure do
   Rails.application.routes.default_url_options[:host] = 'adventurersleaguelog.com'
 
   ActionMailer::Base.smtp_settings = {
-    :port =>           '587',
-    :address =>        'smtp.sendgrid.net',
-    :user_name =>      ENV['SENDGRID_USERNAME'],
-    :password =>       ENV['SENDGRID_PASSWORD'],
-    :domain =>         'heroku.com',
-    :authentication => :plain,
-    :enable_starttls_auto => true
+    port: '587',
+    address: 'smtp.sendgrid.net',
+    user_name: ENV['SENDGRID_USERNAME'],
+    password: ENV['SENDGRID_PASSWORD'],
+    domain: 'heroku.com',
+    authentication: :plain,
+    enable_starttls_auto: true
   }
   ActionMailer::Base.delivery_method = :smtp
-
 end

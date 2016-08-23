@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
-    if (current_user)
-      redirect_to user_characters_path(current_user) and return
+    if current_user
+      redirect_to(user_characters_path(current_user)) && return
     else
       @show_jumbotron = true
     end
@@ -18,6 +18,6 @@ class HomeController < ApplicationController
     @public_characters_count = Character.where(publicly_visible: true).count
     @log_entries_count       = LogEntry.count
 
-    @factions_count          = Faction.all.map{ |faction| [faction.name, faction.characters.count] }
+    @factions_count          = Faction.all.map { |faction| [faction.name, faction.characters.count] }
   end
 end

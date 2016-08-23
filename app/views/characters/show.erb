@@ -19,20 +19,18 @@
     <%= display_attribute "Total XP",  @character.total_xp %>
     <%= display_attribute "XP to Level", @character.xp_to_next_level %>
     <%= display_attribute "XP for Next",  @character.xp_for_next_level %>
+    <%= display_attribute "Total GP", humanize_decimal(@character.total_gp) %>
+    <%= display_attribute "Total Downtime",  @character.total_downtime %>
   </div>
 
   <div class="col-md-4">
-    <%= display_attribute "Total GP", humanize_decimal(@character.total_gp) %>
-    <br>
-
-    <%= display_attribute "Magic Items", @character.magic_items_list %>
-    <%= display_attribute "Total Magic Items",  @character.total_magic_items %>
-    <br>
     <%= display_attribute "Faction",  @character.faction_name %>
     <%= display_attribute "Faction Rank",  @character.faction_rank %>
     <%= display_attribute "Total Renown",  @character.total_renown %>
     <%= display_attribute "Secret Missions",  @character.total_secret_missions %>
-    <%= display_attribute "Total Downtime",  @character.total_downtime %>
+    <br>
+    <%= display_attribute "Total Magic Items",  @character.total_magic_items %>
+    <%= display_attribute_ary "Magic Items", @magic_items.pluck(:name) %>
   </div>
 
   <div class="col-md-2 hidden-xs hidden-sm" style="margin-top:-40px;">
@@ -41,6 +39,8 @@
     <% end %>
   </div>
 </div>
+
+<br>
 
 <div class="row">
   <div class='col-xs-12'>
