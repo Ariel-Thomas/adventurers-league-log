@@ -26,6 +26,7 @@ class CharactersController < AuthenticationController
 
     @search      = @character.log_entries.search(params[:q])
     @log_entries = @search.result(distinct: false).page params[:page]
+    @magic_items = @character.magic_items.where(trade_log_entry_id: nil)
   end
 
   def print
