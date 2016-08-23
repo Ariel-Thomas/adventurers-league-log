@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.3.1'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.7.1'
 gem 'pg'
 gem 'puma'
 
@@ -13,7 +13,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
 
-gem 'devise', '~> 3.4.1'
+gem 'devise'
 gem 'pundit'
 
 gem 'ransack'

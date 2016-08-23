@@ -7,7 +7,7 @@ require 'capybara/poltergeist'
 require 'database_cleaner'
 
 Capybara.javascript_driver = :poltergeist
-Capybara.default_wait_time = 6
+Capybara.default_max_wait_time = 6
 
 RSpec.configure do |config|
   config.include Warden::Test::Helpers
