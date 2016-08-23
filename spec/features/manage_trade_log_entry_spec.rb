@@ -75,5 +75,20 @@ RSpec.feature 'Trade Log Entry page', type: :feature, js: true do
       expect(page).to have_text('-10')
       expect(page).to have_text('Rod of Wonder > Axe of Coolness')
     end
+
+    scenario 'Delete trade log' do
+      visit user_character_path(@user, @character)
+
+      within('.trade-log') do
+        click_link('Delete')
+      end
+
+      expect(page).to have_text('Total Magic Items: 2')
+      expect(page).to have_text('Magic Items: Staff of Power, Rod of Wonder')
+
+      expect(page).to_not have_text(@trade_log_entry.date_played)
+      expect(page).to_not have_text(@trade_log_entry.downtime_gained)
+      expect(page).to_not have_text(@trade_log_entry.magic_items_list)
+    end
   end
 end

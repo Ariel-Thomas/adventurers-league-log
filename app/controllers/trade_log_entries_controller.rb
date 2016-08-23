@@ -64,12 +64,12 @@ class TradeLogEntriesController < AuthenticationController
     end
   end
 
-  # def destroy
-  #   authorize @log_entry
-  #   @log_entry.destroy
+  def destroy
+    authorize @log_entry
+    @log_entry.destroy
 
-  #   redirect_to user_character_path(current_user, @character, q: params[:q]), flash: { notice: "Successfully deleted #{@log_entry.adventure_title}" }
-  # end
+    redirect_to user_character_path(current_user, @character, q: params[:q]), flash: { notice: "Successfully deleted trade log entry" }
+  end
 
   protected
 
