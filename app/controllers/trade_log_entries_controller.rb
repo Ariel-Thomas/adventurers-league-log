@@ -25,7 +25,7 @@ class TradeLogEntriesController < AuthenticationController
   end
 
   def create
-    @new_magic_item = MagicItem.find_by_id(params[:trade_log_entry][:traded_magic_item])
+    @new_magic_item = MagicItem.find_by_id(params[:trade_log_entry][:traded_magic_item]) || @character.magic_items.new
     params[:trade_log_entry].delete(:traded_magic_item)
 
     @log_entry = @character.trade_log_entries.build(log_entries_params)
@@ -42,26 +42,27 @@ class TradeLogEntriesController < AuthenticationController
     end
   end
 
-  # def edit
-  #   authorize @log_entry
-  #   @magic_items = [MagicItem.new] + @log_entry.magic_items
-  #   @magic_item_count = @log_entry.magic_items.count;
-  # end
+  def edit
+    authorize @log_entry
 
-  # def update
-  #   authorize @log_entry
-  #   manage_player_dms
+    @magic_items = @character.magic_items
+    @new_magic_item = @log_entry.magic_items.last || @character.magic_items.new
+  end
 
-  #   if @log_entry.update_attributes(log_entries_params)
-  #     redirect_to user_character_path(current_user, @character, q: params[:q]), flash: { notice: "Successfully updated character #{@log_entry.adventure_title}" }
-  #   else
-  #     @magic_items = [MagicItem.new] + @log_entry.magic_items
-  #     @magic_item_count = @log_entry.magic_items.count;
+  def update
+    @new_magic_item = MagicItem.find_by_id(params[:trade_log_entry][:traded_magic_item]) || @character.magic_items.new
+    params[:trade_log_entry].delete(:traded_magic_item)
 
-  #     flash.now[:error] = "Failed to update log_entry #{@log_entry.adventure_title}: #{@log_entry.errors.full_messages.join(',')}"
-  #     render :edit, q: params[:q]
-  #   end
-  # end
+    authorize @log_entry
+    @magic_items = @character.magic_items
+
+    if @log_entry.update_attributes(log_entries_params)
+      redirect_to user_character_path(current_user, @character, q: params[:q]), flash: { notice: "Successfully updated trade log entry" }
+    else
+      flash.now[:error] = "Failed to update trade log entry: #{@log_entry.errors.full_messages.join(',')}"
+      render :edit, q: params[:q]
+    end
+  end
 
   # def destroy
   #   authorize @log_entry

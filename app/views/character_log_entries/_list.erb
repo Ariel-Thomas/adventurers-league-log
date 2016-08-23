@@ -57,7 +57,7 @@
 
       <tbody id='menu_items'>
         <% @log_entries.each do |log_entry| %>
-          <tr class='<%= "dm_log" if log_entry.type == "DmLogEntry" %> <%= "trade_log" if log_entry.type == "TradeLogEntry" %>'>
+          <tr class='<%= "dm_log" if log_entry.type == "DmLogEntry" %> <%= "trade-log" if log_entry.type == "TradeLogEntry" %>'>
             <td><%= format_date log_entry.date_played %></td>
             <td>
               <% if log_entry.type == "CharacterLogEntry" %>
@@ -84,6 +84,14 @@
                 <% if @character.user == current_user %>
                   <%= link_to "<span class='sr-only'>Edit<span>".html_safe, edit_user_character_character_log_entry_path(current_user, @character, log_entry, q: params[:q]), class: "fa fa-pencil-square-o" %>
                   <%= link_to "<span class='sr-only'>Delete<span>".html_safe, user_character_character_log_entry_path(current_user, @character, log_entry, q: params[:q]), method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o" %>
+                <% end %>
+              <% end %>
+
+              <% if log_entry.type == "TradeLogEntry" %>
+                <%= link_to "<span class='sr-only'>Show<span>".html_safe, user_character_trade_log_entry_path(@character.user, @character, log_entry), class: "fa fa-eye" %>
+                <% if @character.user == current_user %>
+                  <%= link_to "<span class='sr-only'>Edit<span>".html_safe, edit_user_character_trade_log_entry_path(current_user, @character, log_entry, q: params[:q]), class: "fa fa-pencil-square-o" %>
+                  <%= link_to "<span class='sr-only'>Delete<span>".html_safe, user_character_trade_log_entry_path(current_user, @character, log_entry, q: params[:q]), method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o" %>
                 <% end %>
               <% end %>
 

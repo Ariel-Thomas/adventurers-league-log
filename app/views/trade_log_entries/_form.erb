@@ -15,7 +15,7 @@
 
     <div class="form-group col-md-4">
       <%= f.label :traded_magic_item, 'Traded Magic Item' %>
-      <%= f.select :traded_magic_item, @magic_items.map {|p| [ "#{p.name} (#{p.rarity})", p.id ] }, { include_blank: true }, { class: 'form-control ' } %>
+      <%= f.select :traded_magic_item, @magic_items.map {|p| [ "#{p.name} (#{p.rarity})", p.id ] }, { selected: @log_entry.traded_magic_item ? @log_entry.traded_magic_item.id : 0, include_blank: true }, { class: 'form-control ' } %>
     </div>
   </div>
 
