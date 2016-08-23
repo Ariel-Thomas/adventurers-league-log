@@ -6,6 +6,7 @@ class Character < ActiveRecord::Base
 
   has_many   :log_entries
   has_many   :character_log_entries
+  has_many   :trade_log_entries
   has_many   :magic_items, through: :log_entries
   validates :name, presence: true
 
@@ -85,11 +86,11 @@ class Character < ActiveRecord::Base
   end
 
   def total_magic_items
-    magic_items.count
+    magic_items.where(trade_log_entry_id: nil).count
   end
 
   def magic_items_list
-    list = magic_items.pluck(:name).join(', ')
+    list = magic_items.where(trade_log_entry_id: nil).pluck(:name).join(', ')
 
     if (list == "")
       return "None"

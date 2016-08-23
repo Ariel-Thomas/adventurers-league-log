@@ -11,7 +11,8 @@ RSpec.feature "Add Magic items", :type => :feature, js: true do
     scenario 'Add log entry with magic item' do
       visit user_character_path(@user, @character)
 
-      click_link 'New Log Entry'
+      click_button 'New Log Entry'
+      click_link 'Game Log'
       click_link 'Add Magic Item'
 
       within all('#magic-items-form .magic-item').last do
@@ -28,7 +29,7 @@ RSpec.feature "Add Magic items", :type => :feature, js: true do
       find_link('Show').trigger('click') #hack to fix previous line
       expect(page).to have_text('Sword +1')
       expect(page).to have_text('Rarity')
-      expect(page).to have_text('Grants a +1 on all attack and damage rolls')    
+      expect(page).to have_text('Grants a +1 on all attack and damage rolls')
     end
 
     context 'existing log entry' do
@@ -59,11 +60,11 @@ RSpec.feature "Add Magic items", :type => :feature, js: true do
         find_link('Show').trigger('click') #hack to fix previous line
         expect(page).to have_text(@magic_item.name)
         expect(page).to have_text(@magic_item.rarity.titleize)
-        expect(page).to have_text(@magic_item.notes)  
+        expect(page).to have_text(@magic_item.notes)
 
         expect(page).to have_text('Sword +1')
         expect(page).to have_text('Legendary')
-        expect(page).to have_text('Grants a +1 on all attack and damage rolls')   
+        expect(page).to have_text('Grants a +1 on all attack and damage rolls')
       end
 
       scenario 'Remove from existing log entry with magic item' do
@@ -80,7 +81,7 @@ RSpec.feature "Add Magic items", :type => :feature, js: true do
         find_link('Show').trigger('click') #hack to fix previous line
         expect(page).to_not have_text(@magic_item.name)
         expect(page).to_not have_text(@magic_item.rarity.titleize)
-        expect(page).to_not have_text(@magic_item.notes)  
+        expect(page).to_not have_text(@magic_item.notes)
       end
     end
   end
@@ -137,7 +138,7 @@ RSpec.feature "Add Magic items", :type => :feature, js: true do
         find_link('Show').trigger('click') #hack to fix previous line
         expect(page).to have_text(@magic_item.name)
         expect(page).to have_text(@magic_item.rarity.titleize)
-        expect(page).to have_text(@magic_item.notes)  
+        expect(page).to have_text(@magic_item.notes)
 
         expect(page).to have_text('Sword +1')
         expect(page).to have_text('Legendary')
@@ -159,8 +160,8 @@ RSpec.feature "Add Magic items", :type => :feature, js: true do
         find_link('Show').trigger('click') #hack to fix previous line
         expect(page).to_not have_text(@magic_item.name)
         expect(page).to_not have_text(@magic_item.rarity.titleize)
-        expect(page).to_not have_text(@magic_item.notes)  
-      end      
+        expect(page).to_not have_text(@magic_item.notes)
+      end
     end
   end
 end

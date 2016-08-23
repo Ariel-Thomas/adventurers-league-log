@@ -1,0 +1,58 @@
+<%= form_for [@user, @character, @log_entry] do |f| %>
+  <div class="row">
+    <div class="form-group col-md-offset-2 col-md-2">
+      <%= f.label :date_played, 'Date Traded' %>
+
+      <div class='input-group date'>
+        <%= f.text_field :date_played, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group col-md-2">
+      <%= f.label :downtime_gained, 'Downtime +/-' %>
+      <%= f.number_field :downtime_gained, class: 'form-control' %>
+    </div>
+
+    <div class="form-group col-md-4">
+      <%= f.label :traded_magic_item, 'Traded Magic Item' %>
+      <%= f.select :traded_magic_item, @magic_items.map {|p| [ "#{p.name} (#{p.rarity})", p.id ] }, { include_blank: true }, { class: 'form-control ' } %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-offset-2 col-md-8">
+      <%= f.label :notes, 'Notes' %>
+      <%= f.text_area :notes, class: 'form-control' %>
+    </div>
+  </div>
+
+  <%= f.fields_for :magic_items, [@new_magic_item] do |magic_item_form| %>
+    <div class="magic-item well col-md-offset-2 col-md-8">
+      <%= render partial: 'magic_items/form', locals: { magic_item_form: magic_item_form } %>
+    </div>
+  <% end %>
+
+  <%= hidden_field_tag :q, params[:q] %>
+
+  <div class="row top-buffer-md">
+    <div class="col-md-offset-2 col-md-8 text-right">
+      <%= f.submit 'Save', class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(function () {
+    $('#trade_log_entry_date_played').datetimepicker({
+      format: 'YYYY-MM-DD HH:mm ',
+      icons: {
+          time: "fa fa-clock-o",
+          date: "fa fa-calendar",
+          up: "fa fa-arrow-up",
+          down: "fa fa-arrow-down",
+          previous: "fa fa-arrow-left",
+          next: "fa fa-arrow-right",
+      }
+    });
+  });
+</script>

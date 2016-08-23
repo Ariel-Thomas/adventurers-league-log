@@ -11,7 +11,7 @@ class CharacterLogEntriesController < AuthenticationController
 
   before_filter { add_crumb @character.name, user_character_path(@character.user, @character) }
 
-  before_filter(only: [:new]) { add_crumb "New Log Entry" }
+  before_filter(only: [:new]) { add_crumb "New Game Log Entry" }
   before_filter(only: [:show, :edit]) { add_crumb @log_entry.adventure_title, user_character_character_log_entry_path(@character.user, @character, @log_entry) }
 
   def show

@@ -20,6 +20,10 @@ class LogEntry < ActiveRecord::Base
     false
   end
 
+  def is_trade_log_entry?
+    false
+  end
+
   def magic_items_list
     list = magic_items.pluck(:name).join(', ')
 
