@@ -20,19 +20,19 @@ class TradeLogEntriesController < AuthenticationController
   def new
     @log_entry = @character.trade_log_entries.new
     authorize @log_entry
-    @magic_items    = @character.magic_items
-    @new_magic_item = @character.magic_items.new
+    @magic_items    = @character.magic_items.where(trade_log_entry_id: nil)
+    @new_magic_item = @character.magic_items.build(trade_log_entry_id: 0)
   end
 
   def create
-    @new_magic_item = MagicItem.find_by_id(params[:trade_log_entry][:traded_magic_item]) || @character.magic_items.new
+    @new_magic_item = MagicItem.find_by_id(params[:trade_log_entry][:traded_magic_item]) || @character.magic_items.build(trade_log_entry_id: 0)
     params[:trade_log_entry].delete(:traded_magic_item)
 
     @log_entry = @character.trade_log_entries.build(log_entries_params)
     @log_entry.traded_magic_item = @new_magic_item
 
     authorize @log_entry
-    @magic_items = @character.magic_items
+    @magic_items = @character.magic_items.where(trade_log_entry_id: [nil, @log_entry.id])
 
     if @log_entry.save
       redirect_to user_character_path(current_user, @character, q: params[:q]), flash: { notice: 'Successfully created trade log entry' }
@@ -45,16 +45,16 @@ class TradeLogEntriesController < AuthenticationController
   def edit
     authorize @log_entry
 
-    @magic_items = @character.magic_items
-    @new_magic_item = @log_entry.magic_items.last || @character.magic_items.new
+    @magic_items = @character.magic_items.where(trade_log_entry_id: [nil, @log_entry.id])
+    @new_magic_item = @log_entry.magic_items.last || @character.magic_items.build(trade_log_entry_id: 0)
   end
 
   def update
-    @new_magic_item = MagicItem.find_by_id(params[:trade_log_entry][:traded_magic_item]) || @character.magic_items.new
+    @new_magic_item = MagicItem.find_by_id(params[:trade_log_entry][:traded_magic_item]) || @character.magic_items.build(trade_log_entry_id: 0)
     params[:trade_log_entry].delete(:traded_magic_item)
 
     authorize @log_entry
-    @magic_items = @character.magic_items
+    @magic_items = @character.magic_items.where(trade_log_entry_id: [nil, @log_entry.id])
 
     if @log_entry.update_attributes(log_entries_params)
       redirect_to user_character_path(current_user, @character, q: params[:q]), flash: { notice: "Successfully updated trade log entry" }
