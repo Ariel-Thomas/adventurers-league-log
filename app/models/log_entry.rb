@@ -23,6 +23,10 @@ class LogEntry < ActiveRecord::Base
     false
   end
 
+  def num_magic_items_gained
+    magic_items.count
+  end
+
   def magic_items_list
     list = magic_items.pluck(:name).join(', ')
 

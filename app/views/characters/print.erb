@@ -44,7 +44,7 @@
         <%= display_attribute_for_print "Session #",  log_entry.session_num %>
       </div>
       <div class="col-xs-2">
-        <%= display_attribute_for_print "Date",  log_entry.date_played %>
+        <%= display_attribute_for_print "Date",  (log_entry.date_played ? log_entry.date_played.strftime("%F %H:%M") : '') %>
       </div>
       <% if !log_entry.is_dm_log_entry? %>
         <div class="col-xs-4">

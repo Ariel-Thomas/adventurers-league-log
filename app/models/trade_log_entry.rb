@@ -9,6 +9,10 @@ class TradeLogEntry < LogEntry
     true
   end
 
+  def num_magic_items_gained
+    magic_items.count - (traded_magic_item.nil? ? 0 : 1)
+  end
+
   def magic_items_list
     traded_magic_item_name   = traded_magic_item.name if traded_magic_item
     received_magic_item      = magic_items.first

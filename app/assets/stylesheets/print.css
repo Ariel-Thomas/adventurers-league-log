@@ -49,8 +49,12 @@ h4 {
   margin-bottom: 10px;
 }
 
+.print-log-entry-box .row {
+  height: 40px;
+}
+
 .print-log-entry-box .text-box {
-  height: 18px;
+  height: 100%;
 
   padding: 2px;
   padding-left: 5px;
