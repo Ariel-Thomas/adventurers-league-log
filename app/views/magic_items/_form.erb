@@ -19,13 +19,15 @@
 
 <%= magic_item_form.hidden_field :_destroy, class: "_destroy" %>
 
-<div class="row">  
-  <div class='col-xs-12'>
-    <div class="pull-right">
-      <%= link_to "Remove", '#', class: 'remove-magic-item btn btn-sm btn-default' %>
+<% if removeable %>
+  <div class="row">
+    <div class='col-xs-12'>
+      <div class="pull-right">
+        <%= link_to "Remove", '#', class: 'remove-magic-item btn btn-sm btn-default' %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
 
 <script>
   $('.remove-magic-item').click(function(event){

@@ -28,7 +28,7 @@
 
   <%= f.fields_for :magic_items, [@new_magic_item] do |magic_item_form| %>
     <div class="magic-item well col-md-offset-2 col-md-8">
-      <%= render partial: 'magic_items/form', locals: { magic_item_form: magic_item_form } %>
+      <%= render partial: 'magic_items/form', locals: { magic_item_form: magic_item_form, removeable: false } %>
     </div>
   <% end %>
 
