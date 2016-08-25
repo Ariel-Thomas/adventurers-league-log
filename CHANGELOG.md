@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+v1.4.5.1
+---------------
+
+- Fix `Print Full` page shows `Starting M Items` instead of `Starting # of Magic Items`
+
 v1.4.5
 ---------------
 
