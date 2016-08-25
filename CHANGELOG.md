@@ -6,10 +6,16 @@ v1.4.3
 
 - Make new tab on print view.
 
+- Fix `Hide Assigned` DM Log Entries page button enabled by default.
+
+- Fix button positioning on DM Log Entries page.
+
+- Fix unable to assign `Date Assigned` in DM Log Entries form.
+
 v1.4.2
 ---------------
 
-- Fix bug: Can't sort by character on DM Log Entries page.
+- Fix can't sort by character on DM Log Entries page.
 
 - Add `Hide Assigned` button to DM Log Entries page.
 

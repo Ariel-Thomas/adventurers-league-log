@@ -9,9 +9,9 @@
   <div class='col-xs-4'>
     <div class="pull-right">
       <% if @hide_assigned_enabled %>
-        <%= link_to "Hide Assigned", user_dm_log_entries_path(@user), class: "btn btn-default" %>
+        <%= link_to "Hide Assigned", user_dm_log_entries_path(@user, q: { character_id_null: true, s: "date_played desc" }), class: "btn btn-default" %>
       <% else %>
-        <%= link_to "Show Assigned", user_dm_log_entries_path(@user, q: { "s"=>"date_played desc" } ), class: "btn btn-default" %>
+        <%= link_to "Show Assigned", user_dm_log_entries_path(@user, q: { character_id_null: true, s: "date_played desc" } ), class: "btn btn-default" %>
       <% end %>
 
       <% if @user == current_user %>
