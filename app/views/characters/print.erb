@@ -48,6 +48,11 @@
       </div>
       <% if !log_entry.is_dm_log_entry? %>
         <div class="col-xs-4">
+          <% Rails.logger.error("BEGIN PRINTING DM INFO") %>
+          <% Rails.logger.error(log_entry.player_dm_id.to_s) %>
+          <% Rails.logger.error(log_entry.dm_name.to_s) %>
+          <% Rails.logger.error(log_entry.dm_dci_number.to_s) %>
+
           <%= display_attribute_for_print "DM Name and DCI #", make_dm_and_dci_string(log_entry.dm_name, log_entry.dm_dci_number) %>
         </div>
       <% end %>

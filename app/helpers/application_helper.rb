@@ -30,9 +30,16 @@ module ApplicationHelper
   end
 
   def make_dm_and_dci_string(dm, dci)
+    Rails.logger.error(dm.to_s)
+    Rails.logger.error(dci.to_s)
+
     string = ''
     string += dm          if dm && dm != ''
     string = string + ' - ' + dci if dci && dci != ''
+
+    Rails.logger.error(string)
+
+    string
   end
 
   def humanize_decimal(decimal_number)
