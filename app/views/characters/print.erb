@@ -4,6 +4,11 @@
 
   body{ padding-top: 0px; }
 
+  .col-xs-2, .col-xs-4{
+    padding-left:  5px;
+    padding-right: 5px;
+  }
+
   .adventurers-league-print-logo{
     display: list-item;
     list-style-image: url(<%= asset_path 'DnD_ADVL.png' %>);
@@ -89,7 +94,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row main-row">
       <div class="col-xs-2">
         <%= display_attribute_for_print "XP Earned",  log_entry.xp_gained %>
       </div>
