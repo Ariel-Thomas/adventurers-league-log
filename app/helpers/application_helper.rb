@@ -30,8 +30,8 @@ module ApplicationHelper
   end
 
   def make_dm_and_dci_string(dm, dci)
-    Rails.logger.error(dm.to_s)
-    Rails.logger.error(dci.to_s)
+    Rails.logger.error(dm)
+    Rails.logger.error(dci)
 
     string = ''
     string += dm          if dm && dm != ''
