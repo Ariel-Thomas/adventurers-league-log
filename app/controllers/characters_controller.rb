@@ -21,7 +21,7 @@ class CharactersController < AuthenticationController
     authorize @character
 
     params[:q] = JSON.parse(params[:q].gsub('=>', ': ')).symbolize_keys if params[:q].class == String
-    params[:q] = { 'type_not_eq' => 'DmLogEntry', 's' => 'date_played desc' } unless params[:q]
+    params[:q] = { type_not_eq: 'DmLogEntry', s: 'date_played desc' } unless params[:q]
     @dm_logs_enabled = params[:q][:type_not_eq] != 'DmLogEntry'
 
     @search      = @character.log_entries.search(params[:q])
