@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+v1.4.3
+---------------
+
+- Make new tab on print view.
+
 v1.4.2
 ---------------
 
