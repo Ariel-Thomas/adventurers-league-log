@@ -1,6 +1,16 @@
 CHANGELOG
 ======
 
+v1.4.5
+---------------
+
+- Improve website responsiveness.
+
+v1.4.4
+---------------
+
+- Fix DM information sometimes not showing while printing.
+
 v1.4.3
 ---------------
 

@@ -14,11 +14,11 @@
     <%= display_attribute "Class", @character.class_and_levels %>
     <%= display_attribute "Background", @character.background %>
     <%= display_attribute "Lifestyle", @character.lifestyle_name %>
-    <br>
+    <br class='hidden-xs'>
     <%= display_attribute "Current Level", @character.current_level %>
     <%= display_attribute "Total XP",  @character.total_xp %>
-    <%= display_attribute "XP to Level", @character.xp_to_next_level %>
-    <%= display_attribute "XP for Next",  @character.xp_for_next_level %>
+    <div class='hidden-xs'><%= display_attribute "XP to Level", @character.xp_to_next_level %></div>
+    <div class='hidden-xs'><%= display_attribute "XP for Next",  @character.xp_for_next_level %></div>
     <%= display_attribute "Total GP", humanize_decimal(@character.total_gp) %>
     <%= display_attribute "Total Downtime",  @character.total_downtime %>
   </div>
@@ -28,7 +28,7 @@
     <%= display_attribute "Faction Rank",  @character.faction_rank %>
     <%= display_attribute "Total Renown",  @character.total_renown %>
     <%= display_attribute "Secret Missions",  @character.total_secret_missions %>
-    <br>
+    <br class='hidden-xs'>
     <%= display_attribute "Total Magic Items",  @character.total_magic_items %>
     <%= display_attribute_ary "Magic Items", @magic_items.pluck(:name) %>
   </div>
@@ -40,7 +40,7 @@
   </div>
 </div>
 
-<br>
+<br class="hidden-xs">
 
 <div class="row">
   <div class='col-xs-12'>

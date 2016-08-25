@@ -1,0 +1,9 @@
+<% if @hide_assigned_enabled %>
+  <%= link_to "Hide Assigned", user_dm_log_entries_path(@user, q: { character_id_null: true, s: "date_played desc" }), class: "btn btn-default" %>
+<% else %>
+  <%= link_to "Show Assigned", user_dm_log_entries_path(@user, q: { character_id_null: true, s: "date_played desc" } ), class: "btn btn-default" %>
+<% end %>
+
+<% if @user == current_user %>
+   <%= link_to "New Log Entry", [current_user, DmLogEntry, action: :new, q: params[:q]], class: "btn btn-primary" %>
+<% end %>
