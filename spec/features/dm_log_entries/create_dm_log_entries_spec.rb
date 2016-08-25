@@ -12,7 +12,8 @@ RSpec.feature 'DM Log Entries', type: :feature do
     @dm_log_entry_count = DmLogEntry.count
     visit user_dm_log_entries_path(@user)
 
-    click_link 'New Log Entry'
+    # click_link 'New Log Entry'
+    all('a', text: 'New Log Entry').first.click
 
     within('#dm-log-entry-main-form') do
       select 'Lost Mines of Phandelver', from: 'Adventure Title'
