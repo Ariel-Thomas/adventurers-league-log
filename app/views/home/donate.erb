@@ -1,0 +1,53 @@
+<br><br><br>
+<div class="row">
+  <h1 class='col-md-offset-2 col-md-8 text-center'>Want to help the website out?</h1>
+</div>
+
+<br>
+
+<div class="row">
+  <div class='col-xs-offset-2 col-xs-8' style="font-size:20px;">
+    Hey, there! There's finally enough of you generating logs that I need to upgrade the hosting for this site. If just a few of you donated $2 on a regular basis I'd be able to offset the cost. That would let me spend more of my time working on upgrades and bugfixes rather than concerning myself with hosting costs.
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class='col-xs-offset-2 col-xs-8' style="font-size:20px;">
+    I do solemnly swear that any money over said needs will go towards fueling my crippling addiction to dice, books and miniatures.
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class='col-md-offset-2 col-md-8 text-center'>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <%= hidden_field_tag :cmd, "_donations" %>
+      <%= hidden_field_tag :business, "A9QLJLBBL2G3N" %>
+      <%= hidden_field_tag :lc, "US" %>
+      <%= hidden_field_tag :item_name, "AdventurersLeagueLog.com" %>
+      <%= hidden_field_tag :currency_code, "USD" %>
+      <%= hidden_field_tag :bn, "PP-DonationsBF:btn_donate_LG.gif:NonHosted" %>
+      <%= hidden_field_tag :lc, "US" %>
+      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!" style="border:0px;height:20%;width:20%;">
+    </form>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class='col-xs-offset-3 col-xs-6 text-center' style="font-size:16px;">
+    By the way, if you are experiencing any bugs or want to make any suggestions, drop by the <%= link_to 'Github issues tracker.', 'https://github.com/Ariel-Thomas/adventurers-league-log/issues'%>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class='col-xs-offset-3 col-xs-6 text-center' style="font-size:16px;">
+    If you just want to know when things change, check out the <%= link_to 'Facebook page.', 'https://www.facebook.com/AdventurersLeagueLog/'%>
+  </div>
+</div>

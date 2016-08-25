@@ -20,4 +20,8 @@ class HomeController < ApplicationController
 
     @factions_count          = Faction.all.map { |faction| [faction.name, faction.characters.count] }
   end
+
+  def donate
+
+  end
 end
