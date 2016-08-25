@@ -46,9 +46,9 @@
       <div class="col-xs-2">
         <%= display_attribute_for_print "Date",  (log_entry.date_played ? log_entry.date_played.strftime("%F %H:%M") : '') %>
       </div>
+      <% Rails.logger.error("BEGIN PRINTING DM INFO") %>
       <% if !log_entry.is_dm_log_entry? %>
         <div class="col-xs-4">
-          <% Rails.logger.error("BEGIN PRINTING DM INFO") %>
           <% Rails.logger.error(log_entry.player_dm_id.to_s) %>
           <% Rails.logger.error(log_entry.dm_name.to_s) %>
           <% Rails.logger.error(log_entry.dm_dci_number.to_s) %>
