@@ -15,6 +15,10 @@ class LogEntry < ActiveRecord::Base
     temp
   end
 
+  def is_character_log_entry?
+    false
+  end
+
   def is_dm_log_entry?
     false
   end
