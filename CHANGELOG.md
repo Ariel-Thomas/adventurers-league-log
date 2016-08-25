@@ -5,6 +5,7 @@ v1.4.5
 ---------------
 
 - Improve website responsiveness.
+- Scale `Print Full` to work in landscape mode again.
 
 v1.4.4
 ---------------

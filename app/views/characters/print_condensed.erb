@@ -47,13 +47,13 @@
       <% end %>
 
       <% if log_entry.is_dm_log_entry? %>
-        <div class="col-xs-offset-1 col-xs-3">
+        <div class="col-xs-4">
           <h4>*** DM ENTRY ***</h4>
         </div>
       <% end %>
 
       <% if log_entry.is_trade_log_entry? %>
-        <div class="col-xs-offset-1 col-xs-3">
+        <div class="col-xs-4">
           <h4>*** TRADE ENTRY ***</h4>
         </div>
       <% end %>
@@ -79,7 +79,7 @@
 
     <% if log_entry.notes && log_entry.notes != '' %>
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12 notes-section">
             <label>Adventure Notes / Downtime Activites</label>
             <p class='print-notes'><%= log_entry.notes %></p>
         </div>
