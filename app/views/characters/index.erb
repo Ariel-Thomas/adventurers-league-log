@@ -23,7 +23,7 @@
                 <td>
                   <%= link_to "<span class='sr-only'>Show<span>".html_safe, user_character_path(current_user, character), class: "fa fa-eye" %>
                   <%= link_to "<span class='sr-only'>Edit<span>".html_safe, edit_user_character_path(current_user, character), class: "fa fa-pencil-square-o" %>
-                  <%= link_to "<span class='sr-only'>Print<span>".html_safe, print_user_character_path(current_user, character), class: "fa fa-print", target: '_blank' %>
+                  <%= link_to "<span class='sr-only'>Print<span>".html_safe, print_user_character_path(current_user, character), class: "fa fa-print", target: '_blank', rel: 'noopener' %>
                   <span style="margin-right:15px"></span>
                   <%= link_to "<span class='sr-only'>Delete<span>".html_safe, user_character_path(current_user, character), method: :delete, data: { confirm: "Are you sure you want to delete #{character.name}?" }, class: "fa fa-trash-o" %>
                 </td>

@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+v1.4.7
+---------------
+
+- Fix `_blank` vulnerability
+
+
 v1.4.6
 ---------------
 
