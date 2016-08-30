@@ -12,7 +12,8 @@ RSpec.feature 'Campaigns', type: :feature do
 
     click_link 'Campaigns BETA'
 
-    click_link 'New Campaign'
+    #click_link 'New Campaign'
+    all('a', text: 'New Campaign').first.click
 
     within('#campaign-form') do
       fill_in 'Name',            with: "Storm King's Thunder Table 1"

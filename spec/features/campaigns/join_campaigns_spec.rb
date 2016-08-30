@@ -13,7 +13,8 @@ RSpec.feature 'Campaigns', type: :feature do
     visit root_path
 
     click_link 'Campaigns BETA'
-    click_link 'Join Campaign'
+    #click_link 'Join Campaign'
+    all('a', text: 'Join Campaign').first.click
 
     fill_in 'Token *',        with: @campaign.token
     select @character.name, from: 'Character *'

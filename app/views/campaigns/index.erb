@@ -33,8 +33,14 @@
         <h3>Playing</h3>
       </div>
 
-      <div class='col-md-5 pull-right'>
-        <%= link_to 'Join Campaign', join_user_campaigns_path(current_user), class: 'btn btn-primary' %>
+      <div class='col-xs-12 col-sm-7 col-md-7 list-buttons'>
+        <div class="pull-right hidden-xs" style="margin-right:10px;">
+          <%= link_to 'Join Campaign', join_user_campaigns_path(current_user), class: 'btn btn-primary' %>
+        </div>
+
+        <div class="visible-xs" style="padding-left:15px;">
+          <%= link_to 'Join Campaign', join_user_campaigns_path(current_user), class: 'btn btn-primary' %>
+        </div>
       </div>
     </div>
 
