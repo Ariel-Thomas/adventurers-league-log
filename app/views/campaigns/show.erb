@@ -36,14 +36,16 @@
     <div class="table-responsive">
       <table class="table table-bordered table-responsive table-striped">
         <tr>
-          <th>Name</th>
+          <th>Player</th>
+          <th>Character</th>
           <th>Class</th>
         </tr>
 
         <tbody id='menu_items'>
           <% @characters.each do |character| %>
             <tr>
-              <td><%= link_to character.name, user_character_path(current_user, character) %></td>
+              <td><%= character.user.name %></td>
+              <td><%= link_to character.name, user_character_path(character.user, character) %></td>
               <td><%= character.class_and_levels %></td>
             </tr>
           <% end %>
