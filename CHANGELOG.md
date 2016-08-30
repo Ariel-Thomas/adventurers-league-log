@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+v1.4.9
+---------------
+
+- Fix character link bug on Campaigns#show page.
+- Add player names to Campaigns#show page.
+- Add hover text icon buttons.
+
 v1.4.8
 ---------------
 

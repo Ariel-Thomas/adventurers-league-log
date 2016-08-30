@@ -12,8 +12,8 @@
           <td><%= link_to campaign_participation.campaign.name, user_campaign_path(current_user, campaign_participation.campaign) %></td>
           <td><%= link_to campaign_participation.character.name, user_character_path(current_user, campaign_participation.character) %></td>
           <td>
-            <%= link_to "<span class='sr-only'>Show<span>".html_safe, user_campaign_path(current_user, campaign_participation.campaign), class: "fa fa-eye" %>
-            <%= link_to "<span class='sr-only'>Delete<span>".html_safe, user_character_character_campaign_path(current_user, campaign_participation.character, campaign_participation.campaign), method: :delete, data: { confirm: "Are you sure you want to leave this campaign?" }, class: "fa fa-trash-o" %>
+            <%= link_to "<span class='sr-only'>Show<span>".html_safe, user_campaign_path(current_user, campaign_participation.campaign), class: "fa fa-eye", title: "Show Campaign" %>
+            <%= link_to "<span class='sr-only'>Delete<span>".html_safe, user_character_character_campaign_path(current_user, campaign_participation.character, campaign_participation.campaign), method: :delete, data: { confirm: "Are you sure you want to leave this campaign?" }, class: "fa fa-trash-o", title: "Leave Campaign" %>
           </td>
         </tr>
       <% end %>

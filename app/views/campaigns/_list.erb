@@ -12,8 +12,8 @@
           <td><%= link_to campaign.name, user_campaign_path(current_user, campaign) %></td>
           <td><%= campaign.characters.count %></td>
           <td>
-            <%= link_to "<span class='sr-only'>Show<span>".html_safe, user_campaign_path(current_user, campaign), class: "fa fa-eye" %>
-            <%= link_to "<span class='sr-only'>Delete<span>".html_safe, user_campaign_path(current_user, campaign), method: :delete, data: { confirm: "Are you sure you want to delete this campaign?" }, class: "fa fa-trash-o" %>
+            <%= link_to "<span class='sr-only'>Show<span>".html_safe, user_campaign_path(current_user, campaign), class: "fa fa-eye", title: "Show Campaign" %>
+            <%= link_to "<span class='sr-only'>Delete<span>".html_safe, user_campaign_path(current_user, campaign), method: :delete, data: { confirm: "Are you sure you want to delete this campaign?" }, class: "fa fa-trash-o", title: "Delete Campaign" %>
           </td>
         </tr>
       <% end %>
