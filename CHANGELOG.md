@@ -5,7 +5,7 @@ v1.4.8
 ---------------
 
 - Add beta for `Campaigns` feature
-- Add opt-in for `Recieve emails about site updates`
+- Add opt-in for `Receive emails about site updates`
 
 v1.4.7
 ---------------
