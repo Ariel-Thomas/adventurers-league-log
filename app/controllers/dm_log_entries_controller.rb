@@ -98,7 +98,7 @@ class DmLogEntriesController < AuthenticationController
   end
 
   def load_log_entry
-    @log_entry   = LogEntry.find(params[:id])
+    @log_entry   = DmLogEntry.find(params[:id])
   end
 
   def load_adventure_form_inputs

@@ -1,6 +1,7 @@
 class Campaign < ActiveRecord::Base
   belongs_to :user, required: true
 
+  has_many :campaign_log_entries
   has_many :campaign_participations
   has_many :characters, through: :campaign_participations
   has_many :character_users, through: :campaign_participations, source: :user

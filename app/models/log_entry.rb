@@ -20,8 +20,8 @@ class LogEntry < ActiveRecord::Base
 
   def user
     temp = super
-    return character.user unless temp
-    temp
+    return character.user if character
+    temp if temp
   end
 
   def is_character_log_entry?
@@ -33,6 +33,10 @@ class LogEntry < ActiveRecord::Base
   end
 
   def is_trade_log_entry?
+    false
+  end
+
+  def is_campaign_log_entry?
     false
   end
 

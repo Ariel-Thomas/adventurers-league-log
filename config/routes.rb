@@ -6,6 +6,7 @@ AdventurersLeagueLog::Application.routes.draw do
       resources :character_log_entries
       resources :trade_log_entries
       resources :character_campaigns, only: [:destroy]
+      resources :campaign_log_entries, only: [:show]
 
       member do
         get 'print'
@@ -19,6 +20,8 @@ AdventurersLeagueLog::Application.routes.draw do
       collection do
         get  'join'
       end
+
+      resources :campaign_log_entries
     end
     resources :character_campaigns, only: [:create]
   end

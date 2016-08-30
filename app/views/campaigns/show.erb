@@ -1,56 +1,106 @@
 <div class="row">
-  <h2 class="col-md-offset-3 col-md-6"><%= @campaign.name %></h2>
-
-  <div class="col-md-offset-3 col-md-6">
-    <%= display_attribute "Users Can Join",  @campaign.users_can_join? %>
-  </div>
-  <div class="col-md-offset-3 col-md-6">
-    <%= display_attribute "Publicly Visible", @campaign.publicly_visible? %>
-  </div>
+  <h2 class="col-md-offset-1 col-md-10"><%= @campaign.name %></h2>
 </div>
 
-<br>
+<div class="row">
+  <div class="col-md-offset-1 col-md-5">
+    <div class="row">
+      <div class="form-group col-md-4">
+        <strong>DM Name</strong> <br>
+        <%= @campaign.user.name %>
+      </div>
 
-<% if @dm_is_current_user %>
-  <div class="row">
-    <h3 class="col-md-offset-3 col-md-6">Join Token</h3>
+      <div class="form-group col-md-6">
+        <strong>DM DCI</strong> <br>
+        <%= @campaign.user.dci_num %>
+      </div>
+
+      <br>
+
+      <div class="col-md-12">
+        <%= display_attribute "Users Can Join",  @campaign.users_can_join? %>
+      </div>
+      <div class="col-md-12">
+        <%= display_attribute "Publicly Visible", @campaign.publicly_visible? %>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <h3 class="col-md-12">Join Token</h3>
+    </div>
+
+    <% if @dm_is_current_user %>
+      <div class="row">
+        <div class="col-md-12">
+          Give this token to your players so they can join your game.
+        </div>
+      </div>
+
+      <div class="row">
+        <h4 class="well text-center" style="max-width: 450px;"><%= @campaign.token %></h4>
+      </div>
+    <% else %>
+      <div class="row">
+        <div class="col-md-12">
+          Request a join token from this campaign's DM to join.
+        </div>
+      </div>
+    <% end %>
   </div>
 
-  <div class="row">
-    <div class="col-md-offset-3 col-md-6">
-      Give this token to your players so they can join your game.
+  <div class="col-md-5">
+    <div class="row">
+      <h3 class="col-md-12" style="margin-top:0px;">Players</h3>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-bordered table-responsive table-striped">
+            <tr>
+              <th>Player</th>
+              <th>Character</th>
+              <th>Class</th>
+            </tr>
+
+            <tbody id='menu_items'>
+              <% @characters.each do |character| %>
+                <tr>
+                  <td><%= character.user.name %></td>
+                  <td><%= link_to character.name, user_character_path(character.user, character) %></td>
+                  <td><%= character.class_and_levels %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="row col-md-offset-3">
-    <h4 class="well text-center" style="max-width: 450px; padding-left:0px; padding-right:0px"><%= @campaign.token %></h4>
-  </div>
-<% end %>
-
-<div class="row">
-  <h3 class="col-md-offset-3 col-md-6">Players</h3>
 </div>
 
 <div class="row">
-  <div class="col-md-offset-3 col-md-4">
-    <div class="table-responsive">
-      <table class="table table-bordered table-responsive table-striped">
-        <tr>
-          <th>Player</th>
-          <th>Character</th>
-          <th>Class</th>
-        </tr>
+  <div class="col-md-offset-1 col-md-10">
+    <div class="row">
+      <h3 class="col-sm-4">Log Entries</h3>
 
-        <tbody id='menu_items'>
-          <% @characters.each do |character| %>
-            <tr>
-              <td><%= character.user.name %></td>
-              <td><%= link_to character.name, user_character_path(character.user, character) %></td>
-              <td><%= character.class_and_levels %></td>
-            </tr>
+      <div class="col-sm-8 list-buttons">
+        <div class="pull-right">
+          <% if @user == current_user %>
+             <%= link_to "New Log Entry", [current_user, @campaign, CampaignLogEntry, action: :new], class: "btn btn-primary" %>
           <% end %>
-        </tbody>
-      </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div id='log_entires_list'>
+          <%= render partial: 'campaign_log_entries/list' %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

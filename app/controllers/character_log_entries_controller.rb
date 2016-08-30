@@ -55,12 +55,12 @@ class CharacterLogEntriesController < AuthenticationController
     manage_player_dms
 
     if @log_entry.update_attributes(log_entries_params)
-      redirect_to user_character_path(current_user, @character, q: params[:q]), flash: { notice: "Successfully updated character #{@log_entry.adventure_title}" }
+      redirect_to user_character_path(current_user, @character, q: params[:q]), flash: { notice: "Successfully updated log entry #{@log_entry.adventure_title}" }
     else
       @magic_items = [MagicItem.new] + @log_entry.magic_items
       @magic_item_count = @log_entry.magic_items.count
 
-      flash.now[:error] = "Failed to update log_entry #{@log_entry.adventure_title}: #{@log_entry.errors.full_messages.join(',')}"
+      flash.now[:error] = "Failed to update log entry #{@log_entry.adventure_title}: #{@log_entry.errors.full_messages.join(',')}"
       render :edit, q: params[:q]
     end
   end

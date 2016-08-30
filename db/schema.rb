@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160830071133) do
+ActiveRecord::Schema.define(version: 20160830103834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20160830071133) do
     t.integer  "user_id"
     t.integer  "player_dm_id"
     t.datetime "date_dmed"
+    t.integer  "campaign_id"
   end
 
   create_table "magic_items", force: :cascade do |t|
