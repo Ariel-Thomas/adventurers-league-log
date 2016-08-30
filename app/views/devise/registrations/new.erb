@@ -38,6 +38,14 @@
     </div>
 
     <div class="row">
+      <div class="form-group col-md-offset-4 col-md-4">
+        <%= f.label :receive_emails, class: 'css3-checkboxes' do
+          (f.check_box :receive_emails) + "<span>Receive emails about site updates</span>".html_safe
+        end %>
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col-md-offset-4 col-md-4">
         <%= f.submit "Sign up", class: "btn btn-primary" %>
         <%= render "devise/shared/links" %>
