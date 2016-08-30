@@ -19,17 +19,19 @@ class TradeLogEntriesController < AuthenticationController
 
   def new
     @log_entry = @character.trade_log_entries.new
+    @log_entry.characters = [@character]
     authorize @log_entry
     @magic_items    = @character.magic_items.where(trade_log_entry_id: nil)
-    @new_magic_item = @character.magic_items.build(trade_log_entry_id: 0)
+    @new_magic_item = MagicItem.new(trade_log_entry_id: 0)
   end
 
   def create
-    @new_magic_item = MagicItem.find_by_id(params[:trade_log_entry][:traded_magic_item]) || @character.magic_items.build(trade_log_entry_id: 0)
+    @new_magic_item = MagicItem.find_by_id(params[:trade_log_entry][:traded_magic_item]) || MagicItem.new(trade_log_entry_id: 0)
     params[:trade_log_entry].delete(:traded_magic_item)
 
     @log_entry = @character.trade_log_entries.build(log_entries_params)
     @log_entry.traded_magic_item = @new_magic_item
+    @log_entry.characters = [@character]
 
     authorize @log_entry
     @magic_items = @character.magic_items.where(trade_log_entry_id: [nil, @log_entry.id])

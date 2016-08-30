@@ -5,7 +5,8 @@ RSpec.feature 'DM Log Entries', type: :feature do
     @user = FactoryGirl.create(:user)
     login_as(@user, scope: :user)
     @character = FactoryGirl.create(:character, user: @user)
-    @dm_log_entry = FactoryGirl.create(:dm_log_entry, user: @user, character: @character)
+    @dm_log_entry = FactoryGirl.create(:dm_log_entry, user: @user)
+    @dm_log_entry.characters = [@character]
   end
 
   scenario 'Delete a DM Log Entry' do

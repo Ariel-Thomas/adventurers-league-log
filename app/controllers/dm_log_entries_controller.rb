@@ -4,6 +4,7 @@ class DmLogEntriesController < AuthenticationController
   add_crumb('Home', '/')
   before_filter :load_user
   before_filter :load_characters, only: [:new, :create, :edit, :update]
+  before_filter :load_character,  only: [:create, :update]
   before_filter :load_log_entry,  only: [:show, :edit, :update, :destroy]
   before_filter :load_adventure_form_inputs, only: [:new, :create, :edit, :update]
   before_filter :load_overrides, only: [:edit, :update]
@@ -39,6 +40,7 @@ class DmLogEntriesController < AuthenticationController
 
   def create
     @log_entry = @user.dm_log_entries.build(log_entries_params)
+    @log_entry.characters = [@character] if @character
     authorize @log_entry
 
     if @log_entry.save
@@ -60,6 +62,7 @@ class DmLogEntriesController < AuthenticationController
   end
 
   def update
+    @log_entry.characters = [@character] if @character
     authorize @log_entry
 
     if @log_entry.update_attributes(log_entries_params)
@@ -88,6 +91,10 @@ class DmLogEntriesController < AuthenticationController
 
   def load_characters
     @characters  = @user.characters
+  end
+
+  def load_character
+    @character = @user.characters.find_by_id(params[:dm_log_entry][:character_id])
   end
 
   def load_log_entry

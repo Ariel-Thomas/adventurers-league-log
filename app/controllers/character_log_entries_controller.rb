@@ -20,7 +20,8 @@ class CharacterLogEntriesController < AuthenticationController
   end
 
   def new
-    @log_entry   = @character.character_log_entries.new
+    @log_entry      = @character.character_log_entries.new
+    @log_entry.characters = [@character]
     authorize @log_entry
     @magic_items = [MagicItem.new]
     @magic_item_count = 0
@@ -28,16 +29,17 @@ class CharacterLogEntriesController < AuthenticationController
 
   def create
     @log_entry = @character.character_log_entries.build(log_entries_params)
+    @log_entry.characters = [@character]
     authorize @log_entry
     manage_player_dms
 
     if @log_entry.save
-      redirect_to user_character_path(current_user, @character, q: params[:q]), flash: { notice: "Successfully created character #{@log_entry.adventure_title}" }
+      redirect_to user_character_path(current_user, @character, q: params[:q]), flash: { notice: "Successfully created log entry #{@log_entry.adventure_title}" }
     else
       @magic_items = @log_entry.magic_items
       @magic_item_count = @log_entry.magic_items.count
 
-      flash.now[:error] = "Failed to create log_entry #{@log_entry.adventure_title}: #{@log_entry.errors.full_messages.join(',')}"
+      flash.now[:error] = "Failed to create log entry #{@log_entry.adventure_title}: #{@log_entry.errors.full_messages.join(',')}"
       render :new, q: params[:q]
     end
   end

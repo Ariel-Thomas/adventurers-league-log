@@ -1,56 +1,58 @@
 <%= form_for [@user, @character, @log_entry] do |f| %>
-  <div class="row">
-    <%= render partial: 'log_entries/form_adventure', locals: { f: f } %>
+  <div id='character-log-entry-main-form'>
+    <div class="row">
+      <%= render partial: 'log_entries/form_adventure', locals: { f: f } %>
 
-    <div class="form-group col-md-1">
-      <%= f.label :session_num, 'Session' %>
-      <%= f.text_field :session_num, class: 'form-control' %>
-    </div>
+      <div class="form-group col-md-1">
+        <%= f.label :session_num, 'Session' %>
+        <%= f.text_field :session_num, class: 'form-control' %>
+      </div>
 
-    <div class="form-group col-md-2">
-      <%= f.label :date_played, 'Date Played' %>
+      <div class="form-group col-md-2">
+        <%= f.label :date_played, 'Date Played' %>
 
-      <div class='input-group date'>
-        <%= f.text_field :date_played, class: 'form-control' %>
+        <div class='input-group date'>
+          <%= f.text_field :date_played, class: 'form-control' %>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="form-group col-md-offset-2 col-md-2">
-      <%= f.label :xp_gained, 'XP Gained' %>
-      <%= f.number_field :xp_gained, class: 'form-control' %>
+    <div class="row">
+      <div class="form-group col-md-offset-2 col-md-2">
+        <%= f.label :xp_gained, 'XP Gained' %>
+        <%= f.number_field :xp_gained, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= f.label :gp_gained, 'GP +/-' %>
+        <%= f.number_field :gp_gained, class: 'form-control', :step => 'any' %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= f.label :downtime_gained, 'Downtime +/-' %>
+        <%= f.number_field :downtime_gained, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-1">
+        <%= f.label :renown_gained, 'Renown' %>
+        <%= f.number_field :renown_gained, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-1">
+        <%= f.label :num_secret_missions, 'Missions' %>
+        <%= f.number_field :num_secret_missions, class: 'form-control' %>
+      </div>
     </div>
-    <div class="form-group col-md-2">
-      <%= f.label :gp_gained, 'GP +/-' %>
-      <%= f.number_field :gp_gained, class: 'form-control', :step => 'any' %>
-    </div>
-    <div class="form-group col-md-2">
-      <%= f.label :downtime_gained, 'Downtime +/-' %>
-      <%= f.number_field :downtime_gained, class: 'form-control' %>
-    </div>
-    <div class="form-group col-md-1">
-      <%= f.label :renown_gained, 'Renown' %>
-      <%= f.number_field :renown_gained, class: 'form-control' %>
-    </div>
-    <div class="form-group col-md-1">
-      <%= f.label :num_secret_missions, 'Missions' %>
-      <%= f.number_field :num_secret_missions, class: 'form-control' %>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="form-group col-md-offset-2 col-md-4">
-      <%= f.label :location_played, 'Location Played' %>
-      <%= f.text_field :location_played, class: 'form-control' %>
+    <div class="row">
+      <div class="form-group col-md-offset-2 col-md-4">
+        <%= f.label :location_played, 'Location Played' %>
+        <%= f.text_field :location_played, class: 'form-control' %>
+      </div>
+      <%= render partial: 'player_dms/form', locals: { f: f } %>
     </div>
-    <%= render partial: 'player_dms/form', locals: { f: f } %>
-  </div>
 
-  <div class="row">
-    <div class="form-group col-md-offset-2 col-md-8">
-      <%= f.label :notes, 'Notes' %>
-      <%= f.text_area :notes, class: 'form-control' %>
+    <div class="row">
+      <div class="form-group col-md-offset-2 col-md-8">
+        <%= f.label :notes, 'Notes' %>
+        <%= f.text_area :notes, class: 'form-control' %>
+      </div>
     </div>
   </div>
 

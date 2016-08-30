@@ -1,5 +1,14 @@
 class LogEntry < ActiveRecord::Base
-  belongs_to :character
+  has_many :log_assignments
+  has_many :characters, through: :log_assignments
+  def character
+    characters.first
+  end
+
+  def character= char
+    characters = [char]
+  end
+
   belongs_to :user
   has_many   :magic_items
   accepts_nested_attributes_for :magic_items, reject_if: proc { |attributes| attributes[:name].blank? }, allow_destroy: true
