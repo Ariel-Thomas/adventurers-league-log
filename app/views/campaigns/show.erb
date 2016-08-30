@@ -1,0 +1,54 @@
+<div class="row">
+  <h2 class="col-md-offset-3 col-md-6"><%= @campaign.name %></h2>
+
+  <div class="col-md-offset-3 col-md-6">
+    <%= display_attribute "Users Can Join",  @campaign.users_can_join? %>
+  </div>
+  <div class="col-md-offset-3 col-md-6">
+    <%= display_attribute "Publicly Visible", @campaign.publicly_visible? %>
+  </div>
+</div>
+
+<br>
+
+<% if @dm_is_current_user %>
+  <div class="row">
+    <h3 class="col-md-offset-3 col-md-6">Join Token</h3>
+  </div>
+
+  <div class="row">
+    <div class="col-md-offset-3 col-md-6">
+      Give this token to your players so they can join your game.
+    </div>
+  </div>
+
+  <div class="row col-md-offset-3">
+    <h4 class="well text-center" style="max-width: 450px; padding-left:0px; padding-right:0px"><%= @campaign.token %></h4>
+  </div>
+<% end %>
+
+<div class="row">
+  <h3 class="col-md-offset-3 col-md-6">Players</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-offset-3 col-md-4">
+    <div class="table-responsive">
+      <table class="table table-bordered table-responsive table-striped">
+        <tr>
+          <th>Name</th>
+          <th>Class</th>
+        </tr>
+
+        <tbody id='menu_items'>
+          <% @characters.each do |character| %>
+            <tr>
+              <td><%= link_to character.name, user_character_path(current_user, character) %></td>
+              <td><%= character.class_and_levels %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

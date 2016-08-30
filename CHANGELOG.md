@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+v1.4.8
+---------------
+
+- Add beta for `Campaigns` feature
+
 v1.4.7
 ---------------
 

@@ -5,6 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :characters
-  has_many :dm_log_entries
+  has_many :campaign_participations, through: :characters
+  has_many :character_campaigns, through: :characters, source: :campaigns
+
   has_many :player_dms
+
+  has_many :dm_log_entries
+  has_many :campaigns
 end

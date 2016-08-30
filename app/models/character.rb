@@ -8,6 +8,10 @@ class Character < ActiveRecord::Base
   has_many   :character_log_entries
   has_many   :trade_log_entries
   has_many   :magic_items, through: :log_entries
+
+  has_many :campaign_participations
+  has_many :campaigns, through: :campaign_participations
+
   validates :name, presence: true
 
   XP_BY_LEVEL =

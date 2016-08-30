@@ -3,6 +3,10 @@ class UserPolicy < ApplicationPolicy
     user == record
   end
 
+  def join?
+    user == record
+  end
+
   def edit?
     user == record
   end

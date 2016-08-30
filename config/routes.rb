@@ -5,6 +5,7 @@ AdventurersLeagueLog::Application.routes.draw do
     resources :characters do
       resources :character_log_entries
       resources :trade_log_entries
+      resources :character_campaigns, only: [:destroy]
 
       member do
         get 'print'
@@ -13,6 +14,13 @@ AdventurersLeagueLog::Application.routes.draw do
     end
 
     resources :dm_log_entries
+
+    resources :campaigns  do
+      collection do
+        get  'join'
+      end
+    end
+    resources :character_campaigns, only: [:create]
   end
 
   get 'stats', controller: 'home'
