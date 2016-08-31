@@ -1,6 +1,18 @@
 CHANGELOG
 ======
 
+v1.4.11
+---------------
+
+- Improve Campaigns#show and campaign log entry look.
+
+
+v1.4.10
+---------------
+
+- Change the way logs are assigned to allow for campaigns.
+- Add campaign log entries to `Campagins` feature.
+
 v1.4.9
 ---------------
 

@@ -1,77 +1,90 @@
 <%= form_for [@user, @campaign, @log_entry] do |f| %>
   <div id='campaign-log-entry-main-form'>
     <div class="row">
-      <%= render partial: 'log_entries/form_adventure', locals: { f: f } %>
+      <div class="col-md-offset-2 col-md-7" style="padding-left: 5px; padding-right: 0px;">
+        <div class="row">
+          <div class="col-md-6">
+            <%= render partial: 'log_entries/form_adventure', locals: { f: f } %>
+          </div>
 
-      <div class="form-group col-md-1">
-        <%= f.label :session_num, 'Session' %>
-        <%= f.text_field :session_num, class: 'form-control' %>
+          <div class="form-group col-md-2">
+            <%= f.label :session_num, 'Session' %>
+            <%= f.text_field :session_num, class: 'form-control' %>
+          </div>
+
+          <div class="form-group col-md-4">
+            <%= f.label :date_played, 'Date Played' %>
+            <%= f.text_field :date_played, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-3">
+            <%= f.label :xp_gained, 'XP Gained' %>
+            <%= f.number_field :xp_gained, class: 'form-control' %>
+          </div>
+          <div class="form-group col-md-3">
+            <%= f.label :gp_gained, 'GP +/-' %>
+            <%= f.number_field :gp_gained, class: 'form-control', :step => 'any' %>
+          </div>
+          <div class="form-group col-md-2">
+            <%= f.label :downtime_gained, 'Downtime&nbsp+/-'.html_safe %>
+            <%= f.number_field :downtime_gained, class: 'form-control' %>
+          </div>
+          <div class="form-group col-md-2">
+            <%= f.label :renown_gained, 'Renown' %>
+            <%= f.number_field :renown_gained, class: 'form-control' %>
+          </div>
+          <div class="form-group col-md-2">
+            <%= f.label :num_secret_missions, 'Missions' %>
+            <%= f.number_field :num_secret_missions, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-6">
+            <%= f.label :location_played, 'Location Played' %>
+            <%= f.text_field :location_played, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-12">
+            <%= f.label :notes, 'Notes' %>
+            <%= f.text_area :notes, class: 'form-control' %>
+          </div>
+        </div>
       </div>
 
-      <div class="form-group col-md-2">
-        <%= f.label :date_played, 'Date Played' %>
-        <%= f.text_field :date_played, class: 'form-control' %>
-      </div>
-    </div>
+      <div class="col-md-3">
+        <div class="row">
+          <div class="col-md-12">
+            <label>Characters</label>
+          </div>
+        </div>
 
-    <div class="row">
-      <div class="form-group col-md-offset-2 col-md-2">
-        <%= f.label :xp_gained, 'XP Gained' %>
-        <%= f.number_field :xp_gained, class: 'form-control' %>
+        <div class="row">
+          <%= f.collection_check_boxes :character_ids,  @campaign.characters, :id, :name do |b| %>
+            <div class="form-group col-md-12">
+              <%= b.label(class: 'css3-checkboxes') do
+                (b.check_box(checked: true)) + "<span>#{b.text}</span>".html_safe
+              end %>
+            </div>
+          <% end %>
+        </div>
       </div>
-      <div class="form-group col-md-2">
-        <%= f.label :gp_gained, 'GP +/-' %>
-        <%= f.number_field :gp_gained, class: 'form-control', :step => 'any' %>
-      </div>
-      <div class="form-group col-md-2">
-        <%= f.label :downtime_gained, 'Downtime +/-' %>
-        <%= f.number_field :downtime_gained, class: 'form-control' %>
-      </div>
-      <div class="form-group col-md-1">
-        <%= f.label :renown_gained, 'Renown' %>
-        <%= f.number_field :renown_gained, class: 'form-control' %>
-      </div>
-      <div class="form-group col-md-1">
-        <%= f.label :num_secret_missions, 'Missions' %>
-        <%= f.number_field :num_secret_missions, class: 'form-control' %>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="form-group col-md-offset-2 col-md-2">
-        <%= f.label :location_played, 'Location Played' %>
-        <%= f.text_field :location_played, class: 'form-control' %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="form-group col-md-offset-2 col-md-8">
-        <%= f.label :notes, 'Notes' %>
-        <%= f.text_area :notes, class: 'form-control' %>
-      </div>
     </div>
   </div>
-
-  <%= render partial: 'magic_items/form_adventure', locals: { f: f } %>
 
   <div class="row">
-    <div class="col-md-offset-2 col-md-8">
-      <h3>Characters</h3>
+    <div class="col-md-11">
+      <%= render partial: 'magic_items/form_adventure', locals: { f: f } %>
     </div>
-  </div>
-
-  <div="row">
-    <%= f.collection_check_boxes :character_ids,  @campaign.characters, :id, :name do |b| %>
-        <div class="form-group col-md-offset-2 col-md-8">
-          <%= b.label(class: 'css3-checkboxes') do
-            (b.check_box(checked: true)) + "<span>#{b.text}</span>".html_safe
-          end %>
-        </div>
-    <% end %>
   </div>
 
   <div class="row top-buffer-md">
-    <div class="col-md-offset-2 col-md-8 text-right">
+    <div class="col-md-offset-2 col-md-4 pull-right">
       <%= f.submit 'Save', class: 'btn btn-primary' %>
     </div>
   </div>

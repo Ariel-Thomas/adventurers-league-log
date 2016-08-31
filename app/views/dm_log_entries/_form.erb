@@ -1,7 +1,9 @@
 <%= form_for [@user, @log_entry] do |f| %>
   <div id='dm-log-entry-main-form'>
     <div class="row">
-      <%= render partial: 'log_entries/form_adventure', locals: { f: f } %>
+      <div class="col-md-offset-2 col-md-5">
+        <%= render partial: 'log_entries/form_adventure', locals: { f: f } %>
+      </div>
 
       <div class="form-group col-md-1">
         <%= f.label :session_num, 'Session' %>
