@@ -67,7 +67,7 @@
           <%= f.collection_check_boxes :character_ids,  @campaign.characters, :id, :name do |b| %>
             <div class="form-group col-md-12">
               <%= b.label(class: 'css3-checkboxes') do
-                (b.check_box(checked: true)) + "<span>#{b.text}</span>".html_safe
+                (b.check_box) + "<span>#{b.text}</span>".html_safe
               end %>
             </div>
           <% end %>
