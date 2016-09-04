@@ -24,7 +24,7 @@ RSpec.feature 'Character Log Entries', type: :feature do
 
     expect(page).to_not have_text(@character_log_entry.date_played.strftime('%Y-%m-%d %H:%M'))
     expect(page).to_not have_text(@character_log_entry.adventure_title)
-    expect(page).to_not have_text(@character_log_entry.session_num)
+    # expect(page).to_not have_text(@character_log_entry.session_num)
     expect(page).to_not have_text(@character_log_entry.xp_gained)
     expect(page).to_not have_text(@character_log_entry.gp_gained.floor)
     expect(page).to_not have_text(@character_log_entry.downtime_gained)

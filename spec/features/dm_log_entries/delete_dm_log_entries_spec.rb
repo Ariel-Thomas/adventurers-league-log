@@ -18,7 +18,10 @@ RSpec.feature 'DM Log Entries', type: :feature do
 
     expect(DmLogEntry.count).to be(@dm_log_entry_count - 1)
 
-    expect(page).to_not have_text(@dm_log_entry.date_dmed.strftime('%Y-%m-%d %H:%M'))
+    visit user_dm_log_entries_path(@user)
+
+    expect(page).to_not have_text(@dm_log_entry.date_dmed
+                                               .strftime('%Y-%m-%d %H:%M'))
     expect(page).to_not have_text(@dm_log_entry.adventure_title)
     expect(page).to_not have_text(@dm_log_entry.session_num)
     expect(page).to_not have_text(@dm_log_entry.xp_gained)
