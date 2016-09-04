@@ -1,12 +1,13 @@
 CHANGELOG
 ======
 
-v1.4.11
+v1.4.12
 ---------------
 
 - Fix all characters selected when updating `Campaign log entry`.
 - Fix deleting campaign breaking access to `Campaign` page.
 - Fix sorting by characters in `DM Log Entries` index again.
+- Improve log entries code quality.
 
 v1.4.11
 ---------------
