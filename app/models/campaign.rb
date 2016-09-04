@@ -1,8 +1,9 @@
+# :nodoc:
 class Campaign < ActiveRecord::Base
   belongs_to :user, required: true
 
   has_many :campaign_log_entries
-  has_many :campaign_participations
+  has_many :campaign_participations, dependent: :destroy
   has_many :characters, through: :campaign_participations
   has_many :character_users, through: :campaign_participations, source: :user
 
@@ -14,6 +15,6 @@ class Campaign < ActiveRecord::Base
 
   def reset_token!
     reset_token
-    self.save!
+    save!
   end
 end

@@ -4,6 +4,12 @@ CHANGELOG
 v1.4.11
 ---------------
 
+- Fix all characters selected when updating Campaign log entry.
+
+
+v1.4.11
+---------------
+
 - Improve Campaigns#show and campaign log entry look.
 
 
