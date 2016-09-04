@@ -42,4 +42,10 @@ class LogEntriesController < AuthenticationController
   def load_overrides
     @use_adventure_override = !adventure_form_inputs_include_adventure?
   end
+
+  def log_entry_error_message(action)
+    "Failed to #{action} log entry "\
+    "#{@log_entry.adventure_title}: "\
+    "#{@log_entry.errors.full_messages.join(',')}"
+  end
 end

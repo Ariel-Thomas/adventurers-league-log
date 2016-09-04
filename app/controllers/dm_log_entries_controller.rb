@@ -100,12 +100,6 @@ class DmLogEntriesController < LogEntriesController
     @log_entry.characters = [@character] if @character
   end
 
-  def log_entry_error_message(action)
-    "Failed to #{action} log_entry "\
-    "#{@log_entry.adventure_title}: "\
-    "#{@log_entry.errors.full_messages.join(',')}"
-  end
-
   def log_entries_params
     params.require(:dm_log_entry)
           .permit(:adventure_title, :session_num,
