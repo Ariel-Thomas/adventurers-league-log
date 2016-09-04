@@ -2,7 +2,7 @@ class CharacterLogEntry < LogEntry
   belongs_to :player_dm
 
   def user
-    character.user
+    characters.first.user
   end
 
   def dm_name

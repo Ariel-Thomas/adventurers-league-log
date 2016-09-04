@@ -51,6 +51,10 @@
               <% if log_entry.type == "DmLogEntry" %>
                 <%= log_entry.adventure_title %>
               <% end %>
+
+              <% if log_entry.type == "CampaignLogEntry" %>
+                <%= link_to log_entry.adventure_title || "", user_character_campaign_log_entry_path(@character.user, @character, log_entry) %>
+              <% end %>
             </td>
             <td><%= log_entry.session_num %></td>
             <td><%= log_entry.xp_gained %></td>
@@ -78,6 +82,11 @@
               <% if log_entry.type == "DmLogEntry" %>
                 <div class='label label-danger'>DM Log</div>
               <% end %>
+
+              <% if log_entry.type == "CampaignLogEntry" %>
+                <%= link_to "<span class='sr-only'>Show<span>".html_safe, user_character_campaign_log_entry_path(@character.user, @character, log_entry), class: "fa fa-eye", title: "Show Log Entry" %>
+              <% end %>
+
             </td>
           </tr>
           <% unless log_entry.notes.empty? %>

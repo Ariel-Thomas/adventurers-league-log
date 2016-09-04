@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Add Magic items', type: :feature, js: true do
+RSpec.feature 'Manage Magic items', type: :feature, js: true do
   before(:each) do
     @user = FactoryGirl.create(:user)
     login_as(@user, scope: :user)

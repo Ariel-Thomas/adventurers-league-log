@@ -1,5 +1,14 @@
 class LogEntry < ActiveRecord::Base
-  belongs_to :character
+  has_many :log_assignments
+  has_many :characters, through: :log_assignments
+  def character
+    characters.first
+  end
+
+  def character= char
+    characters = [char]
+  end
+
   belongs_to :user
   has_many   :magic_items
   accepts_nested_attributes_for :magic_items, reject_if: proc { |attributes| attributes[:name].blank? }, allow_destroy: true
@@ -11,8 +20,8 @@ class LogEntry < ActiveRecord::Base
 
   def user
     temp = super
-    return character.user unless temp
-    temp
+    return character.user if character
+    temp if temp
   end
 
   def is_character_log_entry?
@@ -24,6 +33,10 @@ class LogEntry < ActiveRecord::Base
   end
 
   def is_trade_log_entry?
+    false
+  end
+
+  def is_campaign_log_entry?
     false
   end
 

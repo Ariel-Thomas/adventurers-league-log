@@ -20,8 +20,11 @@ class CampaignsController < AuthenticationController
   def show
     authorize @campaign
 
-    @dm_is_current_user = (current_user == @campaign.user)
-    @characters = @campaign.characters
+    @dm_is_current_user   = (current_user == @campaign.user)
+    @characters           = @campaign.characters
+
+    @search      = @campaign.campaign_log_entries.search(params[:q])
+    @log_entries = @search.result(distinct: false).page params[:page]
   end
 
   def new

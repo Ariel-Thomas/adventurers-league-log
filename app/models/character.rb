@@ -4,12 +4,15 @@ class Character < ActiveRecord::Base
   belongs_to :faction
   belongs_to :lifestyle
 
-  has_many   :log_entries
-  has_many   :character_log_entries
-  has_many   :trade_log_entries
+  has_many   :log_assignments
+  has_many   :log_entries, through: :log_assignments
+  has_many   :character_log_entries, through: :log_assignments, source: :log_entry, class_name: CharacterLogEntry
+  has_many   :trade_log_entries, through: :log_assignments, source: :log_entry, class_name: TradeLogEntry
+  has_many   :dm_log_entries, through: :log_assignments, source: :log_entry, class_name: DmLogEntry
+  has_many   :campaign_log_entries, through: :log_assignments, source: :log_entry, class_name: CampaignLogEntry
   has_many   :magic_items, through: :log_entries
 
-  has_many :campaign_participations
+  has_many :campaign_participations, dependent: :destroy
   has_many :campaigns, through: :campaign_participations
 
   validates :name, presence: true
