@@ -19,7 +19,7 @@ class DmLogEntriesController < AuthenticationController
 
     params[:q] = JSON.parse(params[:q].gsub('=>', ': ')).symbolize_keys if params[:q].class == String
     params[:q] = { s: 'date_dmed desc' } unless params[:q]
-    @hide_assigned_enabled = params[:q][:character_id_null] != true
+    @hide_assigned_enabled = params[:q][:log_assignments_character_id_null]
 
     @search      = @user.dm_log_entries.search(params[:q])
     @log_entries = @search.result(distinct: false).page params[:page]
