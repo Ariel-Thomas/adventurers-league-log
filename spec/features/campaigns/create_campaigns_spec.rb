@@ -10,13 +10,12 @@ RSpec.feature 'Campaigns', type: :feature do
     @campaigns = Campaign.count
     visit root_path
 
-    click_link 'Campaigns BETA'
-
-    #click_link 'New Campaign'
+    all('a', text: 'Campaigns BETA').first.click
+    # click_link 'New Campaign'
     all('a', text: 'New Campaign').first.click
 
     within('#campaign-form') do
-      fill_in 'Name',            with: "Storm King's Thunder Table 1"
+      fill_in 'Name', with: "Storm King's Thunder Table 1"
       check   'Users Can Join'
       check   'Publicly Visible'
     end
@@ -26,8 +25,8 @@ RSpec.feature 'Campaigns', type: :feature do
     expect(Campaign.count).to be(@campaigns + 1)
 
     expect(page).to have_text("Storm King's Thunder Table 1")
-    expect(page).to have_text("Users Can Join: true")
-    expect(page).to have_text("Publicly Visible: true")
+    expect(page).to have_text('Users Can Join: true')
+    expect(page).to have_text('Publicly Visible: true')
 
     expect(page).to have_text('Join Token')
     expect(page).to have_text(Campaign.last.token)

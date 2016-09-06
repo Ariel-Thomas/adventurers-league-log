@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+v1.4.13
+---------------
+
+- Avoid collapsing Logs in navbar unless necessary.
+
 v1.4.12
 ---------------
 
