@@ -16,9 +16,12 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
       click_link 'Add Magic Item'
 
       within all('#magic-items-form .magic-item').last do
-        fill_in 'Name',  with: 'Sword +1'
-        select  'Rare',  from: 'Rarity'
-        fill_in 'Notes', with: 'Grants a +1 on all attack and damage rolls'
+        fill_in 'Name',     with: 'Sword +1'
+        select  'Rare',     from: 'Rarity'
+        fill_in 'Location', with: 'A stone'
+        fill_in 'Table',    with: 'G'
+        fill_in 'Result',   with: '22'
+        fill_in 'Notes',    with: 'Grants a +1 on all attack and damage rolls'
       end
 
       click_button 'Save'
@@ -28,14 +31,19 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
       # click_link "Show"
       find_link('Show').trigger('click') # hack to fix previous line
       expect(page).to have_text('Sword +1')
-      expect(page).to have_text('Rarity')
+      expect(page).to have_text('Rare')
+      expect(page).to have_text('A stone')
+      expect(page).to have_text('G')
+      expect(page).to have_text('22')
       expect(page).to have_text('Grants a +1 on all attack and damage rolls')
     end
 
     context 'existing log entry' do
       before(:each) do
         @log_entry = FactoryGirl.create(:character_log_entry)
-        @magic_item = FactoryGirl.create(:magic_item, name: 'Staff of Power', log_entry: @log_entry)
+        @magic_item = FactoryGirl.create(:magic_item,
+                                         name: 'Staff of Power',
+                                         log_entry: @log_entry)
         @character.character_log_entries = [@log_entry]
       end
 
@@ -49,6 +57,9 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
         within all('#magic-items-form .magic-item').last do
           fill_in 'Name', with: 'Sword +1'
           select  'Legendary', from: 'Rarity'
+          fill_in 'Location', with: 'A stone'
+          fill_in 'Table',    with: 'G'
+          fill_in 'Result',   with: '22'
           fill_in 'Notes', with: 'Grants a +1 on all attack and damage rolls'
         end
 
@@ -60,10 +71,16 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
         find_link('Show').trigger('click') # hack to fix previous line
         expect(page).to have_text(@magic_item.name)
         expect(page).to have_text(@magic_item.rarity.titleize)
+        expect(page).to have_text(@magic_item.location_found)
+        expect(page).to have_text(@magic_item.table)
+        expect(page).to have_text(@magic_item.table_result)
         expect(page).to have_text(@magic_item.notes)
 
         expect(page).to have_text('Sword +1')
         expect(page).to have_text('Legendary')
+        expect(page).to have_text('A stone')
+        expect(page).to have_text('G')
+        expect(page).to have_text('22')
         expect(page).to have_text('Grants a +1 on all attack and damage rolls')
       end
 
@@ -96,6 +113,9 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
       within all('#magic-items-form .magic-item').last do
         fill_in 'Name',  with: 'Sword +1'
         select  'Rare',  from: 'Rarity'
+        fill_in 'Location', with: 'A stone'
+        fill_in 'Table',    with: 'G'
+        fill_in 'Result',   with: '22'
         fill_in 'Notes', with: 'Grants a +1 on all attack and damage rolls'
       end
 
@@ -106,14 +126,19 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
       # click_link "Show"
       find_link('Show').trigger('click') # hack to fix previous line
       expect(page).to have_text('Sword +1')
-      expect(page).to have_text('Rarity')
+      expect(page).to have_text('Rare')
+      expect(page).to have_text('A stone')
+      expect(page).to have_text('G')
+      expect(page).to have_text('22')
       expect(page).to have_text('Grants a +1 on all attack and damage rolls')
     end
 
     context 'existing log entry' do
       before(:each) do
         @log_entry = FactoryGirl.create(:dm_log_entry)
-        @magic_item = FactoryGirl.create(:magic_item, name: 'Staff of Power', log_entry: @log_entry)
+        @magic_item = FactoryGirl.create(:magic_item,
+                                         name: 'Staff of Power',
+                                         log_entry: @log_entry)
         @user.dm_log_entries = [@log_entry]
       end
 
@@ -127,6 +152,9 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
         within all('#magic-items-form .magic-item').last do
           fill_in 'Name',  with: 'Sword +1'
           select  'Legendary', from: 'Rarity'
+          fill_in 'Location', with: 'A stone'
+          fill_in 'Table',    with: 'G'
+          fill_in 'Result',   with: '22'
           fill_in 'Notes', with: 'Grants a +1 on all attack and damage rolls'
         end
 
@@ -138,10 +166,16 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
         find_link('Show').trigger('click') # hack to fix previous line
         expect(page).to have_text(@magic_item.name)
         expect(page).to have_text(@magic_item.rarity.titleize)
+        expect(page).to have_text(@magic_item.location_found)
+        expect(page).to have_text(@magic_item.table)
+        expect(page).to have_text(@magic_item.table_result)
         expect(page).to have_text(@magic_item.notes)
 
         expect(page).to have_text('Sword +1')
         expect(page).to have_text('Legendary')
+        expect(page).to have_text('A stone')
+        expect(page).to have_text('G')
+        expect(page).to have_text('22')
         expect(page).to have_text('Grants a +1 on all attack and damage rolls')
       end
 

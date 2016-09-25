@@ -144,6 +144,8 @@ class CampaignLogEntriesController < AuthenticationController
                   :num_secret_missions, :location_played, :notes,
                   character_ids: [],
                   magic_items_attributes: [:id, :name, :rarity,
+                                           :location_found, :table,
+                                           :table_result,
                                            :notes, :_destroy])
   end
 

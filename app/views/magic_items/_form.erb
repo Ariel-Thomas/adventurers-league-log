@@ -10,6 +10,24 @@
   </div>
 </div>
 
+
+<div class="row">
+  <div class="form-group col-md-8">
+    <%= magic_item_form.label :location_found, 'Location Found' %>
+    <%= magic_item_form.text_field :location_found, class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= magic_item_form.label :table, 'Table' %>
+    <%= magic_item_form.text_field :table, class: 'form-control ' %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= magic_item_form.label :table_result, 'Result' %>
+    <%= magic_item_form.text_field :table_result, class: 'form-control ' %>
+  </div>
+</div>
+
 <div class="row">
   <div class="form-group col-md-12">
     <%= magic_item_form.label :notes, 'Notes' %>

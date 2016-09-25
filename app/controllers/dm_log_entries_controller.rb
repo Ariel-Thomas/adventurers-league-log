@@ -108,6 +108,8 @@ class DmLogEntriesController < LogEntriesController
                   :location_played, :dm_name, :dm_dci_number, :notes,
                   :date_played, :character_id,
                   magic_items_attributes: [:id, :name, :rarity,
+                                           :location_found, :table,
+                                           :table_result,
                                            :notes, :_destroy])
   end
 end

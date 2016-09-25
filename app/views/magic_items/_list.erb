@@ -11,12 +11,18 @@
         <tr>
           <th>Name</th>
           <th>Rarity</th>
+          <th>Location</th>
+          <th>Table</th>
+          <th>Result</th>
           <th>Notes</th>
         </tr>
         <% @magic_items.each do |magic_item| %>
           <tr>
             <td><%= magic_item.name %></td>
             <td><%= magic_item.rarity.titleize %></td>
+            <td><%= magic_item.location_found %></td>
+            <td><%= magic_item.table %></td>
+            <td><%= magic_item.table_result %></td>
             <td><%= magic_item.notes %></td>
           </tr>
         <% end %>
