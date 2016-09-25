@@ -2,6 +2,11 @@
 class DmLogEntry < LogEntry
   attr_accessor :character_id
 
+  def character_id
+    character.id if character
+  end
+
+
   def dm_log_entry?
     true
   end
