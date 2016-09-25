@@ -6,6 +6,7 @@ v1.4.13
 
 - Avoid collapsing Logs in navbar unless necessary.
 - Fix `Character to Apply Rewards` dropdown in DM Logs.
+- Add additional information to magic items for random magic items.
 
 v1.4.12
 ---------------
