@@ -5,6 +5,7 @@ v1.4.13
 ---------------
 
 - Avoid collapsing Logs in navbar unless necessary.
+- Fix `Character to Apply Rewards` dropdown in DM Logs.
 
 v1.4.12
 ---------------
