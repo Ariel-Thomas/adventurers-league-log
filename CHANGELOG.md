@@ -7,6 +7,7 @@ v1.4.14
 - Improve browser tab look.
 - Add GP to Trade Log Entry form.
 - Fix show DM Log Entry alignment.
+- Make DM Log actions accessible from Character show page.
 
 v1.4.13
 ---------------
