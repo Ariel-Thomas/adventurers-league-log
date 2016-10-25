@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+v1.4.14
+---------------
+
+- Improve browser tab look.
+
 v1.4.13
 ---------------
 
