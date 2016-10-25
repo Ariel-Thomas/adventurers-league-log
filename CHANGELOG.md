@@ -6,6 +6,7 @@ v1.4.14
 
 - Improve browser tab look.
 - Add GP to Trade Log Entry form.
+- Fix show DM Log Entry alignment.
 
 v1.4.13
 ---------------
