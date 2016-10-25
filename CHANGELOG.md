@@ -5,6 +5,7 @@ v1.4.14
 ---------------
 
 - Improve browser tab look.
+- Add GP to Trade Log Entry form.
 
 v1.4.13
 ---------------

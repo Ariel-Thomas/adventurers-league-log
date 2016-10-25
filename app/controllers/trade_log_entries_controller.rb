@@ -108,7 +108,7 @@ class TradeLogEntriesController < LogEntriesController
 
   def log_entries_params
     params.require(:trade_log_entry)
-          .permit(:date_played, :downtime_gained, :traded_magic_item,
+          .permit(:date_played, :downtime_gained, :gp_gained, :traded_magic_item,
                   :notes, magic_items_attributes: [:id, :name, :rarity,
                                                    :notes, :_destroy])
   end
