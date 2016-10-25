@@ -55,6 +55,8 @@ class DmLogEntriesController < LogEntriesController
   def edit
     authorize @log_entry
 
+    session[:return_to] = request.referer
+
     @magic_items = [MagicItem.new] + @log_entry.magic_items
     @magic_item_count = @log_entry.magic_items.count
   end
@@ -63,9 +65,15 @@ class DmLogEntriesController < LogEntriesController
     authorize @log_entry
 
     if @log_entry.update_attributes(log_entries_params)
-      redirect_to [@user, DmLogEntry, q: params[:q]],
+      if session[:return_to]
+        redirect_to session[:return_to],
                   flash: { notice: 'Successfully updated log entry '\
                                    "#{@log_entry.adventure_title}" }
+      else
+        redirect_to [@user, DmLogEntry, q: params[:q]],
+                  flash: { notice: 'Successfully updated log entry '\
+                                   "#{@log_entry.adventure_title}" }
+      end
     else
       flash.now[:error] = log_entry_error_message 'update'
       render :edit, q: params[:q]
@@ -76,7 +84,7 @@ class DmLogEntriesController < LogEntriesController
     authorize @log_entry
     @log_entry.destroy
 
-    redirect_to [@user, DmLogEntry, q: params[:q]],
+    redirect_to request.referrer,
                 flash: { notice: 'Successfully deleted Log Entry '\
                                  "#{@log_entry.adventure_title}" }
   end
@@ -97,7 +105,11 @@ class DmLogEntriesController < LogEntriesController
   end
 
   def set_character
-    @log_entry.characters = [@character] if @character
+    if @character
+      @log_entry.characters = [@character]
+    else
+      @log_entry.characters = []
+    end
   end
 
   def log_entries_params

@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+v1.4.15
+---------------
+
+- Fix inability to unassign characters from DM logs.
+
 v1.4.14
 ---------------
 
