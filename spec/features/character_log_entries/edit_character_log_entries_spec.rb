@@ -4,7 +4,7 @@ RSpec.feature 'Character Log Entries', type: :feature do
   before(:each) do
     @user = FactoryGirl.create(:user)
     login_as(@user, scope: :user)
-    @adventure = FactoryGirl.create(:adventure_form_input, name: 'Lost Mines of Phandelver')
+    @adventure = FactoryGirl.create(:adventure, name: 'Lost Mines of Phandelver')
 
     @character_log_entry = FactoryGirl.create(:character_log_entry, user: @user)
     @character = FactoryGirl.create(:character, user: @user, name: 'Test Character')
@@ -19,7 +19,7 @@ RSpec.feature 'Character Log Entries', type: :feature do
     # find_link('Edit').trigger('click') # hack to fix previous line
 
     within('#character-log-entry-main-form') do
-      select 'Lost Mines of Phandelver', from: 'Adventure Title'
+      fill_in 'Adventure Title', with: 'Lost Mines of Phandelver'
 
       fill_in 'Session',            with: '22'
       fill_in 'Date Played',        with: '' #Hack for calendar popout

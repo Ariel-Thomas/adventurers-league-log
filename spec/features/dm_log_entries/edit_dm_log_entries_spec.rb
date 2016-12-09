@@ -6,7 +6,7 @@ RSpec.feature 'DM Log Entries', type: :feature do
     login_as(@user, scope: :user)
     @dm_log_entry = FactoryGirl.create(:dm_log_entry, user: @user)
     @character = FactoryGirl.create(:character, user: @user, name: 'Test Character')
-    @adventure = FactoryGirl.create(:adventure_form_input, name: 'Lost Mines of Phandelver')
+    @adventure = FactoryGirl.create(:adventure, name: 'Lost Mines of Phandelver')
   end
 
   scenario 'Edit a DM Log Entry' do
@@ -16,7 +16,7 @@ RSpec.feature 'DM Log Entries', type: :feature do
     # find_link('Edit').trigger('click') # hack to fix previous line
 
     within('#dm-log-entry-main-form') do
-      select 'Lost Mines of Phandelver', from: 'Adventure Title'
+      fill_in 'Adventure Title', with: 'Lost Mines of Phandelver'
 
       fill_in 'Session',            with: '22'
       fill_in 'Date DMed',          with: '' #Hack for calendar popout
@@ -79,7 +79,7 @@ RSpec.feature 'DM Log Entries', type: :feature do
       # find_link('Edit').trigger('click') # hack to fix previous line
 
       within('#dm-log-entry-main-form') do
-        select 'Lost Mines of Phandelver', from: 'Adventure Title'
+        fill_in 'Adventure Title', with: 'Lost Mines of Phandelver'
 
         fill_in 'Session',            with: '22'
         fill_in 'Date DMed',          with: '' #Hack for calendar popout

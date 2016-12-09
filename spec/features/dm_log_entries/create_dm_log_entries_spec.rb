@@ -5,7 +5,7 @@ RSpec.feature 'DM Log Entries', type: :feature do
     @user = FactoryGirl.create(:user)
     login_as(@user, scope: :user)
     @character = FactoryGirl.create(:character, user: @user, name: 'Test Character')
-    @adventure = FactoryGirl.create(:adventure_form_input, name: 'Lost Mines of Phandelver')
+    @adventure = FactoryGirl.create(:adventure, name: 'Lost Mines of Phandelver')
   end
 
   scenario 'Create a DM Log Entry' do
@@ -16,7 +16,7 @@ RSpec.feature 'DM Log Entries', type: :feature do
     all('a', text: 'New Log Entry').first.click
 
     within('#dm-log-entry-main-form') do
-      select 'Lost Mines of Phandelver', from: 'Adventure Title'
+      fill_in 'Adventure Title', with: 'Lost Mines of Phandelver'
 
       fill_in 'Session',            with: '22'
       fill_in 'Date DMed',          with: '' #Hack for calendar popout
