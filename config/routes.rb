@@ -30,7 +30,7 @@ AdventurersLeagueLog::Application.routes.draw do
   # get 'adventures', controller: 'home'
   resources :adventures, only: [:index] do
     collection do
-      get :autocomplete_form_input_name
+      get :autocomplete_adventure_name
     end
   end
 

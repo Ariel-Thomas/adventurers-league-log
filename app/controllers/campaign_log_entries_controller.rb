@@ -8,9 +8,6 @@ class CampaignLogEntriesController < AuthenticationController
                 only: [:show, :new, :create, :edit, :update, :destroy]
   before_filter :load_log_entry,
                 only: [:show, :edit, :update, :destroy]
-  before_filter :load_adventure_form_inputs,
-                only: [:new, :create, :edit, :update]
-  before_filter :load_overrides, only: [:edit, :update]
 
   before_filter(only: [:show]) do
     add_crumb @character.name,
@@ -126,15 +123,6 @@ class CampaignLogEntriesController < AuthenticationController
 
   def load_log_entry
     @log_entry ||= log_entry
-  end
-
-  def load_adventure_form_inputs
-    @adventure_form_inputs  = AdventureFormInput.order(:position_num).all
-  end
-
-  def load_overrides
-    @use_adventure_override = !@adventure_form_inputs
-                              .find_by(name: @log_entry.adventure_title)
   end
 
   def log_entries_params

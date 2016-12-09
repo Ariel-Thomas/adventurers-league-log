@@ -2,9 +2,6 @@
 class LogEntriesController < AuthenticationController
   before_filter :convert_query_string_to_hash, only: [:index]
 
-  before_filter :load_adventure_form_inputs,
-                only: [:new, :create, :edit, :update]
-
   def convert_query_string_to_hash
     if params[:q]
       if params[:q].class == String
@@ -30,17 +27,8 @@ class LogEntriesController < AuthenticationController
     @magic_item_count = @log_entry.magic_items.count
   end
 
-
-  def load_adventure_form_inputs
-    @adventure_form_inputs = AdventureFormInput.order(:position_num).all
-  end
-
   def adventure_form_inputs_include_adventure?
     @adventure_form_inputs.find_by(name: @log_entry.adventure_title)
-  end
-
-  def load_overrides
-    @use_adventure_override = !adventure_form_inputs_include_adventure?
   end
 
   def log_entry_error_message(action)
