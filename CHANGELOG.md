@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+v1.4.16
+---------------
+
+- Fix DM Log info not showing up in printouts
+- Fix sort broken by adding/removing DM Logs and Unassigned
+- Fix spacing for buttons on DM Logs page
+
 v1.4.15
 ---------------
 

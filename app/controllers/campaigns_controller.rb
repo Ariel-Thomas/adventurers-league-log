@@ -23,6 +23,7 @@ class CampaignsController < AuthenticationController
     @dm_is_current_user   = (current_user == @campaign.user)
     @characters           = @campaign.characters
 
+    params[:q] = { s: 'date_played desc' } unless params[:q]
     @search      = @campaign.campaign_log_entries.search(params[:q])
     @log_entries = @search.result(distinct: false).page params[:page]
   end
