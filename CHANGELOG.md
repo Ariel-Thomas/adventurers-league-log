@@ -4,6 +4,7 @@ CHANGELOG
 v1.4.16
 ---------------
 
+- Move to autocomplete for Log Entry Adventure Name
 - Fix DM Log info not showing up in printouts
 - Fix sort broken by adding/removing DM Logs and Unassigned
 - Fix spacing for buttons on DM Logs page
