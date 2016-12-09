@@ -1,7 +1,7 @@
 <% if @dm_logs_enabled %>
-  <%= link_to "<strong>─</strong>DM Logs".html_safe, user_character_path(@user, @character), class: "btn btn-default" %>
+  <%= link_to "<strong>─</strong>DM Logs".html_safe, user_character_path(@user, @character, q: { type_not_eq: 'DmLogEntry', s: params[:q][:s] } ), class: "btn btn-default" %>
 <% else %>
-  <%= link_to "<strong>+</strong>DM Logs".html_safe, user_character_path(@user, @character, q: { "s"=>"date_played desc" } ), class: "btn btn-default" %>
+  <%= link_to "<strong>+</strong>DM Logs".html_safe, user_character_path(@user, @character, q: { s: params[:q][:s] } ), class: "btn btn-default" %>
 <% end %>
 <div class="btn-group">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
