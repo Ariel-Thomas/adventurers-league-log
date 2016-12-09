@@ -10,6 +10,7 @@ gem 'uglifier'
 gem 'coffee-rails'
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'turbolinks'
 gem 'jbuilder'
 
@@ -22,6 +23,7 @@ gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem 'font-awesome-rails'
 
+gem 'rails-jquery-autocomplete'
 gem 'momentjs-rails',                  '>= 2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 

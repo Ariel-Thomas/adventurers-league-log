@@ -2,6 +2,9 @@
 class CharacterLogEntriesController < LogEntriesController
   skip_before_action :authenticate_user!, only: [:show]
 
+  autocomplete :form_input, :name, :full => true
+  skip_after_action :verify_authorized
+
   add_crumb('Home', '/')
   before_filter :load_user
   before_filter :load_character

@@ -27,7 +27,12 @@ AdventurersLeagueLog::Application.routes.draw do
   end
 
   get 'stats', controller: 'home'
-  get 'adventures', controller: 'home'
+  # get 'adventures', controller: 'home'
+  resources :adventures, only: [:index] do
+    collection do
+      get :autocomplete_form_input_name
+    end
+  end
 
   get 'donate', controller: 'home'
   root to: 'home#index'
