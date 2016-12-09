@@ -10,7 +10,6 @@ class DmLogEntriesController < LogEntriesController
   before_filter :build_log_entry, only: [:create]
   before_filter :load_magic_items, only: [:create, :update]
   before_filter :set_character, only: [:create, :update]
-  before_filter :load_overrides, only: [:edit, :update]
 
   before_filter { add_crumb('DM Logs', user_dm_log_entries_path(@user)) }
   before_filter(only: [:new])  { add_crumb 'New Log Entry' }
