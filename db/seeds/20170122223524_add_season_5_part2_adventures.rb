@@ -4,7 +4,7 @@ class AddSeason5Part2Adventures < PhilColumns::Seed
 
   def up
     season5_adventures =
-      [ 'DDAL05-11  Forgotten Tradition',
+      [ 'DDAL05-11 Forgotten Tradition',
         'DDAL05-12 Bad Business in Parnast',
         'DDAL05-13 Jarl Rising',
         'DDAL05-14 Reeducation',
