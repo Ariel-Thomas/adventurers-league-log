@@ -1,5 +1,5 @@
 class CharactersController < AuthenticationController
-  skip_before_action :authenticate_user!, only: [:show, :print, :print_condensed]
+  skip_before_action :authenticate_user!, only: [:index, :show, :print, :print_condensed]
 
   before_action :load_user
   before_action :load_character, only: [:show, :print, :print_condensed, :edit, :update, :destroy]
@@ -11,9 +11,9 @@ class CharactersController < AuthenticationController
   before_action :load_lifestyles, only: [:new, :create, :edit, :update]
 
   def index
-    authorize @user
+    authorize @user, :show_characters?
 
-    @search     = policy_scope(Character).search(params[:q])
+    @search     = Character.where(user_id: @user.id).search(params[:q])
     @characters = @search.result(distinct: false).page params[:page]
   end
 

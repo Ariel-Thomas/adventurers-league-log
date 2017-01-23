@@ -1,18 +1,26 @@
 class UserPolicy < ApplicationPolicy
   def index?
-    user == record
+    user_is_current_user?
   end
 
   def join?
-    user == record
+    user_is_current_user?
   end
 
   def edit?
-    user == record
+    user_is_current_user?
   end
 
   def update?
-    user == record
+    user_is_current_user?
+  end
+
+  def show_characters?
+    user_is_current_user? || record.publicly_visible_characters?
+  end
+
+  def user_is_current_user?
+    record == user
   end
 
   def publicly_visible_dm_logs?

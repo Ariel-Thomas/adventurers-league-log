@@ -1,4 +1,9 @@
 class UsersController < AuthenticationController
+  def show
+    @user = User.find(params[:id])
+    redirect_to(user_characters_path(@user)) && return
+  end
+
   def edit
     @user = User.find(params[:id])
     authorize @user
