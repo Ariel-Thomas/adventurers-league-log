@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+v1.4.17
+---------------
+- Add second half of season 5 modules
+- Add convention content modules
+- Fix Adventures page
+- Add Public Visible Characters checkbox on My Details page.
+
 v1.4.16
 ---------------
 
@@ -46,7 +53,7 @@ v1.4.11
 v1.4.10
 ---------------
 
-- Change the way logs are assigned to allow for campaigns.
+- Chanddge the way logs are assigned to allow for campaigns.
 - Add campaign log entries to `Campagins` feature.
 
 v1.4.9

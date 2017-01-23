@@ -15,8 +15,8 @@ class UserPolicy < ApplicationPolicy
     user == record
   end
 
-  def publicly_visible_user?
-    if record.publicly_visible?
+  def publicly_visible_dm_logs?
+    if record.publicly_visible_dm_logs?
       true
     else
       record == user

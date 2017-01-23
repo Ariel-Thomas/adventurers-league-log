@@ -13,7 +13,7 @@ class DmLogEntryPolicy < ApplicationPolicy
   end
 
   def show?
-    if record.user.publicly_visible?
+    if record.user.publicly_visible_dm_logs?
       true
     else
       user_is_current_user

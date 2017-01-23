@@ -17,7 +17,7 @@ class CharacterPolicy < ApplicationPolicy
   end
 
   def show?
-    if record.publicly_visible?
+    if publicly_visible?
       true
     else
       user_is_current_user
@@ -46,5 +46,13 @@ class CharacterPolicy < ApplicationPolicy
 
   def destroy?
     user_is_current_user
+  end
+
+  def publicly_visible?
+    if record.publicly_visible? || record.user.publicly_visible_characters?
+      true
+    else
+      false
+    end
   end
 end

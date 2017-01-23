@@ -1,0 +1,25 @@
+<div class="row">
+  <h1 class='col-md-offset-4 col-md-4'>Adventures</h1>
+</div>
+
+<div class="row" id="adventures-index">
+  <div class='col-md-offset-4 col-md-4'>
+    <div id='adventures_list'>
+      <div class="table-responsive">
+        <table class="table table-bordered table-responsive table-striped">
+          <tr>
+            <th>Name</th>
+          </tr>
+
+          <tbody id='menu_items'>
+            <% @adventures.each do |adventure| %>
+              <tr>
+                <td><%= adventure.name %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

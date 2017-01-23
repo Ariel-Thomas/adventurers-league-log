@@ -27,15 +27,23 @@
   </div>
 
   <div class="row">
-    <div class="form-group col-md-offset-3 col-md-4">
-      <%= f.label :receive_emails, class: 'css3-checkboxes' do
-        (f.check_box :receive_emails) + "<span>Receive emails about site updates</span>".html_safe
+    <div class="form-group col-md-offset-3 col-md-3">
+      <%= f.label :publicly_visible_characters, class: 'css3-checkboxes' do
+        (f.check_box :publicly_visible_characters) + "<span>Publicly Visible Characters</span>".html_safe
       end %>
     </div>
 
-    <div class="form-group col-md-2">
-      <%= f.label :publicly_visible, class: 'css3-checkboxes' do
-        (f.check_box :publicly_visible) + "<span>Publicly Visible</span>".html_safe
+    <div class="form-group col-md-4">
+      <%= f.label :publicly_visible_dm_logs, class: 'css3-checkboxes' do
+        (f.check_box :publicly_visible_dm_logs) + "<span>Publicly Visible DM Logs</span>".html_safe
+      end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-offset-3 col-md-4">
+      <%= f.label :receive_emails, class: 'css3-checkboxes' do
+        (f.check_box :receive_emails) + "<span>Receive emails about site updates</span>".html_safe
       end %>
     </div>
   </div>

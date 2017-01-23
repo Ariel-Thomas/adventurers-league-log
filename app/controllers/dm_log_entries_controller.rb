@@ -17,7 +17,7 @@ class DmLogEntriesController < LogEntriesController
   before_filter(only: [:show]) { add_crumb 'Show Log Entry' }
 
   def index
-    authorize @user, :publicly_visible_user?
+    authorize @user, :publicly_visible_dm_logs?
 
     @hide_assigned_enabled = params[:q][:log_assignments_character_id_null]
 
