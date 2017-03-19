@@ -48,7 +48,7 @@
         <%= f.label :location_played, 'Location Played' %>
         <%= f.text_field :location_played, class: 'form-control' %>
       </div>
-      <%= render partial: 'player_dms/form', locals: { f: f } %>
+      <%= render partial: 'player_dms/nested_form', locals: { f: f } %>
     </div>
 
     <div class="row">

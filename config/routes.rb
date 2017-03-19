@@ -2,6 +2,8 @@ AdventurersLeagueLog::Application.routes.draw do
   devise_for :users
 
   resources :users do
+    resources :player_dms
+
     resources :characters do
       resources :character_log_entries
       resources :trade_log_entries

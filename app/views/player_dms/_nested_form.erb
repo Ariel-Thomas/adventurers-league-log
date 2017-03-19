@@ -1,0 +1,55 @@
+<div class="form-group col-md-4">
+  <%= f.label :player_dm_id, 'DM' %>
+
+  <label class='pull-right css3-checkboxes'>
+    <%= check_box_tag :use_dm_override, '1', false %>
+    <span class="link-like">Manual Entry</span>
+  </label>
+
+  <%= f.select :player_dm_id, @player_dms.map {|p| [ p.name + " - " + p.dci, p.id ] }, { include_blank: true }, { class: 'form-control ' } %>
+
+  <div class="row">
+    <div class="form-group col-md-6" style="margin-bottom:0px;">
+      <%= f.text_field :dm_name, class: 'form-control', placeholder: 'DM Name' %>
+    </div>
+
+    <div class="form-group col-md-6" style="margin-bottom:0px;">
+      <%= f.text_field :dm_dci_number, class: 'form-control', placeholder: 'DM DCI' %>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+  $('#use_dm_override').change( function(){
+    var formGroupParent = $(this).parent().parent().parent();
+    if($(this).is(':checked')) {
+      $input_el = formGroupParent.find('input#character_log_entry_dm_name')
+      $input_el.parent('.form-group').removeClass('hide');
+      $input_el.prop('disabled', false);
+
+      $input_el = formGroupParent.find('input#character_log_entry_dm_dci_number')
+      $input_el.parent('.form-group').removeClass('hide');
+      $input_el.prop('disabled', false);
+
+      $select_el = formGroupParent.find('select#character_log_entry_player_dm_id')
+      $select_el.addClass('hide');
+      $select_el.prop('disabled', true);
+    } else {
+      $input_el = formGroupParent.find('input#character_log_entry_dm_name')
+      $input_el.parent('.form-group').addClass('hide');
+      $input_el.prop('disabled', true);
+
+      $input_el = formGroupParent.find('input#character_log_entry_dm_dci_number')
+      $input_el.parent('.form-group').addClass('hide');
+      $input_el.prop('disabled', true);
+
+      $select_el = formGroupParent.find('select#character_log_entry_player_dm_id')
+      $select_el.removeClass('hide');
+      $select_el.prop('disabled', false);
+    }
+  });
+
+  $('#use_dm_override').change();
+</script>

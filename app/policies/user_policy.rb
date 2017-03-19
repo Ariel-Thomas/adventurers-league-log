@@ -19,6 +19,10 @@ class UserPolicy < ApplicationPolicy
     user_is_current_user? || record.publicly_visible_characters?
   end
 
+  def manage_dms?
+    user_is_current_user?
+  end
+
   def user_is_current_user?
     record == user
   end
