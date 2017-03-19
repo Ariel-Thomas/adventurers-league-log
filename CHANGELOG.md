@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+v1.4.18
+---------------
+- Add DM management
+- Fix Stats page
+
 v1.4.17
 ---------------
 - Add second half of season 5 modules
