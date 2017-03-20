@@ -6,6 +6,8 @@ v1.4.18
 - Add DM management
 - Fix Stats page
 - Add DM Log printing
+- Add DM aggregate info
+- Show XP to Level at smaller screen sizes
 
 v1.4.17
 ---------------
