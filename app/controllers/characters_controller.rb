@@ -43,6 +43,8 @@ class CharactersController < AuthenticationController
     @total_downtime    = 0
     @total_renown      = 0
     @total_magic_items = 0
+
+    render 'log_entries/print'
   end
 
   def print_condensed
@@ -53,6 +55,8 @@ class CharactersController < AuthenticationController
     end
 
     @log_entries = @character.log_entries.order(date_played: :asc).all
+
+    render 'log_entries/print_condensed'
   end
 
   def new

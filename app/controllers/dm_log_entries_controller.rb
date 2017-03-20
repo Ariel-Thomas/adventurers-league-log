@@ -11,7 +11,7 @@ class DmLogEntriesController < LogEntriesController
   before_filter :load_magic_items, only: [:create, :update]
   before_filter :set_character, only: [:create, :update]
 
-  before_filter { add_crumb('DM Logs', user_dm_log_entries_path(@user)) }
+  before_filter(except: [:print, :print_condensed]) { add_crumb('DM Logs', user_dm_log_entries_path(@user)) }
   before_filter(only: [:new])  { add_crumb 'New Log Entry' }
   before_filter(only: [:edit]) { add_crumb 'Edit Log Entry' }
   before_filter(only: [:show]) { add_crumb 'Show Log Entry' }
@@ -28,6 +28,29 @@ class DmLogEntriesController < LogEntriesController
   def show
     authorize @log_entry
     @magic_items = @log_entry.magic_items
+  end
+
+
+  def print
+    authorize @user, :publicly_visible_dm_logs?
+
+    @log_entries = @user.dm_log_entries
+
+    @total_xp          = 0
+    @total_gp          = 0
+    @total_downtime    = 0
+    @total_renown      = 0
+    @total_magic_items = 0
+
+    render 'log_entries/print'
+  end
+
+  def print_condensed
+    authorize @user, :publicly_visible_dm_logs?
+
+    @log_entries = @user.dm_log_entries
+
+    render 'log_entries/print_condensed'
   end
 
   def new

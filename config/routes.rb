@@ -16,7 +16,13 @@ AdventurersLeagueLog::Application.routes.draw do
       end
     end
 
-    resources :dm_log_entries
+    resources :dm_log_entries do
+      collection do
+        get 'print'
+        get 'print_condensed'
+      end
+    end
+
 
     resources :campaigns  do
       collection do
