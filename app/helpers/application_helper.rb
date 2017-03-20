@@ -10,6 +10,17 @@ module ApplicationHelper
       </div>").html_safe
   end
 
+  def display_attribute_small(attribute_name, attribute_value, options = {})
+    ("<div class='row " + options[:class].to_s + "'>
+        <div class='col-xs-7'>
+          <strong>" + attribute_name + ":</strong>
+        </div>
+        <div class='col-xs-5'>" +
+          attribute_value.to_s +
+        "</div>
+      </div>").html_safe
+  end
+
   def display_attribute_ary(attribute_name, attribute_value, options = {})
     attribute_value = [] unless attribute_value
 

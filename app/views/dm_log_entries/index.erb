@@ -1,10 +1,36 @@
 <div class="row">
-  <h1 class='col-xs-8'>DM Log Entries</h1>
-  <% if @log_entries.total_pages > 1 %>
-    <div class='col-xs-12 col-sm-7 col-md-8'>
-      <%= paginate @log_entries %>
-    </div>
-   <% end %>
+  <h1 class='col-xs-12'>DM Log Entries</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <%= display_attribute_small "Total XP",  @user.total_xp %>
+    <%= display_attribute_small "Unused XP",  @user.total_unassigned_xp %>
+    <br>
+  </div>
+
+  <div class="col-md-3">
+    <%= display_attribute_small "Total GP",  @user.total_gp %>
+    <%= display_attribute_small "Unused GP",  @user.total_unassigned_gp %>
+    <br>
+  </div>
+
+  <div class="col-md-3">
+    <%= display_attribute_small "Total Downtime",  @user.total_downtime %>
+    <%= display_attribute_small "Unused Downtime",  @user.total_unassigned_downtime %>
+    <br>
+  </div>
+
+  <div class="col-md-3">
+    <%= display_attribute_small "Total Renown",  @user.total_renown %>
+    <%= display_attribute_small "Unused Renown",  @user.total_unassigned_renown %>
+  </div>
+</div>
+
+<div class="row">
+  <div class='col-xs-12 col-sm-7 col-md-8'>
+    <%= paginate @log_entries %>
+  </div>
 
   <div class='col-xs-12 col-sm-5 col-md-4 list-buttons'>
     <div class="pull-right hidden-xs">

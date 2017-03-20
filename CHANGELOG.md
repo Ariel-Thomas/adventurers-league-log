@@ -5,6 +5,7 @@ v1.4.18
 ---------------
 - Add DM management
 - Fix Stats page
+- Add DM Log printing
 
 v1.4.17
 ---------------

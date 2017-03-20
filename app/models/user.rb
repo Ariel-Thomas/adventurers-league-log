@@ -12,4 +12,36 @@ class User < ActiveRecord::Base
 
   has_many :dm_log_entries
   has_many :campaigns
+
+  def total_xp
+    dm_log_entries.pluck(:xp_gained).compact.inject(:+) || 0
+  end
+
+  def total_unassigned_xp
+    dm_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:xp_gained).compact.inject(:+) || 0
+  end
+
+  def total_gp
+    dm_log_entries.pluck(:gp_gained).compact.inject(:+) || 0
+  end
+
+  def total_unassigned_gp
+    dm_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:gp_gained).compact.inject(:+) || 0
+  end
+
+  def total_downtime
+    dm_log_entries.pluck(:downtime_gained).compact.inject(:+) || 0
+  end
+
+  def total_unassigned_downtime
+    dm_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:downtime_gained).compact.inject(:+) || 0
+  end
+
+  def total_renown
+    dm_log_entries.pluck(:renown_gained).compact.inject(:+) || 0
+  end
+
+  def total_unassigned_renown
+    dm_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:renown_gained).compact.inject(:+) || 0
+  end
 end

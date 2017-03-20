@@ -10,6 +10,7 @@ FactoryGirl.define do
     xp_gained       { Faker::Number.between(200, 10_000) }
     gp_gained       { Faker::Number.between(200, 10_000) }
     downtime_gained { 10 }
+    renown_gained   { 1 }
     location_played { 'GenCon' }
     notes           { Faker::Company.bs }
   end
