@@ -67,7 +67,7 @@ class Character < ActiveRecord::Base
   end
 
   def xp_to_next_level
-    xp_for_next_level - total_xp
+    [xp_for_next_level - total_xp, 0].max
   end
 
   def xp_for_next_level
