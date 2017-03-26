@@ -30,27 +30,12 @@ class DmLogEntriesController < LogEntriesController
     @magic_items = @log_entry.magic_items
   end
 
-
   def print
     authorize @user, :publicly_visible_dm_logs?
 
     @log_entries = @user.dm_log_entries
 
-    @total_xp          = 0
-    @total_gp          = 0
-    @total_downtime    = 0
-    @total_renown      = 0
-    @total_magic_items = 0
-
-    render 'log_entries/print'
-  end
-
-  def print_condensed
-    authorize @user, :publicly_visible_dm_logs?
-
-    @log_entries = @user.dm_log_entries
-
-    render 'log_entries/print_condensed'
+    render 'print'
   end
 
   def new

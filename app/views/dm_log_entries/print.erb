@@ -1,0 +1,83 @@
+<style type="text/css">
+  nav { display: none }
+  .navbar-text { display: none }
+
+  body{ padding-top: 0px; }
+
+  .adventurers-league-print-logo{
+    display: list-item;
+    list-style-image: url(<%= asset_path 'DnD_ADVL.png' %>);
+    list-style-position: inside;
+    letter-spacing: -1000em;
+    font-size: 1px;
+    color: #fff;
+  }
+
+  .page {
+    page-break-inside: avoid;
+  }
+</style>
+
+<div class='page'>
+  <%= render "print_header" %>
+</div>
+
+<% @log_entries.each do |log_entry| %>
+  <div class="row print-log-entry-box page">
+    <div class="row">
+      <% if log_entry.is_character_log_entry? || log_entry.is_dm_log_entry? %>
+        <div class="col-xs-4">
+          <%= display_attribute_for_print "Adventure Name",  log_entry.adventure_title %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Session #",  log_entry.session_num %>
+        </div>
+      <% elsif log_entry.is_trade_log_entry? %>
+        <div class="col-xs-6">
+        </div>
+      <% end %>
+
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Date DMed",  (log_entry.date_dmed ? log_entry.date_played.strftime("%F %H:%M") : '') %>
+      </div>
+
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Date Assigned",  (log_entry.date_played ? log_entry.date_played.strftime("%F %H:%M") : '') %>
+      </div>
+
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Character", (log_entry.character ? log_entry.character.name : '') %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "XP Earned",  log_entry.xp_gained %>
+      </div>
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Gold +/-",  humanize_decimal(log_entry.gp_gained) %>
+      </div>
+      <div class="col-xs-2">
+        <%= display_attribute_for_print "Downtime +/-",  log_entry.downtime_gained %>
+      </div>
+      <div class="col-xs-1">
+        <%= display_attribute_for_print "Renown +", log_entry.renown_gained %>
+      </div>
+      <div class="col-xs-1">
+        <%= display_attribute_for_print "Missions +", log_entry.renown_gained %>
+      </div>
+      <div class="col-xs-4">
+        <%= display_attribute_for_print "Location", log_entry.location_played %>
+      </div>
+    </div>
+
+    <% if log_entry.notes && log_entry.notes != '' %>
+      <div class="row">
+        <div class="col-xs-12 notes-section">
+            <label>Adventure Notes / Downtime Activites</label>
+            <p class='print-notes'><%= log_entry.notes %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

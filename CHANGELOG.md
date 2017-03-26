@@ -1,6 +1,10 @@
 CHANGELOG
 ======
 
+v1.4.19
+---------------
+- Improve DM Log printing
+
 v1.4.18
 ---------------
 - Add DM management
