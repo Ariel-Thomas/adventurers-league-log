@@ -6,6 +6,7 @@ v1.4.19
 - Improve DM Log printing
 - Add DMed hours to DM Log Entries
 - Add auto-calculations of rewards to DM Logs
+- Add alpha export to CSV feature
 
 v1.4.18
 ---------------
