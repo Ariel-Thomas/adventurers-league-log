@@ -22,6 +22,21 @@
 
 <div class="row">
   <div class="form-group col-md-offset-2 col-md-2">
+    <strong>Session Length (Hours)</strong> <br>
+    <%= @log_entry.session_length_hours %>
+  </div>
+  <div class="form-group col-md-2">
+    <strong>Avg Party Level</strong> <br>
+    <%= @log_entry.player_level %>
+  </div>
+  <div class="form-group col-md-2">
+    <strong>Location DMed</strong> <br>
+    <%= @log_entry.location_played %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-md-offset-2 col-md-2">
     <strong>XP Gained</strong> <br>
     <%= @log_entry.xp_gained %>
   </div>
@@ -45,10 +60,6 @@
 
 <div class="row">
   <div class="form-group col-md-offset-2 col-md-2">
-    <strong>Location DMed</strong> <br>
-    <%= @log_entry.location_played %>
-  </div>
-  <div class="form-group col-md-2">
     <strong>Date Assigned</strong> <br>
     <%= format_date @log_entry.date_played %>
   </div>

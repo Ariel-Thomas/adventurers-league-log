@@ -21,6 +21,9 @@ RSpec.feature 'DM Log Entries', type: :feature do
       fill_in 'Session',            with: '22'
       fill_in 'Date DMed',          with: '' #Hack for calendar popout
       fill_in 'Date DMed',          with: '2016-08-01 19:00'
+
+      fill_in 'Length (Hours)',     with: '8'
+      fill_in 'Avg PC Level',       with: '7'
       fill_in 'XP Gained',          with: '1001'
       fill_in 'GP +/-',             with: '333'
       fill_in 'Downtime +/-',       with: '111'
@@ -52,6 +55,8 @@ RSpec.feature 'DM Log Entries', type: :feature do
     expect(page).to have_text('Lost Mines of Phandelver')
     expect(page).to have_text('22')
     expect(page).to have_text('2016-08-01 19:00')
+    expect(page).to have_text('8')
+    expect(page).to have_text('7')
     expect(page).to have_text('1001')
     expect(page).to have_text('333')
     expect(page).to have_text('111')
@@ -61,5 +66,26 @@ RSpec.feature 'DM Log Entries', type: :feature do
     expect(page).to have_text('Some Words')
     expect(page).to have_text('2017-08-01 12:00')
     expect(page).to have_text('Test Character')
+  end
+
+  scenario 'automatically calculate XP', js: true do
+    visit user_dm_log_entries_path(@user)
+    all('a', text: 'New Log Entry').first.click
+
+    within('#dm-log-entry-main-form') do
+      fill_in 'Adventure Title', with: 'Lost Mines of Phandelver'
+
+      fill_in 'Session',            with: '22'
+      fill_in 'Length (Hours)',     with: '10'
+      fill_in 'Avg PC Level',       with: '7'
+    end
+
+    click_button 'Save'
+
+    expect(page).to have_text('Lost Mines of Phandelver')
+    expect(page).to have_text('3250')
+    expect(page).to have_text('1625')
+    expect(page).to have_text('25')
+    expect(page).to have_text('2')
   end
 end

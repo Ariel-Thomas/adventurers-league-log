@@ -127,8 +127,9 @@ class DmLogEntriesController < LogEntriesController
 
   def log_entries_params
     params.require(:dm_log_entry)
-          .permit(:adventure_title, :session_num,
-                  :date_dmed, :xp_gained, :gp_gained, :renown_gained,
+          .permit(:adventure_title, :session_num, :date_dmed,
+                  :session_length_hours, :player_level,
+                  :xp_gained, :gp_gained, :renown_gained,
                   :downtime_gained, :num_secret_missions,
                   :location_played, :dm_name, :dm_dci_number, :notes,
                   :date_played, :character_id,
