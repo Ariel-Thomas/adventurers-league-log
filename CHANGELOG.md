@@ -4,6 +4,7 @@ CHANGELOG
 v1.4.19
 ---------------
 - Improve DM Log printing
+- Add auto-calculations of rewards to DM Logs
 
 v1.4.18
 ---------------

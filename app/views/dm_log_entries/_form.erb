@@ -5,7 +5,6 @@
         <%= f.label :adventure_title, 'Adventure Title' %>
         <%= f.autocomplete_field :adventure_title, autocomplete_adventure_name_adventures_path, class: 'form-control' %>
       </div>
-
       <div class="form-group col-md-1">
         <%= f.label :session_num, 'Session' %>
         <%= f.text_field :session_num, class: 'form-control' %>
@@ -18,9 +17,29 @@
     </div>
 
     <div class="row">
-      <div class="form-group col-md-offset-2 col-md-2">
+      <div class="form-group col-md-2">
+      </div>
+      <div class="form-group col-md-2">
+        <%= f.label :session_length_hours, 'Length (Hours)' %>
+        <%= f.text_field :session_length_hours, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= f.label :player_level, 'Avg PC Level' %>
+        <%= f.text_field :player_level, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-4">
+        <%= f.label :location_played, 'Location DMed' %>
+        <%= f.text_field :location_played, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-2">
+      </div>
+      <div class="form-group col-md-2">
         <%= f.label :xp_gained, 'XP Gained' %>
         <%= f.number_field :xp_gained, class: 'form-control' %>
+        <label class='css3-checkboxes'><%= check_box_tag :autocalc, true, true %> <span class="link-like">Auto-Calc</span></label>
       </div>
       <div class="form-group col-md-2">
         <%= f.label :gp_gained, 'GP +/-' %>
@@ -38,14 +57,14 @@
         <%= f.label :num_secret_missions, 'Missions' %>
         <%= f.number_field :num_secret_missions, class: 'form-control' %>
       </div>
+
+      <div class="form-group col-md-2">
+      </div>
     </div>
 
     <div class="row">
-      <div class="form-group col-md-offset-2 col-md-2">
-        <%= f.label :location_played, 'Location DMed' %>
-        <%= f.text_field :location_played, class: 'form-control' %>
+      <div class="form-group col-md-2">
       </div>
-
       <div class="form-group col-md-2">
         <%= f.label :date_played, 'Date Assigned' %>
         <%= f.text_field :date_played, class: 'form-control' %>
@@ -98,6 +117,44 @@
           down: "fa fa-arrow-down",
           previous: "fa fa-arrow-left",
           next: "fa fa-arrow-right",
+      }
+    });
+  });
+</script>
+
+
+<script type="text/javascript">
+  $(function () {
+    //FIXME: Move this logic to ruby / rails code
+
+    var xp_lookup_table = <%= @hourly_xp_lookup_table %>
+    function calculateRewards(){
+      if($('#autocalc').prop('checked') == false) { return; }
+
+      var hours = $('#dm_log_entry_session_length_hours').val();
+      var level = $('#dm_log_entry_player_level').val();
+
+      var xp_reward = xp_lookup_table[level] * hours;
+      var gp_reward = xp_reward / 2;
+      var dt_reward = parseInt(hours / 2) * 5;
+      var rn_reward = parseInt(hours / 4);
+
+      $('#dm_log_entry_xp_gained').val(xp_reward);
+      $('#dm_log_entry_gp_gained').val(gp_reward);
+      $('#dm_log_entry_downtime_gained').val(dt_reward);
+      $('#dm_log_entry_renown_gained').val(rn_reward);
+    }
+
+    $('#dm_log_entry_session_length_hours').change(function(){
+      console.log($('#dm_log_entry_player_level').val());
+      if($('#dm_log_entry_player_level').val() != ''){
+        calculateRewards();
+      }
+    });
+
+    $('#dm_log_entry_player_level').change(function(){
+      if($('#dm_log_entry_session_length_hours').val() != ''){
+        calculateRewards();
       }
     });
   });

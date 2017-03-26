@@ -6,6 +6,7 @@ class DmLogEntriesController < LogEntriesController
   before_filter :load_user
   before_filter :load_log_entry, only: [:show, :edit, :update, :destroy]
   before_filter :load_characters, only: [:new, :create, :edit, :update]
+  before_filter :load_hourly_xp_lookup_table, only: [:new, :create, :edit, :update]
   before_filter :load_character,  only: [:create, :update]
   before_filter :build_log_entry, only: [:create]
   before_filter :load_magic_items, only: [:create, :update]
@@ -100,6 +101,11 @@ class DmLogEntriesController < LogEntriesController
 
   def load_characters
     @characters = @user.characters
+  end
+
+  def load_hourly_xp_lookup_table
+    @hourly_xp_lookup_table = [ 0, 50,  75, 100, 150,  225,  250,  325,  375,  475,  575,
+                                  650, 725, 800, 925, 1125, 1250, 1550, 1675, 1875, 2500 ]
   end
 
   def load_character
