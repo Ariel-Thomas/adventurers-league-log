@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+v1.4.20
+---------------
+- Fix minor auto-calc issue
+
+
 v1.4.19
 ---------------
 - Improve DM Log printing
