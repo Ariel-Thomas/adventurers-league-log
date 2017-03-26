@@ -23,7 +23,7 @@ RSpec.feature 'DM Log Entries', type: :feature do
       fill_in 'Date DMed',          with: '2016-08-01 19:00'
 
       fill_in 'Length (Hours)',     with: '8'
-      fill_in 'Avg PC Level',       with: '7'
+      fill_in 'Player Level',       with: '7'
       fill_in 'XP Gained',          with: '1001'
       fill_in 'GP +/-',             with: '333'
       fill_in 'Downtime +/-',       with: '111'
@@ -77,7 +77,7 @@ RSpec.feature 'DM Log Entries', type: :feature do
 
       fill_in 'Session',            with: '22'
       fill_in 'Length (Hours)',     with: '10'
-      fill_in 'Avg PC Level',       with: '7'
+      fill_in 'Player Level',       with: '7'
     end
 
     click_button 'Save'
