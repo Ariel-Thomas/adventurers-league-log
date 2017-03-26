@@ -3,6 +3,12 @@
 <% else %>
   <%= link_to "<strong>+</strong>DM Logs".html_safe, user_character_path(@user, @character, q: { s: params[:q][:s] } ), class: "btn btn-default" %>
 <% end %>
+
+
+<% if @character.user == current_user %>
+  <%= link_to "Export", user_character_path(@user, @character, format: :csv), class: "btn btn-default" %>
+<% end %>
+
 <div class="btn-group">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
     Print <span class="caret"></span>

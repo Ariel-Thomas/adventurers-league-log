@@ -11,6 +11,8 @@ AdventurersLeagueLog::Application.routes.draw do
       resources :campaign_log_entries, only: [:show]
 
       member do
+        get 'export'
+
         get 'print'
         get 'print_condensed'
       end

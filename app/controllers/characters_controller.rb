@@ -2,7 +2,7 @@ class CharactersController < AuthenticationController
   skip_before_action :authenticate_user!, only: [:index, :show, :print, :print_condensed]
 
   before_action :load_user
-  before_action :load_character, only: [:show, :print, :print_condensed, :edit, :update, :destroy]
+  before_action :load_character, only: [:show, :export, :print, :print_condensed, :edit, :update, :destroy]
 
   before_action :load_overrides,    only: [:edit]
   before_action :enforce_overrides, only: [:create, :update]
@@ -27,6 +27,11 @@ class CharactersController < AuthenticationController
     @search      = @character.log_entries.search(params[:q])
     @log_entries = @search.result(distinct: false).page params[:page]
     @magic_items = @character.magic_items.order(:id).where(trade_log_entry_id: nil)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data CharacterCsvExporter.new(@character).export() }
+    end
   end
 
   def print
