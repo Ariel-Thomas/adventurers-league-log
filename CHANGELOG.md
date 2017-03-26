@@ -6,6 +6,7 @@ v1.4.20
 - Fix minor auto-calc issue
 - Fix DM Logs not printing when no date
 - Fix misleading entry field
+- Fix DM Logs print sorting
 
 v1.4.19
 ---------------

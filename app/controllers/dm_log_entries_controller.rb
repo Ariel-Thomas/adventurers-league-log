@@ -34,7 +34,7 @@ class DmLogEntriesController < LogEntriesController
   def print
     authorize @user, :publicly_visible_dm_logs?
 
-    @log_entries = @user.dm_log_entries
+    @log_entries = @user.dm_log_entries.order(date_dmed: :asc)
 
     render 'print'
   end
