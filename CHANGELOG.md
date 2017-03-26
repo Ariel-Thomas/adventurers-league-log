@@ -4,7 +4,7 @@ CHANGELOG
 v1.4.20
 ---------------
 - Fix minor auto-calc issue
-
+- Fix DM Logs not printing when no date
 
 v1.4.19
 ---------------
