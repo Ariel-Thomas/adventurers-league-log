@@ -222,4 +222,36 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
       end
     end
   end
+
+  context 'campaign log sheet' do
+    before(:each) do
+      @campaign            = FactoryGirl.create(:campaign, users: [@user])
+      @campaign.characters = [@character]
+    end
+
+    scenario 'Add log entry with magic item' do
+      visit user_campaign_path(@user, @campaign)
+
+      click_link 'New Log Entry'
+      click_link 'Add Magic Item'
+
+      within all('#magic-items-form .magic-item').last do
+        fill_in 'Name',  with: 'Sword +1'
+        select  'Rare',  from: 'Rarity'
+        fill_in 'Location', with: 'A stone'
+        fill_in 'Table',    with: 'G'
+        fill_in 'Result',   with: '22'
+        fill_in 'Notes', with: 'Grants a +1 on all attack and damage rolls'
+
+        select @character.name, from: "Character"
+      end
+
+      click_button 'Save'
+
+      expect(page).to have_text('Show Campaign')
+
+      visit user_character_path(@character.user, @character)
+      expect(page).to have_text('Sword +1')
+    end
+  end
 end
