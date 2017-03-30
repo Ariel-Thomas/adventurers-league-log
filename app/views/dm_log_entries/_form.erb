@@ -39,7 +39,7 @@
       <div class="form-group col-md-2">
         <%= f.label :xp_gained, 'XP Gained' %>
         <%= f.number_field :xp_gained, class: 'form-control' %>
-        <label class='css3-checkboxes'><%= check_box_tag :autocalc, true, true %> <span class="link-like">Auto-Calc</span></label>
+        <label class='css3-checkboxes'><%= check_box_tag :autocalc, true, @user.autocalc_default %> <span class="link-like">Auto-Calc</span></label>
       </div>
       <div class="form-group col-md-2">
         <%= f.label :gp_gained, 'GP +/-' %>

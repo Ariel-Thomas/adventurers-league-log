@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330105802) do
+ActiveRecord::Schema.define(version: 20170330125851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,11 +43,12 @@ ActiveRecord::Schema.define(version: 20170330105802) do
     t.string  "faction_override"
     t.integer "user_id"
     t.string  "portrait_url"
-    t.boolean "publicly_visible",   default: false, null: false
+    t.boolean "publicly_visible",    default: false, null: false
     t.integer "faction_id"
     t.string  "background"
     t.integer "lifestyle_id"
     t.string  "lifestyle_override"
+    t.string  "character_sheet_url"
   end
 
   create_table "dm_campaign_assignments", force: :cascade do |t|
@@ -120,12 +121,12 @@ ActiveRecord::Schema.define(version: 20170330105802) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                       default: "", null: false
-    t.string   "encrypted_password",          default: "", null: false
+    t.string   "email",                       default: "",   null: false
+    t.string   "encrypted_password",          default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",               default: 0,  null: false
+    t.integer  "sign_in_count",               default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -137,6 +138,7 @@ ActiveRecord::Schema.define(version: 20170330105802) do
     t.boolean  "publicly_visible_dm_logs"
     t.boolean  "receive_emails"
     t.boolean  "publicly_visible_characters"
+    t.boolean  "autocalc_default",            default: true, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -10,6 +10,7 @@ class Character < ActiveRecord::Base
   has_many   :trade_log_entries, through: :log_assignments, source: :log_entry, class_name: TradeLogEntry
   has_many   :dm_log_entries, through: :log_assignments, source: :log_entry, class_name: DmLogEntry
   has_many   :campaign_log_entries, through: :log_assignments, source: :log_entry, class_name: CampaignLogEntry
+
   has_many   :magic_items
 
   has_many :campaign_participations, dependent: :destroy

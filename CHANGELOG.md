@@ -8,6 +8,8 @@ v1.4.21
 - Add Magic Item deletion
 - Allow multiple DM to join Campaigns
 - Allow editting of Campaigns
+- Add toggle for Autocalc to Change My Details
+- Add Character Sheet Url with Karate Button Action!
 
 v1.4.20
 ---------------

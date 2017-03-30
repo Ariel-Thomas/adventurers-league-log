@@ -6,7 +6,6 @@ RSpec.feature 'Show Trade Log Entry', type: :feature, js: true do
     login_as(@user, scope: :user)
     @character  = FactoryGirl.create(:character, user: @user)
     @log_entry  = FactoryGirl.create(:character_log_entry)
-    @magic_item = FactoryGirl.create(:magic_item, name: 'Staff of Power', log_entry: @log_entry)
   end
 
   context 'Character has no log entries with magic item' do
@@ -19,8 +18,9 @@ RSpec.feature 'Show Trade Log Entry', type: :feature, js: true do
 
   context 'Character has trade log entry with magic item' do
     before(:each) do
-      @trade_log_entry = FactoryGirl.create(:trade_log_entry, traded_magic_item: @magic_item)
-      @received_magic_item = FactoryGirl.create(:magic_item, name: 'Sword of Awesome', log_entry: @trade_log_entry)
+      @magic_item = FactoryGirl.create(:magic_item, name: 'Staff of Power', log_entry: @log_entry, character: @character)
+      @trade_log_entry = FactoryGirl.create(:trade_log_entry, traded_magic_item: @magic_item, characters: [@character])
+      @received_magic_item = FactoryGirl.create(:magic_item, name: 'Sword of Awesome', log_entry: @trade_log_entry, character: @character)
 
       @character.log_entries = [@log_entry, @trade_log_entry]
     end

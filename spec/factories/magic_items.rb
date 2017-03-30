@@ -9,5 +9,9 @@ FactoryGirl.define do
     table_result   { '55' }
 
     notes          { Faker::Company.bs }
+
+    after(:create) do |magic_item|
+      magic_item.character = magic_item.log_entry.character
+    end
   end
 end

@@ -1,6 +1,16 @@
 <div class="row">
-  <h2 class="col-md-offset-2 col-md-10"><%= @character.name %></h2>
+  <h2 class="col-md-offset-2 col-md-8">
+    <%= @character.name %>
 
+    <% if @character.character_sheet_url %>
+      <span class='pull-right'>
+        <%= link_to 'Character Sheet', @character.character_sheet_url, class: 'btn btn-default', target: '_blank', rel: 'noopener noreferrer' %>
+      </span>
+    <% end %>
+  </h2>
+</div>
+
+<div class='row'>
   <div class="col-md-2 hidden-xs hidden-sm" style="margin-top:-40px;">
     <% if @character.portrait_url == "" %>
       <img src="<%= asset_path('Human_female_99.jpg') %>" height="245" width="155">

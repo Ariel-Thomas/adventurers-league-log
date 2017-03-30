@@ -43,7 +43,8 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
         @log_entry = FactoryGirl.create(:character_log_entry)
         @magic_item = FactoryGirl.create(:magic_item,
                                          name: 'Staff of Power',
-                                         log_entry: @log_entry)
+                                         log_entry: @log_entry,
+                                         character: @character)
         @character.character_log_entries = [@log_entry]
       end
 
@@ -138,7 +139,8 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
         @log_entry = FactoryGirl.create(:dm_log_entry)
         @magic_item = FactoryGirl.create(:magic_item,
                                          name: 'Staff of Power',
-                                         log_entry: @log_entry)
+                                         log_entry: @log_entry,
+                                         character: @character)
         @user.dm_log_entries = [@log_entry]
       end
 

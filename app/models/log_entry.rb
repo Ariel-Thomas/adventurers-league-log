@@ -10,7 +10,7 @@ class LogEntry < ActiveRecord::Base
   end
 
   belongs_to :user
-  has_many   :magic_items
+  has_many   :magic_items, dependent: :destroy
   accepts_nested_attributes_for :magic_items, reject_if: proc { |attributes| attributes[:name].blank? }, allow_destroy: true
 
   self.inheritance_column = :type
