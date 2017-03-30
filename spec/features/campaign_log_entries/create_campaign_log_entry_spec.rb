@@ -13,7 +13,7 @@ RSpec.feature 'Campaign Log Entries', type: :feature do
     @character6 = FactoryGirl.create(:character)
 
     @adventure = FactoryGirl.create(:adventure, name: 'Lost Mines of Phandelver')
-    @campaign   = FactoryGirl.create(:campaign, user: @user)
+    @campaign   = FactoryGirl.create(:campaign, users: [@user])
     @campaign.characters = [@character1, @character2, @character3, @character4, @character5, @character6]
   end
 

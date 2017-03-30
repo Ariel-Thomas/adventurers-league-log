@@ -17,6 +17,7 @@ RSpec.feature 'Campaigns', type: :feature do
     within('#campaign-form') do
       fill_in 'Name', with: "Storm King's Thunder Table 1"
       check   'Users Can Join'
+      check   'DMs Can Join'
       check   'Publicly Visible'
     end
 
@@ -28,8 +29,8 @@ RSpec.feature 'Campaigns', type: :feature do
     expect(page).to have_text('Users Can Join: true')
     expect(page).to have_text('Publicly Visible: true')
 
-    expect(page).to have_text('Join Token')
     expect(page).to have_text(Campaign.last.token)
+    expect(page).to have_text(Campaign.last.dm_token)
 
     click_link 'Campaigns'
 

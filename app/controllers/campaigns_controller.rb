@@ -20,7 +20,8 @@ class CampaignsController < AuthenticationController
   def show
     authorize @campaign
 
-    @dm_is_current_user   = (current_user == @campaign.user)
+    @current_user_is_dm   = @campaign.users.exists?(current_user.id)
+    @dms                  = @campaign.users
     @characters           = @campaign.characters
 
     params[:q] = { s: 'date_played desc' } unless params[:q]
@@ -30,6 +31,7 @@ class CampaignsController < AuthenticationController
 
   def new
     @campaign = @user.campaigns.new
+    @campaign.users = [@user]
     @campaign.users_can_join = true
 
     authorize @campaign
@@ -37,6 +39,7 @@ class CampaignsController < AuthenticationController
 
   def create
     @campaign = @user.campaigns.build(campaigns_params)
+    @campaign.users = [@user]
     authorize @campaign
 
     if @campaign.save
@@ -47,9 +50,29 @@ class CampaignsController < AuthenticationController
     end
   end
 
-  def join
+  def edit
+    authorize @campaign
+  end
+
+  def update
+    authorize @campaign
+
+    if @campaign.update_attributes(campaigns_params)
+      @campaign.reset_tokens!
+      redirect_to [@user, @campaign], flash: { notice: "Successfully created campaign #{@campaign.name}" }
+    else
+      flash.now[:error] = "Failed to create campaign #{@campaign.name}: #{@campaign.errors.full_messages.join(',')}"
+      render :new
+    end
+  end
+
+  def join_as_character
     authorize @user
     @characters = @user.characters
+  end
+
+  def join_as_dm
+    authorize @user
   end
 
   def destroy
@@ -71,6 +94,6 @@ class CampaignsController < AuthenticationController
   end
 
   def campaigns_params
-    params.require(:campaign).permit(:name, :users_can_join, :publicly_visible)
+    params.require(:campaign).permit(:name, :users_can_join, :dms_can_join, :publicly_visible)
   end
 end

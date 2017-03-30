@@ -27,12 +27,14 @@ AdventurersLeagueLog::Application.routes.draw do
 
     resources :campaigns  do
       collection do
-        get  'join'
+        get  'join_as_dm'
+        get  'join_as_character'
       end
 
       resources :campaign_log_entries
     end
-    resources :character_campaigns, only: [:create]
+    resources :dm_campaign_assignments, only: [:create, :destroy]
+    resources :character_campaigns, only: [:create, :destroy]
   end
 
   get 'stats', controller: 'home'

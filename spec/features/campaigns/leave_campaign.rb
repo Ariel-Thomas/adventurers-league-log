@@ -8,7 +8,7 @@ RSpec.feature 'Campaigns', type: :feature do
 
   context 'As a DM' do
     before(:each) do
-      @campaign = FactoryGirl.create(:campaign, user: @user)
+      @campaign = FactoryGirl.create(:campaign, users: [@user])
     end
 
     scenario 'Leave a campaign' do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326032035) do
+ActiveRecord::Schema.define(version: 20170330053936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,11 +28,12 @@ ActiveRecord::Schema.define(version: 20170326032035) do
   end
 
   create_table "campaigns", force: :cascade do |t|
-    t.integer "user_id"
     t.string  "name"
     t.string  "token"
     t.boolean "users_can_join",   default: false, null: false
     t.boolean "publicly_visible", default: false, null: false
+    t.string  "dm_token"
+    t.boolean "dms_can_join",     default: false, null: false
   end
 
   create_table "characters", force: :cascade do |t|
@@ -47,6 +48,11 @@ ActiveRecord::Schema.define(version: 20170326032035) do
     t.string  "background"
     t.integer "lifestyle_id"
     t.string  "lifestyle_override"
+  end
+
+  create_table "dm_campaign_assignments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "campaign_id"
   end
 
   create_table "faction_ranks", force: :cascade do |t|
@@ -83,12 +89,12 @@ ActiveRecord::Schema.define(version: 20170326032035) do
     t.string   "notes",                                         default: "", null: false
     t.integer  "num_secret_missions"
     t.string   "type"
-    t.integer  "user_id"
     t.integer  "player_dm_id"
     t.datetime "date_dmed"
     t.integer  "campaign_id"
     t.integer  "session_length_hours"
     t.integer  "player_level"
+    t.integer  "user_id"
   end
 
   create_table "magic_items", force: :cascade do |t|

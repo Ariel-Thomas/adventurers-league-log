@@ -8,7 +8,7 @@ class CampaignPolicy < ApplicationPolicy
     end
 
     def resolve
-      scope.where(user_id: user.id)
+      scope.joins(:dm_campaign_assignments).where(dm_campaign_assignments: { user: user })
     end
   end
 

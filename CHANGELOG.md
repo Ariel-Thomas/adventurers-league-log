@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+v1.4.21
+---------------
+- Allow multiple DM to join Campaigns
+- Allow editting of Campaigns
+
 v1.4.20
 ---------------
 - Fix minor auto-calc issue

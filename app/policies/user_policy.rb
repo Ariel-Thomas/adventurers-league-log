@@ -3,7 +3,11 @@ class UserPolicy < ApplicationPolicy
     user_is_current_user?
   end
 
-  def join?
+  def join_as_character?
+    user_is_current_user?
+  end
+
+  def join_as_dm?
     user_is_current_user?
   end
 

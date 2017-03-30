@@ -7,11 +7,12 @@ class User < ActiveRecord::Base
   has_many :characters
   has_many :campaign_participations, through: :characters
   has_many :character_campaigns, through: :characters, source: :campaigns
-
   has_many :player_dms
 
   has_many :dm_log_entries
-  has_many :campaigns
+
+  has_many :dm_campaign_assignments
+  has_many :campaigns, through: :dm_campaign_assignments
 
   def total_xp
     dm_log_entries.pluck(:xp_gained).compact.inject(:+) || 0

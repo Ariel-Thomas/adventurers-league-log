@@ -13,7 +13,7 @@ RSpec.feature 'Campaign Log Entries', type: :feature do
     @character5 = FactoryGirl.create(:character)
     @character6 = FactoryGirl.create(:character)
 
-    @campaign            = FactoryGirl.create(:campaign, user: @user)
+    @campaign            = FactoryGirl.create(:campaign, users: [@user])
     @campaign.characters = [@character1, @character2, @character3, @character4, @character5, @character6]
 
     @campaign_log_entry = FactoryGirl.create(:campaign_log_entry, campaign: @campaign, user: @user, dm_name: @user.name, dm_dci_number: @user.dci_num)
