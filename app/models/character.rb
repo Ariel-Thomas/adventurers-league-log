@@ -92,7 +92,7 @@ class Character < ActiveRecord::Base
   end
 
   def total_magic_items
-    magic_items.where(trade_log_entry_id: nil).count
+    magic_items.where(trade_log_entry_id: nil).where(not_included_in_count: false).count
   end
 
   def magic_items_list

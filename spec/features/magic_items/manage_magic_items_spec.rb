@@ -38,6 +38,28 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
       expect(page).to have_text('Grants a +1 on all attack and damage rolls')
     end
 
+    scenario 'Add log entry with magic item that doesnt count' do
+      visit user_character_path(@user, @character)
+
+      click_button 'New Log Entry'
+      click_link 'Game Log'
+      click_link 'Add Magic Item'
+
+      within all('#magic-items-form .magic-item').last do
+        fill_in 'Name',     with: 'Sword +1'
+        find("label[for='character_log_entry_magic_items_attributes_[1]_not_included_in_count']").click()
+      end
+
+      click_button 'Save'
+
+      expect(page).to have_text('Log Entries')
+
+      # click_link "Show"
+      expect(page).to have_text('Sword +1')
+
+      expect(page).to have_text('Total Magic Items: 0')
+    end
+
     context 'existing log entry' do
       before(:each) do
         @log_entry = FactoryGirl.create(:character_log_entry)

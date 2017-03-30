@@ -133,9 +133,6 @@ class DmLogEntriesController < LogEntriesController
                   :downtime_gained, :num_secret_missions,
                   :location_played, :dm_name, :dm_dci_number, :notes,
                   :date_played, :character_id,
-                  magic_items_attributes: [:id, :name, :rarity,
-                                           :location_found, :table,
-                                           :table_result, :character_id,
-                                           :notes, :_destroy])
+                  magic_items_attributes: magic_item_params)
   end
 end

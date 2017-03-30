@@ -6,6 +6,7 @@ v1.4.21
 - Add Character selection for Magic Items in Campaign
 - Add Magic Items#index
 - Add Magic Item deletion
+- Add Magic Item property Not Include in Count
 - Allow multiple DM to join Campaigns
 - Allow editting of Campaigns
 - Add toggle for Autocalc to Change My Details

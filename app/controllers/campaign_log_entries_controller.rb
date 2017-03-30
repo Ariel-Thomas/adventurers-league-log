@@ -1,4 +1,4 @@
-class CampaignLogEntriesController < AuthenticationController
+class CampaignLogEntriesController < LogEntriesController
   skip_before_action :authenticate_user!, only: [:show]
 
   add_crumb('Home', '/')
@@ -131,10 +131,7 @@ class CampaignLogEntriesController < AuthenticationController
                   :xp_gained, :gp_gained, :renown_gained, :downtime_gained,
                   :num_secret_missions, :location_played, :notes,
                   character_ids: [],
-                  magic_items_attributes: [:id, :name, :rarity,
-                                           :location_found, :table,
-                                           :table_result, :character_id,
-                                           :notes, :_destroy])
+                  magic_items_attributes: magic_item_params)
   end
 
 end

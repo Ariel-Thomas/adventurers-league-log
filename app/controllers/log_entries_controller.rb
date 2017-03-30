@@ -36,4 +36,9 @@ class LogEntriesController < AuthenticationController
     "#{@log_entry.adventure_title}: "\
     "#{@log_entry.errors.full_messages.join(',')}"
   end
+
+  def magic_item_params
+    [:id, :name, :rarity, :location_found, :table, :table_result,
+      :character_id, :not_included_in_count, :notes, :_destroy]
+  end
 end

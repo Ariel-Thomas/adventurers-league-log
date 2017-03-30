@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330125851) do
+ActiveRecord::Schema.define(version: 20170330132511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,13 +101,14 @@ ActiveRecord::Schema.define(version: 20170330125851) do
   create_table "magic_items", force: :cascade do |t|
     t.string  "name"
     t.integer "log_entry_id"
-    t.integer "rarity",             default: 0,  null: false
-    t.string  "notes",              default: "", null: false
+    t.integer "rarity",                default: 0,     null: false
+    t.string  "notes",                 default: "",    null: false
     t.integer "trade_log_entry_id"
     t.string  "table"
     t.string  "table_result"
     t.string  "location_found"
     t.integer "character_id"
+    t.boolean "not_included_in_count", default: false, null: false
   end
 
   create_table "player_dms", force: :cascade do |t|

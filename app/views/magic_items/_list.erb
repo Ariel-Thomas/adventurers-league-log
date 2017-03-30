@@ -14,7 +14,7 @@
           <th>Location</th>
           <th>Table</th>
           <th>Result</th>
-          <th>Notes</th>
+          <th>Counts?</th>
         </tr>
         <% @magic_items.each do |magic_item| %>
           <tr>
@@ -23,8 +23,13 @@
             <td><%= magic_item.location_found %></td>
             <td><%= magic_item.table %></td>
             <td><%= magic_item.table_result %></td>
-            <td><%= magic_item.notes %></td>
+            <td><%= !magic_item.not_included_in_count %></td>
           </tr>
+          <% if magic_item.notes.present? %>
+            <tr>
+              <td colspan="6"><%= magic_item.notes %></td>
+            </tr>
+          <% end %>
         <% end %>
       </table>
     </div>

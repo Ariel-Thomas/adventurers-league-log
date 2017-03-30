@@ -21,6 +21,7 @@
             <th><%= sort_link @search, :location_found, "Location", {}, {} %></th>
             <th><%= sort_link @search, :table, "Table", {}, {} %></th>
             <th><%= sort_link @search, :table_result, "Result", {}, {} %></th>
+            <th><%= sort_link @search, :not_included_in_count, "Counts", {}, {} %></th>
             <th></th>
           </tr>
 
@@ -32,6 +33,7 @@
                 <td><%= magic_item.location_found %></td>
                 <td><%= magic_item.table %></td>
                 <td><%= magic_item.table_result %></td>
+                <td><%= !magic_item.not_included_in_count %></td>
                 <td>
                   <% if @user == current_user %>
                     <%= link_to "<span class='sr-only'>Delete<span>".html_safe, user_character_magic_item_path(@user, @character, magic_item), method: :delete, data: { confirm: "Are you sure you want to delete #{magic_item.name}?" }, class: "fa fa-trash-o", title: "Delete Magic Item" %>
@@ -40,7 +42,7 @@
               </tr>
               <% if magic_item.notes.present? %>
                 <tr>
-                  <td colspan='6'>
+                  <td colspan='7'>
                     <strong>Notes:</strong> <%= magic_item.notes %>
                   </td>
                 </tr>

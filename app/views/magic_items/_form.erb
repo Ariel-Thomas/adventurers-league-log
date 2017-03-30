@@ -35,18 +35,22 @@
   </div>
 </div>
 
-<% if @character %>
-  <%= magic_item_form.hidden_field :character_id, value: @character.id %>
-<% end %>
+<div class="row">
+  <div class="form-group col-md-4">
+    <%= magic_item_form.label :not_included_in_count, class: 'css3-checkboxes' do
+      (magic_item_form.check_box :not_included_in_count, {}, 'true', 'false') + "<span>Not Included in Count</span>".html_safe
+    end %>
+  </div>
 
-<% if @campaign %>
-  <div class="row">
+  <% if @character %>
+    <%= magic_item_form.hidden_field :character_id, value: @character.id %>
+  <% elsif @campaign %>
     <div class="form-group col-md-8">
       <%= magic_item_form.label :character_id, 'Character' %>
       <%= magic_item_form.select :character_id, @campaign.characters.map {|p| [ "#{p.name} (#{p.user.name})", p.id ] }, { include_blank: true }, { class: 'form-control ' } %>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
 <%= magic_item_form.hidden_field :_destroy, class: "_destroy" %>
 
