@@ -35,6 +35,19 @@
   </div>
 </div>
 
+<% if @character %>
+  <%= magic_item_form.hidden_field :character_id, value: @character.id %>
+<% end %>
+
+<% if @campaign %>
+  <div class="row">
+    <div class="form-group col-md-8">
+      <%= magic_item_form.label :character_id, 'Character' %>
+      <%= magic_item_form.select :character_id, @campaign.characters.map {|p| [ "#{p.name} (#{p.user.name})", p.id ] }, { include_blank: true }, { class: 'form-control ' } %>
+    </div>
+  </div>
+<% end %>
+
 <%= magic_item_form.hidden_field :_destroy, class: "_destroy" %>
 
 <% if removeable %>

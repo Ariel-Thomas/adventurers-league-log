@@ -30,7 +30,7 @@
     <%= display_attribute "Secret Missions",  @character.total_secret_missions %>
     <br class='hidden-xs'>
     <%= display_attribute "Total Magic Items",  @character.total_magic_items %>
-    <%= display_attribute_ary "Magic Items", @magic_items.pluck(:name) %>
+    <%= display_attribute_ary (link_to "Magic Items", user_character_magic_items_path(@user, @character)), @magic_items.pluck(:name) %>
   </div>
 
   <div class="col-md-2 hidden-xs hidden-sm" style="margin-top:-40px;">

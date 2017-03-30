@@ -9,6 +9,7 @@ AdventurersLeagueLog::Application.routes.draw do
       resources :trade_log_entries
       resources :character_campaigns, only: [:destroy]
       resources :campaign_log_entries, only: [:show]
+      resources :magic_items
 
       member do
         get 'export'

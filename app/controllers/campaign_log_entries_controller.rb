@@ -133,7 +133,7 @@ class CampaignLogEntriesController < AuthenticationController
                   character_ids: [],
                   magic_items_attributes: [:id, :name, :rarity,
                                            :location_found, :table,
-                                           :table_result,
+                                           :table_result, :character_id,
                                            :notes, :_destroy])
   end
 
