@@ -1,0 +1,14 @@
+<div class="row" id="magic_items-index">
+  <div class='col-md-offset-4 col-md-4'>
+    <%= display_attribute "User", @user.name %>
+    <%= display_attribute "DCI", @user.dci_num %>
+    <%= display_attribute "Character", @character.name %>
+    <%= display_attribute "Name", @magic_item.name %>
+    <%= display_attribute "Rarity", @magic_item.rarity %>
+    <%= display_attribute "Location", @magic_item.location_found %>
+    <%= display_attribute "Table", @magic_item.table %>
+    <%= display_attribute "Result", @magic_item.table_result %>
+    <%= display_attribute "Included in Count?", !@magic_item.not_included_in_count %>
+    <%= display_attribute "Notes", @magic_item.notes %>
+  </div>
+</div>

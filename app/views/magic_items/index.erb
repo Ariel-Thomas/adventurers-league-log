@@ -2,16 +2,6 @@
   <h1 class='col-md-offset-2 col-md-8'>Magic Items</h1>
 
   <div class='col-md-offset-2 col-md-8'>
-    <div class="col-md-3">
-      <%= display_attribute_small "User",  @user.name %>
-      <%= display_attribute_small "DCI",  @user.dci_num %>
-      <%= display_attribute_small "Character",  @character.name %>
-    </div>
-  </div>
-
-  <br>
-
-  <div class='col-md-offset-2 col-md-8'>
     <div id='magic_items_list'>
       <div class="table-responsive">
         <table class="table table-bordered table-responsive table-striped">
@@ -28,13 +18,14 @@
           <tbody id='menu_items'>
             <% @magic_items.each do |magic_item| %>
               <tr>
-                <td><%= magic_item.name %></td>
+                <td><%= link_to magic_item.name, [@user, @character, magic_item] %></td>
                 <td><%= magic_item.rarity %></td>
                 <td><%= magic_item.location_found %></td>
                 <td><%= magic_item.table %></td>
                 <td><%= magic_item.table_result %></td>
                 <td><%= !magic_item.not_included_in_count %></td>
                 <td>
+                  <%= link_to "<span class='sr-only'>Show<span>".html_safe, [@user, @character, magic_item], class: "fa fa-eye", title: "Show Magic Item" %>
                   <% if @user == current_user %>
                     <%= link_to "<span class='sr-only'>Delete<span>".html_safe, user_character_magic_item_path(@user, @character, magic_item), method: :delete, data: { confirm: "Are you sure you want to delete #{magic_item.name}?" }, class: "fa fa-trash-o", title: "Delete Magic Item" %>
                   <% end %>

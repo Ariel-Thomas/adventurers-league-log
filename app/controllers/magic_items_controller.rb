@@ -3,10 +3,12 @@ class MagicItemsController < AuthenticationController
 
   before_action :load_user
   before_action :load_character
+  before_action :load_magic_item, only: [:show, :destroy]
 
   before_filter { add_crumb('Charactes', user_characters_path(@user)) }
-  before_filter(only: [:index])  { add_crumb(@character.name, user_character_path(@user, @character)) }
-  before_filter(only: [:index]) { add_crumb 'Magic Items' }
+  before_filter(only: [:index, :show]) { add_crumb(@character.name, user_character_path(@user, @character)) }
+  before_filter(only: [:index, :show]) { add_crumb 'Magic Items', user_character_magic_items_path(@user, @character) }
+  before_filter(only: [:show])         { add_crumb(@magic_item.name) }
 
   def index
     authorize @user, :show_characters?
@@ -15,8 +17,11 @@ class MagicItemsController < AuthenticationController
     @magic_items = @search.result(distinct: false).page params[:page]
   end
 
+  def show
+    authorize @user, :show_characters?
+  end
+
   def destroy
-    @magic_item = MagicItem.find(params[:id])
     @log_entry = @character.trade_log_entries.build()
     @log_entry.traded_magic_item = @magic_item
     @log_entry.characters = [@character]
@@ -40,5 +45,9 @@ class MagicItemsController < AuthenticationController
 
   def load_character
     @character = @user.characters.find(params[:character_id])
+  end
+
+  def load_magic_item
+     @magic_item = MagicItem.find(params[:id])
   end
 end
