@@ -22,7 +22,7 @@
         <% @magic_items.each do |magic_item| %>
           <tr>
             <% unless @character %>
-              <td><%= magic_item.character.name %></td>
+              <td><%= magic_item.character.name if magic_item.character %></td>
             <% end %>
             <td><%= magic_item.name %></td>
             <td><%= magic_item.rarity.titleize %></td>

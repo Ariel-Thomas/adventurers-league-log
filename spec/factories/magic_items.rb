@@ -12,6 +12,8 @@ FactoryGirl.define do
 
     after(:create) do |magic_item|
       magic_item.character = magic_item.log_entry.character
+      magic_item.character = FactoryGirl.create(:character) unless magic_item.character
+      magic_item.save!
     end
   end
 end
