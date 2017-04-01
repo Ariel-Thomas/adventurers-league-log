@@ -9,6 +9,9 @@
     <div class="table-responsive">
       <table class="table table-bordered table-responsive table-striped">
         <tr>
+          <% unless @character %>
+            <th>Character</th>
+          <% end %>
           <th>Name</th>
           <th>Rarity</th>
           <th>Location</th>
@@ -18,6 +21,9 @@
         </tr>
         <% @magic_items.each do |magic_item| %>
           <tr>
+            <% unless @character %>
+              <td><%= magic_item.character.name %></td>
+            <% end %>
             <td><%= magic_item.name %></td>
             <td><%= magic_item.rarity.titleize %></td>
             <td><%= magic_item.location_found %></td>
