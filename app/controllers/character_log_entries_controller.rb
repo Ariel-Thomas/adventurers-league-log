@@ -20,7 +20,7 @@ class CharacterLogEntriesController < LogEntriesController
 
   def show
     authorize @log_entry
-    @magic_items = @log_entry.magic_items
+    @magic_items = @log_entry.magic_items.where(character: @character)
   end
 
   def new
