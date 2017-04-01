@@ -3,6 +3,8 @@ class DmLogEntriesController < LogEntriesController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   add_crumb('Home', '/')
+  before_filter :set_magic_item_character_id, only: [:create, :update]
+
   before_filter :load_user
   before_filter :load_log_entry, only: [:show, :edit, :update, :destroy]
   before_filter :load_characters, only: [:new, :create, :edit, :update]
@@ -98,6 +100,12 @@ class DmLogEntriesController < LogEntriesController
   end
 
   protected
+
+  def set_magic_item_character_id
+    params[:dm_log_entry][:magic_items_attributes].each do |attrs|
+      attrs[1][:character_id] = params[:dm_log_entry][:character_id];
+    end
+  end
 
   def load_characters
     @characters = @user.characters

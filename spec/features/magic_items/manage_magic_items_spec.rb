@@ -133,6 +133,10 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
       click_link 'New Log Entry'
       click_link 'Add Magic Item'
 
+      within('#dm-log-entry-main-form') do
+        select @character.name, from: 'Character to Apply Rewards'
+      end
+
       within all('#magic-items-form .magic-item').last do
         fill_in 'Name',  with: 'Sword +1'
         select  'Rare',  from: 'Rarity'
@@ -154,6 +158,9 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
       expect(page).to have_text('G')
       expect(page).to have_text('22')
       expect(page).to have_text('Grants a +1 on all attack and damage rolls')
+
+      visit user_character_path(@user, @character)
+      expect(page).to have_text('Sword +1')
     end
 
     context 'existing log entry' do
@@ -172,6 +179,10 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
         # click_link 'Edit'
         find_link('Edit').trigger('click') # hack to fix previous line
         click_link 'Add Magic Item'
+
+        within('#dm-log-entry-main-form') do
+          select @character.name, from: 'Character to Apply Rewards'
+        end
 
         within all('#magic-items-form .magic-item').last do
           fill_in 'Name',  with: 'Sword +1'
@@ -201,6 +212,10 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
         expect(page).to have_text('G')
         expect(page).to have_text('22')
         expect(page).to have_text('Grants a +1 on all attack and damage rolls')
+
+        visit user_character_path(@user, @character)
+        expect(page).to have_text(@magic_item.name)
+        expect(page).to have_text('Sword +1')
       end
 
       scenario 'Remove from existing log entry with magic item' do
@@ -219,6 +234,9 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
         expect(page).to_not have_text(@magic_item.name)
         expect(page).to_not have_text(@magic_item.rarity.titleize)
         expect(page).to_not have_text(@magic_item.notes)
+
+        visit user_character_path(@user, @character)
+        expect(page).to_not have_text(@magic_item.name)
       end
     end
   end
@@ -243,7 +261,7 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
         fill_in 'Result',   with: '22'
         fill_in 'Notes', with: 'Grants a +1 on all attack and damage rolls'
 
-        select @character.name, from: "Character"
+        select @character.name, from: 'Character'
       end
 
       click_button 'Save'

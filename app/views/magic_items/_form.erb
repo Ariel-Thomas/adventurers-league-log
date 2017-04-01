@@ -49,6 +49,8 @@
       <%= magic_item_form.label :character_id, 'Character' %>
       <%= magic_item_form.select :character_id, @campaign.characters.map {|p| [ "#{p.name} (#{p.user.name})", p.id ] }, { include_blank: true }, { class: 'form-control ' } %>
     </div>
+  <% else %>
+   <%= magic_item_form.hidden_field :character_id %>
   <% end %>
 </div>
 

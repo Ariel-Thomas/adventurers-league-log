@@ -1,6 +1,10 @@
 CHANGELOG
 ======
 
+v1.4.22
+---------------
+- Fix DM Log Magic Items to apply to Characters
+
 v1.4.21
 ---------------
 - Add Character selection for Magic Items in Campaign
