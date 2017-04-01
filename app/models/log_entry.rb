@@ -44,8 +44,8 @@ class LogEntry < ActiveRecord::Base
     magic_items.count
   end
 
-  def magic_items_list
-    list = magic_items.pluck(:name).join(', ')
+  def magic_items_list(char)
+    list = magic_items.where(character: char).pluck(:name).join(', ')
 
     if list == ''
       return ''

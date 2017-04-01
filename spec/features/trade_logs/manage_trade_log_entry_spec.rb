@@ -87,7 +87,7 @@ RSpec.feature 'Trade Log Entry page', type: :feature, js: true do
       expect(page).to have_text('Magic Items: Staff of Power, Rod of Wonder')
 
       expect(page).to_not have_text(@trade_log_entry.date_played)
-      expect(page).to_not have_text(@trade_log_entry.magic_items_list)
+      expect(page).to_not have_text(@trade_log_entry.magic_items_list(@character))
     end
   end
 end

@@ -32,7 +32,8 @@
 
     magic_item_index = magic_item_index + 1;
     new_pattern = "[" + (magic_item_index) + "]";
+    new_under_pattern = "_" + (magic_item_index) + "_";
 
-    $( base_form.get(0).outerHTML.replace(/\[0\]/g, new_pattern)).removeClass('hidden').appendTo(list);
+    $( base_form.get(0).outerHTML.replace(/\[0\]/g, new_pattern).replace(/\_0\_/g, new_under_pattern)).removeClass('hidden').appendTo(list);
   });
 </script>

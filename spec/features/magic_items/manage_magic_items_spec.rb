@@ -47,7 +47,7 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
 
       within all('#magic-items-form .magic-item').last do
         fill_in 'Name',     with: 'Sword +1'
-        find("label[for='character_log_entry_magic_items_attributes_[1]_not_included_in_count']").click()
+        find("label[for='character_log_entry_magic_items_attributes_1_not_included_in_count']").click()
       end
 
       click_button 'Save'
