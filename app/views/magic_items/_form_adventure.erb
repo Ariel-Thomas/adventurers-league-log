@@ -33,6 +33,6 @@
     magic_item_index = magic_item_index + 1;
     new_pattern = "[" + (magic_item_index) + "]";
 
-    $( base_form.get(0).outerHTML.replace(/[0]/g, new_pattern)).removeClass('hidden').appendTo(list);
+    $( base_form.get(0).outerHTML.replace(/\[0\]/g, new_pattern)).removeClass('hidden').appendTo(list);
   });
 </script>
