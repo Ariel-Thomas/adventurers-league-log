@@ -31,6 +31,7 @@ class CampaignLogEntriesController < LogEntriesController
   def show
     authorize @log_entry
     @magic_items = @log_entry.magic_items
+    @magic_items = @magic_items.where(character: @character) if @character
   end
 
   def new
