@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+v1.6.0
+---------------
+- Add parser for Adventurer's League Content Catalog
+- Add hours to adventures
+- Add contents of Adventurer's League Content Catalog
+- Experience moments of existential dread
+
 v1.4.23
 ---------------
 - Fix accidental murder of Users who used Update My Password
