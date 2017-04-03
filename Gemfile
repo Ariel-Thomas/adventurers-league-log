@@ -33,6 +33,8 @@ gem 'phil_columns-activerecord'
 
 gem 'pry-rails'
 
+gem 'pdf-reader'
+
 group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
