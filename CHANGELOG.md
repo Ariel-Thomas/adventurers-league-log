@@ -1,6 +1,10 @@
 CHANGELOG
 ======
 
+v1.4.23
+---------------
+- Fix accidental murder of Users who used Update My Password
+
 v1.4.22
 ---------------
 - Fix DM Log Magic Items to apply to Characters
