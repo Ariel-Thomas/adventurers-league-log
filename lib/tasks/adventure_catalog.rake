@@ -86,23 +86,23 @@ namespace :adventure_catalog do
 
   desc "Clean out chosen adventures"
   task :clean_dupes => :environment do
-    Adventure.find_by(name: 'DDEP3 Blood Above, Blood Below').update!(position_num: 1002)
+    adv = Adventure.find_by(name: 'DDEP03 Blood Above, Blood Below')
+    adv.update!(name: 'DDEP3 Blood Above, Blood Below', position_num: 1002) if adv
 
-     ['CORE2-1 Tales of Good and Evil',
+     ["DDEX03-04 It's all in the Blood",
+      "Storm King's Thunder",
+      "DDEX1-03 Shadow on the Moonsea",
+      "DDAL05-01 Treasure of the Broken Hoard",
+      "DDAL05-09 Durlag's Tomb",
+      'CORE2-1 Tales of Good and Evil',
       'PHLAN1-3  Subterfuge',
       'PHLAN1-2  Enemy of my Enemy',
       'PHLAN1-1  Sepulture',
       'HILL1-3 Resurgance',
       'ELM1-1  The Sage of Cormathor',
-      'UCON-01 Blood and Fog'].each do |name|
+      'UCON-01 Blood and Fog',].each do |name|
         adv = Adventure.find_by(name: name)
         adv.destroy if adv
       end
-
-    Adventure.where('name LIKE ?', "%Shadow on the Moonsea%").first.destroy
-    Adventure.where('name LIKE ?', "%Storm King's Thunder%").first.destroy
-    Adventure.where('name LIKE ?', "%DDEX03%").first.destroy
-    Adventure.where('name LIKE ?', "%Treasure of the Broken Hoard%").first.destroy
-    Adventure.where('name LIKE ?', "%DDAL05-09%").first.destroy
   end
 end
