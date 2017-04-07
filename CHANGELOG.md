@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+v1.6.1
+---------------
+- Add "Unqiue" rarity option to magic items
+- Add additional columns to DM Log Entries list
+
 v1.6.0
 ---------------
 - Add parser for Adventurer's League Content Catalog
