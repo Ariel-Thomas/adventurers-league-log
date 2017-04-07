@@ -12,6 +12,7 @@
             <th><%= sort_link @search, :table, "Table", {}, {} %></th>
             <th><%= sort_link @search, :table_result, "Result", {}, {} %></th>
             <th><%= sort_link @search, :not_included_in_count, "Counts", {}, {} %></th>
+            <th>Source</th>
             <th></th>
           </tr>
 
@@ -24,6 +25,9 @@
                 <td><%= magic_item.table %></td>
                 <td><%= magic_item.table_result %></td>
                 <td><%= !magic_item.not_included_in_count %></td>
+                <td>
+                  <%= render partial: 'log_entries/log_entry_link', locals: { log_entry: magic_item.log_entry } %>
+                </td>
                 <td>
                   <%= link_to "<span class='sr-only'>Show<span>".html_safe, [@user, @character, magic_item], class: "fa fa-eye", title: "Show Magic Item" %>
                   <% if @user == current_user %>

@@ -9,6 +9,7 @@
     <%= display_attribute "Table", @magic_item.table %>
     <%= display_attribute "Result", @magic_item.table_result %>
     <%= display_attribute "Included in Count?", !@magic_item.not_included_in_count %>
+    <%= display_attribute "Source", render(partial: 'log_entries/log_entry_link', locals: { log_entry: @magic_item.log_entry }) %>
     <%= display_attribute "Notes", @magic_item.notes %>
   </div>
 </div>

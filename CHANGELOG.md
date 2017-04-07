@@ -5,6 +5,7 @@ v1.6.1
 ---------------
 - Add "Unqiue" rarity option to magic items
 - Add additional columns to DM Log Entries list
+- Add adventure name to magic items
 
 v1.6.0
 ---------------

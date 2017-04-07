@@ -40,21 +40,7 @@
           <tr class='<%= "dm_log" if log_entry.type == "DmLogEntry" %> <%= "trade-log" if log_entry.type == "TradeLogEntry" %>'>
             <td><%= format_date log_entry.date_played %></td>
             <td>
-              <% if log_entry.type == "CharacterLogEntry" %>
-                <%= link_to log_entry.adventure_title || "", user_character_character_log_entry_path(@character.user, @character, log_entry) %>
-              <% end %>
-
-              <% if log_entry.type == "TradeLogEntry" %>
-                <%= link_to "Trade Log", user_character_trade_log_entry_path(@character.user, @character, log_entry) %>
-              <% end %>
-
-              <% if log_entry.type == "DmLogEntry" %>
-                <%= link_to log_entry.adventure_title, [@character.user, log_entry] %>
-              <% end %>
-
-              <% if log_entry.type == "CampaignLogEntry" %>
-                <%= link_to log_entry.adventure_title || "", user_character_campaign_log_entry_path(@character.user, @character, log_entry) %>
-              <% end %>
+              <%= render partial: 'log_entries/log_entry_link', locals: { log_entry: log_entry } %>
             </td>
             <td><%= log_entry.session_num %></td>
             <td><%= log_entry.xp_gained %></td>

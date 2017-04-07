@@ -1,0 +1,15 @@
+<% if log_entry.type == "CharacterLogEntry" %>
+  <%= link_to log_entry.adventure_title || "", user_character_character_log_entry_path(@character.user, @character, log_entry) %>
+<% end %>
+
+<% if log_entry.type == "TradeLogEntry" %>
+  <%= link_to "Trade Log", user_character_trade_log_entry_path(@character.user, @character, log_entry) %>
+<% end %>
+
+<% if log_entry.type == "DmLogEntry" %>
+  <%= link_to log_entry.adventure_title, [@character.user, log_entry] %>
+<% end %>
+
+<% if log_entry.type == "CampaignLogEntry" %>
+  <%= link_to log_entry.adventure_title || "", user_character_campaign_log_entry_path(@character.user, @character, log_entry) %>
+<% end %>
