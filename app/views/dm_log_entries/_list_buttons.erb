@@ -7,5 +7,5 @@
 <%= link_to "Print", print_user_dm_log_entries_path(@user), target: '_blank', rel: 'noopener noreferrer', class: "btn btn-default" %>
 
 <% if @user == current_user %>
-   <%= link_to "New Log Entry", [current_user, DmLogEntry, action: :new, q: params[:q]], class: "btn btn-primary" %>
+   <%= link_to "New Entry", [current_user, DmLogEntry, action: :new, q: params[:q]], class: "btn btn-primary" %>
 <% end %>
