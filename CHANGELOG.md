@@ -3,9 +3,9 @@ CHANGELOG
 
 v1.6.1
 ---------------
-- Add "Unqiue" rarity option to magic items
+- Add "Unique" rarity option to magic items
 - Add additional columns to DM Log Entries list
-- Add adventure name to magic items
+- Add source name to magic items
 
 v1.6.0
 ---------------

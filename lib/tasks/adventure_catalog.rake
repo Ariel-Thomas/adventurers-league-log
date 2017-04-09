@@ -1,6 +1,6 @@
 namespace :adventure_catalog do
   @adventure_catalog = 'lib/assets/Adventurers_League_Content_Catalog.pdf'
-  ADVENTURE_CODES = ['DDAL', 'DDEN', 'DDEP', 'DDEX', 'DDHC', 'DDIA', 'DDLE', 'CCC']
+  ADVENTURE_CODES = ['DDAO', 'DDAL', 'DDEN', 'DDEP', 'DDEX', 'DDHC', 'DDIA', 'DDLE', 'CCC']
 
   ADVENTURE_CODE_INDEX = 0
   ADVENTURE_HOURS_INDEX = 2
