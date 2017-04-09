@@ -20,7 +20,7 @@ class CampaignsController < AuthenticationController
   def show
     authorize @campaign
 
-    @current_user_is_dm   = @campaign.users.exists?(current_user.id)
+    @current_user_is_dm   = current_user && @campaign.users.exists?(current_user.id)
     @dms                  = @campaign.users
     @characters           = @campaign.characters
 
