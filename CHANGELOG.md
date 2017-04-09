@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+v1.6.2
+---------------
+- Add parsing support for Admin Only adventures
+- Fix bug that prevented public campaigns from being displayed
+
 v1.6.1
 ---------------
 - Add "Unique" rarity option to magic items

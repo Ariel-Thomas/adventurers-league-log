@@ -65,7 +65,6 @@ namespace :adventure_catalog do
 
         adv = Adventure.where("name LIKE ?", "%#{title.strip}%").first
         adv = Adventure.where("name LIKE ?", "%#{code}%").first unless adv
-        adv = Adventure.where("name LIKE ?", "%#{code.insert(4, '0')}%").first unless adv
 
         puts "Adding " + title.to_s unless adv
 
