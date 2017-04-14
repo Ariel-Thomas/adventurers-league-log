@@ -5,6 +5,7 @@ v1.6.2
 ---------------
 - Add parsing support for Admin Only adventures
 - Fix bug that prevented public campaigns from being displayed
+- Improve export format to be more human readable
 
 v1.6.1
 ---------------
