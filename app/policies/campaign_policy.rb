@@ -1,3 +1,4 @@
+
 class CampaignPolicy < ApplicationPolicy
   class Scope < Scope
     attr_reader :user, :scope
@@ -26,7 +27,7 @@ class CampaignPolicy < ApplicationPolicy
     elsif record.character_users.include?(user)
       true
     else
-      user_is_current_user
+      user_is_campaign_user
     end
   end
 
@@ -39,14 +40,20 @@ class CampaignPolicy < ApplicationPolicy
   end
 
   def edit?
-    user_is_current_user
+    user_is_campaign_user
   end
 
   def update?
-    user_is_current_user
+    user_is_campaign_user
   end
 
   def destroy?
-    user_is_current_user
+    user_is_campaign_user
+  end
+
+  protected
+
+  def user_is_campaign_user
+    record.users.include?(user)
   end
 end

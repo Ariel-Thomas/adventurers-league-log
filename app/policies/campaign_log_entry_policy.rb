@@ -21,7 +21,7 @@ class CampaignLogEntryPolicy < ApplicationPolicy
       elsif record.campaign.character_users.include?(user)
         true
       else
-        user_is_current_user
+        user_is_campaign_user
       end
     end
   end
@@ -31,22 +31,32 @@ class CampaignLogEntryPolicy < ApplicationPolicy
   end
 
   def new?
-    user_is_current_user
+    user_is_campaign_user
   end
 
   def create?
-    user_is_current_user
+    user_is_campaign_user
   end
 
   def edit?
-    user_is_current_user
+    user_is_campaign_user
   end
 
   def update?
-    user_is_current_user
+    user_is_campaign_user
   end
 
   def destroy?
-    user_is_current_user
+    user_is_campaign_user
+  end
+
+  protected
+
+  def user_is_campaign_user
+    if record.campaign
+      record.campaign.users.include?(user)
+    else
+      false
+    end
   end
 end
