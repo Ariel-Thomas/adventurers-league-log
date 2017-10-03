@@ -21,7 +21,7 @@ RSpec.feature 'Campaign Log Entries', type: :feature do
     @campaign_entry_count = CampaignLogEntry.count
     visit user_campaign_path(@user, @campaign)
 
-    click_link 'New Log Entry'
+    click_link 'New Entry'
 
     within('#campaign-log-entry-main-form') do
       fill_in 'Adventure Title', with: 'Lost Mines of Phandelver'

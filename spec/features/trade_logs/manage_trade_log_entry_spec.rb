@@ -14,7 +14,7 @@ RSpec.feature 'Trade Log Entry page', type: :feature, js: true do
     @character.character_log_entries = [@log_entry]
     visit user_character_path(@user, @character)
 
-    click_button 'New Log Entry'
+    click_button 'New Entry'
     click_link 'Trade Log'
 
     fill_in 'Date Traded', with: '' # HACK: for datepicker

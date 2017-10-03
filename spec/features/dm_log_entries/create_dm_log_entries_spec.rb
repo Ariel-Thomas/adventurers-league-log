@@ -12,8 +12,8 @@ RSpec.feature 'DM Log Entries', type: :feature do
     @dm_log_entry_count = DmLogEntry.count
     visit user_dm_log_entries_path(@user)
 
-    # click_link 'New Log Entry'
-    all('a', text: 'New Log Entry').first.click
+    # click_link 'New Entry'
+    all('a', text: 'New Entry').first.click
 
     within('#dm-log-entry-main-form') do
       fill_in 'Adventure Title', with: 'Lost Mines of Phandelver'
@@ -70,7 +70,7 @@ RSpec.feature 'DM Log Entries', type: :feature do
 
   scenario 'automatically calculate XP', js: true do
     visit user_dm_log_entries_path(@user)
-    all('a', text: 'New Log Entry').first.click
+    all('a', text: 'New Entry').first.click
 
     within('#dm-log-entry-main-form') do
       fill_in 'Adventure Title', with: 'Lost Mines of Phandelver'

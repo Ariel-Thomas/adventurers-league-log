@@ -11,7 +11,7 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
     scenario 'Add log entry with magic item' do
       visit user_character_path(@user, @character)
 
-      click_button 'New Log Entry'
+      click_button 'New Entry'
       click_link 'Game Log'
       click_link 'Add Magic Item'
 
@@ -41,7 +41,7 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
     scenario 'Add log entry with magic item that doesnt count' do
       visit user_character_path(@user, @character)
 
-      click_button 'New Log Entry'
+      click_button 'New Entry'
       click_link 'Game Log'
       click_link 'Add Magic Item'
 
@@ -130,7 +130,7 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
     scenario 'Add log entry with magic item' do
       visit user_dm_log_entries_path(@user)
 
-      click_link 'New Log Entry'
+      click_link 'New Entry'
       click_link 'Add Magic Item'
 
       within('#dm-log-entry-main-form') do
@@ -250,7 +250,7 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
     scenario 'Add log entry with magic item' do
       visit user_campaign_path(@user, @campaign)
 
-      click_link 'New Log Entry'
+      click_link 'New Entry'
       click_link 'Add Magic Item'
 
       within all('#magic-items-form .magic-item').last do
