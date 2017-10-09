@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+v1.7.0
+---------------
+- Add parsing support for Season 7 adventures
+- Fix bug that prevented multiple DMs from joining a campaign
+
 v1.6.2
 ---------------
 - Add parsing support for Admin Only adventures
