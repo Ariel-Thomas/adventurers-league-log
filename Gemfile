@@ -32,6 +32,7 @@ gem 'phil_columns'
 gem 'phil_columns-activerecord'
 
 gem 'pry-rails'
+gem 'colorize'
 
 gem 'pdf-reader'
 

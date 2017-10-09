@@ -39,6 +39,12 @@ namespace :adventure_catalog do
       rows.each_with_index do |row, row_index|
         row = row.split(/  \s*/)
 
+        if row.length == 4
+          if row[2].include? 'Lost Tales of Myth Drannor'
+            row = [" DDAL00-02*", "1-4, 5-10, 11-16, 17-20", "12", "Lost Tales of Myth Drannor"]
+          end
+        end
+
         unless row.length > 3
           if row.length == 3
             if row[2].include? 'Defiance in Phlan'
@@ -63,18 +69,37 @@ namespace :adventure_catalog do
           hours = nil if hours == entry
         end
 
-        adv = Adventure.where("name LIKE ?", "%#{title.strip}%").first
-        adv = Adventure.where("name LIKE ?", "%#{code}%").first unless adv
+        #adv = Adventure.where("name LIKE ?", "%#{title.strip}%").first
+        adv = Adventure.where("name LIKE ?", "%#{code}%").first
 
-        puts "Adding " + title.to_s unless adv
+        puts ("ADDING " + title.to_s).green unless adv
 
         position = index * 100 + row_index
 
-        # puts "#{position} #{code} #{title}"
+        puts "#{position} #{code} #{title}"
 
-        if adv
+        row_name = code + " " + title
+        row_hours = hours ? hours.to_i : nil
+        row_position = position
+
+        if (adv &&
+            (adv.name != row_name ||
+             adv.hours != row_hours ||
+             adv.position_num != row_position))
+
+          puts "UPDATING: #{row_name}".yellow
+          if (adv.name != row_name)
+            puts "NAME MISMATCH: #{adv.name} != #{row_name}".red
+          end
+          if (adv.hours != row_hours)
+            puts "HOURS MISMATCH: #{adv.hours} != #{row_hours}".red
+          end
+          if (adv.position_num != row_position)
+            puts "POSITION MISMATCH: #{adv.position_num} != #{row_position}".red
+          end
+
           adv.update!(name: code + " " + title, hours: hours ? hours.to_i : nil, position_num: position)
-        else
+        elsif !adv
           Adventure.create!(name: code + " " + title, hours: hours ? hours.to_i : nil, position_num: position)
         end
       end
