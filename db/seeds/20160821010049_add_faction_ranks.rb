@@ -29,7 +29,7 @@ class AddFactionRanks < PhilColumns::Seed
 
     zhent_ranks =  ['Fang',
                     'Wolf',
-                    'Vipe',
+                    'Viper',
                     'Ardragon',
                     'Dread Lord']
 
