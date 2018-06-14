@@ -14,6 +14,7 @@ v1.7.1
 - Set DM Log hours and player level to number inputs
 - Add Level column to Characters index
 - Allow character editing from show page
+- Fix magic item totals on character print sheets
 
 v1.7.0
 ---------------

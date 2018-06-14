@@ -15,7 +15,7 @@ RSpec.feature 'Character Log Entries', type: :feature do
     @character_entry_count = CharacterLogEntry.count
     visit user_character_path(@user, @character)
 
-    click_link 'Edit'
+    click_link 'Edit Log Entry'
     # find_link('Edit').trigger('click') # hack to fix previous line
 
     within('#character-log-entry-main-form') do

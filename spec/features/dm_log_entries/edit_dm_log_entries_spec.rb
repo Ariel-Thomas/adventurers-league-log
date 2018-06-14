@@ -75,7 +75,7 @@ RSpec.feature 'DM Log Entries', type: :feature do
         click_link 'DM Logs'
       end
 
-      click_link 'Edit'
+      click_link 'Edit Log Entry'
       # find_link('Edit').trigger('click') # hack to fix previous line
 
       within('#dm-log-entry-main-form') do

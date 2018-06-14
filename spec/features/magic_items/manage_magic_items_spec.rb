@@ -74,7 +74,7 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
         visit user_character_path(@user, @character)
 
         # click_link "Edit"
-        find_link('Edit').trigger('click') # hack to fix previous line
+        find_link('Edit Log Entry').trigger('click') # hack to fix previous line
         click_link 'Add Magic Item'
 
         within all('#magic-items-form .magic-item').last do
@@ -111,7 +111,7 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
         visit user_character_path(@user, @character)
 
         # click_link "Edit"
-        find_link('Edit').trigger('click') # hack to fix previous line
+        find_link('Edit Log Entry').trigger('click') # hack to fix previous line
         click_link 'Remove'
         click_button 'Save'
 
