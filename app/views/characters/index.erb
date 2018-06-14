@@ -9,6 +9,7 @@
             <th><%= sort_link @search, :name, "Name", {}, {} %></th>
             <th><%= sort_link @search, :race, "Race", {}, {} %></th>
             <th><%= sort_link @search, :class_and_levels, "Class", {}, {} %></th>
+            <th>Level</th>
             <th><%= sort_link @search, :faction_id, "Faction", {}, {} %></th>
             <th></th>
           </tr>
@@ -19,6 +20,7 @@
                 <td><%= link_to_character_if_public character, @user, current_user %></td>
                 <td><%= character.race %></td>
                 <td><%= character.class_and_levels %></td>
+                <td><%= character.current_level %></td>
                 <td><%= character.faction_name %></td>
                 <td>
                   <%= link_to "<span class='sr-only'>Show<span>".html_safe, user_character_path(@user, character), class: "fa fa-eye", title: "Show Character" %>

@@ -12,6 +12,7 @@ v1.7.1
 - Campaign DMs can view attached character logs
 - Allow Campaign join token in url via ?token=blah
 - Set DM Log hours and player level to number inputs
+- Add Level column to Characters index
 
 v1.7.0
 ---------------
