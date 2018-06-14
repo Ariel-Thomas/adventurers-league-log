@@ -67,11 +67,15 @@ class CampaignsController < AuthenticationController
   end
 
   def join_as_character
+    @join_token = params[:token] ? params[:token] : nil
+
     authorize @user
     @characters = @user.characters
   end
 
   def join_as_dm
+    @join_token = params[:token] ? params[:token] : nil
+
     authorize @user
   end
 

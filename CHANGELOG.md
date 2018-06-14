@@ -10,6 +10,7 @@ v1.7.1
 - Make Characters display in creation order by default
 - Add pagination to Campaign show page
 - Campaign DMs can view attached character logs
+- Allow Campaign join token in url via ?token=blah.
 
 v1.7.0
 ---------------
