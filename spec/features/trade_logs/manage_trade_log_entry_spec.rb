@@ -69,7 +69,8 @@ RSpec.feature 'Trade Log Entry page', type: :feature, js: true do
       click_button 'Save'
 
       expect(page).to have_text('Total Magic Items: 2')
-      expect(page).to have_text('Magic Items: Staff of Power, Axe of Coolness')
+      expect(page).to have_text('Magic Items: Staff of Power,
+Axe of Coolness')
 
       expect(page).to have_text('2016-01-01')
       expect(page).to have_text('-10')
@@ -84,7 +85,8 @@ RSpec.feature 'Trade Log Entry page', type: :feature, js: true do
       end
 
       expect(page).to have_text('Total Magic Items: 2')
-      expect(page).to have_text('Magic Items: Staff of Power, Rod of Wonder')
+      expect(page).to have_text('Magic Items: Staff of Power,
+Rod of Wonder')
 
       expect(page).to_not have_text(@trade_log_entry.date_played)
       expect(page).to_not have_text(@trade_log_entry.magic_items_list(@character))

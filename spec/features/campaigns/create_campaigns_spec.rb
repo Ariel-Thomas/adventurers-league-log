@@ -26,8 +26,10 @@ RSpec.feature 'Campaigns', type: :feature do
     expect(Campaign.count).to be(@campaigns + 1)
 
     expect(page).to have_text("Storm King's Thunder Table 1")
-    expect(page).to have_text('Users Can Join: true')
-    expect(page).to have_text('Publicly Visible: true')
+    expect(page).to have_text('Users Can Join:
+true')
+    expect(page).to have_text('Publicly Visible:
+true')
 
     expect(page).to have_text(Campaign.last.token)
     expect(page).to have_text(Campaign.last.dm_token)

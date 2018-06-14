@@ -23,8 +23,10 @@ RSpec.feature 'Campaigns', type: :feature do
     click_button 'Save'
 
     expect(page).to have_text("Storm King's Thunder Table")
-    expect(page).to have_text('Users Can Join: true')
-    expect(page).to have_text('Publicly Visible: true')
+    expect(page).to have_text('Users Can Join:
+true')
+    expect(page).to have_text('Publicly Visible:
+true')
     expect(@character.campaigns.count).to be(@campaigns + 1)
   end
 
@@ -40,8 +42,10 @@ RSpec.feature 'Campaigns', type: :feature do
     click_button 'Save'
 
     expect(page).to have_text("Storm King's Thunder Table")
-    expect(page).to have_text('Users Can Join: true')
-    expect(page).to have_text('Publicly Visible: true')
+    expect(page).to have_text('Users Can Join:
+true')
+    expect(page).to have_text('Publicly Visible:
+true')
     expect(@user.campaigns.count).to be(@campaigns + 1)
   end
 
