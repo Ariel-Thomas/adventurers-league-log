@@ -21,11 +21,11 @@
       </div>
       <div class="form-group col-md-2">
         <%= f.label :session_length_hours, 'Length (Hours)' %>
-        <%= f.text_field :session_length_hours, class: 'form-control' %>
+        <%= f.number_field :session_length_hours, class: 'form-control' %>
       </div>
       <div class="form-group col-md-2">
         <%= f.label :player_level, 'Player Level' %>
-        <%= f.text_field :player_level, class: 'form-control' %>
+        <%= f.number_field :player_level, class: 'form-control', :step => 'any' %>
       </div>
       <div class="form-group col-md-4">
         <%= f.label :location_played, 'Location DMed' %>
