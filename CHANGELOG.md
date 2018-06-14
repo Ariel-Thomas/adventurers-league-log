@@ -4,9 +4,10 @@ CHANGELOG
 v1.7.1
 ---------------
 - Update dependencies
-- Fix character sheet button showing up when field blank.
-- Fix printing to properly show campaign log entries.
+- Fix character sheet button showing up when field blank
+- Fix printing to properly show campaign log entries
 - Allow for fractional gp in trade logs
+- Make Characters display in creation order by default
 
 v1.7.0
 ---------------
