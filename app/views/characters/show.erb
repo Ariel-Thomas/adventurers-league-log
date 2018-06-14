@@ -2,7 +2,7 @@
   <h2 class="col-md-offset-2 col-md-8">
     <%= @character.name %>
 
-    <% if @character.character_sheet_url %>
+    <% if @character.character_sheet_url.present? %>
       <span class='pull-right'>
         <%= link_to 'Character Sheet', @character.character_sheet_url, class: 'btn btn-default', target: '_blank', rel: 'noopener noreferrer' %>
       </span>
