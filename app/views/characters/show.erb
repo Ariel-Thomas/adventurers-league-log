@@ -2,11 +2,14 @@
   <h2 class="col-md-offset-2 col-md-8">
     <%= @character.name %>
 
-    <% if @character.character_sheet_url.present? %>
-      <span class='pull-right'>
-        <%= link_to 'Character Sheet', @character.character_sheet_url, class: 'btn btn-default', target: '_blank', rel: 'noopener noreferrer' %>
-      </span>
-    <% end %>
+    <span class='pull-right'>
+      <% if @user == current_user %>
+        <%= link_to "Edit".html_safe, edit_user_character_path(current_user, @character), class: "btn btn-default btn-sm", title: "Edit Character" %>
+      <% end %>
+      <% if @character.character_sheet_url.present? %>
+        <%= link_to 'Character Sheet', @character.character_sheet_url, class: 'btn btn-default btn-sm', target: '_blank', rel: 'noopener noreferrer' %>
+      <% end %>
+    </span>
   </h2>
 </div>
 
