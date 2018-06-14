@@ -1,10 +1,6 @@
 class CharacterPolicy < ApplicationPolicy
   def show?
-    if publicly_visible?
-      true
-    else
-      user_is_current_user
-    end
+    publicly_visible? || user_is_current_user || user_is_characters_dm
   end
 
   def print?
@@ -37,5 +33,10 @@ class CharacterPolicy < ApplicationPolicy
     else
       false
     end
+  end
+
+  def user_is_characters_dm
+    Campaign.joins(dm_campaign_assignments: :user, campaign_participations: :character)
+      .where(dm_campaign_assignments: {user: user}, campaign_participations: {character: record}).exists?
   end
 end

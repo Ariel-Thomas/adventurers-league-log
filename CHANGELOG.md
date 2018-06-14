@@ -9,6 +9,7 @@ v1.7.1
 - Allow for fractional gp in trade logs
 - Make Characters display in creation order by default
 - Add pagination to Campaign show page
+- Campaign DMs can view attached character logs
 
 v1.7.0
 ---------------
