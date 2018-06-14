@@ -25,7 +25,7 @@
       </div>
       <div class="form-group col-md-2">
         <%= f.label :player_level, 'Player Level' %>
-        <%= f.number_field :player_level, class: 'form-control', :step => 'any' %>
+        <%= f.number_field :player_level, class: 'form-control' %>
       </div>
       <div class="form-group col-md-4">
         <%= f.label :location_played, 'Location DMed' %>
@@ -34,7 +34,11 @@
     </div>
 
     <div class="row">
-      <div class="form-group col-md-2">
+      <div class="form-group col-md-1">
+      </div>
+      <div class="form-group col-md-1">
+        <%= label_tag :multiplier, 'Multiplier' %>
+        <%= number_field_tag :multiplier, 1, class: 'form-control' %>
       </div>
       <div class="form-group col-md-2">
         <%= f.label :xp_gained, 'XP Gained' %>
@@ -133,10 +137,11 @@
 
       var hours = $('#dm_log_entry_session_length_hours').val();
       var level = $('#dm_log_entry_player_level').val();
+      var multiplier = $('#multiplier').val();
 
-      var xp_reward = xp_lookup_table[level] * hours;
-      var gp_reward = xp_reward / 2;
-      var dt_reward = parseInt(hours / 2) * 5;
+      var xp_reward = xp_lookup_table[level] * hours * multiplier;
+      var gp_reward = xp_reward / 2 * multiplier;
+      var dt_reward = parseInt(hours / 2) * 5 * multiplier;
       var rn_reward = 0;
 
       $('#dm_log_entry_xp_gained').val(xp_reward);
@@ -155,6 +160,10 @@
       if($('#dm_log_entry_session_length_hours').val() != ''){
         calculateRewards();
       }
+    });
+
+    $('#multiplier').change(function(){
+        calculateRewards();
     });
   });
 </script>

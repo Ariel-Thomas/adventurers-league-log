@@ -15,6 +15,7 @@ v1.7.1
 - Add Level column to Characters index
 - Allow character editing from show page
 - Fix magic item totals on character print sheets
+- Add DM Reward multplier to DM Log form
 
 v1.7.0
 ---------------
