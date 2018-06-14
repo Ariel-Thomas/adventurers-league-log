@@ -13,6 +13,7 @@ v1.7.1
 - Allow Campaign join token in url via ?token=blah
 - Set DM Log hours and player level to number inputs
 - Add Level column to Characters index
+- Allow character editing from show page
 
 v1.7.0
 ---------------

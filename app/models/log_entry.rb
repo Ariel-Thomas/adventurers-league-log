@@ -41,7 +41,7 @@ class LogEntry < ActiveRecord::Base
   end
 
   def num_magic_items_gained
-    magic_items.count
+    magic_items.where(not_included_in_count: false).count
   end
 
   def magic_items_list(char)
