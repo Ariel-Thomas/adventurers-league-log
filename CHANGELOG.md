@@ -8,6 +8,7 @@ v1.7.1
 - Fix printing to properly show campaign log entries
 - Allow for fractional gp in trade logs
 - Make Characters display in creation order by default
+- Add pagination to Campaign show page
 
 v1.7.0
 ---------------
