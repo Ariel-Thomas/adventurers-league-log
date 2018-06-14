@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+v1.7.1
+---------------
+- Update dependencies
+- Fix character sheet button showing up when field blank.
+
 v1.7.0
 ---------------
 - Add parsing support for Season 7 adventures

@@ -25,7 +25,7 @@
 <% @log_entries.each do |log_entry| %>
   <div class="row print-log-entry-box page">
     <div class="row">
-      <% if log_entry.is_character_log_entry? || log_entry.is_dm_log_entry? %>
+      <% if log_entry.is_character_log_entry? || log_entry.is_dm_log_entry? || log_entry.is_campaign_log_entry? %>
         <div class="col-xs-4">
           <%= display_attribute_for_print "Adventure Name",  log_entry.adventure_title %>
         </div>
@@ -40,7 +40,7 @@
       <div class="col-xs-2">
         <%= display_attribute_for_print "Date",  (log_entry.date_played ? log_entry.date_played.strftime("%F %H:%M") : '') %>
       </div>
-      <% if log_entry.is_character_log_entry? %>
+      <% if log_entry.is_character_log_entry? || log_entry.is_campaign_log_entry? %>
         <div class="col-xs-4">
           <%= display_attribute_for_print "DM Name and DCI #", make_dm_and_dci_string(log_entry.dm_name, log_entry.dm_dci_number) %>
         </div>
