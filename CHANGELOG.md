@@ -5,6 +5,7 @@ v1.7.2
 ---------------
 - Add DM Log Entry search functionalities
 - Make Location a dropdown in log entry forms
+- Optimize database for more vroom-vroom
 
 v1.7.1
 ---------------

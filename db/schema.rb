@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180615124050) do
+ActiveRecord::Schema.define(version: 20180615173242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 20180615124050) do
     t.string  "character_sheet_url"
   end
 
+  add_index "characters", ["user_id"], name: "index_characters_on_user_id", using: :btree
+
   create_table "dm_campaign_assignments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "campaign_id"
@@ -82,6 +84,9 @@ ActiveRecord::Schema.define(version: 20180615124050) do
     t.integer "log_entry_id"
   end
 
+  add_index "log_assignments", ["character_id", "log_entry_id"], name: "index_log_assignments_on_character_id_and_log_entry_id", unique: true, using: :btree
+  add_index "log_assignments", ["log_entry_id", "character_id"], name: "index_log_assignments_on_log_entry_id_and_character_id", unique: true, using: :btree
+
   create_table "log_entries", force: :cascade do |t|
     t.datetime "date_played"
     t.string   "adventure_title"
@@ -96,13 +101,16 @@ ActiveRecord::Schema.define(version: 20180615124050) do
     t.string   "notes",                                         default: "", null: false
     t.integer  "num_secret_missions"
     t.string   "type"
+    t.integer  "user_id"
     t.integer  "player_dm_id"
     t.datetime "date_dmed"
     t.integer  "campaign_id"
     t.integer  "session_length_hours"
     t.integer  "player_level"
-    t.integer  "user_id"
   end
+
+  add_index "log_entries", ["campaign_id"], name: "index_log_entries_on_campaign_id", using: :btree
+  add_index "log_entries", ["user_id"], name: "index_log_entries_on_user_id", using: :btree
 
   create_table "magic_items", force: :cascade do |t|
     t.string  "name"
@@ -116,6 +124,8 @@ ActiveRecord::Schema.define(version: 20180615124050) do
     t.integer "character_id"
     t.boolean "not_included_in_count", default: false, null: false
   end
+
+  add_index "magic_items", ["log_entry_id", "character_id"], name: "index_magic_items_on_log_entry_id_and_character_id", using: :btree
 
   create_table "player_dms", force: :cascade do |t|
     t.string  "name"
