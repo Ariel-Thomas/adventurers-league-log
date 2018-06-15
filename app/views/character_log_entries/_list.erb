@@ -50,33 +50,33 @@
             <td><%= log_entry.magic_items_list(@character) %></td>
             <td>
               <% if log_entry.type == "CharacterLogEntry" %>
-                <%= link_to "<span class='sr-only'>Show<span>".html_safe, user_character_character_log_entry_path(@character.user, @character, log_entry), class: "fa fa-eye", title: "Show Log Entry" %>
+                <%= link_to "<span class='sr-only'>Show</span>".html_safe, user_character_character_log_entry_path(@character.user, @character, log_entry), class: "fa fa-eye", title: "Show Log Entry" %>
                 <% if @character.user == current_user %>
-                  <%= link_to "<span class='sr-only'>Edit<span>".html_safe, edit_user_character_character_log_entry_path(current_user, @character, log_entry, q: params[:q]), class: "fa fa-pencil-square-o", title: "Edit Log Entry" %>
-                  <%= link_to "<span class='sr-only'>Delete<span>".html_safe, user_character_character_log_entry_path(current_user, @character, log_entry, q: params[:q]), method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o", title: "Delete Log Entry" %>
+                  <%= link_to "<span class='sr-only'>Edit</span>".html_safe, edit_user_character_character_log_entry_path(current_user, @character, log_entry, q: params[:q]), class: "fa fa-pencil-square-o", title: "Edit Log Entry" %>
+                  <%= link_to "<span class='sr-only'>Delete</span>".html_safe, user_character_character_log_entry_path(current_user, @character, log_entry, q: params[:q]), method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o", title: "Delete Log Entry" %>
                 <% end %>
               <% end %>
 
               <% if log_entry.type == "TradeLogEntry" %>
-                <%= link_to "<span class='sr-only'>Show<span>".html_safe, user_character_trade_log_entry_path(@character.user, @character, log_entry), class: "fa fa-eye", title: "Show Log Entry" %>
+                <%= link_to "<span class='sr-only'>Show</span>".html_safe, user_character_trade_log_entry_path(@character.user, @character, log_entry), class: "fa fa-eye", title: "Show Log Entry" %>
                 <% if @character.user == current_user %>
-                  <%= link_to "<span class='sr-only'>Edit Log Entry<span>".html_safe, edit_user_character_trade_log_entry_path(current_user, @character, log_entry, q: params[:q]), class: "fa fa-pencil-square-o", title: "Edit Log Entry" %>
-                  <%= link_to "<span class='sr-only'>Delete<span>".html_safe, user_character_trade_log_entry_path(current_user, @character, log_entry, q: params[:q]), method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o", title: "Delete Log Entry" %>
+                  <%= link_to "<span class='sr-only'>Edit Log Entry</span>".html_safe, edit_user_character_trade_log_entry_path(current_user, @character, log_entry, q: params[:q]), class: "fa fa-pencil-square-o", title: "Edit Log Entry" %>
+                  <%= link_to "<span class='sr-only'>Delete</span>".html_safe, user_character_trade_log_entry_path(current_user, @character, log_entry, q: params[:q]), method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o", title: "Delete Log Entry" %>
                 <% end %>
                 <span class='label label-success pull-right' style="width:60px;">Trade Log</span>
               <% end %>
 
               <% if log_entry.type == "DmLogEntry" %>
-                <%= link_to "<span class='sr-only'>Show<span>".html_safe, [@character.user, log_entry], class: "fa fa-eye", title: "Show Log Entry" %>
+                <%= link_to "<span class='sr-only'>Show</span>".html_safe, [@character.user, log_entry], class: "fa fa-eye", title: "Show Log Entry" %>
                 <% if (@user == current_user) %>
-                  <%= link_to "<span class='sr-only'>Edit<span>".html_safe, [current_user, log_entry, action: :edit, q: params[:q]], class: "fa fa-pencil-square-o", title: "Edit Log Entry" %>
-                  <%= link_to "<span class='sr-only'>Delete<span>".html_safe, [current_user, log_entry, q: params[:q]], method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o", title: "Delete Log Entry" %>
+                  <%= link_to "<span class='sr-only'>Edit</span>".html_safe, [current_user, log_entry, action: :edit, q: params[:q]], class: "fa fa-pencil-square-o", title: "Edit Log Entry" %>
+                  <%= link_to "<span class='sr-only'>Delete</span>".html_safe, [current_user, log_entry, q: params[:q]], method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o", title: "Delete Log Entry" %>
                 <% end %>
                 <span class='label label-danger pull-right' style="width:60px;">DM Log</span>
               <% end %>
 
               <% if log_entry.type == "CampaignLogEntry" %>
-                <%= link_to "<span class='sr-only'>Show<span>".html_safe, user_character_campaign_log_entry_path(@character.user, @character, log_entry), class: "fa fa-eye", title: "Show Log Entry" %>
+                <%= link_to "<span class='sr-only'>Show</span>".html_safe, user_character_campaign_log_entry_path(@character.user, @character, log_entry), class: "fa fa-eye", title: "Show Log Entry" %>
               <% end %>
 
             </td>

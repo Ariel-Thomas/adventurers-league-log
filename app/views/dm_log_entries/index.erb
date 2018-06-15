@@ -1,30 +1,63 @@
 <div class="row">
-  <h1 class='col-xs-12'>DM Log Entries</h1>
+  <h1 class='col-xs-11'>DM Log Entries</h1>
+
+  <div class='col-md-1 list-buttons' style="margin-top: 20px;">
+    <% if params[:show_search] %>
+      <%= link_to "Hide Search", [@user, :dm_log_entries, q: params[:q]], class: 'btn btn-default btn-sm' %>
+    <% else %>
+      <%= link_to "Show Search", [@user, :dm_log_entries, show_search: true, q: params[:q]], class: 'btn btn-default btn-sm' %>
+    <% end %>
+  </div>
 </div>
+
+<% if params[:show_search] %>
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for @user, url: user_dm_log_entries_path(@user), method: :get do |f| %>
+        <%= label_tag :advanced_search, "Advanced Search" %>
+        <div class="input-group">
+          <%= hidden_field_tag :show_search, true %>
+          <%= text_field_tag :q, params[:q],  class: 'form-control' %>
+          <span class="input-group-btn">
+            <%= button_tag(name: nil, class: 'btn btn-default') do %>
+              <span class='fa fa-search'></span>
+              <span class='sr-only'>Search DM Log Entries</span>
+            <% end %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <%= render partial: "dm_log_entries/search_form" %>
+  </div>
+<% end %>
 
 <div class="row">
   <div class="col-md-3">
-    <%= display_attribute_small "Total XP",  @user.total_xp %>
-    <%= display_attribute_small "Unused XP",  @user.total_unassigned_xp %>
-    <%= display_attribute_small "Total Hours",  @user.total_hours %>
+    <%= display_attribute_small "Total XP",  @total_xp %>
+    <%= display_attribute_small "Unused XP",  @unused_xp %>
+    <%= display_attribute_small "Total Hours",  @total_hours %>
     <br>
   </div>
 
   <div class="col-md-3">
-    <%= display_attribute_small "Total GP",  @user.total_gp %>
-    <%= display_attribute_small "Unused GP",  @user.total_unassigned_gp %>
+    <%= display_attribute_small "Total GP",  @total_gp %>
+    <%= display_attribute_small "Unused GP",  @unused_gp %>
     <br>
   </div>
 
   <div class="col-md-3">
-    <%= display_attribute_small "Total Downtime",  @user.total_downtime %>
-    <%= display_attribute_small "Unused Downtime",  @user.total_unassigned_downtime %>
+    <%= display_attribute_small "Total Downtime",  @total_downtime %>
+    <%= display_attribute_small "Unused Downtime",  @unused_downtime %>
     <br>
   </div>
 
   <div class="col-md-3">
-    <%= display_attribute_small "Total Renown",  @user.total_renown %>
-    <%= display_attribute_small "Unused Renown",  @user.total_unassigned_renown %>
+    <%= display_attribute_small "Total Renown",  @total_renown %>
+    <%= display_attribute_small "Unused Renown",  @unused_renown %>
   </div>
 </div>
 
@@ -56,6 +89,7 @@
       <th><%= sort_link @search, :downtime_gained, "Downtime", {}, {} %></th>
       <th><%= sort_link @search, :renown_gained, "Renown", {}, {} %></th>
       <th><%= sort_link @search, :num_secret_missions, "Missions", {}, {} %></th>
+      <th><%= sort_link @search, :session_length_hours, "Hours", {}, {} %></th>
       <th><%= sort_link @search, :log_assignments_character_id, "Character Rewarded", {}, {} %></th>
       <th></th>
     </tr>
@@ -71,13 +105,14 @@
           <td><%= log_entry.downtime_gained %></td>
           <td><%= log_entry.renown_gained %></td>
           <td><%= log_entry.num_secret_missions %></td>
+          <td><%= log_entry.session_length_hours %></td>
           <td><%= link_to_character_if_public log_entry.character, @user, current_user %></td>
 
           <td>
-            <%= link_to "<span class='sr-only'>Show<span>".html_safe, [@user, log_entry], class: "fa fa-eye", title: "Show Log Entry" %>
+            <%= link_to "<span class='sr-only'>Show</span>".html_safe, [@user, log_entry], class: "fa fa-eye", title: "Show Log Entry" %>
             <% if (@user == current_user) %>
-              <%= link_to "<span class='sr-only'>Edit<span>".html_safe, [@user, log_entry, action: :edit, q: params[:q]], class: "fa fa-pencil-square-o", title: "Edit Log Entry" %>
-              <%= link_to "<span class='sr-only'>Delete<span>".html_safe, [@user, log_entry, q: params[:q]], method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o", title: "Delete Log Entry" %>
+              <%= link_to "<span class='sr-only'>Edit</span>".html_safe, [@user, log_entry, action: :edit, q: params[:q]], class: "fa fa-pencil-square-o", title: "Edit Log Entry" %>
+              <%= link_to "<span class='sr-only'>Delete</span>".html_safe, [@user, log_entry, q: params[:q]], method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o", title: "Delete Log Entry" %>
             <% end %>
           </td>
         </tr>

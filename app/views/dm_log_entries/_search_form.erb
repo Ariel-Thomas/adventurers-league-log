@@ -1,0 +1,87 @@
+<%= search_form_for [@user, @search] do |f| %>
+  <%= hidden_field_tag :show_search, true %>
+
+  <div class="form-group col-md-3">
+    <%= f.label :date_dmed_gteq, 'Date GMed After' %>
+    <%= f.search_field :date_dmed_gteq,  class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-3">
+    <%= f.label :date_dmed_lteq, 'Date GMed Before' %>
+    <%= f.search_field :date_dmed_lteq,  class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-3">
+    <%= f.label :adventure_title_contains, "Adventure Title Contains" %>
+    <%= f.search_field :adventure_title_cont,  class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-3">
+    <%= f.label :log_assignments_character_id_eq, 'Character Rewarded' %>
+    <%= f.select :log_assignments_character_id_eq, @characters.map{|character| [character.name, character.id]},  { include_blank: true }, { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= f.label :xp_gained_gteq, 'XP >=' %>
+    <%= f.search_field :xp_gained_gteq,  class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= f.label :xp_gained_lteq, 'XP <=' %>
+    <%= f.search_field :xp_gained_lteq,  class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= f.label :gp_gained_gteq, 'GP >=' %>
+    <%= f.search_field :gp_gained_gteq,  class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= f.label :gp_gained_lteq, 'GP <='%>
+    <%= f.search_field :gp_gained_lteq,  class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= f.label :downtime_gained_gteq, 'Downtime >=' %>
+    <%= f.search_field :downtime_gained_gteq,  class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= f.label :downtime_gained_lteq, 'Downtime <='%>
+    <%= f.search_field :downtime_gained_lteq,  class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= f.label :renown_gained_gteq, 'Renown >=' %>
+    <%= f.search_field :renown_gained_gteq,  class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= f.label :renown_gained_lteq, 'Renown <=' %>
+    <%= f.search_field :renown_gained_lteq,  class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= f.label :num_secret_missions_gteq, 'Missions >=' %>
+    <%= f.search_field :num_secret_missions_gteq,  class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= f.label :num_secret_missions_lteq, 'Missions <=' %>
+    <%= f.search_field :num_secret_missions_lteq,  class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= f.label :session_length_hours_gteq, 'Hours >=' %>
+    <%= f.search_field :session_length_hours_gteq,  class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= f.label :session_length_hours_lteq, 'Hours <=' %>
+    <%= f.search_field :session_length_hours_lteq,  class: 'form-control' %>
+  </div>
+
+  <div class="col-md-12">
+    <%= f.submit "Search", class: 'btn btn-default pull-right' %>
+  </div>
+<% end %>

@@ -7,7 +7,7 @@ class DmLogEntriesController < LogEntriesController
 
   before_filter :load_user
   before_filter :load_log_entry, only: [:show, :edit, :update, :destroy]
-  before_filter :load_characters, only: [:new, :create, :edit, :update]
+  before_filter :load_characters, only: [:index, :new, :create, :edit, :update]
   before_filter :load_hourly_xp_lookup_table, only: [:new, :create, :edit, :update]
   before_filter :load_character,  only: [:create, :update]
   before_filter :build_log_entry, only: [:create]
@@ -26,6 +26,8 @@ class DmLogEntriesController < LogEntriesController
 
     @search      = @user.dm_log_entries.search(params[:q])
     @log_entries = @search.result(distinct: false).page params[:page]
+
+    set_index_stats
   end
 
   def show
@@ -142,5 +144,17 @@ class DmLogEntriesController < LogEntriesController
                   :location_played, :dm_name, :dm_dci_number, :notes,
                   :date_played, :character_id,
                   magic_items_attributes: magic_item_params)
+  end
+
+  def set_index_stats
+    @total_xp = @log_entries.pluck(:xp_gained).compact.inject(:+) || 0
+    @unused_xp = @log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:xp_gained).compact.inject(:+) || 0
+    @total_hours = @log_entries.pluck(:session_length_hours).compact.inject(:+) || 0
+    @total_gp = @log_entries.pluck(:gp_gained).compact.inject(:+) || 0
+    @unused_gp = @log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:gp_gained).compact.inject(:+) || 0
+    @total_downtime = @log_entries.pluck(:downtime_gained).compact.inject(:+) || 0
+    @unused_downtime = @log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:downtime_gained).compact.inject(:+) || 0
+    @total_renown =  @log_entries.pluck(:renown_gained).compact.inject(:+) || 0
+    @unused_renown = @log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:renown_gained).compact.inject(:+) || 0
   end
 end

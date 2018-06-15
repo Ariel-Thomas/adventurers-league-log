@@ -24,6 +24,12 @@ class LogEntry < ActiveRecord::Base
     temp if temp
   end
 
+  ransack_alias :xp, :xp_gained
+  ransack_alias :gp, :gp_gained
+  ransack_alias :downtime, :downtime_gained
+  ransack_alias :renown, :renown_gained
+  ransack_alias :missions, :num_secret_missions
+
   def is_character_log_entry?
     false
   end

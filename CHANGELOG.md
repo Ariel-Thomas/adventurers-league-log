@@ -1,6 +1,10 @@
 CHANGELOG
 ======
 
+v1.7.2
+---------------
+- Add DM Log Entry search functionalities
+
 v1.7.1
 ---------------
 - Update dependencies

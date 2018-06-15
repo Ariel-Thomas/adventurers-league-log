@@ -6,6 +6,8 @@ class DmLogEntry < LogEntry
     character.id if character
   end
 
+  ransack_alias :character_id, :log_assignments_character_id
+  ransack_alias :hours, :session_length_hours
 
   def is_dm_log_entry?
     true

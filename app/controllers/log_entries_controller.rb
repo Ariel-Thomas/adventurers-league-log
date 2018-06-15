@@ -3,12 +3,16 @@ class LogEntriesController < AuthenticationController
   before_filter :convert_query_string_to_hash, only: [:index]
 
   def convert_query_string_to_hash
+    params.delete(:q) if params[:q].blank?
+
     if params[:q]
       if params[:q].class == String
         params[:q] = JSON.parse(params[:q]
                          .gsub('=>', ': '))
                          .symbolize_keys
       end
+
+      params[:q] = params[:q].delete_if { |k, v| v.empty? }
     else
       params[:q] = { s: 'date_dmed desc' }
     end
