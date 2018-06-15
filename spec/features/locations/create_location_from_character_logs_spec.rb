@@ -10,7 +10,7 @@ RSpec.feature 'Character Log Entries', type: :feature do
 
   context 'When a user creates a Character Log Entry' do
     before(:each) do
-      @player_dms_count = PlayerDm.count
+      @locations_count = Location.count
 
       visit user_character_path(@user, @character)
       all('a', text: 'Game Log').first.click
@@ -36,13 +36,12 @@ RSpec.feature 'Character Log Entries', type: :feature do
       click_button 'Save'
     end
 
-    it 'should create a player dm' do
-      expect(PlayerDm.count).to have_text(@player_dms_count + 1)
+    it 'should create a location' do
+      expect(Location.count).to have_text(@locations_count + 1)
 
-      visit user_player_dms_path(@user)
+      visit user_locations_path(@user)
 
-      expect(page).to have_text('Some DM')
-      expect(page).to have_text('66666666')
+      expect(page).to have_text('Origins')
     end
   end
 end

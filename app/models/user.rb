@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :campaign_participations, through: :characters
   has_many :character_campaigns, through: :characters, source: :campaigns
   has_many :player_dms
+  has_many :locations
 
   has_many :dm_log_entries
 

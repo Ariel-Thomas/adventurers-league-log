@@ -3,6 +3,7 @@ AdventurersLeagueLog::Application.routes.draw do
 
   resources :users do
     resources :player_dms
+    resources :locations
 
     resources :characters do
       resources :character_log_entries

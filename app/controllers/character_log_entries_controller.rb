@@ -7,6 +7,7 @@ class CharacterLogEntriesController < LogEntriesController
   before_filter :load_character
   before_filter :build_log_entry, only: [:create]
   before_filter :load_log_entry, only: [:show, :edit, :update, :destroy]
+  before_filter :load_locations, only: [:new, :create, :edit, :update]
   before_filter :load_player_dms, only: [:new, :create, :edit, :update]
 
   before_filter do
@@ -33,6 +34,7 @@ class CharacterLogEntriesController < LogEntriesController
 
   def create
     authorize @log_entry
+    manage_locations
     manage_player_dms
 
     if @log_entry.save
@@ -53,6 +55,7 @@ class CharacterLogEntriesController < LogEntriesController
 
   def update
     authorize @log_entry
+    manage_locations
     manage_player_dms
 
     if @log_entry.update_attributes(log_entries_params)
@@ -98,10 +101,9 @@ class CharacterLogEntriesController < LogEntriesController
   end
 
   def manage_player_dms
-    if params[:character_log_entry][:player_dm_id] &&
-       params[:character_log_entry][:player_dm_id] != ''
+    if params[:character_log_entry][:player_dm_id].present?
       load_existing_player_dm
-    elsif params[:character_log_entry][:dm_dci_number]
+    elsif params[:character_log_entry][:dm_dci_number].present?
       create_player_dm
     end
   end
@@ -117,14 +119,11 @@ class CharacterLogEntriesController < LogEntriesController
   def create_player_dm
     dm_name = params[:character_log_entry][:dm_name]
     dm_dci_number = params[:character_log_entry][:dm_dci_number]
-    @player_dm = @user.player_dms.find_by(dci: dm_dci_number)
 
-    unless @player_dm
-      @player_dm = @user.player_dms.create!(
-        name: dm_name,
-        dci: dm_dci_number
-      )
-    end
+    @player_dm = @user.player_dms.find_or_create_by!(
+      name: dm_name,
+      dci: dm_dci_number
+    )
 
     params[:character_log_entry][:player_dm_id] = @player_dm.id
   end

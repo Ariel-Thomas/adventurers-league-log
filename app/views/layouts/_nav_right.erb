@@ -29,6 +29,7 @@
       <li><%= link_to "Change My Account", edit_user_registration_path %></li>
       <li><%= link_to "Change My Details", edit_user_path(current_user) %></li>
       <li><%= link_to "Manage DMs", user_player_dms_path(current_user) %></li>
+      <li><%= link_to "Manage Locations", user_locations_path(current_user) %></li>
       <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
     </ul>
   </li>

@@ -27,7 +27,7 @@ RSpec.feature 'Character Log Entries', type: :feature do
       fill_in 'Downtime +/-',       with: '111'
       fill_in 'Renown',             with: '44'
       fill_in 'Mission',            with: '55'
-      fill_in 'Location Played',    with: 'Origins'
+      fill_in 'Location',           with: 'Origins'
       fill_in 'Notes',              with: 'Some Words'
 
       fill_in 'DM Name',            with: 'Some DM'

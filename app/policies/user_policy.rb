@@ -27,6 +27,10 @@ class UserPolicy < ApplicationPolicy
     user_is_current_user?
   end
 
+  def manage_locations?
+    user_is_current_user?
+  end
+
   def user_is_current_user?
     record == user
   end

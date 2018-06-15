@@ -44,8 +44,7 @@
 
         <div class="row">
           <div class="form-group col-md-6">
-            <%= f.label :location_played, 'Location Played' %>
-            <%= f.text_field :location_played, class: 'form-control' %>
+            <%= render partial: 'locations/nested_form', locals: { f: f } %>
           </div>
         </div>
 

@@ -34,7 +34,7 @@ RSpec.feature 'Campaign Log Entries', type: :feature do
       fill_in 'Downtime&nbsp+/-',   with: '111'
       fill_in 'Renown',             with: '44'
       fill_in 'Mission',            with: '55'
-      fill_in 'Location Played',    with: 'Origins'
+      fill_in 'Location',           with: 'Origins'
       fill_in 'Notes',              with: 'Some Words'
     end
 

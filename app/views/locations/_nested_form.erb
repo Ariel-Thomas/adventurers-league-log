@@ -1,0 +1,40 @@
+<%= f.label :location_played, 'Location' %>
+
+<label class='pull-right css3-checkboxes'>
+  <%= check_box_tag :use_location_override, '1', false %>
+  <span class="link-like">Manual Entry</span>
+</label>
+
+<%= f.select :location_played, @locations.map {|p| [ p.name, p.name ] }, { include_blank: true }, { class: 'form-control ' } %>
+
+<div class="form-group" style="margin-bottom:0px;">
+  <%= f.text_field :location_played, class: 'form-control', placeholder: 'Location Name' %>
+</div>
+
+
+
+<script>
+var log_entry_type = "<%= @log_entry_type %>"
+  $('#use_location_override').change( function(){
+    var formGroupParent = $(this).parent().parent().parent();
+    if($(this).is(':checked')) {
+      $input_el = formGroupParent.find('input#' + log_entry_type + '_location_played')
+      $input_el.parent('.form-group').removeClass('hide');
+      $input_el.prop('disabled', false);
+
+      $select_el = formGroupParent.find('select#' + log_entry_type + '_location_played')
+      $select_el.addClass('hide');
+      $select_el.prop('disabled', true);
+    } else {
+      $input_el = formGroupParent.find('input#' + log_entry_type + '_location_played')
+      $input_el.parent('.form-group').addClass('hide');
+      $input_el.prop('disabled', true);
+
+      $select_el = formGroupParent.find('select#' + log_entry_type + '_location_played')
+      $select_el.removeClass('hide');
+      $select_el.prop('disabled', false);
+    }
+  });
+
+  $('#use_location_override').change();
+</script>

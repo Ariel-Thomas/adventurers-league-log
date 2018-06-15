@@ -8,19 +8,23 @@ RSpec.feature 'Character Log Entries', type: :feature do
     @adventure = FactoryGirl.create(:adventure, name: 'Lost Mines of Phandelver')
   end
 
-  context 'When a user creates a Character Log Entry' do
+  context 'When a user creates a DM Log Entry' do
     before(:each) do
-      @player_dms_count = PlayerDm.count
+      @locations_count = Location.count
+      visit user_dm_log_entries_path(@user)
 
-      visit user_character_path(@user, @character)
-      all('a', text: 'Game Log').first.click
+      # click_link 'New Entry'
+      all('a', text: 'New Entry').first.click
 
-      within('#character-log-entry-main-form') do
+      within('#dm-log-entry-main-form') do
         fill_in 'Adventure Title', with: 'Lost Mines of Phandelver'
 
         fill_in 'Session',            with: '22'
-        fill_in 'Date Played',        with: '' #Hack for calendar popout
-        fill_in 'Date Played',        with: '2016-08-01 19:00'
+        fill_in 'Date DMed',          with: '' #Hack for calendar popout
+        fill_in 'Date DMed',          with: '2016-08-01 19:00'
+
+        fill_in 'Length (Hours)',     with: '8'
+        fill_in 'Player Level',       with: '7'
         fill_in 'XP Gained',          with: '1001'
         fill_in 'GP +/-',             with: '333'
         fill_in 'Downtime +/-',       with: '111'
@@ -29,20 +33,20 @@ RSpec.feature 'Character Log Entries', type: :feature do
         fill_in 'Location',           with: 'Origins'
         fill_in 'Notes',              with: 'Some Words'
 
-        fill_in 'DM Name',            with: 'Some DM'
-        fill_in 'DM DCI',             with: '66666666'
+        fill_in 'Date Assigned',      with: '' #Hack for calendar popout
+        fill_in 'Date Assigned',      with: '2017-08-01 12:00'
+        select  'Test Character',     from: 'Character to Apply Rewards'
       end
 
       click_button 'Save'
     end
 
-    it 'should create a player dm' do
-      expect(PlayerDm.count).to have_text(@player_dms_count + 1)
+    it 'should create a location' do
+      expect(Location.count).to have_text(@locations_count + 1)
 
-      visit user_player_dms_path(@user)
+      visit user_locations_path(@user)
 
-      expect(page).to have_text('Some DM')
-      expect(page).to have_text('66666666')
+      expect(page).to have_text('Origins')
     end
   end
 end

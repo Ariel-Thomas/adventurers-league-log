@@ -10,6 +10,7 @@ class DmLogEntriesController < LogEntriesController
   before_filter :load_characters, only: [:index, :new, :create, :edit, :update]
   before_filter :load_hourly_xp_lookup_table, only: [:new, :create, :edit, :update]
   before_filter :load_character,  only: [:create, :update]
+  before_filter :load_locations, only: [:new, :create, :edit, :update]
   before_filter :build_log_entry, only: [:create]
   before_filter :load_magic_items, only: [:create, :update]
   before_filter :set_character, only: [:create, :update]
@@ -54,6 +55,7 @@ class DmLogEntriesController < LogEntriesController
 
   def create
     authorize @log_entry
+    manage_locations
 
     if @log_entry.save
       redirect_to [@user, DmLogEntry, q: params[:q]],
@@ -76,6 +78,7 @@ class DmLogEntriesController < LogEntriesController
 
   def update
     authorize @log_entry
+    manage_locations
 
     if @log_entry.update_attributes(log_entries_params)
       if session[:return_to]

@@ -1,6 +1,7 @@
 # :nodoc:
 class LogEntriesController < AuthenticationController
   before_filter :convert_query_string_to_hash, only: [:index]
+  before_filter :load_log_entry_type
 
   def convert_query_string_to_hash
     params.delete(:q) if params[:q].blank?
@@ -18,6 +19,10 @@ class LogEntriesController < AuthenticationController
     end
   end
 
+  def load_log_entry_type
+    @log_entry_type = controller_name.classify.singularize.underscore.to_sym
+  end
+
   def load_user
     @user = User.find(params[:user_id])
   end
@@ -29,6 +34,16 @@ class LogEntriesController < AuthenticationController
   def load_magic_items
     @magic_items = @log_entry.magic_items
     @magic_item_count = @log_entry.magic_items.count
+  end
+
+  def load_locations
+    @locations = @user.locations.all
+  end
+
+  def manage_locations
+    return if params[@log_entry_type][:location_played].empty?
+
+    @user.locations.find_or_create_by(name: params[@log_entry_type][:location_played])
   end
 
   def adventure_form_inputs_include_adventure?

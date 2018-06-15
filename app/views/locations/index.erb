@@ -1,0 +1,39 @@
+<div class="row">
+  <h1 class='col-md-offset-4 col-md-4'>Manage Locations</h1>
+</div>
+
+<div class="row" id="player_dms-index">
+  <div class='col-md-offset-4 col-md-4'>
+    <div id='dms_list'>
+      <div class="table-responsive">
+        <table class="table table-bordered table-responsive table-dms">
+          <tr>
+            <th>Name</th>
+            <th>Actions</th>
+          </tr>
+
+          <tbody id='menu_items'>
+            <% @locations.each do |location| %>
+              <tr>
+                <td><%= location.name %></td>
+                <td>
+                  <% if @user == current_user %>
+                    <%= link_to "<span class='sr-only'>Edit<span>".html_safe, edit_user_location_path(current_user, location), class: "fa fa-pencil-square-o", title: "Edit Location" %>
+                    <span style="margin-right:15px"></span>
+                    <%= link_to "<span class='sr-only'>Delete<span>".html_safe, user_location_path(current_user, location), method: :delete, data: { confirm: "Are you sure you want to delete #{location.name}?" }, class: "fa fa-trash-o", title: "Delete Location" %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class='col-md-offset-4 col-md-4'>
+      <%= link_to 'New Location', new_user_location_path(current_user), class: 'btn btn-primary' %>
+  </div>
+</div>

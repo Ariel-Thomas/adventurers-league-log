@@ -8,6 +8,7 @@ class CampaignLogEntriesController < LogEntriesController
                 only: [:show, :new, :create, :edit, :update, :destroy]
   before_filter :load_log_entry,
                 only: [:show, :edit, :update, :destroy]
+  before_filter :load_locations, only: [:new, :create, :edit, :update]
 
   before_filter(only: [:show]) do
     add_crumb @character.name,
@@ -48,6 +49,7 @@ class CampaignLogEntriesController < LogEntriesController
     @log_entry.dm_name       = @user.name
     @log_entry.dm_dci_number = @user.dci_num
     authorize @log_entry
+    manage_locations
 
     if @log_entry.save
       redirect_to [@user, @campaign],
@@ -75,6 +77,7 @@ class CampaignLogEntriesController < LogEntriesController
   def update
     @log_entry.characters = [@character] if @character
     authorize @log_entry
+    manage_locations
 
     if @log_entry.update_attributes(log_entries_params)
       redirect_to [@user, @campaign],

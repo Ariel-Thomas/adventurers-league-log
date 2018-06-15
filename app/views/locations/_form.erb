@@ -1,0 +1,16 @@
+<%= form_for [current_user, @location] do |f| %>
+  <div id='location-main-form'>
+    <div class="row">
+      <div class="form-group col-md-offset-3 col-md-6">
+        <%= f.label :name, 'Location Name *' %>
+        <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="row top-buffer-md">
+      <div class="col-md-6 col-md-offset-3 text-right">
+        <%= f.submit 'Save', class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+<% end %>
