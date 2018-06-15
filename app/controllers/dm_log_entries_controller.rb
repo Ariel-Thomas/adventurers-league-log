@@ -24,8 +24,9 @@ class DmLogEntriesController < LogEntriesController
 
     @hide_assigned_enabled = params[:q][:log_assignments_character_id_null]
 
-    @search      = @user.dm_log_entries.search(params[:q])
-    @log_entries = @search.result(distinct: false).page params[:page]
+    @search                   = @user.dm_log_entries.search(params[:q])
+    @prepaginated_log_entries = @search.result(distinct: false)
+    @log_entries              = @prepaginated_log_entries.page params[:page]
 
     set_index_stats
   end
@@ -147,14 +148,14 @@ class DmLogEntriesController < LogEntriesController
   end
 
   def set_index_stats
-    @total_xp = @log_entries.pluck(:xp_gained).compact.inject(:+) || 0
-    @unused_xp = @log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:xp_gained).compact.inject(:+) || 0
-    @total_hours = @log_entries.pluck(:session_length_hours).compact.inject(:+) || 0
-    @total_gp = @log_entries.pluck(:gp_gained).compact.inject(:+) || 0
-    @unused_gp = @log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:gp_gained).compact.inject(:+) || 0
-    @total_downtime = @log_entries.pluck(:downtime_gained).compact.inject(:+) || 0
-    @unused_downtime = @log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:downtime_gained).compact.inject(:+) || 0
-    @total_renown =  @log_entries.pluck(:renown_gained).compact.inject(:+) || 0
-    @unused_renown = @log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:renown_gained).compact.inject(:+) || 0
+    @total_xp        = @prepaginated_log_entries.pluck(:xp_gained).compact.inject(:+) || 0
+    @unused_xp       = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:xp_gained).compact.inject(:+) || 02
+    @total_hours     = @prepaginated_log_entries.pluck(:session_length_hours).compact.inject(:+) || 0
+    @total_gp        = @prepaginated_log_entries.pluck(:gp_gained).compact.inject(:+) || 0
+    @unused_gp       = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:gp_gained).compact.inject(:+) || 0
+    @total_downtime  = @prepaginated_log_entries.pluck(:downtime_gained).compact.inject(:+) || 0
+    @unused_downtime = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:downtime_gained).compact.inject(:+) || 0
+    @total_renown    = @prepaginated_log_entries.pluck(:renown_gained).compact.inject(:+) || 0
+    @unused_renown   = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:renown_gained).compact.inject(:+) || 0
   end
 end
