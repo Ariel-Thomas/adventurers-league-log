@@ -18,6 +18,10 @@ SET UP COMMANDS
 
 `bundle exec phil_columns seed`
 
+`bundle exec adventure_catalog:load`
+
+`bundle exec adventure_catalog:clean_dupes`
+
 DEVISE
 
 `bundle exec rake secret` and copy output to `.env` in `SECRET_KEY_BASE=`
