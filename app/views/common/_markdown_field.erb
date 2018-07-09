@@ -1,3 +1,17 @@
 <%= form.text_area object, class: classes %>
 
-<script>new SimpleMDE()</script>
+<script>
+function addSimpleMDEToNotes(){
+  var element = $("#<%= form.object_name.gsub(']','').gsub( '[', '_') %>_<%= object %>:visible")
+
+  if (element.size() > 0){
+    new SimpleMDE({
+      element: element.get(0),
+      hideIcons: ["side-by-side","fullscreen"]
+    })
+  }
+}
+
+addSimpleMDEToNotes();
+
+</script>
