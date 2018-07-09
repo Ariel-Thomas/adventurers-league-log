@@ -151,14 +151,14 @@ class DmLogEntriesController < LogEntriesController
   end
 
   def set_index_stats
-    @total_xp        = @prepaginated_log_entries.pluck(:xp_gained).compact.inject(:+) || 0
-    @unused_xp       = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:xp_gained).compact.inject(:+) || 02
-    @total_hours     = @prepaginated_log_entries.pluck(:session_length_hours).compact.inject(:+) || 0
-    @total_gp        = @prepaginated_log_entries.pluck(:gp_gained).compact.inject(:+) || 0
-    @unused_gp       = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:gp_gained).compact.inject(:+) || 0
-    @total_downtime  = @prepaginated_log_entries.pluck(:downtime_gained).compact.inject(:+) || 0
-    @unused_downtime = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:downtime_gained).compact.inject(:+) || 0
-    @total_renown    = @prepaginated_log_entries.pluck(:renown_gained).compact.inject(:+) || 0
-    @unused_renown   = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).pluck(:renown_gained).compact.inject(:+) || 0
+    @total_xp        = @prepaginated_log_entries.sum(:xp_gained)
+    @unused_xp       = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).sum(:xp_gained)
+    @total_hours     = @prepaginated_log_entries.sum(:session_length_hours)
+    @total_gp        = @prepaginated_log_entries.sum(:gp_gained)
+    @unused_gp       = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).sum(:gp_gained)
+    @total_downtime  = @prepaginated_log_entries.sum(:downtime_gained)
+    @unused_downtime = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).sum(:downtime_gained)
+    @total_renown    = @prepaginated_log_entries.sum(:renown_gained)
+    @unused_renown   = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).sum(:renown_gained)
   end
 end
