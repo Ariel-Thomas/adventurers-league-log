@@ -1,4 +1,6 @@
 module ApplicationHelper
+  require 'redcarpet/render_strip'
+
   def display_attribute(attribute_name, attribute_value, options = {})
     ("<div class='row " + options[:class].to_s + "'>
         <div class='col-xs-5'>
@@ -68,6 +70,13 @@ module ApplicationHelper
     markdown = Redcarpet::Markdown.new(renderer, extensions)
 
     markdown.render(text).html_safe
+  end
+
+  def strip_markdown(text)
+    renderer = Redcarpet::Render::StripDown
+    markdown = Redcarpet::Markdown.new(renderer)
+
+    markdown.render(text)
   end
 
   def humanize_decimal(decimal_number)

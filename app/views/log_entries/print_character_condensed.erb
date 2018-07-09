@@ -81,7 +81,7 @@
       <div class="row">
         <div class="col-xs-12 notes-section">
             <label>Adventure Notes / Downtime Activites</label>
-            <p class='print-notes'><%= log_entry.notes %></p>
+            <p class='print-notes'><%= strip_markdown(log_entry.notes) %></p>
         </div>
       </div>
     <% end %>
