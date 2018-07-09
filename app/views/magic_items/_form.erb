@@ -31,7 +31,11 @@
 <div class="row">
   <div class="form-group col-md-12">
     <%= magic_item_form.label :notes, 'Notes' %>
-    <%= magic_item_form.text_area :notes, class: 'form-control' %>
+    <%= render partial: 'common/markdown_field', locals: {
+      classes: 'form-control',
+      form: magic_item_form,
+      object: :notes,
+    } %>
   </div>
 </div>
 
