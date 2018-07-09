@@ -1,6 +1,10 @@
 CHANGELOG
 ======
 
+v1.7.4
+---------------
+- Allow markdown for notes field in log entries.
+
 v1.7.3
 ---------------
 - Fix README and seeds
