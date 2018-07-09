@@ -19,4 +19,5 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require analytics
+//= require simplemde.min
 //= require_tree .
