@@ -38,7 +38,8 @@
               <% if magic_item.notes.present? %>
                 <tr>
                   <td colspan='7'>
-                    <strong>Notes:</strong> <%= magic_item.notes %>
+                    <strong>Notes:</strong>
+                    <%= markdown(magic_item.notes) %>
                   </td>
                 </tr>
               <% end %>

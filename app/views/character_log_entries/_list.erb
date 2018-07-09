@@ -85,7 +85,7 @@
             <tr class="log-entry-notes">
               <td colspan='9'>
                 <strong>Notes:</strong>
-                <%= log_entry.notes %>
+                <%= markdown(log_entry.notes) %>
               </td>
             </tr>
           <% end %>
