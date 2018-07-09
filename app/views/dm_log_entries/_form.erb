@@ -81,7 +81,11 @@
     <div class="row">
       <div class="form-group col-md-offset-2 col-md-8">
         <%= f.label :notes, 'Notes' %>
-        <%= f.text_area :notes, class: 'form-control' %>
+        <%= render partial: 'common/markdown_field', locals: {
+          classes: 'form-control',
+          form: f,
+          object: :notes,
+        } %>
       </div>
     </div>
   </div>
