@@ -21,7 +21,7 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
         fill_in 'Location', with: 'A stone'
         fill_in 'Table',    with: 'G'
         fill_in 'Result',   with: '22'
-        fill_in 'Notes',    with: 'Grants a +1 on all attack and damage rolls'
+        find('div.CodeMirror > div > textarea').set('Grants a +1 on all attack and damage rolls')
       end
 
       click_button 'Save'
@@ -83,7 +83,7 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
           fill_in 'Location', with: 'A stone'
           fill_in 'Table',    with: 'G'
           fill_in 'Result',   with: '22'
-          fill_in 'Notes', with: 'Grants a +1 on all attack and damage rolls'
+          find('div.CodeMirror > div > textarea').set('Grants a +1 on all attack and damage rolls')
         end
 
         click_button 'Save'
@@ -143,7 +143,7 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
         fill_in 'Location', with: 'A stone'
         fill_in 'Table',    with: 'G'
         fill_in 'Result',   with: '22'
-        fill_in 'Notes', with: 'Grants a +1 on all attack and damage rolls'
+        find('div.CodeMirror > div > textarea').set('Grants a +1 on all attack and damage rolls')
       end
 
       click_button 'Save'
@@ -190,7 +190,7 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
           fill_in 'Location', with: 'A stone'
           fill_in 'Table',    with: 'G'
           fill_in 'Result',   with: '22'
-          fill_in 'Notes', with: 'Grants a +1 on all attack and damage rolls'
+          find('div.CodeMirror > div > textarea').set('Grants a +1 on all attack and damage rolls')
         end
 
         click_button 'Save'
@@ -259,7 +259,7 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
         fill_in 'Location', with: 'A stone'
         fill_in 'Table',    with: 'G'
         fill_in 'Result',   with: '22'
-        fill_in 'Notes', with: 'Grants a +1 on all attack and damage rolls'
+        find('div.CodeMirror > div > textarea').set('Grants a +1 on all attack and damage rolls')
 
         select @character.name, from: 'Character'
       end
