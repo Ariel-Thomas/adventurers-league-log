@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+v1.7.3
+---------------
+- Fix README and seeds
+- Add notes search to DM Log Entry search
+
 v1.7.2
 ---------------
 - Add DM Log Entry search functionalities
