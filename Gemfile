@@ -13,6 +13,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'turbolinks'
 gem 'jbuilder'
+gem 'redcarpet'
 
 gem 'devise'
 gem 'pundit'
