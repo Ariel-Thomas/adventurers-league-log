@@ -58,6 +58,8 @@ class CharacterLogEntriesController < LogEntriesController
     manage_locations
     manage_player_dms
 
+    puts log_entries_params.to_s
+
     if @log_entry.update_attributes(log_entries_params)
       redirect_to user_character_path(current_user, @character, q: params[:q]),
                   flash: { notice: 'Successfully updated log entry '\
@@ -131,6 +133,7 @@ class CharacterLogEntriesController < LogEntriesController
   def log_entries_params
     params.require(:character_log_entry)
           .permit(:adventure_title, :session_num, :date_played,
+                  :old_format, :xp_checkpoints, :treasure_checkpoints,
                   :xp_gained, :gp_gained, :renown_gained,
                   :downtime_gained, :num_secret_missions,
                   :location_played, :dm_name, :dm_dci_number,

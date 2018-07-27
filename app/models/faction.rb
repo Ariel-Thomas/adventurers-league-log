@@ -8,8 +8,8 @@ class Faction < ActiveRecord::Base
           { numerical_rank: 4, renown: 25, secret_missions:  3, level: 11 },
           { numerical_rank: 5, renown: 50, secret_missions: 10, level: 17 }]
 
-  def rank(renown:, secret_missions:, level:)
-    rank_number = numerical_rank(renown, secret_missions, level)
+  def rank(renown:, level:)
+    rank_number = numerical_rank(renown, level)
     return "Unknown" if rank_number == 0
 
     faction_rank = faction_ranks.find_by numerical_rank: rank_number
@@ -18,11 +18,11 @@ class Faction < ActiveRecord::Base
    "#{faction_rank.name} (rank #{rank_number})"
   end
 
-  def numerical_rank(renown, secret_missions, level)
+  def numerical_rank(renown, level)
     numerical_rank = 0
 
     RANKS.each_with_index do |rank|
-      if renown < rank[:renown] || secret_missions < rank[:secret_missions] || level < rank[:level]
+      if renown < rank[:renown] || level < rank[:level]
         return numerical_rank
       end
 
