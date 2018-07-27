@@ -1,4 +1,13 @@
 <%= form_for [@user, @character, @log_entry] do |f| %>
+  <div class="row">
+    <div class="col-md-offset-2 col-md-5 form-group">
+      <label class='css3-checkboxes'>
+        <%= f.check_box :old_format %>
+        <span class="link-like">Old Format</span>
+      </label>
+    </div>
+  </div>
+
   <div id='character-log-entry-main-form'>
     <div class="row">
       <div class="col-md-offset-2 col-md-5 form-group">
@@ -22,12 +31,24 @@
 
     <div class="row">
       <div class="form-group col-md-offset-2 col-md-2">
-        <%= f.label :xp_gained, 'XP Gained' %>
-        <%= f.number_field :xp_gained, class: 'form-control' %>
+        <span class="old_format">
+          <%= f.label :xp_gained, 'XP Gained' %>
+          <%= f.number_field :xp_gained, class: 'form-control' %>
+        </span>
+        <span class="new_format">
+          <%= f.label :xp_checkpoints, 'XP Checkpoints' %>
+          <%= f.number_field :xp_checkpoints, class: 'form-control' %>
+        </span>
       </div>
       <div class="form-group col-md-2">
-        <%= f.label :gp_gained, 'GP +/-' %>
-        <%= f.number_field :gp_gained, class: 'form-control', :step => 'any' %>
+        <span class="old_format">
+          <%= f.label :gp_gained, 'GP +/-' %>
+          <%= f.number_field :gp_gained, class: 'form-control', :step => 'any' %>
+        </span>
+        <span class="new_format">
+          <%= f.label :treasure_checkpoints, 'Treasure Checkpoints' %>
+          <%= f.number_field :treasure_checkpoints, class: 'form-control', :step => 'any' %>
+        </span>
       </div>
       <div class="form-group col-md-2">
         <%= f.label :downtime_gained, 'Downtime +/-' %>
@@ -87,4 +108,20 @@
       }
     });
   });
+</script>
+
+<script>
+var log_entry_type = "<%= @log_entry_type %>"
+
+  $('#character_log_entry_old_format').change( function(){
+    if($(this).is(':checked')) {
+      $("span.old_format").removeClass('hide');
+      $("span.new_format").addClass('hide');
+    } else {
+      $("span.new_format").removeClass('hide');
+      $("span.old_format").addClass('hide');
+    }
+  });
+
+  $('#character_log_entry_old_format').change();
 </script>
