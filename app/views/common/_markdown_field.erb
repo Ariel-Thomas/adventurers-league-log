@@ -7,7 +7,8 @@ function addSimpleMDEToNotes(){
   if (element.size() > 0){
     new SimpleMDE({
       element: element.get(0),
-      hideIcons: ["side-by-side","fullscreen"]
+      hideIcons: ["side-by-side","fullscreen"],
+      spellChecker: false
     })
   }
 }
