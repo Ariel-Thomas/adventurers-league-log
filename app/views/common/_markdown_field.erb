@@ -1,11 +1,11 @@
 <%= form.text_area object, class: classes %>
 
 <script>
-function addSimpleMDEToNotes(){
+function addEasyMDEToNotes(){
   var element = $("#<%= form.object_name.gsub(']','').gsub( '[', '_') %>_<%= object %>:visible")
 
   if (element.size() > 0){
-    new SimpleMDE({
+    new EasyMDE({
       element: element.get(0),
       hideIcons: ["side-by-side","fullscreen"],
       spellChecker: false
@@ -13,6 +13,6 @@ function addSimpleMDEToNotes(){
   }
 }
 
-addSimpleMDEToNotes();
+addEasyMDEToNotes();
 
 </script>
