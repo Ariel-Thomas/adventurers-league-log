@@ -18,9 +18,9 @@ SET UP COMMANDS
 
 `bundle exec phil_columns seed`
 
-`bundle exec adventure_catalog:load`
+`bundle exec rake adventure_catalog:load`
 
-`bundle exec adventure_catalog:clean_dupes`
+`bundle exec rake adventure_catalog:clean_dupes`
 
 DEVISE
 
@@ -32,4 +32,4 @@ TESTS
 
 SERVER
 
-`rails s`
+`bundle exec rails s`
