@@ -27,5 +27,6 @@ AdventurersLeagueLog::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  config.assets.quiet = true
   Rails.application.routes.default_url_options[:host] = 'localhost:3000'
 end

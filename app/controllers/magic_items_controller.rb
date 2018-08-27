@@ -5,16 +5,20 @@ class MagicItemsController < AuthenticationController
   before_action :load_character
   before_action :load_magic_item, only: [:show, :destroy]
 
-  before_filter { add_crumb('Charactes', user_characters_path(@user)) }
-  before_filter(only: [:index, :show]) { add_crumb(@character.name, user_character_path(@user, @character)) }
-  before_filter(only: [:index, :show]) { add_crumb 'Magic Items', user_character_magic_items_path(@user, @character) }
-  before_filter(only: [:show])         { add_crumb(@magic_item.name) }
+  before_action { add_crumb('Charactes', user_characters_path(@user)) }
+  before_action(only: [:index, :show]) { add_crumb(@character.name, user_character_path(@user, @character)) }
+  before_action(only: [:index, :show]) { add_crumb 'Magic Items', user_character_magic_items_path(@user, @character) }
+  before_action(only: [:show])         { add_crumb(@magic_item.name) }
 
   def index
     authorize @user, :show_characters?
 
-    @search      = @character.magic_items.where(trade_log_entry_id: nil).search(params[:q])
-    @magic_items = @search.result(distinct: false).page params[:page]
+    magic_items = @character.magic_items.where(trade_log_entry_id: nil)
+    @purchased_search      = magic_items.purchased.search(params[:q])
+    @purchased_magic_items = @purchased_search.result(distinct: false).page params[:page]
+
+    @unlocked_search      = magic_items.unlocked.search(params[:q])
+    @unlocked_magic_items = @unlocked_search.result(distinct: false).page params[:page]
   end
 
   def show
