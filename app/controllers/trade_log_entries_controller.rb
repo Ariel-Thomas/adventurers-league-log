@@ -3,21 +3,21 @@ class TradeLogEntriesController < LogEntriesController
   skip_before_action :authenticate_user!, only: [:show]
 
   add_crumb('Home', '/')
-  before_filter :load_user
-  before_filter :load_character
-  before_filter :load_log_entry, only: [:show, :edit, :update, :destroy]
-  before_filter :load_current_magic_items,
+  before_action :load_user
+  before_action :load_character
+  before_action :load_log_entry, only: [:show, :edit, :update, :destroy]
+  before_action :load_current_magic_items,
                 only: [:new, :create, :edit, :update]
-  before_filter :build_new_magic_item,
+  before_action :build_new_magic_item,
                 only: [:new, :create, :edit, :update]
-  before_filter :clean_up_params, only: [:create, :update]
+  before_action :clean_up_params, only: [:create, :update]
 
-  before_filter do
+  before_action do
     add_crumb @character.name, user_character_path(@character.user, @character)
   end
 
-  before_filter(only: [:new]) { add_crumb 'New Trade Log Entry' }
-  before_filter(only: [:show, :edit]) { add_crumb 'Trade Log Entry' }
+  before_action(only: [:new]) { add_crumb 'New Trade Log Entry' }
+  before_action(only: [:show, :edit]) { add_crumb 'Trade Log Entry' }
 
   def show
     authorize @log_entry

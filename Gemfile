@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.3.1'
-gem 'rails', '4.2.7.1'
+gem 'rails', '5.2.0'
 gem 'pg', "0.18.4"
 gem 'puma'
 
@@ -19,7 +19,7 @@ gem 'devise'
 gem 'pundit'
 
 gem 'ransack'
-gem 'crummy'
+gem 'crummy', git: 'https://github.com/knightq/crummy'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem 'font-awesome-rails'
@@ -52,8 +52,6 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'byebug'
   gem 'pry-byebug'
-
-  gem 'quiet_assets'
 end
 
 group :production do

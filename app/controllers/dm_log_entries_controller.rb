@@ -3,22 +3,22 @@ class DmLogEntriesController < LogEntriesController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   add_crumb('Home', '/')
-  before_filter :set_magic_item_character_id, only: [:create, :update]
+  before_action :set_magic_item_character_id, only: [:create, :update]
 
-  before_filter :load_user
-  before_filter :load_log_entry, only: [:show, :edit, :update, :destroy]
-  before_filter :load_characters, only: [:index, :new, :create, :edit, :update]
-  before_filter :load_hourly_xp_lookup_table, only: [:new, :create, :edit, :update]
-  before_filter :load_character,  only: [:create, :update]
-  before_filter :load_locations, only: [:new, :create, :edit, :update]
-  before_filter :build_log_entry, only: [:create]
-  before_filter :load_magic_items, only: [:create, :update]
-  before_filter :set_character, only: [:create, :update]
+  before_action :load_user
+  before_action :load_log_entry, only: [:show, :edit, :update, :destroy]
+  before_action :load_characters, only: [:index, :new, :create, :edit, :update]
+  before_action :load_hourly_xp_lookup_table, only: [:new, :create, :edit, :update]
+  before_action :load_character,  only: [:create, :update]
+  before_action :load_locations, only: [:new, :create, :edit, :update]
+  before_action :build_log_entry, only: [:create]
+  before_action :load_magic_items, only: [:create, :update]
+  before_action :set_character, only: [:create, :update]
 
-  before_filter(except: [:print, :print_condensed]) { add_crumb('DM Logs', user_dm_log_entries_path(@user)) }
-  before_filter(only: [:new])  { add_crumb 'New Log Entry' }
-  before_filter(only: [:edit]) { add_crumb 'Edit Log Entry' }
-  before_filter(only: [:show]) { add_crumb 'Show Log Entry' }
+  before_action(except: [:print, :print_condensed]) { add_crumb('DM Logs', user_dm_log_entries_path(@user)) }
+  before_action(only: [:new])  { add_crumb 'New Log Entry' }
+  before_action(only: [:edit]) { add_crumb 'Edit Log Entry' }
+  before_action(only: [:show]) { add_crumb 'Show Log Entry' }
 
   def index
     authorize @user, :publicly_visible_dm_logs?

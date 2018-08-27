@@ -2,14 +2,14 @@ class CharacterCampaignsController < AuthenticationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   add_crumb('Home', '/')
-  before_filter :load_user
-  before_filter :load_character
-  before_filter :load_campaign,  except: [:new, :create]
+  before_action :load_user
+  before_action :load_character
+  before_action :load_campaign,  except: [:new, :create]
 
-  before_filter { add_crumb('Campaigns', user_campaigns_path(@user)) }
-  before_filter(only: [:new])  { add_crumb 'New Campaign' }
-  before_filter(only: [:edit]) { add_crumb 'Edit Campaign' }
-  before_filter(only: [:show]) { add_crumb 'Show Campaign' }
+  before_action { add_crumb('Campaigns', user_campaigns_path(@user)) }
+  before_action(only: [:new])  { add_crumb 'New Campaign' }
+  before_action(only: [:edit]) { add_crumb 'Edit Campaign' }
+  before_action(only: [:show]) { add_crumb 'Show Campaign' }
 
   def create
     @campaign  = Campaign.find_by(token: params[:campaign_participation][:token])
