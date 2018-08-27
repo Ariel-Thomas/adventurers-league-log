@@ -47,6 +47,7 @@ class DmLogEntriesController < LogEntriesController
 
   def new
     @log_entry   = @user.dm_log_entries.new
+    @log_entry.old_format = @user.dm_log_entry_style_old?
     authorize @log_entry
 
     @magic_items = [MagicItem.new]
@@ -143,10 +144,11 @@ class DmLogEntriesController < LogEntriesController
     params.require(:dm_log_entry)
           .permit(:adventure_title, :session_num, :date_dmed,
                   :session_length_hours, :player_level,
+                  :old_format, :advancement_checkpoints, :treasure_checkpoints,
                   :xp_gained, :gp_gained, :renown_gained,
                   :downtime_gained, :num_secret_missions,
                   :location_played, :dm_name, :dm_dci_number, :notes,
-                  :date_played, :character_id,
+                  :date_played, :character_id, :treasure_tier,
                   magic_items_attributes: magic_item_params)
   end
 

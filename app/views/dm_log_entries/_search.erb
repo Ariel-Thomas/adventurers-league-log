@@ -1,0 +1,28 @@
+  <div class='col-md-1 list-buttons' style="margin-top: 20px;">
+    <% if params[:show_search] %>
+      <%= link_to "Hide Search", [@user, :dm_log_entries, q: q], class: 'btn btn-default btn-sm' %>
+    <% else %>
+      <%= link_to "Show Search", [@user, :dm_log_entries, show_search: true, q: q], class: 'btn btn-default btn-sm' %>
+    <% end %>
+  </div>
+
+<% if params[:show_search] %>
+    <div class="col-md-12">
+      <%= form_for @user, url: user_dm_log_entries_path(@user), method: :get do |f| %>
+        <%= label_tag :advanced_search, "Advanced Search" %>
+        <div class="input-group">
+          <%= hidden_field_tag :show_search, true %>
+          <%= text_field_tag :q, q, class: 'form-control' %>
+          <span class="input-group-btn">
+            <%= button_tag(name: nil, class: 'btn btn-default') do %>
+              <span class='fa fa-search'></span>
+              <span class='sr-only'>Search DM Log Entries</span>
+            <% end %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+
+  <br>
+    <%= render partial: "dm_log_entries/search_form" %>
+<% end %>

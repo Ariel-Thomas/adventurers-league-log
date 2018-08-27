@@ -1,4 +1,13 @@
 <%= form_for [@user, @log_entry] do |f| %>
+  <div class="row">
+    <div class="col-md-offset-2 col-md-5 form-group">
+      <label class='css3-checkboxes'>
+        <%= f.check_box :old_format %>
+        <span class="link-like">Old Format</span>
+      </label>
+    </div>
+  </div>
+
   <div id='dm-log-entry-main-form'>
     <div class="row">
       <div class="col-md-offset-2 col-md-5 form-group">
@@ -19,20 +28,22 @@
     <div class="row">
       <div class="form-group col-md-2">
       </div>
-      <div class="form-group col-md-2">
+      <div class="form-group col-md-2 old_format">
         <%= f.label :session_length_hours, 'Length (Hours)' %>
         <%= f.number_field :session_length_hours, class: 'form-control' %>
       </div>
-      <div class="form-group col-md-2">
+      <div class="form-group col-md-2 old_format">
         <%= f.label :player_level, 'Player Level' %>
         <%= f.number_field :player_level, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-4 new_format">
       </div>
       <div class="form-group col-md-4">
          <%= render partial: 'locations/nested_form', locals: { f: f } %>
       </div>
     </div>
 
-    <div class="row">
+    <div class="row old_format">
       <div class="form-group col-md-1">
       </div>
       <div class="form-group col-md-1">
@@ -65,6 +76,31 @@
       </div>
     </div>
 
+    <div class="row new_format">
+      <div class="form-group col-md-2">
+      </div>
+      <div class="form-group col-md-2">
+        <%= f.label :advancement_checkpoints, 'Advancement CP' %>
+        <%= f.number_field :advancement_checkpoints, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= f.label :treasure_checkpoints, 'Treasure CP' %>
+        <%= f.number_field :treasure_checkpoints, class: 'form-control', :step => 'any' %>
+      </div>
+      <div class="form-group col-md-1">
+        <%= f.label :downtime_gained, 'Downtime' %>
+        <%= f.number_field :downtime_gained, class: 'form-control', style: "padding-right: 0px" %>
+      </div>
+      <div class="form-group col-md-1">
+        <%= f.label :renown_gained, 'Renown' %>
+        <%= f.number_field :renown_gained, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= f.label :gp_gained, 'GP +/-' %>
+        <%= f.number_field :gp_gained, class: 'form-control', :step => 'any' %>
+      </div>
+    </div>
+
     <div class="row">
       <div class="form-group col-md-2">
       </div>
@@ -75,6 +111,11 @@
       <div class="form-group col-md-4">
         <%= f.label :character_id, 'Character to Apply Rewards' %>
         <%= f.select :character_id, @characters.map{|character| [character.name, character.id]},  { include_blank: true }, { class: 'form-control' } %>
+      </div>
+
+      <div class="form-group col-md-2 new_format">
+        <%= f.label :treasure_tier, 'Tier of Character' %>
+        <%= f.select :treasure_tier, [["1", 1], ["2", 2], ["3", 3], ["4", 4]], { include_blank: true }, { class: 'form-control ' } %>
       </div>
     </div>
 
@@ -169,4 +210,30 @@
         calculateRewards();
     });
   });
+</script>
+
+<script>
+  var log_entry_type = "<%= @log_entry_type %>"
+
+  $('#dm_log_entry_old_format').change( function(){
+    if($(this).is(':checked')) {
+      $(".old_format").removeClass('hide');
+      $(".old_format .form-control").prop('disabled', false);
+
+      $(".new_format").addClass('hide');
+      $(".new_format .form-control").prop('disabled', true);
+
+      $(".purchased").prop('checked', true);
+    } else {
+      $(".new_format").removeClass('hide');
+      $(".new_format .form-control").prop('disabled', false);
+
+      $(".old_format").addClass('hide');
+      $(".old_format .form-control").prop('disabled', true);
+
+      $(".purchased").prop('checked', false);
+    }
+  });
+
+  $('#dm_log_entry_old_format').change();
 </script>

@@ -91,7 +91,7 @@ class CharactersController < AuthenticationController
     authorize @character
 
     if @character.update_attributes(character_params)
-      redirect_to (session[:return_to] || user_characters_path(@user)), 
+      redirect_to (session[:return_to] || user_characters_path(@user)),
                   flash: { notice: "Successfully updated character #{@character.name}" }
     else
       flash.now[:error] = "Failed to update character #{@character.name}: #{@character.errors.full_messages.join(',')}"

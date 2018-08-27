@@ -24,7 +24,7 @@ module Character::CharacterCheckpoints
   end
 
   def total_checkpoints_from_logs
-    log_entries.sum(:xp_checkpoints)
+    log_entries.sum(:advancement_checkpoints)
   end
 
 

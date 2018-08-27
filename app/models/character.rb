@@ -68,6 +68,10 @@ class Character < ActiveRecord::Base
     log_entries.sum(:num_secret_missions)
   end
 
+  def treasure_checkpoints(tier:)
+    log_entries.where(treasure_tier: tier).sum(:treasure_checkpoints)
+  end
+
   def total_treasure_checkpoints
     log_entries.sum(:treasure_checkpoints)
   end

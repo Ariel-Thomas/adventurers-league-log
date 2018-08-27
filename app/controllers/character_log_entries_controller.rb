@@ -27,6 +27,7 @@ class CharacterLogEntriesController < LogEntriesController
   def new
     @log_entry = @character.character_log_entries.new
     @log_entry.characters = [@character]
+    @log_entry.old_format = @user.character_log_entry_style_old?
     authorize @log_entry
     @magic_items = [MagicItem.new]
     @magic_item_count = 0
@@ -74,7 +75,7 @@ class CharacterLogEntriesController < LogEntriesController
     authorize @log_entry
     @log_entry.destroy
 
-    redirect_to user_character_path(current_user, @character, q: params[:q]),
+    redirect_to user_character_path(current_user, @character, q: params.permit(q: [:s]).fetch(:q, nil)),
                 flash: { notice: 'Successfully deleted '\
                                  "#{@log_entry.adventure_title}" }
   end
@@ -140,4 +141,5 @@ class CharacterLogEntriesController < LogEntriesController
                   :player_dm_id, :notes,
                   magic_items_attributes: magic_item_params)
   end
+
 end

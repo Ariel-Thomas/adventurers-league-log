@@ -4,9 +4,14 @@
     <%= magic_item_form.text_field :name, class: 'form-control' %>
   </div>
 
-  <div class="form-group col-md-4">
+  <div class="form-group col-md-3">
     <%= magic_item_form.label :rarity, 'Rarity' %>
     <%= magic_item_form.select :rarity, MagicItem.rarities.map{ |rarity| [rarity[0].titleize, rarity[0]] }, { include_blank: true }, { class: 'form-control ' } %>
+  </div>
+
+  <div class="form-group col-md-1">
+    <%= magic_item_form.label :tier, 'Tier' %>
+    <%= magic_item_form.select :tier, [["1", 1], ["2", 2], ["3", 3], ["4", 4]], { include_blank: true }, { class: 'form-control ' } %>
   </div>
 </div>
 
@@ -43,6 +48,12 @@
   <div class="form-group col-md-4">
     <%= magic_item_form.label :not_included_in_count, class: 'css3-checkboxes' do
       (magic_item_form.check_box :not_included_in_count, {}, 'true', 'false') + "<span>Not Included in Count</span>".html_safe
+    end %>
+  </div>
+
+  <div class="form-group col-md-4">
+    <%= magic_item_form.label :purchased, class: 'css3-checkboxes' do
+      (magic_item_form.check_box :purchased, { class: "purchased" }, 'true', 'false') + "<span>Purchased</span>".html_safe
     end %>
   </div>
 

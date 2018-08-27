@@ -10,10 +10,23 @@
 
   <div id='character-log-entry-main-form'>
     <div class="row">
-      <div class="col-md-offset-2 col-md-5 form-group">
-        <%= f.label :adventure_title, 'Adventure Title' %>
-        <%= f.autocomplete_field :adventure_title, autocomplete_adventure_name_adventures_path, class: 'form-control' %>
-      </div>
+      <span class="old_format">
+        <div class="col-md-offset-2 col-md-5 form-group">
+          <%= f.label :adventure_title, 'Adventure Title' %>
+          <%= f.autocomplete_field :adventure_title, autocomplete_adventure_name_adventures_path, class: 'form-control' %>
+        </div>
+      </span>
+
+      <span class="new_format">
+        <div class="col-md-offset-2 col-md-4 form-group">
+          <%= f.label :adventure_title, 'Adventure Title' %>
+          <%= f.autocomplete_field :adventure_title, autocomplete_adventure_name_adventures_path, class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-1">
+          <%= f.label :treasure_tier, 'Tier' %>
+          <%= f.select :treasure_tier, [["1", 1], ["2", 2], ["3", 3], ["4", 4]], { include_blank: true }, { class: 'form-control ' } %>
+        </div>
+      </span>
 
       <div class="form-group col-md-1">
         <%= f.label :session_num, 'Session' %>
@@ -29,26 +42,14 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row old_format">
       <div class="form-group col-md-offset-2 col-md-2">
-        <span class="old_format">
-          <%= f.label :xp_gained, 'XP Gained' %>
-          <%= f.number_field :xp_gained, class: 'form-control' %>
-        </span>
-        <span class="new_format">
-          <%= f.label :xp_checkpoints, 'XP Checkpoints' %>
-          <%= f.number_field :xp_checkpoints, class: 'form-control' %>
-        </span>
+        <%= f.label :xp_gained, 'XP Gained' %>
+        <%= f.number_field :xp_gained, class: 'form-control' %>
       </div>
       <div class="form-group col-md-2">
-        <span class="old_format">
-          <%= f.label :gp_gained, 'GP +/-' %>
-          <%= f.number_field :gp_gained, class: 'form-control', :step => 'any' %>
-        </span>
-        <span class="new_format">
-          <%= f.label :treasure_checkpoints, 'Treasure Checkpoints' %>
-          <%= f.number_field :treasure_checkpoints, class: 'form-control', :step => 'any' %>
-        </span>
+        <%= f.label :gp_gained, 'GP +/-' %>
+        <%= f.number_field :gp_gained, class: 'form-control', :step => 'any' %>
       </div>
       <div class="form-group col-md-2">
         <%= f.label :downtime_gained, 'Downtime +/-' %>
@@ -61,6 +62,29 @@
       <div class="form-group col-md-1">
         <%= f.label :num_secret_missions, 'Missions' %>
         <%= f.number_field :num_secret_missions, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="row new_format">
+      <div class="form-group col-md-offset-2 col-md-2">
+        <%= f.label :advancement_checkpoints, 'Advancement CP' %>
+        <%= f.number_field :advancement_checkpoints, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= f.label :treasure_checkpoints, 'Treasure CP' %>
+        <%= f.number_field :treasure_checkpoints, class: 'form-control', :step => 'any' %>
+      </div>
+      <div class="form-group col-md-1">
+        <%= f.label :downtime_gained, 'Downtime' %>
+        <%= f.number_field :downtime_gained, class: 'form-control', style: "padding-right: 0px" %>
+      </div>
+      <div class="form-group col-md-1">
+        <%= f.label :renown_gained, 'Renown' %>
+        <%= f.number_field :renown_gained, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= f.label :gp_gained, 'GP +/-' %>
+        <%= f.number_field :gp_gained, class: 'form-control', :step => 'any' %>
       </div>
     </div>
 
@@ -111,15 +135,25 @@
 </script>
 
 <script>
-var log_entry_type = "<%= @log_entry_type %>"
+  var log_entry_type = "<%= @log_entry_type %>"
 
   $('#character_log_entry_old_format').change( function(){
     if($(this).is(':checked')) {
-      $("span.old_format").removeClass('hide');
-      $("span.new_format").addClass('hide');
+      $(".old_format").removeClass('hide');
+      $(".old_format .form-control").prop('disabled', false);
+
+      $(".new_format").addClass('hide');
+      $(".new_format .form-control").prop('disabled', true);
+
+      $(".purchased").prop('checked', true);
     } else {
-      $("span.new_format").removeClass('hide');
-      $("span.old_format").addClass('hide');
+      $(".new_format").removeClass('hide');
+      $(".new_format .form-control").prop('disabled', false);
+
+      $(".old_format").addClass('hide');
+      $(".old_format .form-control").prop('disabled', true);
+
+      $(".purchased").prop('checked', false);
     }
   });
 

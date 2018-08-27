@@ -98,6 +98,6 @@ class CampaignsController < AuthenticationController
   end
 
   def campaigns_params
-    params.require(:campaign).permit(:name, :users_can_join, :dms_can_join, :publicly_visible)
+    params.require(:campaign).permit(:name, :campaign_style, :campaign_log_entry_style, :users_can_join, :dms_can_join, :publicly_visible)
   end
 end

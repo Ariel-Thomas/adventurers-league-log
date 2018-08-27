@@ -1,5 +1,5 @@
 class TradeLogEntry < LogEntry
-  has_one :traded_magic_item, inverse_of: :trade_log_entry, class_name: MagicItem, dependent: :nullify
+  has_one :traded_magic_item, inverse_of: :trade_log_entry, class_name: 'MagicItem', dependent: :nullify
 
   def user
     character.user

@@ -1,0 +1,18 @@
+<div class="row">
+  <h3 class='col-md-12'>Purchased Magic Items</h1>
+
+  <div class='col-md-12'>
+    <%= render partial: 'magic_items/old_table', locals: { magic_items: @purchased_magic_items, search: @purchased_search } %>
+  </div>
+</div>
+
+<% if @user.magic_item_style_season8? %>
+  <div class="row">
+    <h3 class='col-md-12'>Unlocked Magic Items</h1>
+
+    <div class='col-md-12'>
+      <%= render partial: 'magic_items/table', locals: { magic_items: @unlocked_magic_items, search: @unlocked_search } %>
+    </div>
+  </div>
+<% end %>
+

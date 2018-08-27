@@ -22,7 +22,33 @@
   <div class="row">
     <div class="form-group col-md-offset-3 col-md-6">
       <%= f.label :dci_num, 'DCI #' %>
-      <%= f.text_field :dci_num, autofocus: true, class: 'form-control' %>
+      <%= f.text_field :dci_num, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-offset-3 col-md-2">
+      <%= f.label :character_style, 'Character Page Style' %>
+      <%= f.select :character_style, User.character_styles.keys, {}, { class: "form-control" } %>
+    </div>
+    <div class="form-group col-md-2">
+      <%= f.label :character_log_entry_style, 'PC Log Entry Style' %>
+      <%= f.select :character_log_entry_style, User.character_log_entry_styles.keys, {}, { class: "form-control" } %>
+    </div>
+    <div class="form-group col-md-2">
+      <%= f.label :magic_item_style, 'Magic Item Page Style' %>
+      <%= f.select :magic_item_style, User.magic_item_styles.keys, {}, { class: "form-control" } %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-offset-3 col-md-2">
+      <%= f.label :dm_style, 'DM Page Style' %>
+      <%= f.select :dm_style, User.dm_styles.keys, {}, { class: "form-control" } %>
+    </div>
+    <div class="form-group col-md-2">
+      <%= f.label :dm_log_entry_style, 'DM Entry Style' %>
+      <%= f.select :dm_log_entry_style, User.dm_log_entry_styles.keys, {}, { class: "form-control" } %>
     </div>
   </div>
 
@@ -44,12 +70,6 @@
     <div class="form-group col-md-offset-3 col-md-3">
       <%= f.label :receive_emails, class: 'css3-checkboxes' do
         (f.check_box :receive_emails) + "<span>Receive emails about site updates</span>".html_safe
-      end %>
-    </div>
-
-    <div class="form-group col-md-4">
-      <%= f.label :autocalc_default, class: 'css3-checkboxes' do
-        (f.check_box :autocalc_default) + "<span>Enable Autocalc by Default</span>".html_safe
       end %>
     </div>
   </div>
