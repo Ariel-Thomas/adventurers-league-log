@@ -36,6 +36,22 @@ module ApplicationHelper
       </div>").html_safe
   end
 
+  def display_treasure_checkpoints(attribute_name, character, options = {})
+    attribute_value = character.treasure_checkpoints(tier: 1).to_s + "/" +
+                      character.treasure_checkpoints(tier: 2).to_s + "/" +
+                      character.treasure_checkpoints(tier: 3).to_s + "/" +
+                      character.treasure_checkpoints(tier: 4).to_s
+
+    ("<div class='row " + options[:class].to_s + "'>
+        <div class='col-xs-5'>
+          <strong>" + attribute_name + ":</strong>
+        </div>
+        <div class='col-xs-7'>" +
+          attribute_value +
+        "</div>
+      </div>").html_safe
+  end
+
   def display_attribute_for_print(attribute_name, attribute_value)
     attribute_value = '&nbsp' if attribute_value.nil? || attribute_value == ''
     ("<div class='text-box'>" + attribute_value.to_s + '</div>' \
@@ -103,4 +119,9 @@ module ApplicationHelper
       end
     end
   end
+
+  def sort_params(params)
+    params.permit(q: [:s])
+  end
+
 end

@@ -14,4 +14,10 @@ class User < ActiveRecord::Base
 
   has_many :dm_campaign_assignments
   has_many :campaigns, through: :dm_campaign_assignments
+
+  enum character_style: [:old, :season8, :both], _prefix: true
+  enum character_log_entry_style: [:old, :season8], _prefix: true
+  enum magic_item_style: [:old, :season8], _prefix: true
+  enum dm_style: [:old, :season8, :both], _prefix: true
+  enum dm_log_entry_style: [:old, :season8], _prefix: true
 end

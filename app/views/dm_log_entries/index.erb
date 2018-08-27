@@ -1,39 +1,7 @@
 <div class="row">
   <h1 class='col-xs-11'>DM Log Entries</h1>
-
-  <div class='col-md-1 list-buttons' style="margin-top: 20px;">
-    <% if params[:show_search] %>
-      <%= link_to "Hide Search", [@user, :dm_log_entries, q: params[:q]], class: 'btn btn-default btn-sm' %>
-    <% else %>
-      <%= link_to "Show Search", [@user, :dm_log_entries, show_search: true, q: params[:q]], class: 'btn btn-default btn-sm' %>
-    <% end %>
-  </div>
+  <%= render partial: "dm_log_entries/search", locals: { q: sort_params(params).fetch(:q, {}) } %>
 </div>
-
-<% if params[:show_search] %>
-  <div class="row">
-    <div class="col-md-12">
-      <%= form_for @user, url: user_dm_log_entries_path(@user), method: :get do |f| %>
-        <%= label_tag :advanced_search, "Advanced Search" %>
-        <div class="input-group">
-          <%= hidden_field_tag :show_search, true %>
-          <%= text_field_tag :q, params[:q],  class: 'form-control' %>
-          <span class="input-group-btn">
-            <%= button_tag(name: nil, class: 'btn btn-default') do %>
-              <span class='fa fa-search'></span>
-              <span class='sr-only'>Search DM Log Entries</span>
-            <% end %>
-          </span>
-        </div>
-      <% end %>
-    </div>
-  </div>
-
-  <br>
-  <div class="row">
-    <%= render partial: "dm_log_entries/search_form" %>
-  </div>
-<% end %>
 
 <div class="row">
   <div class="col-md-3">
@@ -61,69 +29,4 @@
   </div>
 </div>
 
-<div class="row">
-  <div class='col-xs-12 col-sm-7 col-md-8'>
-    <%= paginate @log_entries %>
-  </div>
-
-  <div class='col-xs-12 col-sm-5 col-md-4 list-buttons'>
-    <div class="pull-right hidden-xs">
-      <%= render partial: 'dm_log_entries/list_buttons' %>
-    </div>
-
-    <div class="visible-xs" style="padding-left:15px;">
-      <%= render partial: 'dm_log_entries/list_buttons' %>
-    </div>
-  </div>
-</div>
-
-
-<div class="table-responsive">
-  <table class="table table-bordered table-responsive table-striped">
-    <tr>
-      <th><%= sort_link @search, :date_dmed, "Date", {}, {} %></th>
-      <th><%= sort_link @search, :adventure_title, "Adventure Title", {}, {} %></th>
-      <th><%= sort_link @search, :session_num, "Session", {}, {} %></th>
-      <th><%= sort_link @search, :xp_gained, "XP", {}, {} %></th>
-      <th><%= sort_link @search, :gp_gained, "GP", {}, {} %></th>
-      <th><%= sort_link @search, :downtime_gained, "Downtime", {}, {} %></th>
-      <th><%= sort_link @search, :renown_gained, "Renown", {}, {} %></th>
-      <th><%= sort_link @search, :num_secret_missions, "Missions", {}, {} %></th>
-      <th><%= sort_link @search, :session_length_hours, "Hours", {}, {} %></th>
-      <th><%= sort_link @search, :log_assignments_character_id, "Character Rewarded", {}, {} %></th>
-      <th></th>
-    </tr>
-
-    <tbody id='menu_items'>
-      <% @log_entries.each do |log_entry| %>
-        <tr>
-          <td><%= format_date log_entry.date_dmed %></td>
-          <td><%= log_entry.adventure_title %></td>
-          <td><%= log_entry.session_num %></td>
-          <td><%= log_entry.xp_gained %></td>
-          <td><%= humanize_decimal log_entry.gp_gained %></td>
-          <td><%= log_entry.downtime_gained %></td>
-          <td><%= log_entry.renown_gained %></td>
-          <td><%= log_entry.num_secret_missions %></td>
-          <td><%= log_entry.session_length_hours %></td>
-          <td><%= link_to_character_if_public log_entry.character, @user, current_user %></td>
-
-          <td>
-            <%= link_to "<span class='sr-only'>Show</span>".html_safe, [@user, log_entry], class: "fa fa-eye", title: "Show Log Entry" %>
-            <% if (@user == current_user) %>
-              <%= link_to "<span class='sr-only'>Edit</span>".html_safe, [@user, log_entry, action: :edit, q: params[:q]], class: "fa fa-pencil-square-o", title: "Edit Log Entry" %>
-              <%= link_to "<span class='sr-only'>Delete</span>".html_safe, [@user, log_entry, q: params[:q]], method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o", title: "Delete Log Entry" %>
-            <% end %>
-          </td>
-        </tr>
-        <% unless log_entry.notes.empty? %>
-          <tr>
-            <td colspan='11'>
-              <%= markdown(log_entry.notes) %>
-            </td>
-          </tr>
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<%= render partial: "dm_log_entries/list", locals: { q: sort_params(params).fetch(:q, {}) } %>

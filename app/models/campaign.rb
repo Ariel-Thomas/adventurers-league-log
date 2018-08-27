@@ -18,6 +18,9 @@ class Campaign < ActiveRecord::Base
   has_many :characters, through: :campaign_participations
   has_many :character_users, through: :campaign_participations, source: :user
 
+  enum campaign_style: [:old, :season8], _prefix: true
+  enum campaign_log_entry_style: [:old, :season8], _prefix: true
+
   before_validation :reset_tokens, on: :create
 
   def reset_tokens
