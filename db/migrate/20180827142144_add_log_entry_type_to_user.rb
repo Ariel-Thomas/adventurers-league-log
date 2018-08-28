@@ -1,4 +1,4 @@
-class AddLogEntryTypeToUser < ActiveRecord::Migration
+class AddLogEntryTypeToUser < ActiveRecord::Migration[5.2]
   def change
     add_column :users, :character_style, :integer, default: 1
     add_column :users, :character_log_entry_style, :integer, default: 1

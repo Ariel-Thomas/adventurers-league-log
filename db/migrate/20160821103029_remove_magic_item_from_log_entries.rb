@@ -1,4 +1,4 @@
-class RemoveMagicItemFromLogEntries < ActiveRecord::Migration
+class RemoveMagicItemFromLogEntries < ActiveRecord::Migration[5.2]
   def up
     LogEntry.where.not(desc_magic_items_gained: nil, desc_magic_items_gained: '').each do |log_entry|
       MagicItem.create!(name: log_entry.desc_magic_items_gained, log_entry: log_entry)

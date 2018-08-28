@@ -1,4 +1,4 @@
-class CreateLogAssignment < ActiveRecord::Migration
+class CreateLogAssignment < ActiveRecord::Migration[5.2]
   def change
     create_table :log_assignments do |t|
       t.integer :character_id

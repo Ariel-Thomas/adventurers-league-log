@@ -1,4 +1,4 @@
-class CreateDmCampaignAssignments < ActiveRecord::Migration
+class CreateDmCampaignAssignments < ActiveRecord::Migration[5.2]
   def up
     create_table :dm_campaign_assignments do |t|
       t.integer :user_id

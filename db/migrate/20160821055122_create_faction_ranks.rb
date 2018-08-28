@@ -1,4 +1,4 @@
-class CreateFactionRanks < ActiveRecord::Migration
+class CreateFactionRanks < ActiveRecord::Migration[5.2]
   def change
     create_table :faction_ranks do |t|
       t.string  :name
