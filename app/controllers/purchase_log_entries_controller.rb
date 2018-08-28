@@ -34,6 +34,8 @@ class PurchaseLogEntriesController < LogEntriesController
     @log_entry.characters = [@character]
     authorize @log_entry
 
+    @log_entry.purchased_magic_item = @new_magic_item
+
     if @log_entry.save
       @log_entry.magic_items = [@log_entry.purchased_magic_item] if @log_entry.purchased_magic_item && !@log_entry.purchased_magic_item.log_entry
       redirect_to user_character_path(current_user, @character, q: params.permit(:q).fetch(:q, nil)),
@@ -58,9 +60,8 @@ class PurchaseLogEntriesController < LogEntriesController
       end
     end
 
-    @log_entry.purchased_magic_item = nil
-
     if @log_entry.update_attributes(log_entries_params)
+      @log_entry.purchased_magic_item = @new_magic_item
       @log_entry.magic_items = [@log_entry.purchased_magic_item] if @log_entry.purchased_magic_item && !@log_entry.purchased_magic_item.log_entry
       redirect_to user_character_path(current_user, @character, q: params.permit(:q).fetch(:q, nil)),
                   flash: { notice: 'Successfully updated purchase log entry' }
@@ -81,6 +82,7 @@ class PurchaseLogEntriesController < LogEntriesController
   protected
 
   def load_character
+    puts params.inspect
     @character   = Character.find(params[:character_id])
   end
 
@@ -101,17 +103,28 @@ class PurchaseLogEntriesController < LogEntriesController
       @new_magic_item = magic_item
     elsif @log_entry && @log_entry.magic_items.last
       @new_magic_item = @log_entry.magic_items.last
+    elsif magic_item_attributes_params
+      @new_magic_item = MagicItem.new(magic_item_attributes_params.permit(magic_item_params))
+      clean_up_magic_item_params
     else
       @new_magic_item = MagicItem.new(purchase_log_entry_id: 0)
     end
   end
 
   def new_magic_item_params
-    current_params = params[:purchase_log_entry][:purchased_magic_item] if params[:purchase_log_entry]
+    params[:purchase_log_entry][:purchased_magic_item] if params[:purchase_log_entry]
+  end
+
+  def magic_item_attributes_params
+    params[:purchase_log_entry][:purchased_magic_item_attributes] if params[:purchase_log_entry]
   end
 
   def clean_up_params
     params[:purchase_log_entry].delete(:purchased_magic_item)
+  end
+
+  def clean_up_magic_item_params
+    params[:purchase_log_entry].delete(:purchased_magic_item_attributes)
   end
 
   def log_entries_params
