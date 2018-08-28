@@ -1,7 +1,7 @@
 <% if @hide_assigned_enabled %>
-  <%= link_to "Show Assigned", user_dm_log_entries_path(@user, q: { s: q.fetch(:s) } ), class: "btn btn-default" %>
+  <%= link_to "Show Assigned", user_dm_log_entries_path(@user, q: { s: q.fetch(:s, nil) } ), class: "btn btn-default" %>
 <% else %>
-  <%= link_to "Hide Assigned", user_dm_log_entries_path(@user, q: { log_assignments_character_id_null: true, s: q.fetch(:s) }), class: "btn btn-default" %>
+  <%= link_to "Hide Assigned", user_dm_log_entries_path(@user, q: { log_assignments_character_id_null: true, s: q.fetch(:s, nil) }), class: "btn btn-default" %>
 <% end %>
 
 <%= link_to "Print", print_user_dm_log_entries_path(@user), target: '_blank', rel: 'noopener noreferrer', class: "btn btn-default" %>

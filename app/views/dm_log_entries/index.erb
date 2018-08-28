@@ -5,13 +5,17 @@
 
 <div class="row">
   <div class="col-md-3">
-    <%= display_attribute_small "Total XP",  @total_xp %>
-    <%= display_attribute_small "Unused XP",  @unused_xp %>
+    <%= display_attribute_small "Total XP",  @total_xp if @style == 'old' || @style == 'both' %>
+    <%= display_attribute_small "Unused XP",  @unused_xp if @style == 'old' || @style == 'both' %>
+    <%= display_attribute_small "Total ACP",  @total_acp if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute_small "Unused ACP",  @unused_acp if @style == 'season8' || @style == 'both' %>
     <%= display_attribute_small "Total Hours",  @total_hours %>
     <br>
   </div>
 
   <div class="col-md-3">
+    <%= display_attribute_small "Total TCP",  treasure_checkpoints_string(@total_tcp) if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute_small "Unused TCP",  treasure_checkpoints_string(@unused_tcp) if @style == 'season8' || @style == 'both' %>
     <%= display_attribute_small "Total GP",  @total_gp %>
     <%= display_attribute_small "Unused GP",  @unused_gp %>
     <br>
