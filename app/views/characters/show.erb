@@ -29,11 +29,14 @@
     <%= display_attribute "Lifestyle", @character.lifestyle_name %>
     <br class='hidden-xs'>
     <%= display_attribute "Current Level", @character.current_level %>
-    <%= display_attribute "Total XP",  @character.total_xp %>
-    <%= display_attribute "XP to Level", @character.xp_to_next_level %>
-    <div class='hidden-xs'><%= display_attribute "XP for Next",  @character.xp_for_next_level %></div>
-    <%= display_attribute "ACP Level", @character.checkpoint_level %>
-    <%= display_attribute "ACP to Level", @character.checkpoints_to_next_level %>
+    <%= display_attribute "XP Level",  @character.xp_level if @style == 'both' %>
+    <%= display_attribute "Total XP",  @character.total_xp if @style == 'old' || @style == 'both' %>
+    <%= display_attribute "XP to Level", @character.xp_to_next_level if @style == 'old' || @style == 'both' %>
+    <div class='hidden-xs'><%= display_attribute "XP for Next",  @character.xp_for_next_level if @style == 'old' || @style == 'both' %></div>
+
+    <%= display_attribute "ACP Level", @character.checkpoint_level if @style == 'both' %>
+    <%= display_attribute "ACP to Level", @character.checkpoints_to_next_level if @style == 'season8' || @style == 'both' %>
+
     <%= display_attribute "Total GP", humanize_decimal(@character.total_gp) %>
     <%= display_attribute "Total Downtime",  @character.total_downtime %>
   </div>
@@ -42,9 +45,10 @@
     <%= display_attribute "Faction",  @character.faction_name %>
     <%= display_attribute "Faction Rank", @character.faction_rank %>
     <%= display_attribute "Total Renown", @character.total_renown %>
+    <%= display_attribute "Secreet Missions", @character.total_secret_missions  if @style == 'old' || @style == 'both'%>
+    <% if @style == 'season8' %><br class='hidden-xs'><% end %>
     <br class='hidden-xs'>
-    <br class='hidden-xs'>
-    <%= display_treasure_checkpoints "Treasure CPs", @character %>
+    <%= display_treasure_checkpoints "Treasure CPs", @character if @style == 'season8' || @style == 'both' %>
     <%= display_attribute_ary (link_to "Magic Items", user_character_magic_items_path(@user, @character)), @magic_items.pluck(:name) %>
   </div>
 
