@@ -100,7 +100,7 @@ class CharacterLogEntriesController < LogEntriesController
   end
 
   def load_player_dms
-    @player_dms = @user.player_dms.all
+    @player_dms = @user.player_dms.order(:name).all
   end
 
   def manage_player_dms

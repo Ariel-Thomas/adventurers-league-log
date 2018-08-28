@@ -37,7 +37,7 @@ class LogEntriesController < AuthenticationController
   end
 
   def load_locations
-    @locations = @user.locations.all
+    @locations = @user.locations.order(:name).all
   end
 
   def manage_locations
