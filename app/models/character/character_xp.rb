@@ -6,7 +6,7 @@ module Character::CharacterXP
     log_entries.sum(:xp_gained)
   end
 
-  def current_level
+  def xp_level
     current_xp = total_xp
 
     XP_BY_LEVEL.each_with_index do |xp_amount, index|
@@ -21,11 +21,11 @@ module Character::CharacterXP
   end
 
   def fraction_of_xp_to_next_level
-    Float(total_xp - XP_BY_LEVEL[[current_level - 1,0].max]) / Float(xp_for_next_level - XP_BY_LEVEL[[current_level - 1,0].max])
+    Float(total_xp - XP_BY_LEVEL[[xp_level - 1,0].max]) / Float(xp_for_next_level - XP_BY_LEVEL[[xp_level - 1,0].max])
   end
 
   def xp_for_next_level
-    XP_BY_LEVEL[current_level] || 0
+    XP_BY_LEVEL[xp_level] || 0
   end
 
 end
