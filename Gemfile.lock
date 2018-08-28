@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/Ariel-Thomas/phil_columns-activerecord
+  revision: 9ea56be4d89d9062e7f1c15759a7e3eae98542f0
+  specs:
+    phil_columns-activerecord (0.2.2)
+      activerecord
+      phil_columns
+
+GIT
   remote: https://github.com/knightq/crummy
   revision: 883e40df9964df8a4d2ba51208bfe33b209c9218
   specs:
@@ -164,9 +172,6 @@ GEM
       hashie
       rainbow
       thor
-    phil_columns-activerecord (0.2.2)
-      activerecord
-      phil_columns
     poltergeist (1.18.1)
       capybara (>= 2.1, < 4)
       cliver (~> 0.3.1)
@@ -322,7 +327,7 @@ DEPENDENCIES
   pg (= 0.18.4)
   phantomjs
   phil_columns
-  phil_columns-activerecord
+  phil_columns-activerecord!
   poltergeist
   pry-byebug
   pry-rails
@@ -344,4 +349,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.16.2
+   1.16.4

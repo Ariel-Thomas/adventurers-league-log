@@ -30,7 +30,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 
 gem 'honeybadger', '~> 2.0'
 gem 'phil_columns'
-gem 'phil_columns-activerecord'
+gem 'phil_columns-activerecord', git: 'https://github.com/Ariel-Thomas/phil_columns-activerecord'
 
 gem 'pry-rails'
 gem 'colorize'
