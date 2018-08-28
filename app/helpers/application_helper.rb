@@ -37,10 +37,7 @@ module ApplicationHelper
   end
 
   def display_treasure_checkpoints(attribute_name, character, options = {})
-    attribute_value = character.treasure_checkpoints(tier: 1).to_s + "/" +
-                      character.treasure_checkpoints(tier: 2).to_s + "/" +
-                      character.treasure_checkpoints(tier: 3).to_s + "/" +
-                      character.treasure_checkpoints(tier: 4).to_s
+    attribute_value = treasure_checkpoints_string(character.log_entries)
 
     ("<div class='row " + options[:class].to_s + "'>
         <div class='col-xs-5'>
@@ -50,6 +47,13 @@ module ApplicationHelper
           attribute_value +
         "</div>
       </div>").html_safe
+  end
+
+  def treasure_checkpoints_string(log_entries)
+    log_entries.where(treasure_tier: 1).sum(:treasure_checkpoints).to_s + "/" +
+    log_entries.where(treasure_tier: 2).sum(:treasure_checkpoints).to_s + "/" +
+    log_entries.where(treasure_tier: 3).sum(:treasure_checkpoints).to_s + "/" +
+    log_entries.where(treasure_tier: 4).sum(:treasure_checkpoints).to_s
   end
 
   def display_attribute_for_print(attribute_name, attribute_value)

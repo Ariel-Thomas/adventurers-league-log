@@ -28,6 +28,7 @@ class DmLogEntriesController < LogEntriesController
     @search                   = @user.dm_log_entries.search(params[:q])
     @prepaginated_log_entries = @search.result(distinct: false)
     @log_entries              = @prepaginated_log_entries.page params[:page]
+    @style                    = @user.dm_style
 
     set_index_stats
   end
@@ -155,6 +156,12 @@ class DmLogEntriesController < LogEntriesController
   def set_index_stats
     @total_xp        = @prepaginated_log_entries.sum(:xp_gained)
     @unused_xp       = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).sum(:xp_gained)
+    @total_acp       = @prepaginated_log_entries.sum(:advancement_checkpoints)
+    @unused_acp      = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).sum(:advancement_checkpoints)
+
+    @total_tcp       = @prepaginated_log_entries
+    @unused_tcp      = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil })
+
     @total_hours     = @prepaginated_log_entries.sum(:session_length_hours)
     @total_gp        = @prepaginated_log_entries.sum(:gp_gained)
     @unused_gp       = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).sum(:gp_gained)
