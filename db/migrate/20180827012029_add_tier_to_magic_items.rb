@@ -1,4 +1,4 @@
-class AddTierToMagicItems < ActiveRecord::Migration
+class AddTierToMagicItems < ActiveRecord::Migration[5.2]
   def change
     add_column :magic_items, :tier, :integer
 

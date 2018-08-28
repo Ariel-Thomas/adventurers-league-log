@@ -1,4 +1,4 @@
-class AddCheckpointsToLogEntries < ActiveRecord::Migration
+class AddCheckpointsToLogEntries < ActiveRecord::Migration[5.2]
   def change
     add_column :log_entries, :advancement_checkpoints, :integer
     add_column :log_entries, :treasure_checkpoints, :integer

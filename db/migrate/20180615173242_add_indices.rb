@@ -1,4 +1,4 @@
-class AddIndices < ActiveRecord::Migration
+class AddIndices < ActiveRecord::Migration[5.2]
   def change
     LogAssignment.select(:character_id, :log_entry_id).group(:character_id, :log_entry_id).having("count(*) > 1")
       .each{ |x| LogAssignment.find_by(character_id: x.character_id, log_entry_id: x.log_entry_id).delete }

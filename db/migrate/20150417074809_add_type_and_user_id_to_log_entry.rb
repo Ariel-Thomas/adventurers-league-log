@@ -1,4 +1,4 @@
-class AddTypeAndUserIdToLogEntry < ActiveRecord::Migration
+class AddTypeAndUserIdToLogEntry < ActiveRecord::Migration[5.2]
   def change
     add_column :log_entries, :type, :string
     add_column :log_entries, :user_id, :integer

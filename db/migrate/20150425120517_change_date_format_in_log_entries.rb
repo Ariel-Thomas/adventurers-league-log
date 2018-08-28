@@ -1,4 +1,4 @@
-class ChangeDateFormatInLogEntries < ActiveRecord::Migration
+class ChangeDateFormatInLogEntries < ActiveRecord::Migration[5.2]
   def up
     change_column :log_entries, :date_played, :datetime
   end
