@@ -29,11 +29,11 @@ module Character::CharacterCheckpoints
 
 
   def checkpoints_from_xp
-    checkpoints_by_level(current_level) + checkpoints_to_next_level_from_xp
+    checkpoints_by_level(xp_level) + checkpoints_to_next_level_from_xp
   end
 
   def checkpoints_to_next_level_from_xp
-    (fraction_of_xp_to_next_level * checkpoints_for_level(current_level + 1)).ceil
+    (fraction_of_xp_to_next_level * checkpoints_for_level(xp_level + 1)).ceil
   end
 
 end

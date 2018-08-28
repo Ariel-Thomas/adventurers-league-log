@@ -27,10 +27,12 @@ class Character < ActiveRecord::Base
   end
 
   def faction_rank
-    return 'None' unless faction
+    target_faction = faction ? faction : Faction.find_by(name: "Default")
     args = { renown: total_renown,
-             level: current_level }
-    faction.rank args
+             secret_missions: total_secret_missions,
+             level: current_level,
+             use_old_rank: user.character_style_old? }
+    target_faction.rank args
   end
 
   def faction_name
@@ -51,6 +53,10 @@ class Character < ActiveRecord::Base
     else
       'None'
     end
+  end
+
+  def current_level
+    checkpoint_level
   end
 
   def total_gp
