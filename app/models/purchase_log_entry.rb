@@ -1,5 +1,6 @@
 class PurchaseLogEntry < LogEntry
   has_one :purchased_magic_item, inverse_of: :purchase_log_entry, class_name: 'MagicItem', dependent: :nullify
+  accepts_nested_attributes_for :purchased_magic_item, reject_if: proc { |attributes| attributes[:name].blank? }, allow_destroy: true
 
   def user
     character.user

@@ -31,12 +31,11 @@ class PurchaseLogEntriesController < LogEntriesController
 
   def create
     @log_entry = @character.purchase_log_entries.build(log_entries_params)
-    @log_entry.purchased_magic_item = @new_magic_item
     @log_entry.characters = [@character]
-
     authorize @log_entry
 
     if @log_entry.save
+      @log_entry.magic_items = [@log_entry.purchased_magic_item] if @log_entry.purchased_magic_item && !@log_entry.purchased_magic_item.log_entry
       redirect_to user_character_path(current_user, @character, q: params.permit(:q).fetch(:q, nil)),
                   flash: { notice: 'Successfully created purchase log entry' }
     else
@@ -51,7 +50,18 @@ class PurchaseLogEntriesController < LogEntriesController
 
   def update
     authorize @log_entry
+
+    if @log_entry.purchased_magic_item
+      if @log_entry.purchased_magic_item.log_entry.id == @log_entry.id &&
+          @log_entry.purchased_magic_item.id != @new_magic_item.id
+        @log_entry.purchased_magic_item.destroy
+      end
+    end
+
+    @log_entry.purchased_magic_item = nil
+
     if @log_entry.update_attributes(log_entries_params)
+      @log_entry.magic_items = [@log_entry.purchased_magic_item] if @log_entry.purchased_magic_item && !@log_entry.purchased_magic_item.log_entry
       redirect_to user_character_path(current_user, @character, q: params.permit(:q).fetch(:q, nil)),
                   flash: { notice: 'Successfully updated purchase log entry' }
     else
@@ -89,14 +99,15 @@ class PurchaseLogEntriesController < LogEntriesController
     magic_item = MagicItem.find_by(id: new_magic_item_params)
     if magic_item.present?
       @new_magic_item = magic_item
-      @new_magic_item.purchased = true
+    elsif @log_entry && @log_entry.magic_items.last
+      @new_magic_item = @log_entry.magic_items.last
     else
-      @new_magic_item = MagicItem.new(purchase_log_entry_id: 0, purchased: true)
+      @new_magic_item = MagicItem.new(purchase_log_entry_id: 0)
     end
   end
 
   def new_magic_item_params
-    params[:purchase_log_entry][:purchased_magic_item] if params[:purchase_log_entry]
+    current_params = params[:purchase_log_entry][:purchased_magic_item] if params[:purchase_log_entry]
   end
 
   def clean_up_params
@@ -105,9 +116,9 @@ class PurchaseLogEntriesController < LogEntriesController
 
   def log_entries_params
     params.require(:purchase_log_entry)
-          .permit(:date_played, :downtime_gained, :gp_gained, :purchased_magic_item,
+          .permit(:date_played, :downtime_gained, :gp_gained,
                   :tier1_treasure_checkpoints, :tier2_treasure_checkpoints,
                   :tier3_treasure_checkpoints, :tier4_treasure_checkpoints,
-                  :notes, magic_items_attributes: magic_item_params).merge(purchased_magic_item: @new_magic_item)
+                  :notes, :purchased_magic_item, purchased_magic_item_attributes: magic_item_params)
   end
 end

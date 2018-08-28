@@ -19,11 +19,9 @@
   </div>
 
   <div class="row">
-    <div class="form-group col-md-offset-2 col-md-8">
-      <%= f.label :purchased_magic_item, 'Unlocked Magic Item' %>
-      <%= f.select :purchased_magic_item, @magic_items_for_select, { selected: @log_entry.purchased_magic_item ? @log_entry.purchased_magic_item.id : nil, include_blank: true }, { class: 'form-control ' } %>
-    </div>
+    <%= render partial: 'purchase_log_entries/unlocked_magic_item', locals: { f: f } %>
   </div>
+
 
   <div class="row">
     <div class="col-md-2">
