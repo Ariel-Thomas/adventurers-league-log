@@ -39,11 +39,11 @@ class TradeLogEntriesController < LogEntriesController
     authorize @log_entry
 
     if @log_entry.save
-      redirect_to user_character_path(current_user, @character, q: params[:q]),
+      redirect_to user_character_path(current_user, @character, q: params.permit(:q).fetch(:q, nil)),
                   flash: { notice: 'Successfully created trade log entry' }
     else
       flash.now[:error] = log_entry_error_message 'create'
-      render :new, q: params[:q]
+      render :new, q: params.permit(:q).fetch(:q, nil)
     end
   end
 
@@ -55,11 +55,11 @@ class TradeLogEntriesController < LogEntriesController
     authorize @log_entry
     @log_entry.traded_magic_item = @new_magic_item
     if @log_entry.update_attributes(log_entries_params)
-      redirect_to user_character_path(current_user, @character, q: params[:q]),
+      redirect_to user_character_path(current_user, @character, q: params.permit(:q).fetch(:q, nil)),
                   flash: { notice: 'Successfully updated trade log entry' }
     else
       flash.now[:error] = log_entry_error_message 'update'
-      render :edit, q: params[:q]
+      render :edit, q: params.permit(:q).fetch(:q, nil)
     end
   end
 
@@ -67,7 +67,7 @@ class TradeLogEntriesController < LogEntriesController
     authorize @log_entry
     @log_entry.destroy
 
-    redirect_to user_character_path(current_user, @character, q: params[:q]),
+    redirect_to user_character_path(current_user, @character, q: params.permit(:q).fetch(:q, nil)),
                 flash: { notice: 'Successfully deleted trade log entry' }
   end
 
