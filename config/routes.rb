@@ -8,6 +8,7 @@ AdventurersLeagueLog::Application.routes.draw do
     resources :characters do
       resources :character_log_entries
       resources :trade_log_entries
+      resources :purchase_log_entries
       resources :character_campaigns, only: [:destroy]
       resources :campaign_log_entries, only: [:show]
       resources :magic_items

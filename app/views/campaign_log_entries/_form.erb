@@ -153,7 +153,7 @@
       $(".new_format").addClass('hide');
       $(".new_format .form-control").prop('disabled', true);
 
-      $(".purchased").prop('checked', true);
+      $(".purchased:enabled").prop('checked', true);
     } else {
       $(".new_format").removeClass('hide');
       $(".new_format .form-control").prop('disabled', false);
@@ -161,7 +161,7 @@
       $(".old_format").addClass('hide');
       $(".old_format .form-control").prop('disabled', true);
 
-      $(".purchased").prop('checked', false);
+      $(".purchased:enabled").prop('checked', false);
     }
   });
 

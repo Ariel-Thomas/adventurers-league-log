@@ -1,11 +1,15 @@
 <%= form_for [@user, @character, @log_entry] do |f| %>
   <div class="row">
-    <div class="form-group col-md-offset-2 col-md-4">
-      <%= f.label :date_played, 'Date Traded' %>
-
+    <div class="form-group col-md-offset-2 col-md-2">
+      <%= f.label :date_played, 'Date Purchased' %>
       <div class='input-group date'>
         <%= f.text_field :date_played, class: 'form-control' %>
       </div>
+    </div>
+
+    <div class="form-group col-md-2">
+      <%= f.label :treasure_checkpoints, 'Treasure CP' %>
+      <%= f.number_field :treasure_checkpoints, class: 'form-control', :step => 'any'  %>
     </div>
 
     <div class="form-group col-md-2">
@@ -21,8 +25,29 @@
 
   <div class="row">
     <div class="form-group col-md-offset-2 col-md-8">
-      <%= f.label :traded_magic_item, 'Traded Magic Item' %>
-      <%= f.select :traded_magic_item, @magic_items.map {|p| [ "#{p.name} (#{p.rarity})", p.id ] }, { selected: @log_entry.traded_magic_item ? @log_entry.traded_magic_item.id : 0, include_blank: true }, { class: 'form-control ' } %>
+      <%= f.label :purchased_magic_item, 'Unlocked Magic Item' %>
+      <%= f.select :purchased_magic_item, @magic_items_for_select, { selected: @log_entry.purchased_magic_item ? @log_entry.purchased_magic_item.id : nil, include_blank: true }, { class: 'form-control ' } %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="form-group col-md-2">
+      <%= f.label :tier1_treasure_checkpoints, 'Tier 1 TCP' %>
+      <%= f.number_field :tier1_treasure_checkpoints, class: 'form-control' %>
+    </div>
+    <div class="form-group col-md-2">
+      <%= f.label :tier2_treasure_checkpoints, 'Tier 2 TCP' %>
+      <%= f.number_field :tier2_treasure_checkpoints, class: 'form-control' %>
+    </div>
+    <div class="form-group col-md-2">
+      <%= f.label :tier3_treasure_checkpoints, 'Tier 3 TCP' %>
+      <%= f.number_field :tier3_treasure_checkpoints, class: 'form-control' %>
+    </div>
+    <div class="form-group col-md-2">
+      <%= f.label :tier4_treasure_checkpoints, 'Tier 4 TCP' %>
+      <%= f.number_field :tier4_treasure_checkpoints, class: 'form-control' %>
     </div>
   </div>
 
@@ -37,12 +62,6 @@
     </div>
   </div>
 
-  <%= f.fields_for :magic_items, [@new_magic_item] do |magic_item_form| %>
-    <div class="magic-item well col-md-offset-2 col-md-8">
-      <%= render partial: 'magic_items/form', locals: { magic_item_form: magic_item_form, magic_item: @new_magic_item, removeable: false } %>
-    </div>
-  <% end %>
-
   <%= hidden_field_tag :q, params[:q] %>
 
   <div class="row top-buffer-md">
@@ -54,7 +73,7 @@
 
 <script type="text/javascript">
   $(function () {
-    $('#trade_log_entry_date_played').datetimepicker({
+    $('#purchase_log_entry_date_played').datetimepicker({
       format: 'YYYY-MM-DD HH:mm ',
       icons: {
           time: "fa fa-clock-o",

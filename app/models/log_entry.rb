@@ -42,6 +42,10 @@ class LogEntry < ActiveRecord::Base
     false
   end
 
+  def is_purchase_log_entry?
+    false
+  end
+
   def is_campaign_log_entry?
     false
   end

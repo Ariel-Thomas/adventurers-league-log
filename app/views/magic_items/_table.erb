@@ -22,7 +22,7 @@
             <td><%= magic_item.table %></td>
             <td><%= magic_item.table_result %></td>
             <td>
-              <%= render partial: 'log_entries/log_entry_link', locals: { log_entry: magic_item.log_entry } %>
+              <%= render partial: 'log_entries/log_entry_link', locals: { log_entry: magic_item.log_entry } if magic_item.log_entry %>
             </td>
             <td>
               <%= link_to "<span class='sr-only'>Show<span>".html_safe, [@user, @character, magic_item], class: "fa fa-eye", title: "Show Magic Item" %>

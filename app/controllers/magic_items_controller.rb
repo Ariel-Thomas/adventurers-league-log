@@ -13,7 +13,7 @@ class MagicItemsController < AuthenticationController
   def index
     authorize @user, :show_characters?
 
-    magic_items = @character.magic_items.where(trade_log_entry_id: nil)
+    magic_items = @character.magic_items
     @purchased_search      = magic_items.purchased.search(params[:q])
     @purchased_magic_items = @purchased_search.result(distinct: false).page params[:page]
 
