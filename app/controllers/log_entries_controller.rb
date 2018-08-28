@@ -58,6 +58,6 @@ class LogEntriesController < AuthenticationController
 
   def magic_item_params
     [:id, :name, :rarity, :tier, :location_found, :table, :table_result,
-      :character_id, :purchased, :log_entry, :log_entry_id, :purchase_log_entry, :not_included_in_count, :notes, :_destroy]
+      :character_id, :purchased, :log_entry, :log_entry_id, :purchase_log_entry, :purchase_log_entry_id, :not_included_in_count, :notes, :_destroy]
   end
 end

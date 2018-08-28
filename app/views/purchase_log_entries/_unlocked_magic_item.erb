@@ -23,17 +23,21 @@
   $('#use_magic_item_override').change( function(){
     var formGroupParent = $(this).parent().parent().parent();
     if($(this).is(':checked')) {
-      $('.automatic_input').addClass('hide');
+      $('.automatic_input').addClass('hide')
       $('.automatic_input select').prop('disabled', true);
 
-      $('.manual_input').removeClass('hide');
+      $('.manual_input').removeClass('hide')
       $('.manual_input input').prop('disabled', false);
+      $('.manual_input select').prop('disabled', false);
+      $('.manual_input textarea').prop('disabled', false);
     } else {
-      $('.automatic_input').removeClass('hide');
+      $('.automatic_input').removeClass('hide')
       $('.automatic_input select').prop('disabled', false);
 
-      $('.manual_input').addClass('hide');
+      $('.manual_input').addClass('hide')
       $('.manual_input input').prop('disabled', true);
+      $('.manual_input select').prop('disabled', true);
+      $('.manual_input textarea').prop('disabled', true);
     }
   });
 

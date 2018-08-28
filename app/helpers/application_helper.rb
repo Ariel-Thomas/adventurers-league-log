@@ -37,7 +37,11 @@ module ApplicationHelper
   end
 
   def display_treasure_checkpoints(attribute_name, character, options = {})
-    attribute_value = treasure_checkpoints_string(character.log_entries)
+    attribute_value =
+      character.treasure_checkpoints(tier: 1).to_s + "/" +
+      character.treasure_checkpoints(tier: 2).to_s + "/" +
+      character.treasure_checkpoints(tier: 3).to_s + "/" +
+      character.treasure_checkpoints(tier: 4).to_s
 
     ("<div class='row " + options[:class].to_s + "'>
         <div class='col-xs-5'>
