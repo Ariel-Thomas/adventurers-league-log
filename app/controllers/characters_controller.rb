@@ -29,6 +29,8 @@ class CharactersController < AuthenticationController
     @log_entries = @search.result(distinct: false).page params[:page]
     @magic_items = @character.magic_items.order(:id).purchased
 
+    @style = @user.character_style
+
     respond_to do |format|
       format.html
       format.csv { send_data CharacterCsvExporter.new(@character).export() }
