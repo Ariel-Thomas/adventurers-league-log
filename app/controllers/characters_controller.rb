@@ -21,13 +21,13 @@ class CharactersController < AuthenticationController
   def show
     authorize @character
 
-    params[:q] = JSON.parse(params[:q].gsub('=>', ': ')).symbolize_keys if params[:q].class == String
-    params[:q] = { type_not_eq: 'DmLogEntry', s: 'date_played desc' } unless params[:q]
+    params[:q] = JSON.parse(params[:q].gsub('=>', ': ')).symbolize_keys if params[:q].class == String && params[:q].length >= 2
+    params[:q] = { type_not_eq: 'DmLogEntry', s: 'date_played desc' } unless params[:q].present?
     @dm_logs_enabled = params[:q][:type_not_eq] != 'DmLogEntry'
 
     @search      = @character.log_entries.search(params[:q])
     @log_entries = @search.result(distinct: false).page params[:page]
-    @magic_items = @character.magic_items.order(:id).where(trade_log_entry_id: nil)
+    @magic_items = @character.magic_items.order(:id).where(purchased: true)
 
     respond_to do |format|
       format.html

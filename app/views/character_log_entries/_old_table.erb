@@ -16,7 +16,7 @@
 
       <tbody id='menu_items'>
         <% @log_entries.each do |log_entry| %>
-          <tr class='<%= "dm_log" if log_entry.type == "DmLogEntry" %> <%= "trade-log" if log_entry.type == "TradeLogEntry" %>'>
+          <tr class='<%= "dm_log" if log_entry.type == "DmLogEntry" %> <%= "trade-log" if log_entry.type == "TradeLogEntry" %> <%= "purchase-log" if log_entry.type == "PurchaseLogEntry" %>'>
             <td><%= format_date log_entry.date_played %></td>
             <td>
               <%= render partial: 'log_entries/log_entry_link', locals: { log_entry: log_entry } %>
@@ -43,6 +43,15 @@
                   <%= link_to "<span class='sr-only'>Delete</span>".html_safe, user_character_trade_log_entry_path(current_user, @character, log_entry, q: q), method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o", title: "Delete Log Entry" %>
                 <% end %>
                 <span class='label label-success pull-right' style="width:60px;">Trade Log</span>
+              <% end %>
+
+              <% if log_entry.type == "PurchaseLogEntry" %>
+                <%= link_to "<span class='sr-only'>Show</span>".html_safe, user_character_purchase_log_entry_path(@character.user, @character, log_entry), class: "fa fa-eye", title: "Show Log Entry" %>
+                <% if @character.user == current_user %>
+                  <%= link_to "<span class='sr-only'>Edit Log Entry</span>".html_safe, edit_user_character_purchase_log_entry_path(current_user, @character, log_entry, q: q), class: "fa fa-pencil-square-o", title: "Edit Log Entry" %>
+                  <%= link_to "<span class='sr-only'>Delete</span>".html_safe, user_character_purchase_log_entry_path(current_user, @character, log_entry, q: q), method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o", title: "Delete Log Entry" %>
+                <% end %>
+                <span class='label label-success pull-right' style="width:60px;">Purchase</span>
               <% end %>
 
               <% if log_entry.type == "DmLogEntry" %>

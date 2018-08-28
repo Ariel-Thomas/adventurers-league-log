@@ -1,5 +1,5 @@
 # :nodoc:
-class TradeLogEntriesController < LogEntriesController
+class PurchaseLogEntriesController < LogEntriesController
   skip_before_action :authenticate_user!, only: [:show]
 
   add_crumb('Home', '/')
@@ -16,31 +16,29 @@ class TradeLogEntriesController < LogEntriesController
     add_crumb @character.name, user_character_path(@character.user, @character)
   end
 
-  before_action(only: [:new]) { add_crumb 'New Trade Log Entry' }
-  before_action(only: [:show, :edit]) { add_crumb 'Trade Log Entry' }
+  before_action(only: [:new]) { add_crumb 'New Purchase Log Entry' }
+  before_action(only: [:show, :edit]) { add_crumb 'Purchase Log Entry' }
 
   def show
     authorize @log_entry
-    @traded_magic_item = @log_entry.traded_magic_item
-    @received_magic_items = @log_entry.magic_items.last
   end
 
   def new
-    @log_entry = @character.trade_log_entries.new
+    @log_entry = @character.purchase_log_entries.new
     @log_entry.characters = [@character]
     authorize @log_entry
   end
 
   def create
-    @log_entry = @character.trade_log_entries.build(log_entries_params)
-    @log_entry.traded_magic_item = @new_magic_item
+    @log_entry = @character.purchase_log_entries.build(log_entries_params)
+    @log_entry.purchased_magic_item = @new_magic_item
     @log_entry.characters = [@character]
 
     authorize @log_entry
 
     if @log_entry.save
       redirect_to user_character_path(current_user, @character, q: params[:q]),
-                  flash: { notice: 'Successfully created trade log entry' }
+                  flash: { notice: 'Successfully created purchase log entry' }
     else
       flash.now[:error] = log_entry_error_message 'create'
       render :new, q: params[:q]
@@ -53,10 +51,9 @@ class TradeLogEntriesController < LogEntriesController
 
   def update
     authorize @log_entry
-    @log_entry.traded_magic_item = @new_magic_item
     if @log_entry.update_attributes(log_entries_params)
       redirect_to user_character_path(current_user, @character, q: params[:q]),
-                  flash: { notice: 'Successfully updated trade log entry' }
+                  flash: { notice: 'Successfully updated purchase log entry' }
     else
       flash.now[:error] = log_entry_error_message 'update'
       render :edit, q: params[:q]
@@ -68,7 +65,7 @@ class TradeLogEntriesController < LogEntriesController
     @log_entry.destroy
 
     redirect_to user_character_path(current_user, @character, q: params[:q]),
-                flash: { notice: 'Successfully deleted trade log entry' }
+                flash: { notice: 'Successfully deleted purchase log entry' }
   end
 
   protected
@@ -82,8 +79,8 @@ class TradeLogEntriesController < LogEntriesController
   end
 
   def load_current_magic_items
-    selected_magic_item = @log_entry.traded_magic_item if @log_entry && @log_entry.traded_magic_item
-    @magic_items = @character.magic_items.purchased
+    selected_magic_item = @log_entry.purchased_magic_item if @log_entry && @log_entry.purchased_magic_item
+    @magic_items = @character.magic_items.unlocked
     @magic_items_for_select = @magic_items.map {|p| [ "#{p.name} (#{p.rarity}, Tier #{p.tier})", p.id ] }
     @magic_items_for_select << ["#{selected_magic_item.name} (#{selected_magic_item.rarity}, Tier #{selected_magic_item.tier})", selected_magic_item.id] if selected_magic_item
   end
@@ -92,24 +89,25 @@ class TradeLogEntriesController < LogEntriesController
     magic_item = MagicItem.find_by(id: new_magic_item_params)
     if magic_item.present?
       @new_magic_item = magic_item
-    elsif @log_entry && @log_entry.magic_items.last
-      @new_magic_item = @log_entry.magic_items.last
+      @new_magic_item.purchased = true
     else
-      @new_magic_item = MagicItem.new(trade_log_entry_id: 0)
+      @new_magic_item = MagicItem.new(purchase_log_entry_id: 0, purchased: true)
     end
   end
 
   def new_magic_item_params
-    params[:trade_log_entry][:traded_magic_item] if params[:trade_log_entry]
+    params[:purchase_log_entry][:purchased_magic_item] if params[:purchase_log_entry]
   end
 
   def clean_up_params
-    params[:trade_log_entry].delete(:traded_magic_item)
+    params[:purchase_log_entry].delete(:purchased_magic_item)
   end
 
   def log_entries_params
-    params.require(:trade_log_entry)
-          .permit(:date_played, :downtime_gained, :gp_gained, :traded_magic_item,
-                  :notes, magic_items_attributes: magic_item_params)
+    params.require(:purchase_log_entry)
+          .permit(:date_played, :downtime_gained, :gp_gained, :purchased_magic_item,
+                  :tier1_treasure_checkpoints, :tier2_treasure_checkpoints,
+                  :tier3_treasure_checkpoints, :tier4_treasure_checkpoints,
+                  :notes, magic_items_attributes: magic_item_params).merge(purchased_magic_item: @new_magic_item)
   end
 end

@@ -53,7 +53,7 @@
 
   <div class="form-group col-md-4">
     <%= magic_item_form.label :purchased, class: 'css3-checkboxes' do
-      (magic_item_form.check_box :purchased, { class: "purchased" }, 'true', 'false') + "<span>Purchased</span>".html_safe
+      (magic_item_form.check_box :purchased, { disabled: magic_item.traded_or_purchased?, class: "purchased" }, 'true', 'false') + "<span>Purchased</span>".html_safe
     end %>
   </div>
 

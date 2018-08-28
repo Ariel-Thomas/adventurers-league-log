@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_211948) do
+ActiveRecord::Schema.define(version: 2018_08_28_023401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,10 @@ ActiveRecord::Schema.define(version: 2018_08_27_211948) do
     t.integer "treasure_checkpoints"
     t.integer "treasure_tier"
     t.boolean "old_format", default: false, null: false
+    t.integer "tier1_treasure_checkpoints"
+    t.integer "tier2_treasure_checkpoints"
+    t.integer "tier3_treasure_checkpoints"
+    t.integer "tier4_treasure_checkpoints"
     t.index ["campaign_id"], name: "index_log_entries_on_campaign_id"
     t.index ["user_id"], name: "index_log_entries_on_user_id"
   end
@@ -127,6 +131,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_211948) do
     t.boolean "not_included_in_count", default: false, null: false
     t.integer "tier"
     t.boolean "purchased", default: false, null: false
+    t.integer "purchase_log_entry_id"
     t.index ["log_entry_id", "character_id"], name: "index_magic_items_on_log_entry_id_and_character_id"
   end
 
