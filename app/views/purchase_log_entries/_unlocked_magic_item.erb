@@ -1,0 +1,41 @@
+<div class="form-group col-md-offset-2 col-md-8">
+  <%= f.label :purchased_magic_item, 'Unlocked Magic Item' %>
+
+  <label class='pull-right css3-checkboxes'>
+    <%= check_box_tag :use_magic_item_override, '1', false %>
+    <span class="link-like">Manual Entry</span>
+  </label>
+
+  <span class='automatic_input'>
+    <%= f.select :purchased_magic_item, @magic_items_for_select, { selected: @log_entry.purchased_magic_item ? @log_entry.purchased_magic_item.id : nil, include_blank: true }, { class: 'form-control ' } %>
+  </span>
+</div>
+
+<div class="form-group manual_input">
+  <%= f.fields_for :purchased_magic_item, @new_magic_item do |magic_item_form| %>
+    <div class="magic-item well col-md-offset-2 col-md-8">
+      <%= render partial: 'magic_items/form', locals: { magic_item_form: magic_item_form, magic_item: @new_magic_item, removeable: false } %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  $('#use_magic_item_override').change( function(){
+    var formGroupParent = $(this).parent().parent().parent();
+    if($(this).is(':checked')) {
+      $('.automatic_input').addClass('hide');
+      $('.automatic_input select').prop('disabled', true);
+
+      $('.manual_input').removeClass('hide');
+      $('.manual_input input').prop('disabled', false);
+    } else {
+      $('.automatic_input').removeClass('hide');
+      $('.automatic_input select').prop('disabled', false);
+
+      $('.manual_input').addClass('hide');
+      $('.manual_input input').prop('disabled', true);
+    }
+  });
+
+  $('#use_magic_item_override').change();
+</script>

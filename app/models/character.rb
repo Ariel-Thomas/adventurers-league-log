@@ -83,7 +83,7 @@ class Character < ActiveRecord::Base
   end
 
   def magic_items_list
-    list = magic_items.where(purchased: true).pluck(:name).join(', ')
+    list = magic_items.purchased.pluck(:name).join(', ')
 
     if list == ''
       return 'None'

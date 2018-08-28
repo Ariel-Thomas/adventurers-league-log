@@ -45,7 +45,7 @@
     <br class='hidden-xs'>
     <br class='hidden-xs'>
     <%= display_treasure_checkpoints "Treasure CPs", @character %>
-    <%= display_attribute_ary (link_to "Magic Items", user_character_magic_items_path(@user, @character)), @magic_items.purchased.pluck(:name) %>
+    <%= display_attribute_ary (link_to "Magic Items", user_character_magic_items_path(@user, @character)), @magic_items.pluck(:name) %>
   </div>
 
   <div class="col-md-2 hidden-xs hidden-sm" style="margin-top:-40px;">
