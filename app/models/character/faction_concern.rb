@@ -1,4 +1,4 @@
-module Character::CharacterFaction
+module Character::FactionConcern
   def faction_image
     faction.flag_url if faction
   end

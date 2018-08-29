@@ -1,4 +1,4 @@
-module Character::CharacterLifestyle
+module Character::LifestyleConcern
   def lifestyle_name
     return lifestyle_name_from_level(current_level) if user.character_style_season8?
 

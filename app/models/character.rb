@@ -1,10 +1,9 @@
 class Character < ActiveRecord::Base
-  include CharacterXP
-  include CharacterCheckpoints
-  include CharacterTreasureCheckpoints
-  include CharacterGold
-  include CharacterFaction
-  include CharacterLifestyle
+  include XPConcern
+  include AdvancementCheckpointsConcern
+  include GoldConcern
+  include FactionConcern
+  include LifestyleConcern
 
   belongs_to :user
 
@@ -40,6 +39,10 @@ class Character < ActiveRecord::Base
 
   def total_secret_missions
     log_entries.sum(:num_secret_missions)
+  end
+
+  def total_treasure_checkpoints
+    log_entries.sum(:treasure_checkpoints)
   end
 
   def total_magic_items

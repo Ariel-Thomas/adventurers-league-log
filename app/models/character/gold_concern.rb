@@ -1,4 +1,4 @@
-module Character::CharacterGold
+module Character::GoldConcern
   def total_gp
     log_entries.sum(:gp_gained) + total_gp_from_levels(checkpoint_level, xp_level)
   end

@@ -5,31 +5,31 @@
 
 <div class="row">
   <div class="col-md-3">
-    <%= display_attribute_small "Total XP",  @total_xp if @style == 'old' || @style == 'both' %>
-    <%= display_attribute_small "Unused XP",  @unused_xp if @style == 'old' || @style == 'both' %>
-    <%= display_attribute_small "Total ACP",  @total_acp if @style == 'season8' || @style == 'both' %>
-    <%= display_attribute_small "Unused ACP",  @unused_acp if @style == 'season8' || @style == 'both' %>
-    <%= display_attribute_small "Total Hours",  @total_hours %>
+    <%= display_attribute "Total XP",     @total_xp,    size: :small if @style == 'old' || @style == 'both' %>
+    <%= display_attribute "Unused XP",    @unused_xp,   size: :small if @style == 'old' || @style == 'both' %>
+    <%= display_attribute "Total ACP",    @total_acp,   size: :small if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute "Unused ACP",   @unused_acp,  size: :small if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute "Total Hours",  @total_hours, size: :small %>
     <br>
   </div>
 
   <div class="col-md-3">
-    <%= display_attribute_small "Total TCP",  treasure_checkpoints_string(@total_tcp) if @style == 'season8' || @style == 'both' %>
-    <%= display_attribute_small "Unused TCP",  treasure_checkpoints_string(@unused_tcp) if @style == 'season8' || @style == 'both' %>
-    <%= display_attribute_small "Total GP",  @total_gp %>
-    <%= display_attribute_small "Unused GP",  @unused_gp %>
+    <%= display_attribute "Total TCP",  treasure_checkpoints_string(@total_tcp),  size: :small if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute "Unused TCP", treasure_checkpoints_string(@unused_tcp), size: :small if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute "Total GP",   @total_gp,                                size: :small %>
+    <%= display_attribute "Unused GP",  @unused_gp,                               size: :small %>
     <br>
   </div>
 
   <div class="col-md-3">
-    <%= display_attribute_small "Total Downtime",  @total_downtime %>
-    <%= display_attribute_small "Unused Downtime",  @unused_downtime %>
+    <%= display_attribute "Total Downtime",   @total_downtime,  size: :small %>
+    <%= display_attribute "Unused Downtime",  @unused_downtime, size: :small %>
     <br>
   </div>
 
   <div class="col-md-3">
-    <%= display_attribute_small "Total Renown",  @total_renown %>
-    <%= display_attribute_small "Unused Renown",  @unused_renown %>
+    <%= display_attribute "Total Renown",   @total_renown,  size: :small %>
+    <%= display_attribute "Unused Renown",  @unused_renown, size: :small %>
   </div>
 </div>
 
