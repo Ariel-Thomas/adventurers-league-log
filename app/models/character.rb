@@ -1,6 +1,10 @@
 class Character < ActiveRecord::Base
   include CharacterXP
   include CharacterCheckpoints
+  include CharacterTreasureCheckpoints
+  include CharacterGold
+  include CharacterFaction
+  include CharacterLifestyle
 
   belongs_to :user
 
@@ -22,45 +26,8 @@ class Character < ActiveRecord::Base
 
   validates :name, presence: true
 
-  def faction_image
-    faction.flag_url if faction
-  end
-
-  def faction_rank
-    target_faction = faction ? faction : Faction.find_by(name: "Default")
-    args = { renown: total_renown,
-             secret_missions: total_secret_missions,
-             level: current_level,
-             use_old_rank: user.character_style_old? }
-    target_faction.rank args
-  end
-
-  def faction_name
-    if faction_override
-      faction_override
-    elsif faction
-      faction.name
-    else
-      'None'
-    end
-  end
-
-  def lifestyle_name
-    if lifestyle_override
-      lifestyle_override
-    elsif lifestyle
-      lifestyle.name
-    else
-      'None'
-    end
-  end
-
   def current_level
     checkpoint_level
-  end
-
-  def total_gp
-    log_entries.sum(:gp_gained)
   end
 
   def total_renown
@@ -73,15 +40,6 @@ class Character < ActiveRecord::Base
 
   def total_secret_missions
     log_entries.sum(:num_secret_missions)
-  end
-
-  TREASURE_TIERS = [:tier1_treasure_checkpoints, :tier2_treasure_checkpoints, :tier3_treasure_checkpoints, :tier4_treasure_checkpoints]
-  def treasure_checkpoints(tier:)
-    log_entries.where(treasure_tier: tier).sum(:treasure_checkpoints) - log_entries.sum(TREASURE_TIERS[tier - 1])
-  end
-
-  def total_treasure_checkpoints
-    log_entries.sum(:treasure_checkpoints)
   end
 
   def total_magic_items
