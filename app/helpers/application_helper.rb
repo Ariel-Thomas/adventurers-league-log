@@ -2,6 +2,7 @@ module ApplicationHelper
   require 'redcarpet/render_strip'
 
   def display_attribute(attribute_name, attribute_value, options = {})
+    attribute_value = "20 (+#{attribute_value - 20})" if options[:for_level] && attribute_value > 20
     ("<div class='row " + options[:class].to_s + "'>
         <div class='col-xs-5'>
           <strong>" + attribute_name + ":</strong>
