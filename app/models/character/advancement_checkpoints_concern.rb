@@ -1,4 +1,4 @@
-module Character::CharacterCheckpoints
+module Character::AdvancementCheckpointsConcern
   def total_checkpoints
     checkpoints_from_xp + total_checkpoints_from_logs
   end

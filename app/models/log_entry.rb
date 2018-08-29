@@ -50,6 +50,17 @@ class LogEntry < ActiveRecord::Base
     false
   end
 
+  class << self
+    def earned_treasure_checkpoints(tier:)
+      where(treasure_tier: tier).sum(:treasure_checkpoints)
+    end
+
+    TREASURE_TIERS = [:tier1_treasure_checkpoints, :tier2_treasure_checkpoints, :tier3_treasure_checkpoints, :tier4_treasure_checkpoints]
+    def spent_treasure_checkpoints(tier:)
+      sum(TREASURE_TIERS[tier - 1])
+    end
+  end
+
   def num_magic_items_gained
     magic_items.where(not_included_in_count: false).count
   end
@@ -63,4 +74,5 @@ class LogEntry < ActiveRecord::Base
       return list
     end
   end
+
 end

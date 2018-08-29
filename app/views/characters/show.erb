@@ -28,7 +28,7 @@
     <%= display_attribute "Background", @character.background %>
     <%= display_attribute "Lifestyle", @character.lifestyle_name %>
     <br class='hidden-xs'>
-    <%= display_attribute "Current Level", @character.current_level, for_level: true %>
+    <%= display_attribute "Current Level", @character.current_level, type: :level %>
     <%= display_attribute "XP Level",  @character.xp_level if @style == 'both' %>
     <%= display_attribute "Total XP",  @character.total_xp if @style == 'old' || @style == 'both' %>
     <%= display_attribute "XP to Level", @character.xp_to_next_level if @style == 'old' || @style == 'both' %>
@@ -48,8 +48,8 @@
     <%= display_attribute "Secreet Missions", @character.total_secret_missions  if @style == 'old' || @style == 'both'%>
     <% if @style == 'season8' %><br class='hidden-xs'><% end %>
     <br class='hidden-xs'>
-    <%= display_treasure_checkpoints "Treasure CPs", @character if @style == 'season8' || @style == 'both' %>
-    <%= display_attribute_ary (link_to "Magic Items", user_character_magic_items_path(@user, @character)), @magic_items.pluck(:name) %>
+    <%= display_attribute "Treasure CPs", treasure_checkpoints_string(@character.log_entries) if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute (link_to "Magic Items", user_character_magic_items_path(@user, @character)), @magic_items.pluck(:name), type: :array %>
   </div>
 
   <div class="col-md-2 hidden-xs hidden-sm" style="margin-top:-40px;">
