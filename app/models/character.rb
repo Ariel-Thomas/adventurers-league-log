@@ -25,6 +25,8 @@ class Character < ActiveRecord::Base
 
   validates :name, presence: true
 
+  enum conversion_type: [:round_up, :round_down], _prefix: true
+
   def current_level
     checkpoint_level
   end

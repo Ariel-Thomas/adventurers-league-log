@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_28_023401) do
+ActiveRecord::Schema.define(version: 2018_08_29_153007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2018_08_28_023401) do
     t.integer "lifestyle_id"
     t.string "lifestyle_override"
     t.string "character_sheet_url"
+    t.integer "conversion_type", default: 0
     t.index ["user_id"], name: "index_characters_on_user_id"
   end
 
