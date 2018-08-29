@@ -8,6 +8,7 @@ class PurchaseLogEntriesController < LogEntriesController
   before_action :load_log_entry, only: [:show, :edit, :update, :destroy]
   before_action :load_current_magic_items,
                 only: [:new, :create, :edit, :update]
+  before_action :load_treasure_points, only: [:new, :create, :edit, :update]
   before_action :build_new_magic_item,
                 only: [:new, :create, :edit, :update]
   before_action :clean_up_params, only: [:create, :update]
@@ -95,6 +96,14 @@ class PurchaseLogEntriesController < LogEntriesController
     @magic_items = @character.magic_items.unlocked
     @magic_items_for_select = @magic_items.map {|p| [ "#{p.name} (#{p.rarity}, Tier #{p.tier})", p.id ] }
     @magic_items_for_select << ["#{selected_magic_item.name} (#{selected_magic_item.rarity}, Tier #{selected_magic_item.tier})", selected_magic_item.id] if selected_magic_item
+  end
+
+  def load_treasure_points
+    @available_treasure_points =
+      [1,2,3,4].map{|tier|
+        @character.log_entries.earned_treasure_checkpoints(tier: tier) -
+          @character.log_entries.spent_treasure_checkpoints(tier: tier)
+      }
   end
 
   def build_new_magic_item

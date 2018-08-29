@@ -27,19 +27,19 @@
     <div class="col-md-2">
     </div>
     <div class="form-group col-md-2">
-      <%= f.label :tier1_treasure_checkpoints, 'Tier 1 TCP' %>
+      <%= f.label :tier1_treasure_checkpoints, "Tier 1 TCP (#{@available_treasure_points[0]})" %>
       <%= f.number_field :tier1_treasure_checkpoints, class: 'form-control' %>
     </div>
     <div class="form-group col-md-2">
-      <%= f.label :tier2_treasure_checkpoints, 'Tier 2 TCP' %>
+      <%= f.label :tier2_treasure_checkpoints, "Tier 2 TCP (#{@available_treasure_points[1]})" %>
       <%= f.number_field :tier2_treasure_checkpoints, class: 'form-control' %>
     </div>
     <div class="form-group col-md-2">
-      <%= f.label :tier3_treasure_checkpoints, 'Tier 3 TCP' %>
+      <%= f.label :tier3_treasure_checkpoints, "Tier 3 TCP (#{@available_treasure_points[2]})" %>
       <%= f.number_field :tier3_treasure_checkpoints, class: 'form-control' %>
     </div>
     <div class="form-group col-md-2">
-      <%= f.label :tier4_treasure_checkpoints, 'Tier 4 TCP' %>
+      <%= f.label :tier4_treasure_checkpoints, "Tier 4 TCP (#{@available_treasure_points[3]})" %>
       <%= f.number_field :tier4_treasure_checkpoints, class: 'form-control' %>
     </div>
   </div>
