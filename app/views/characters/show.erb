@@ -28,7 +28,7 @@
     <%= display_attribute "Background", @character.background %>
     <%= display_attribute "Lifestyle", @character.lifestyle_name %>
     <br class='hidden-xs'>
-    <%= display_attribute "Current Level", @character.current_level %>
+    <%= display_attribute "Current Level", @character.current_level, for_level: true %>
     <%= display_attribute "XP Level",  @character.xp_level if @style == 'both' %>
     <%= display_attribute "Total XP",  @character.total_xp if @style == 'old' || @style == 'both' %>
     <%= display_attribute "XP to Level", @character.xp_to_next_level if @style == 'old' || @style == 'both' %>
