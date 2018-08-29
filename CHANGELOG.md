@@ -1,6 +1,14 @@
 CHANGELOG
 ======
 
+v1.8.0
+---------------
+- Allow for season 8 changes.
+- Add ability to toggle pre season 7 / season 8 changes in user details.
+- Add ability to toggle XP > ACP conversion rounding on a per character basis.
+- Add Purchase Logs to allow for unlocked magic items to be purchased.
+- Sort DMs and Locations alphabetically.
+
 v1.7.4
 ---------------
 - Allow markdown for notes field in log entries.
