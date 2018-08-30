@@ -32,9 +32,15 @@
   <div class="col-xs-2">
     <%= display_attribute_for_print "Current Level",  @character.current_level %>
   </div>
-  <div class="col-xs-2">
-    <%= display_attribute_for_print "XP Total",  @character.total_xp %>
-  </div>
+  <% if @character_style_old %>
+    <div class="col-xs-2">
+      <%= display_attribute_for_print "XP Total",  @character.total_xp %>
+    </div>
+  <% else %>
+    <div class="col-xs-2">
+      <%= display_attribute_for_print "ACP Total",  @character.total_checkpoints %>
+    </div>
+  <% end %>
   <div class="col-xs-2">
     <%= display_attribute_for_print "Gold Total",  humanize_decimal(@character.total_gp) %>
   </div>
@@ -44,9 +50,15 @@
   <div class="col-xs-2">
     <%= display_attribute_for_print "Renown Total", @character.total_renown %>
   </div>
-  <div class="col-xs-2">
-    <%= display_attribute_for_print "Magic Items", @character.total_magic_items %>
-  </div>
+  <% if @character_style_old %>
+    <div class="col-xs-2">
+      <%= display_attribute_for_print "Magic Items", @character.total_magic_items %>
+    </div>
+  <% else %>
+    <div class="col-xs-2">
+      <%= display_attribute_for_print "TCP Total", treasure_checkpoints_string(@log_entries) %>
+    </div>
+  <% end %>
 
   <div class="col-xs-12">
     <%= display_attribute_for_print "Magic Items",  @character.magic_items_list %>

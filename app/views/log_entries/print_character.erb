@@ -44,7 +44,7 @@
         <div class="col-xs-2">
           <%= display_attribute_for_print "Session #",  log_entry.session_num %>
         </div>
-      <% elsif log_entry.is_trade_log_entry? %>
+      <% elsif log_entry.is_trade_log_entry? || log_entry.is_purchase_log_entry? %>
         <div class="col-xs-6">
         </div>
       <% end %>
@@ -69,46 +69,101 @@
           <h4> *** TRADE ENTRY ***</h4>
         </div>
       <% end %>
+
+      <% if log_entry.is_purchase_log_entry? %>
+        <div class="col-xs-4">
+          <h4> *** PURCHASE ENTRY ***</h4>
+        </div>
+      <% end %>
     </div>
 
-    <div class="row">
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Starting XP",  @total_xp %>
+    <% if log_entry.old_format %>
+      <div class="row">
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Starting XP",  @total_xp %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Starting Gold",  humanize_decimal(@total_gp) %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Starting Downtime",  @total_downtime %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Starting Renown", @total_renown %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Starting # of Magic Items", @total_magic_items %>
+        </div>
       </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Starting Gold",  humanize_decimal(@total_gp) %>
+    <% else %>
+      <div class="row">
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Starting ACP",  @total_acp %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Starting TCP", "#{@total_tcp1}/#{@total_tcp2}/#{@total_tcp3}/#{@total_tcp4}" %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Starting Downtime",  @total_downtime %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Starting Renown", @total_renown %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Starting Gold",  humanize_decimal(@total_gp) %>
+        </div>
       </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Starting Downtime",  @total_downtime %>
-      </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Starting Renown", @total_renown %>
-      </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Starting # of Magic Items", @total_magic_items %>
-      </div>
-    </div>
+    <% end %>
 
-    <div class="row main-row">
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "XP Earned",  log_entry.xp_gained %>
+    <% if log_entry.old_format %>
+      <div class="row main-row">
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "XP Earned",  log_entry.xp_gained %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Gold +/-",  humanize_decimal(log_entry.gp_gained) %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Downtime +/-",  log_entry.downtime_gained %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Renown Earned", log_entry.renown_gained %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Magic Items +/-", log_entry.num_magic_items_gained %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Magic Item Gained", log_entry.magic_items_list(@character) %>
+        </div>
       </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Gold +/-",  humanize_decimal(log_entry.gp_gained) %>
+    <% else %>
+      <div class="row main-row">
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "ACP Earned",  log_entry.advancement_checkpoints %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "TCP Earned", treasure_checkpoint_string(log_entry)  %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Downtime +/-",  log_entry.downtime_gained %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Renown Earned", log_entry.renown_gained %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Gold +/-",  humanize_decimal(log_entry.gp_gained) %>
+        </div>
+        <% if log_entry.is_purchase_log_entry? %>
+          <div class="col-xs-2">
+            <%= display_attribute_for_print "Magic Item Purchased", log_entry.magic_items_list(@character) %>
+          </div>
+        <% else %>
+          <div class="col-xs-2">
+            <%= display_attribute_for_print "Magic Item Unlocked", log_entry.magic_items_list(@character, show_purchased: true) %>
+          </div>
+        <% end %>
       </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Downtime +/-",  log_entry.downtime_gained %>
-      </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Renown Earned", log_entry.renown_gained %>
-      </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Magic Items +/-", log_entry.num_magic_items_gained %>
-      </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Magic Item Gained", log_entry.magic_items_list(@character) %>
-      </div>
-    </div>
+    <% end %>
 
     <% @total_xp          = @total_xp       + (log_entry.xp_gained || 0) %>
     <% @total_gp          = @total_gp       + (log_entry.gp_gained || 0) %>
@@ -116,23 +171,49 @@
     <% @total_renown      = @total_renown   + (log_entry.renown_gained || 0) %>
     <% @total_magic_items = @total_magic_items + (log_entry.num_magic_items_gained || 0) %>
 
-    <div class="row">
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "XP Total",  @total_xp %>
+    <% @total_acp         = @total_acp      + (log_entry.advancement_checkpoints || 0) %>
+    <% @total_tcp1        = @total_tcp1     + (calc_tcp_from_entry(log_entry, tier: 1) || 0) %>
+    <% @total_tcp2        = @total_tcp2     + (calc_tcp_from_entry(log_entry, tier: 2) || 0) %>
+    <% @total_tcp3        = @total_tcp3     + (calc_tcp_from_entry(log_entry, tier: 3) || 0) %>
+    <% @total_tcp4        = @total_tcp4     + (calc_tcp_from_entry(log_entry, tier: 4) || 0) %>
+
+    <% if log_entry.old_format %>
+      <div class="row">
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "XP Total",  @total_xp %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Gold Total",  humanize_decimal(@total_gp) %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Downtime Total",  @total_downtime %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Renown Total", @total_renown %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Magic Items Total", @total_magic_items %>
+        </div>
       </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Gold Total",  humanize_decimal(@total_gp) %>
+    <% else %>
+      <div class="row">
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "ACP Total",  @total_acp %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "TCP Total", "#{@total_tcp1}/#{@total_tcp2}/#{@total_tcp3}/#{@total_tcp4}" %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Downtime Total",  @total_downtime %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Renown Total", @total_renown %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Gold Total",  humanize_decimal(@total_gp) %>
+        </div>
       </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Downtime Total",  @total_downtime %>
-      </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Renown Total", @total_renown %>
-      </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Magic Items Total", @total_magic_items %>
-      </div>
-    </div>
+    <% end %>
 
     <div class="row">
       <div class="col-xs-12">

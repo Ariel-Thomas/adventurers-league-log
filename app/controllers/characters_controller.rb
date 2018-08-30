@@ -52,6 +52,12 @@ class CharactersController < AuthenticationController
     @total_renown      = 0
     @total_magic_items = 0
 
+    @total_acp         = @character.checkpoints_from_xp
+    @total_tcp1        = 0
+    @total_tcp2        = 0
+    @total_tcp3        = 0
+    @total_tcp4        = 0
+
     render 'log_entries/print_character'
   end
 
@@ -63,6 +69,7 @@ class CharactersController < AuthenticationController
     end
 
     @log_entries = @character.log_entries.order(date_played: :asc).all
+    @character_style_old = @user.character_style_old?
 
     render 'log_entries/print_character_condensed'
   end

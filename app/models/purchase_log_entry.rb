@@ -10,7 +10,7 @@ class PurchaseLogEntry < LogEntry
     true
   end
 
-  def magic_items_list(char)
+  def magic_items_list(char, options = {})
     purchased_magic_item.name if purchased_magic_item
   end
 end

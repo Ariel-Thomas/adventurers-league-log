@@ -45,7 +45,7 @@
     <%= display_attribute "Faction",  @character.faction_name %>
     <%= display_attribute "Faction Rank", @character.faction_rank %>
     <%= display_attribute "Total Renown", @character.total_renown %>
-    <%= display_attribute "Secreet Missions", @character.total_secret_missions  if @style == 'old' || @style == 'both'%>
+    <%= display_attribute "Secret Missions", @character.total_secret_missions  if @style == 'old' || @style == 'both'%>
     <% if @style == 'season8' %><br class='hidden-xs'><% end %>
     <br class='hidden-xs'>
     <%= display_attribute "Treasure CPs", treasure_checkpoints_string(@character.log_entries) if @style == 'season8' || @style == 'both' %>

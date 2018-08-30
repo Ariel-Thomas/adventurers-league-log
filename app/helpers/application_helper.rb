@@ -36,14 +36,26 @@ module ApplicationHelper
   end
 
   def treasure_checkpoints_string(log_entries)
-    treasure_checkpoints(log_entries, tier: 1).to_s + "/" +
-    treasure_checkpoints(log_entries, tier: 2).to_s + "/" +
-    treasure_checkpoints(log_entries, tier: 3).to_s + "/" +
-    treasure_checkpoints(log_entries, tier: 4).to_s
+    calc_tcps(log_entries, tier: 1).to_s + "/" +
+    calc_tcps(log_entries, tier: 2).to_s + "/" +
+    calc_tcps(log_entries, tier: 3).to_s + "/" +
+    calc_tcps(log_entries, tier: 4).to_s
   end
 
-  def treasure_checkpoints(log_entries, tier:)
+  def calc_tcps(log_entries, tier:)
     log_entries.earned_treasure_checkpoints(tier: tier) - log_entries.spent_treasure_checkpoints(tier: tier)
+  end
+
+  def treasure_checkpoint_string(log_entry)
+    calc_tcp_from_entry(log_entry, tier: 1).to_s + "/" +
+    calc_tcp_from_entry(log_entry, tier: 2).to_s + "/" +
+    calc_tcp_from_entry(log_entry, tier: 3).to_s + "/" +
+    calc_tcp_from_entry(log_entry, tier: 4).to_s
+  end
+
+  def calc_tcp_from_entry(log_entry, tier:)
+    (log_entry.treasure_tier == tier ? log_entry.treasure_checkpoints || 0 : 0) -
+      (log_entry.send("tier#{tier}_treasure_checkpoints") || 0)
   end
 
 end

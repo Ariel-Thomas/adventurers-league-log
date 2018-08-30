@@ -4,6 +4,7 @@ CHANGELOG
 v1.8.1
 ---------------
 - Make it not show traded away items.
+- Set up printing to work with season 8 log entries
 
 v1.8.0
 ---------------

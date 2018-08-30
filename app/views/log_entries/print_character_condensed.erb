@@ -32,7 +32,7 @@
         <div class="col-xs-2">
           <%= display_attribute_for_print "Session #",  log_entry.session_num %>
         </div>
-      <% elsif log_entry.is_trade_log_entry? %>
+      <% elsif log_entry.is_trade_log_entry? || log_entry.is_purchase_log_entry? %>
         <div class="col-xs-6">
         </div>
       <% end %>
@@ -57,25 +57,60 @@
           <h4>*** TRADE ENTRY ***</h4>
         </div>
       <% end %>
+
+      <% if log_entry.is_purchase_log_entry? %>
+        <div class="col-xs-4">
+          <h4>*** PURCHASE ENTRY ***</h4>
+        </div>
+      <% end %>
     </div>
 
-    <div class="row">
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "XP Earned",  log_entry.xp_gained %>
+    <% if log_entry.old_format %>
+      <div class="row">
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "XP Earned",  log_entry.xp_gained %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Gold +/-",  humanize_decimal(log_entry.gp_gained) %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Downtime +/-",  log_entry.downtime_gained %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Renown Earned", log_entry.renown_gained %>
+        </div>
+        <div class="col-xs-4">
+          <%= display_attribute_for_print "Magic Item Gained", log_entry.magic_items_list(@character) %>
+        </div>
       </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Gold +/-",  humanize_decimal(log_entry.gp_gained) %>
+    <% else %>
+      <div class="row">
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "ACP",  log_entry.advancement_checkpoints %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "TCP",  treasure_checkpoint_string(log_entry) %>
+        </div>
+        <div class="col-xs-1">
+          <%= display_attribute_for_print "Downtime",  log_entry.downtime_gained %>
+        </div>
+        <div class="col-xs-1">
+          <%= display_attribute_for_print "Renown", log_entry.renown_gained %>
+        </div>
+        <div class="col-xs-2">
+          <%= display_attribute_for_print "Gold +/-",  humanize_decimal(log_entry.gp_gained) %>
+        </div>
+        <% if log_entry.is_purchase_log_entry? %>
+          <div class="col-xs-4">
+            <%= display_attribute_for_print "Magic Item Purchased", log_entry.magic_items_list(@character) %>
+          </div>
+        <% else %>
+          <div class="col-xs-4">
+            <%= display_attribute_for_print "Magic Item Unlocked", log_entry.magic_items_list(@character, show_purchased: true) %>
+          </div>
+        <% end %>
       </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Downtime +/-",  log_entry.downtime_gained %>
-      </div>
-      <div class="col-xs-2">
-        <%= display_attribute_for_print "Renown Earned", log_entry.renown_gained %>
-      </div>
-      <div class="col-xs-4">
-        <%= display_attribute_for_print "Magic Item Gained", log_entry.magic_items_list(@character) %>
-      </div>
-    </div>
+    <% end %>
 
     <% if log_entry.notes && log_entry.notes != '' %>
       <div class="row">
