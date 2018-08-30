@@ -34,6 +34,7 @@ module Character::AdvancementCheckpointsConcern
 
   def checkpoints_to_next_level_from_xp
     fractional_cp = (fraction_of_xp_to_next_level * checkpoints_for_level(xp_level + 1))
+    return 0 if fractional_cp < 0
     return fractional_cp.ceil if conversion_type_round_up?
     fractional_cp.floor
   end
