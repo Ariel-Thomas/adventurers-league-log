@@ -1,6 +1,10 @@
 CHANGELOG
 ======
 
+v1.8.2
+---------------
+- Adjust notes field height.
+
 v1.8.1
 ---------------
 - Make it not show traded away items.
