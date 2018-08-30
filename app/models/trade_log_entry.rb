@@ -13,7 +13,7 @@ class TradeLogEntry < LogEntry
     magic_items.count - (traded_magic_item.nil? ? 0 : 1)
   end
 
-  def magic_items_list(char)
+  def magic_items_list(char, opts={})
     traded_magic_item_name   = traded_magic_item.name if traded_magic_item
     received_magic_item      = magic_items.first
     received_magic_item_name = received_magic_item ? received_magic_item.name : ''
