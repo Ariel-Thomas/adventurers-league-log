@@ -27,7 +27,7 @@ class CharactersController < AuthenticationController
 
     @search      = @character.log_entries.search(params[:q])
     @log_entries = @search.result(distinct: false).page params[:page]
-    @magic_items = @character.magic_items.order(:id).purchased
+    @magic_items = @character.magic_items.order(:id).purchased.not_traded
 
     @style = @user.character_style
 

@@ -6,6 +6,8 @@ class MagicItem < ActiveRecord::Base
 
   enum rarity: [:common, :uncommon, :rare, :very_rare, :legendary, :unique]
 
+  scope :traded, -> { where.not(trade_log_entry_id: nil) }
+  scope :not_traded, -> { where(trade_log_entry_id: nil) }
   scope :purchased, -> { where.not(purchase_log_entry_id: nil).or(where(purchased: true)) }
   scope :unlocked, -> { where(purchased: false, purchase_log_entry_id: nil) }
 

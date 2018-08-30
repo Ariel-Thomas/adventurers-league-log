@@ -14,10 +14,10 @@ class MagicItemsController < AuthenticationController
     authorize @user, :show_characters?
 
     magic_items = @character.magic_items
-    @purchased_search      = magic_items.purchased.search(params[:q])
+    @purchased_search      = magic_items.purchased.not_traded.search(params[:q])
     @purchased_magic_items = @purchased_search.result(distinct: false).page params[:page]
 
-    @unlocked_search      = magic_items.unlocked.search(params[:q])
+    @unlocked_search      = magic_items.unlocked.not_traded.search(params[:q])
     @unlocked_magic_items = @unlocked_search.result(distinct: false).page params[:page]
   end
 

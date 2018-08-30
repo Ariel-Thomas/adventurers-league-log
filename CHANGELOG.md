@@ -1,6 +1,10 @@
 CHANGELOG
 ======
 
+v1.8.1
+---------------
+- Make it not show traded away items.
+
 v1.8.0
 ---------------
 - Allow for season 8 changes.
