@@ -52,13 +52,4 @@ class Character < ActiveRecord::Base
     magic_items.where(purchased: true).where(not_included_in_count: false).count
   end
 
-  def magic_items_list
-    list = magic_items.purchased.pluck(:name).join(', ')
-
-    if list == ''
-      return 'None'
-    else
-      return list
-    end
-  end
 end

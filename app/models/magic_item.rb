@@ -14,4 +14,16 @@ class MagicItem < ActiveRecord::Base
   def traded_or_purchased?
     !trade_log_entry_id.nil? || !purchase_log_entry_id.nil?
   end
+
+  class << self
+    def magic_items_list
+      list = purchased.not_traded.pluck(:name).join(', ')
+
+      if list == ''
+        return 'None'
+      else
+        return list
+      end
+    end
+  end
 end

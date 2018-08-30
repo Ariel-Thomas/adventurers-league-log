@@ -31,7 +31,8 @@ h4 {
 }
 
 .print-character-box .text-box {
-  height: 22px;
+  min-height: 22px;
+  height: auto;
   border-bottom: 1px solid gray;
 
   padding: 2px;
