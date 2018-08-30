@@ -8,6 +8,7 @@ v1.8.0
 - Add ability to toggle XP > ACP conversion rounding on a per character basis.
 - Add Purchase Logs to allow for unlocked magic items to be purchased.
 - Sort DMs and Locations alphabetically.
+- Update dependencies for maximum powah.
 
 v1.7.4
 ---------------
