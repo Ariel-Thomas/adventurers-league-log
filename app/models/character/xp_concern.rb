@@ -21,7 +21,9 @@ module Character::XPConcern
   end
 
   def fraction_of_xp_to_next_level
-    Float(total_xp - XP_BY_LEVEL[[xp_level - 1,0].max]) / Float(xp_for_next_level - XP_BY_LEVEL[[xp_level - 1,0].max])
+    level_fraction = Float(total_xp - XP_BY_LEVEL[[xp_level - 1,0].max]) / Float(xp_for_next_level - XP_BY_LEVEL[[xp_level - 1,0].max])
+    return level_fraction / 2.0 if conversion_speed_slow?
+    level_fraction
   end
 
   def xp_for_next_level

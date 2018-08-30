@@ -5,6 +5,7 @@ v1.8.1
 ---------------
 - Make it not show traded away items.
 - Set up printing to work with season 8 log entries
+- Add ability to toggle XP > ACP conversion speed on a per character basis.
 
 v1.8.0
 ---------------
