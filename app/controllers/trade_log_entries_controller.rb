@@ -33,7 +33,11 @@ class TradeLogEntriesController < LogEntriesController
 
   def create
     @log_entry = @character.trade_log_entries.build(log_entries_params)
-    @log_entry.traded_magic_item = @new_magic_item
+    @log_entry.magic_items.last.purchased = true if @log_entry.magic_items.last
+
+    @traded_magic_item = MagicItem.find_by(id: new_magic_item_params)
+    @log_entry.traded_magic_item = @traded_magic_item
+
     @log_entry.characters = [@character]
 
     authorize @log_entry
@@ -53,7 +57,8 @@ class TradeLogEntriesController < LogEntriesController
 
   def update
     authorize @log_entry
-    @log_entry.traded_magic_item = @new_magic_item
+    @traded_magic_item = MagicItem.find_by(id: new_magic_item_params)
+    @log_entry.traded_magic_item = @traded_magic_item
     if @log_entry.update_attributes(log_entries_params)
       redirect_to user_character_path(current_user, @character, q: params.permit(:q).fetch(:q, nil)),
                   flash: { notice: 'Successfully updated trade log entry' }
@@ -95,7 +100,7 @@ class TradeLogEntriesController < LogEntriesController
     elsif @log_entry && @log_entry.magic_items.last
       @new_magic_item = @log_entry.magic_items.last
     else
-      @new_magic_item = MagicItem.new(trade_log_entry_id: 0)
+      @new_magic_item = MagicItem.new(trade_log_entry_id: 0, purchased: true)
     end
   end
 
