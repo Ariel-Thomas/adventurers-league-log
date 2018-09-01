@@ -4,6 +4,10 @@ CHANGELOG
 v1.8.2
 ---------------
 - Adjust notes field height.
+- Allow for fractional checkpoints
+- Change DM Logs to tierless TCP
+- Fix Trade Log items not becoming purchased
+- Fix magic items showing up to be traded away that were already traded.
 
 v1.8.1
 ---------------
