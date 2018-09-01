@@ -4,8 +4,8 @@ module Character::AdvancementCheckpointsConcern
   end
 
   def checkpoint_level
-    return total_checkpoints / 4 + 1 if total_checkpoints < 16
-    (total_checkpoints + 16) / 8 + 1
+    return total_checkpoints.floor / 4 + 1 if total_checkpoints <= 16
+    (total_checkpoints.floor + 16) / 8 + 1
   end
 
   def checkpoints_to_next_level
@@ -35,8 +35,14 @@ module Character::AdvancementCheckpointsConcern
   def checkpoints_to_next_level_from_xp
     fractional_cp = (fraction_of_xp_to_next_level * checkpoints_for_level(xp_level + 1))
     return 0 if fractional_cp < 0
-    return fractional_cp.ceil if conversion_type_round_up?
-    fractional_cp.floor
+
+    if conversion_speed_slow?
+      return (fractional_cp * 2).ceil / 2.0 if conversion_type_round_up?
+      (fractional_cp * 2).floor / 2.0
+    else
+      return fractional_cp.ceil if conversion_type_round_up?
+      fractional_cp.floor
+    end
   end
 
 end

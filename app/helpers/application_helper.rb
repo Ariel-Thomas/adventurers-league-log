@@ -36,10 +36,10 @@ module ApplicationHelper
   end
 
   def treasure_checkpoints_string(log_entries)
-    calc_tcps(log_entries, tier: 1).to_s + "/" +
-    calc_tcps(log_entries, tier: 2).to_s + "/" +
-    calc_tcps(log_entries, tier: 3).to_s + "/" +
-    calc_tcps(log_entries, tier: 4).to_s
+    "%g" % calc_tcps(log_entries, tier: 1) + "/" +
+    "%g" % calc_tcps(log_entries, tier: 2).to_s + "/" +
+    "%g" % calc_tcps(log_entries, tier: 3).to_s + "/" +
+    "%g" % calc_tcps(log_entries, tier: 4).to_s
   end
 
   def calc_tcps(log_entries, tier:)
@@ -47,10 +47,10 @@ module ApplicationHelper
   end
 
   def treasure_checkpoint_string(log_entry)
-    calc_tcp_from_entry(log_entry, tier: 1).to_s + "/" +
-    calc_tcp_from_entry(log_entry, tier: 2).to_s + "/" +
-    calc_tcp_from_entry(log_entry, tier: 3).to_s + "/" +
-    calc_tcp_from_entry(log_entry, tier: 4).to_s
+    "%g" % calc_tcp_from_entry(log_entry, tier: 1).to_s + "/" +
+    "%g" % calc_tcp_from_entry(log_entry, tier: 2).to_s + "/" +
+    "%g" % calc_tcp_from_entry(log_entry, tier: 3).to_s + "/" +
+    "%g" % calc_tcp_from_entry(log_entry, tier: 4).to_s
   end
 
   def calc_tcp_from_entry(log_entry, tier:)

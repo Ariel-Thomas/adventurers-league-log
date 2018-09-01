@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_30_054139) do
+ActiveRecord::Schema.define(version: 2018_09_01_160914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,14 +108,14 @@ ActiveRecord::Schema.define(version: 2018_08_30_054139) do
     t.integer "campaign_id"
     t.integer "session_length_hours"
     t.integer "player_level"
-    t.integer "advancement_checkpoints"
-    t.integer "treasure_checkpoints"
+    t.decimal "advancement_checkpoints", precision: 6, scale: 1
+    t.decimal "treasure_checkpoints", precision: 6, scale: 1
     t.integer "treasure_tier"
     t.boolean "old_format", default: false, null: false
-    t.integer "tier1_treasure_checkpoints"
-    t.integer "tier2_treasure_checkpoints"
-    t.integer "tier3_treasure_checkpoints"
-    t.integer "tier4_treasure_checkpoints"
+    t.decimal "tier1_treasure_checkpoints", precision: 6, scale: 1
+    t.decimal "tier2_treasure_checkpoints", precision: 6, scale: 1
+    t.decimal "tier3_treasure_checkpoints", precision: 6, scale: 1
+    t.decimal "tier4_treasure_checkpoints", precision: 6, scale: 1
     t.index ["campaign_id"], name: "index_log_entries_on_campaign_id"
     t.index ["user_id"], name: "index_log_entries_on_user_id"
   end

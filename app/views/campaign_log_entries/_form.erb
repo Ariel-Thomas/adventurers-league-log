@@ -53,11 +53,11 @@
         <div class="row new_format">
           <div class="form-group col-md-3">
             <%= f.label :advancement_checkpoints, 'Advancement CP' %>
-            <%= f.number_field :advancement_checkpoints, class: 'form-control' %>
+            <%= f.number_field :advancement_checkpoints, class: 'form-control', :step => '0.5' %>
           </div>
           <div class="form-group col-md-3">
             <%= f.label :treasure_checkpoints, 'Treasure CP' %>
-            <%= f.number_field :treasure_checkpoints, class: 'form-control', :step => 'any' %>
+            <%= f.number_field :treasure_checkpoints, class: 'form-control', :step => '0.5' %>
           </div>
           <div class="form-group col-md-2">
             <%= f.label :downtime_gained, 'Downtime' %>
