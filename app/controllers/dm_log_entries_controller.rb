@@ -159,8 +159,8 @@ class DmLogEntriesController < LogEntriesController
     @total_acp       = @prepaginated_log_entries.sum(:advancement_checkpoints)
     @unused_acp      = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).sum(:advancement_checkpoints)
 
-    @total_tcp       = @prepaginated_log_entries
-    @unused_tcp      = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil })
+    @total_tcp       = @prepaginated_log_entries.sum(:treasure_checkpoints)
+    @unused_tcp      = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).sum(:treasure_checkpoints)
 
     @total_hours     = @prepaginated_log_entries.sum(:session_length_hours)
     @total_gp        = @prepaginated_log_entries.sum(:gp_gained)

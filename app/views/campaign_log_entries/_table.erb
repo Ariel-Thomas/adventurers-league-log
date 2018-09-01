@@ -15,8 +15,8 @@
           <td><%= format_date log_entry.date_played %></td>
           <td><%= log_entry.adventure_title %></td>
           <td><%= log_entry.session_num %></td>
-          <td><%= log_entry.advancement_checkpoints %></td>
-          <td><%= log_entry.treasure_checkpoints %></td>
+          <td><%= "%g" % log_entry.advancement_checkpoints if log_entry.advancement_checkpoints %></td>
+          <td><%= "%g" % log_entry.treasure_checkpoints if log_entry.treasure_checkpoints %></td>
           <td><%= log_entry.downtime_gained %></td>
           <td>
             <%= link_to "<span class='sr-only'>Show<span>".html_safe, [@user, @campaign, log_entry], class: "fa fa-eye", title: "Show Log Entry" %>

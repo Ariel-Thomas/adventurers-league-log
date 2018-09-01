@@ -7,15 +7,15 @@
   <div class="col-md-3">
     <%= display_attribute "Total XP",     @total_xp,    size: :small if @style == 'old' || @style == 'both' %>
     <%= display_attribute "Unused XP",    @unused_xp,   size: :small if @style == 'old' || @style == 'both' %>
-    <%= display_attribute "Total ACP",    @total_acp,   size: :small if @style == 'season8' || @style == 'both' %>
-    <%= display_attribute "Unused ACP",   @unused_acp,  size: :small if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute "Total ACP",    "%g" % @total_acp,   size: :small if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute "Unused ACP",   "%g" % @unused_acp,  size: :small if @style == 'season8' || @style == 'both' %>
     <%= display_attribute "Total Hours",  @total_hours, size: :small %>
     <br>
   </div>
 
   <div class="col-md-3">
-    <%= display_attribute "Total TCP",  treasure_checkpoints_string(@total_tcp),  size: :small if @style == 'season8' || @style == 'both' %>
-    <%= display_attribute "Unused TCP", treasure_checkpoints_string(@unused_tcp), size: :small if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute "Total TCP",  "%g" % @total_tcp,  size: :small if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute "Unused TCP", "%g" % @unused_tcp, size: :small if @style == 'season8' || @style == 'both' %>
     <%= display_attribute "Total GP",   @total_gp,                                size: :small %>
     <%= display_attribute "Unused GP",  @unused_gp,                               size: :small %>
     <br>

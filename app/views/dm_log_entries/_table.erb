@@ -19,8 +19,8 @@
           <td><%= format_date log_entry.date_dmed %></td>
           <td><%= log_entry.adventure_title %></td>
           <td><%= log_entry.session_num %></td>
-          <td><%= log_entry.advancement_checkpoints %></td>
-          <td><%= log_entry.treasure_checkpoints %></td>
+          <td><%= "%g" % log_entry.advancement_checkpoints if log_entry.advancement_checkpoints %></td>
+          <td><%= "%g" % log_entry.treasure_checkpoints if log_entry.treasure_checkpoints %></td>
           <td><%= log_entry.downtime_gained %></td>
           <td><%= log_entry.renown_gained %></td>
           <td><%= log_entry.gp_gained %></td>
