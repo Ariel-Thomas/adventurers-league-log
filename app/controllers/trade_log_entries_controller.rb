@@ -88,7 +88,7 @@ class TradeLogEntriesController < LogEntriesController
 
   def load_current_magic_items
     selected_magic_item = @log_entry.traded_magic_item if @log_entry && @log_entry.traded_magic_item
-    @magic_items = @character.magic_items.purchased
+    @magic_items = @character.magic_items.purchased.not_traded
     @magic_items_for_select = @magic_items.map {|p| [ "#{p.name} (#{p.rarity}, Tier #{p.tier})", p.id ] }
     @magic_items_for_select << ["#{selected_magic_item.name} (#{selected_magic_item.rarity}, Tier #{selected_magic_item.tier})", selected_magic_item.id] if selected_magic_item
   end
