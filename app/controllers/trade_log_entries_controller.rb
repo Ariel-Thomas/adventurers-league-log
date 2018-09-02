@@ -6,6 +6,8 @@ class TradeLogEntriesController < LogEntriesController
   before_action :load_user
   before_action :load_character
   before_action :load_log_entry, only: [:show, :edit, :update, :destroy]
+  before_action :load_traded_magic_item,
+                only: [:new, :create, :edit, :update]
   before_action :load_current_magic_items,
                 only: [:new, :create, :edit, :update]
   before_action :build_new_magic_item,
@@ -34,14 +36,11 @@ class TradeLogEntriesController < LogEntriesController
   def create
     @log_entry = @character.trade_log_entries.build(log_entries_params)
     @log_entry.magic_items.last.purchased = true if @log_entry.magic_items.last
-
-    @traded_magic_item = MagicItem.find_by(id: new_magic_item_params)
-    @log_entry.traded_magic_item = @traded_magic_item
-
     @log_entry.characters = [@character]
 
     authorize @log_entry
 
+    @log_entry.traded_magic_item = @traded_magic_item
     if @log_entry.save
       redirect_to user_character_path(current_user, @character, q: params.permit(:q).fetch(:q, nil)),
                   flash: { notice: 'Successfully created trade log entry' }
@@ -57,7 +56,7 @@ class TradeLogEntriesController < LogEntriesController
 
   def update
     authorize @log_entry
-    @traded_magic_item = MagicItem.find_by(id: new_magic_item_params)
+
     @log_entry.traded_magic_item = @traded_magic_item
     if @log_entry.update_attributes(log_entries_params)
       redirect_to user_character_path(current_user, @character, q: params.permit(:q).fetch(:q, nil)),
@@ -93,18 +92,19 @@ class TradeLogEntriesController < LogEntriesController
     @magic_items_for_select << ["#{selected_magic_item.name} (#{selected_magic_item.rarity}, Tier #{selected_magic_item.tier})", selected_magic_item.id] if selected_magic_item
   end
 
+  def load_traded_magic_item
+    @traded_magic_item = MagicItem.find_by(id: traded_magic_item_params)
+  end
+
   def build_new_magic_item
-    magic_item = MagicItem.find_by(id: new_magic_item_params)
-    if magic_item.present?
-      @new_magic_item = magic_item
-    elsif @log_entry && @log_entry.magic_items.last
+    if @log_entry && @log_entry.magic_items.last
       @new_magic_item = @log_entry.magic_items.last
     else
       @new_magic_item = MagicItem.new(trade_log_entry_id: 0, purchased: true)
     end
   end
 
-  def new_magic_item_params
+  def traded_magic_item_params
     params[:trade_log_entry][:traded_magic_item] if params[:trade_log_entry]
   end
 
@@ -114,7 +114,7 @@ class TradeLogEntriesController < LogEntriesController
 
   def log_entries_params
     params.require(:trade_log_entry)
-          .permit(:date_played, :downtime_gained, :gp_gained, :traded_magic_item,
+          .permit(:date_played, :downtime_gained, :gp_gained,
                   :notes, magic_items_attributes: magic_item_params)
   end
 end

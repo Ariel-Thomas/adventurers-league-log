@@ -1,6 +1,10 @@
 CHANGELOG
 ======
 
+v1.8.3
+---------------
+- Allow tier to be assigned in campaign log entries.
+
 v1.8.2
 ---------------
 - Adjust notes field height.
