@@ -135,7 +135,7 @@ class CampaignLogEntriesController < LogEntriesController
           .permit(:adventure_title, :session_num, :date_played,
                   :old_format, :advancement_checkpoints, :treasure_checkpoints,
                   :xp_gained, :gp_gained, :renown_gained, :downtime_gained,
-                  :num_secret_missions, :location_played, :tier, :notes,
+                  :num_secret_missions, :location_played, :treasure_tier, :notes,
                   character_ids: [],
                   magic_items_attributes: magic_item_params)
   end
