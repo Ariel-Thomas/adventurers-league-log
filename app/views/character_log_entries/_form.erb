@@ -76,11 +76,11 @@
       </div>
       <div class="form-group col-md-1">
         <%= f.label :downtime_gained, 'Downtime' %>
-        <%= f.number_field :downtime_gained, class: 'form-control', style: "padding-right: 0px" %>
+        <%= f.number_field :downtime_gained, class: 'form-control', style: "padding-right: 0px", :step => '0.5' %>
       </div>
       <div class="form-group col-md-1">
         <%= f.label :renown_gained, 'Renown' %>
-        <%= f.number_field :renown_gained, class: 'form-control' %>
+        <%= f.number_field :renown_gained, class: 'form-control', :step => '0.5' %>
       </div>
       <div class="form-group col-md-2">
         <%= f.label :gp_gained, 'GP +/-' %>

@@ -23,10 +23,10 @@
             </td>
             <td><%= log_entry.treasure_tier %></td>
             <td><%= log_entry.session_num %></td>
-            <td><%= "%g" % log_entry.advancement_checkpoints if log_entry.advancement_checkpoints %></td>
-            <td><%= "%g" % log_entry.treasure_checkpoints if log_entry.treasure_checkpoints %></td>
-            <td><%= log_entry.downtime_gained %></td>
-            <td><%= log_entry.renown_gained %></td>
+            <td><%= humanize_decimal log_entry.advancement_checkpoints %></td>
+            <td><%= humanize_decimal log_entry.treasure_checkpoints %></td>
+            <td><%= humanize_decimal log_entry.downtime_gained %></td>
+            <td><%= humanize_decimal log_entry.renown_gained %></td>
             <td>
               <% if log_entry.type == "CharacterLogEntry" %>
                 <%= link_to "<span class='sr-only'>Show</span>".html_safe, user_character_character_log_entry_path(@character.user, @character, log_entry), class: "fa fa-eye", title: "Show Log Entry" %>

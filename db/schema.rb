@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_01_160914) do
+ActiveRecord::Schema.define(version: 2018_09_07_114634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,8 +94,8 @@ ActiveRecord::Schema.define(version: 2018_09_01_160914) do
     t.integer "session_num"
     t.integer "xp_gained"
     t.decimal "gp_gained", precision: 20, scale: 4
-    t.integer "renown_gained"
-    t.integer "downtime_gained"
+    t.decimal "renown_gained", precision: 6, scale: 1
+    t.decimal "downtime_gained", precision: 8, scale: 1
     t.string "location_played"
     t.string "dm_name"
     t.string "dm_dci_number"

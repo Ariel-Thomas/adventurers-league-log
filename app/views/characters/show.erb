@@ -38,13 +38,13 @@
     <%= display_attribute "ACP to Level", @character.checkpoints_to_next_level if @style == 'season8' || @style == 'both' %>
 
     <%= display_attribute "Total GP", humanize_decimal(@character.total_gp) %>
-    <%= display_attribute "Total Downtime",  @character.total_downtime %>
+    <%= display_attribute "Total Downtime", humanize_decimal(@character.total_downtime) %>
   </div>
 
   <div class="col-md-4">
     <%= display_attribute "Faction",  @character.faction_name %>
     <%= display_attribute "Faction Rank", @character.faction_rank %>
-    <%= display_attribute "Total Renown", @character.total_renown %>
+    <%= display_attribute "Total Renown", humanize_decimal(@character.total_renown) %>
     <%= display_attribute "Secret Missions", @character.total_secret_missions  if @style == 'old' || @style == 'both'%>
     <% if @style == 'season8' %><br class='hidden-xs'><% end %>
     <br class='hidden-xs'>

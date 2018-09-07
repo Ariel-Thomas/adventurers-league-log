@@ -5,31 +5,31 @@
 
 <div class="row">
   <div class="col-md-3">
-    <%= display_attribute "Total XP",     @total_xp,    size: :small if @style == 'old' || @style == 'both' %>
-    <%= display_attribute "Unused XP",    @unused_xp,   size: :small if @style == 'old' || @style == 'both' %>
-    <%= display_attribute "Total ACP",    "%g" % @total_acp,   size: :small if @style == 'season8' || @style == 'both' %>
-    <%= display_attribute "Unused ACP",   "%g" % @unused_acp,  size: :small if @style == 'season8' || @style == 'both' %>
-    <%= display_attribute "Total Hours",  @total_hours, size: :small %>
+    <%= display_attribute "Total XP",     @total_xp,                     size: :small if @style == 'old' || @style == 'both' %>
+    <%= display_attribute "Unused XP",    @unused_xp,                    size: :small if @style == 'old' || @style == 'both' %>
+    <%= display_attribute "Total ACP",    humanize_decimal(@total_acp),  size: :small if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute "Unused ACP",   humanize_decimal(@unused_acp), size: :small if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute "Total Hours",  @total_hours,                  size: :small %>
     <br>
   </div>
 
   <div class="col-md-3">
-    <%= display_attribute "Total TCP",  "%g" % @total_tcp,  size: :small if @style == 'season8' || @style == 'both' %>
-    <%= display_attribute "Unused TCP", "%g" % @unused_tcp, size: :small if @style == 'season8' || @style == 'both' %>
-    <%= display_attribute "Total GP",   @total_gp,                                size: :small %>
-    <%= display_attribute "Unused GP",  @unused_gp,                               size: :small %>
+    <%= display_attribute "Total TCP",  humanize_decimal(@total_tcp),  size: :small if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute "Unused TCP", humanize_decimal(@unused_tcp), size: :small if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute "Total GP",   humanize_decimal(@total_gp),   size: :small %>
+    <%= display_attribute "Unused GP",  humanize_decimal(@unused_gp),  size: :small %>
     <br>
   </div>
 
   <div class="col-md-3">
-    <%= display_attribute "Total Downtime",   @total_downtime,  size: :small %>
-    <%= display_attribute "Unused Downtime",  @unused_downtime, size: :small %>
+    <%= display_attribute "Total Downtime",  humanize_decimal(@total_downtime),  size: :small %>
+    <%= display_attribute "Unused Downtime", humanize_decimal(@unused_downtime), size: :small %>
     <br>
   </div>
 
   <div class="col-md-3">
-    <%= display_attribute "Total Renown",   @total_renown,  size: :small %>
-    <%= display_attribute "Unused Renown",  @unused_renown, size: :small %>
+    <%= display_attribute "Total Renown",  humanize_decimal(@total_renown),  size: :small %>
+    <%= display_attribute "Unused Renown", humanize_decimal(@unused_renown), size: :small %>
   </div>
 </div>
 
