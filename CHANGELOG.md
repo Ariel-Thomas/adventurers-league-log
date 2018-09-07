@@ -4,6 +4,7 @@ CHANGELOG
 v1.8.3
 ---------------
 - Allow tier to be assigned in campaign log entries.
+- Allow for fractional downtime and renown.
 
 v1.8.2
 ---------------
