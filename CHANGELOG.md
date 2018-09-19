@@ -5,6 +5,7 @@ v1.8.3
 ---------------
 - Allow tier to be assigned in campaign log entries.
 - Allow for fractional downtime and renown.
+- Handle negative XP more gravefully.
 
 v1.8.2
 ---------------

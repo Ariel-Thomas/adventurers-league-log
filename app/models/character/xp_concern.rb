@@ -7,7 +7,7 @@ module Character::XPConcern
   end
 
   def xp_level
-    current_xp = total_xp
+    current_xp = [total_xp, 0].max
 
     XP_BY_LEVEL.each_with_index do |xp_amount, index|
       return index if current_xp < xp_amount
@@ -21,7 +21,11 @@ module Character::XPConcern
   end
 
   def fraction_of_xp_to_next_level
-    level_fraction = Float(total_xp - XP_BY_LEVEL[[xp_level - 1,0].max]) / Float(xp_for_next_level - XP_BY_LEVEL[[xp_level - 1,0].max])
+    current_xp = [total_xp, 0].max
+    xp_for_this_level = XP_BY_LEVEL[[xp_level - 1, 0].max]
+
+    level_fraction = Float(current_xp - xp_for_this_level) / Float(xp_for_next_level - xp_for_this_level)
+
     return level_fraction / 2.0 if conversion_speed_slow?
     level_fraction
   end
