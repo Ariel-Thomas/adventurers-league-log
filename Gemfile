@@ -42,12 +42,12 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
-  gem 'capybara'
   gem 'faker'
   gem 'database_cleaner'
+  gem 'launchy'
 
-  gem 'phantomjs', require: 'phantomjs/poltergeist'
-  gem 'poltergeist'
+  gem 'capybara'
+  gem 'selenium-webdriver'
 
   gem 'dotenv-rails'
   gem 'byebug'
