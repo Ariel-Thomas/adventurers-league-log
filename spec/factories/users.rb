@@ -6,10 +6,10 @@ FactoryBot.define do
 
     autocalc_default { true }
 
-    character_style :old
-    character_log_entry_style :old
-    magic_item_style :old
-    dm_style :old
-    dm_log_entry_style :old
+    character_style { :old }
+    character_log_entry_style { :old }
+    magic_item_style { :old }
+    dm_style { :old }
+    dm_log_entry_style { :old }
   end
 end
