@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.feature 'Campaigns', type: :feature do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     login_as(@user, scope: :user)
-    @campaign  = FactoryGirl.create(:campaign, users: [@user])
+    @campaign  = FactoryBot.create(:campaign, users: [@user])
   end
 
   scenario 'Edit a campaign' do

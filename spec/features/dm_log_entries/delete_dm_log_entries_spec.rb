@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.feature 'DM Log Entries', type: :feature do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     login_as(@user, scope: :user)
-    @character = FactoryGirl.create(:character, user: @user)
-    @dm_log_entry = FactoryGirl.create(:dm_log_entry, user: @user)
+    @character = FactoryBot.create(:character, user: @user)
+    @dm_log_entry = FactoryBot.create(:dm_log_entry, user: @user)
     @dm_log_entry.characters = [@character]
   end
 

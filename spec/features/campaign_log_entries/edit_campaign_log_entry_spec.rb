@@ -2,21 +2,21 @@ require 'rails_helper'
 
 RSpec.feature 'Campaign Log Entries', type: :feature, js: true do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     login_as(@user, scope: :user)
-    @adventure = FactoryGirl.create(:adventure, name: 'Lost Mines of Phandelver')
+    @adventure = FactoryBot.create(:adventure, name: 'Lost Mines of Phandelver')
 
-    @character1 = FactoryGirl.create(:character)
-    @character2 = FactoryGirl.create(:character)
-    @character3 = FactoryGirl.create(:character)
-    @character4 = FactoryGirl.create(:character)
-    @character5 = FactoryGirl.create(:character)
-    @character6 = FactoryGirl.create(:character)
+    @character1 = FactoryBot.create(:character)
+    @character2 = FactoryBot.create(:character)
+    @character3 = FactoryBot.create(:character)
+    @character4 = FactoryBot.create(:character)
+    @character5 = FactoryBot.create(:character)
+    @character6 = FactoryBot.create(:character)
 
-    @campaign            = FactoryGirl.create(:campaign, users: [@user])
+    @campaign            = FactoryBot.create(:campaign, users: [@user])
     @campaign.characters = [@character1, @character2, @character3, @character4, @character5, @character6]
 
-    @campaign_log_entry = FactoryGirl.create(:campaign_log_entry, campaign: @campaign, user: @user, dm_name: @user.name, dm_dci_number: @user.dci_num)
+    @campaign_log_entry = FactoryBot.create(:campaign_log_entry, campaign: @campaign, user: @user, dm_name: @user.name, dm_dci_number: @user.dci_num)
     @campaign_log_entry.characters = [@character1, @character3, @character5]
   end
 

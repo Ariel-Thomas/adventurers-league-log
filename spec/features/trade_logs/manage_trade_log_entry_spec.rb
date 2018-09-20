@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.feature 'Trade Log Entry page', type: :feature, js: true do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     login_as(@user, scope: :user)
-    @character = FactoryGirl.create(:character, user: @user)
+    @character = FactoryBot.create(:character, user: @user)
 
-    @log_entry = FactoryGirl.create(:character_log_entry, characters: [@character])
-    @magic_item = FactoryGirl.create(:magic_item, name: 'Staff of Power', rarity: 'rare', log_entry: @log_entry, character: @character)
+    @log_entry = FactoryBot.create(:character_log_entry, characters: [@character])
+    @magic_item = FactoryBot.create(:magic_item, name: 'Staff of Power', rarity: 'rare', log_entry: @log_entry, character: @character)
   end
 
   scenario 'Adding trade log hides old magic item and shows new magic item' do
@@ -40,10 +40,10 @@ RSpec.feature 'Trade Log Entry page', type: :feature, js: true do
 
   context 'Character has trade log entry with magic item' do
     before(:each) do
-      @magic_item = FactoryGirl.create(:magic_item, name: 'Rod of Wonder', rarity: 'legendary', log_entry: @log_entry, character: @character)
+      @magic_item = FactoryBot.create(:magic_item, name: 'Rod of Wonder', rarity: 'legendary', log_entry: @log_entry, character: @character)
 
-      @trade_log_entry = FactoryGirl.create(:trade_log_entry, traded_magic_item: @magic_item)
-      @received_magic_item = FactoryGirl.create(:magic_item, name: 'Sword of Awesome', log_entry: @trade_log_entry, character: @character)
+      @trade_log_entry = FactoryBot.create(:trade_log_entry, traded_magic_item: @magic_item)
+      @received_magic_item = FactoryBot.create(:magic_item, name: 'Sword of Awesome', log_entry: @trade_log_entry, character: @character)
 
       @character.log_entries = [@log_entry, @trade_log_entry]
     end

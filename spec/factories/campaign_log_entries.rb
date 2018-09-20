@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :campaign_log_entry do
     type { CampaignLogEntry }
 

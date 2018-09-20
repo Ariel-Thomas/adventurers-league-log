@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.feature 'Locations', type: :feature do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     login_as(@user, scope: :user)
-    @location = FactoryGirl.create(:location, user: @user)
+    @location = FactoryBot.create(:location, user: @user)
   end
 
   scenario 'Create a Location' do

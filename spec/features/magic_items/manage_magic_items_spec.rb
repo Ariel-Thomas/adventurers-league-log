@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.feature 'Manage Magic items', type: :feature, js: true do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     login_as(@user, scope: :user)
-    @character = FactoryGirl.create(:character, user: @user)
+    @character = FactoryBot.create(:character, user: @user)
   end
 
   context 'character log sheet' do
@@ -62,8 +62,8 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
 
     context 'existing log entry' do
       before(:each) do
-        @log_entry = FactoryGirl.create(:character_log_entry)
-        @magic_item = FactoryGirl.create(:magic_item,
+        @log_entry = FactoryBot.create(:character_log_entry)
+        @magic_item = FactoryBot.create(:magic_item,
                                          name: 'Staff of Power',
                                          log_entry: @log_entry,
                                          character: @character)
@@ -165,8 +165,8 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
 
     context 'existing log entry' do
       before(:each) do
-        @log_entry = FactoryGirl.create(:dm_log_entry)
-        @magic_item = FactoryGirl.create(:magic_item,
+        @log_entry = FactoryBot.create(:dm_log_entry)
+        @magic_item = FactoryBot.create(:magic_item,
                                          name: 'Staff of Power',
                                          log_entry: @log_entry,
                                          character: @character)
@@ -243,7 +243,7 @@ RSpec.feature 'Manage Magic items', type: :feature, js: true do
 
   context 'campaign log sheet' do
     before(:each) do
-      @campaign            = FactoryGirl.create(:campaign, users: [@user])
+      @campaign            = FactoryBot.create(:campaign, users: [@user])
       @campaign.characters = [@character]
     end
 

@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.feature 'Characters page', type: :feature, js: true do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     login_as(@user, scope: :user)
-    @character = FactoryGirl.create(:character, user: @user)
+    @character = FactoryBot.create(:character, user: @user)
   end
 
   scenario 'Character show page should have information' do
@@ -20,8 +20,8 @@ RSpec.feature 'Characters page', type: :feature, js: true do
 
   context 'faction ranks' do
     scenario 'Zhentarim' do
-      @faction = FactoryGirl.create(:faction, name: 'Zhentarim')
-      @faction_rank = FactoryGirl.create(:faction_rank, name: 'Fang', numerical_rank: 1, faction: @faction)
+      @faction = FactoryBot.create(:faction, name: 'Zhentarim')
+      @faction_rank = FactoryBot.create(:faction_rank, name: 'Fang', numerical_rank: 1, faction: @faction)
       @character.faction = @faction
       @character.save!
 
@@ -31,10 +31,10 @@ RSpec.feature 'Characters page', type: :feature, js: true do
     end
 
     scenario "Lord's Alliance" do
-      @faction = FactoryGirl.create(:faction, name: "Lord's Alliance")
-      @faction_rank = FactoryGirl.create(:faction_rank, name: 'Warduke', numerical_rank: 4, faction: @faction)
+      @faction = FactoryBot.create(:faction, name: "Lord's Alliance")
+      @faction_rank = FactoryBot.create(:faction_rank, name: 'Warduke', numerical_rank: 4, faction: @faction)
       @character.faction = @faction
-      @character.character_log_entries = [FactoryGirl.create(:character_log_entry, renown_gained: 50, num_secret_missions: 6, xp_gained: 1_000_000)]
+      @character.character_log_entries = [FactoryBot.create(:character_log_entry, renown_gained: 50, num_secret_missions: 6, xp_gained: 1_000_000)]
       @character.save!
 
       visit user_character_path(@user, @character)

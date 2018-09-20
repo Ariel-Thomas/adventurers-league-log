@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :character do
     user
 
@@ -7,7 +7,7 @@ FactoryGirl.define do
     class_and_levels { 'Wizard 9' }
     # portrait_url { Faker::Avatar.image }
     background { 'Sage' }
-    lifestyle { FactoryGirl.create :lifestyle }
-    faction { FactoryGirl.create :faction }
+    lifestyle { FactoryBot.create :lifestyle }
+    faction { FactoryBot.create :faction }
   end
 end

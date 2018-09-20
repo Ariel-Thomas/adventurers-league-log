@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'Characters page', type: :feature, js: true do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     login_as(@user, scope: :user)
   end
 
@@ -12,8 +12,8 @@ RSpec.feature 'Characters page', type: :feature, js: true do
   end
 
   scenario 'Character page should have information' do
-    @character       = FactoryGirl.create(:character, user: @user)
-    @other_character = FactoryGirl.create(:character, user: @user)
+    @character       = FactoryBot.create(:character, user: @user)
+    @other_character = FactoryBot.create(:character, user: @user)
     visit user_characters_path(@user)
 
     expect(page).to have_text(@character.name)
@@ -28,8 +28,8 @@ RSpec.feature 'Characters page', type: :feature, js: true do
   end
 
   scenario 'Create a character' do
-    @lifestyle = FactoryGirl.create :lifestyle
-    @faction = FactoryGirl.create :faction
+    @lifestyle = FactoryBot.create :lifestyle
+    @faction = FactoryBot.create :faction
     @character_count = Character.count
     visit user_characters_path(@user)
 
@@ -52,9 +52,9 @@ RSpec.feature 'Characters page', type: :feature, js: true do
   end
 
   scenario 'Edit an existing character' do
-    @character = FactoryGirl.create(:character, user: @user)
-    @lifestyle     = FactoryGirl.create :lifestyle,     name: 'Poor'
-    @faction       = FactoryGirl.create :faction,       name: 'Zhentarim'
+    @character = FactoryBot.create(:character, user: @user)
+    @lifestyle     = FactoryBot.create :lifestyle,     name: 'Poor'
+    @faction       = FactoryBot.create :faction,       name: 'Zhentarim'
     visit user_characters_path(@user)
 
     # click_link "Edit"
@@ -82,7 +82,7 @@ RSpec.feature 'Characters page', type: :feature, js: true do
   end
 
   scenario 'Delete an existing character' do
-    @character = FactoryGirl.create(:character, user: @user)
+    @character = FactoryBot.create(:character, user: @user)
     @character_count = Character.count
     visit user_characters_path(@user)
 

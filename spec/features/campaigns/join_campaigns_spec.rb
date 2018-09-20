@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.feature 'Campaigns', type: :feature do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     login_as(@user, scope: :user)
-    @character = FactoryGirl.create(:character,
+    @character = FactoryBot.create(:character,
                                     user: @user, name: 'Test Character')
-    @campaign  = FactoryGirl.create(:campaign, users_can_join: true, dms_can_join: true)
+    @campaign  = FactoryBot.create(:campaign, users_can_join: true, dms_can_join: true)
   end
 
   scenario 'Join a campaign as a player' do

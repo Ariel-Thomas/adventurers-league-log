@@ -1,6 +1,6 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :faction_rank do
-    faction        { FactoryGirl.create :faction }
+    faction        { FactoryBot.create :faction }
 
     name           { 'High Harper' }
     numerical_rank { 5 }

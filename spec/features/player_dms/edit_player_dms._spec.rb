@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.feature 'Player Dms', type: :feature do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     login_as(@user, scope: :user)
-    @player_dm = FactoryGirl.create(:player_dm, user: @user)
+    @player_dm = FactoryBot.create(:player_dm, user: @user)
   end
 
   scenario 'Edit an existing DM' do

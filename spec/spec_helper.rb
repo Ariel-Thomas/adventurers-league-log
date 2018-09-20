@@ -25,7 +25,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 RSpec.configure do |config|
   config.include Warden::Test::Helpers
   config.include Devise::TestHelpers, type: :controller
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include FeatureHelpers, type: :feature
 
   # rspec-expectations config goes here. You can use an alternate

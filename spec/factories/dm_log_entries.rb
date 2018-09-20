@@ -1,7 +1,7 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :dm_log_entry do
     type { DmLogEntry }
-    user { FactoryGirl.create :user }
+    user { FactoryBot.create :user }
 
     date_dmed       { Faker::Date.forward(365) }
     date_played     { Faker::Date.forward(366) }
