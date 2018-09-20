@@ -22,3 +22,6 @@
 /tmp
 
 .env
+
+# Ignore the saved capybara example
+/public/capybara.html
