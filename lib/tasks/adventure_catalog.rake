@@ -42,6 +42,8 @@ namespace :adventure_catalog do
         if row.length == 4
           if row[2].include? 'Lost Tales of Myth Drannor'
             row = [" DDAL00-02*", "1-4, 5-10, 11-16, 17-20", "12", "Lost Tales of Myth Drannor"]
+          elsif row[3].include? 'The Courtingof Fire'
+            row = [" DDEX1-5", "1-4", "4", "The Courting of Fire"]
           end
         end
 
