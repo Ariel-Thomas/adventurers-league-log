@@ -1,7 +1,7 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :trade_log_entry do
     type { TradeLogEntry }
-    character { FactoryGirl.create :character }
+    character { FactoryBot.create :character }
 
     date_played { Faker::Date.forward(365) }
     downtime_gained { -15 }

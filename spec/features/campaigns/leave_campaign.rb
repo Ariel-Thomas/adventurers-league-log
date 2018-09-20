@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.feature 'Campaigns', type: :feature do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     login_as(@user, scope: :user)
   end
 
   context 'As a DM' do
     before(:each) do
-      @campaign = FactoryGirl.create(:campaign, users: [@user])
+      @campaign = FactoryBot.create(:campaign, users: [@user])
     end
 
     scenario 'Leave a campaign' do
@@ -27,8 +27,8 @@ RSpec.feature 'Campaigns', type: :feature do
 
   context 'As a player' do
     before(:each) do
-      @campaign  = FactoryGirl.create(:campaign)
-      @character = FactoryGirl.create(:character,
+      @campaign  = FactoryBot.create(:campaign)
+      @character = FactoryBot.create(:character,
                                       user: @user, name: 'Test Character')
       @campaign.characters = [@character]
     end

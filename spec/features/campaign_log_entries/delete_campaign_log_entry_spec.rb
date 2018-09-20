@@ -2,14 +2,14 @@ require 'rails_helper'
 
 RSpec.feature 'Campaign Log Entries', type: :feature do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     login_as(@user, scope: :user)
-    @character1    = FactoryGirl.create(:character, publicly_visible: true)
-    @character2    = FactoryGirl.create(:character, publicly_visible: true)
+    @character1    = FactoryBot.create(:character, publicly_visible: true)
+    @character2    = FactoryBot.create(:character, publicly_visible: true)
 
-    @campaign            = FactoryGirl.create(:campaign, users: [@user])
+    @campaign            = FactoryBot.create(:campaign, users: [@user])
     @campaign.characters = [@character1, @character2]
-    @campaign_log_entry = FactoryGirl.create(:campaign_log_entry, campaign: @campaign, user: @user)
+    @campaign_log_entry = FactoryBot.create(:campaign_log_entry, campaign: @campaign, user: @user)
     @campaign_log_entry.characters = [@character1, @character2]
   end
 

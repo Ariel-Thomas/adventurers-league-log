@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.feature 'Character Log Entries', type: :feature do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     login_as(@user, scope: :user)
-    @character = FactoryGirl.create(:character, user: @user, name: 'Test Character')
-    @adventure = FactoryGirl.create(:adventure, name: 'Lost Mines of Phandelver')
+    @character = FactoryBot.create(:character, user: @user, name: 'Test Character')
+    @adventure = FactoryBot.create(:adventure, name: 'Lost Mines of Phandelver')
   end
 
   scenario 'Create a Character Log Entry' do

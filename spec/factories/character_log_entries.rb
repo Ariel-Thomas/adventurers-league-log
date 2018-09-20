@@ -1,7 +1,7 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :character_log_entry do
     type { CharacterLogEntry }
-    character { FactoryGirl.create :character }
+    character { FactoryBot.create :character }
 
     date_played { Faker::Date.forward(365) }
     adventure_title { 'DDAL01-01 The Beginning' }

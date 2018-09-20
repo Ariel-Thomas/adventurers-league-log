@@ -2,18 +2,18 @@ require 'rails_helper'
 
 RSpec.feature 'Campaign Log Entries', type: :feature do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     login_as(@user, scope: :user)
 
-    @character1 = FactoryGirl.create(:character)
-    @character2 = FactoryGirl.create(:character)
-    @character3 = FactoryGirl.create(:character)
-    @character4 = FactoryGirl.create(:character)
-    @character5 = FactoryGirl.create(:character)
-    @character6 = FactoryGirl.create(:character)
+    @character1 = FactoryBot.create(:character)
+    @character2 = FactoryBot.create(:character)
+    @character3 = FactoryBot.create(:character)
+    @character4 = FactoryBot.create(:character)
+    @character5 = FactoryBot.create(:character)
+    @character6 = FactoryBot.create(:character)
 
-    @adventure = FactoryGirl.create(:adventure, name: 'Lost Mines of Phandelver')
-    @campaign   = FactoryGirl.create(:campaign, users: [@user])
+    @adventure = FactoryBot.create(:adventure, name: 'Lost Mines of Phandelver')
+    @campaign   = FactoryBot.create(:campaign, users: [@user])
     @campaign.characters = [@character1, @character2, @character3, @character4, @character5, @character6]
   end
 

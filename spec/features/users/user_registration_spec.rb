@@ -17,7 +17,7 @@ RSpec.feature 'User', type: :feature do
   end
 
   scenario 'Sign out as user' do
-    user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user)
     login_as(user, scope: :user)
 
     visit root_path
@@ -29,7 +29,7 @@ RSpec.feature 'User', type: :feature do
   end
 
   scenario 'Sign in as existing user' do
-    user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user)
 
     visit root_path
     click_link 'Log In', match: :first

@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.feature 'Characters page', type: :feature, js: true do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     login_as(@user, scope: :user)
-    @campaign  = FactoryGirl.create(:campaign, users: [@user])
+    @campaign  = FactoryBot.create(:campaign, users: [@user])
 
-    @other_user = FactoryGirl.create(:user)
-    @character = FactoryGirl.create(:character, user: @other_user, publicly_visible: false)
+    @other_user = FactoryBot.create(:user)
+    @character = FactoryBot.create(:character, user: @other_user, publicly_visible: false)
   end
 
   scenario 'DMs cannot see character show page for characters not in campaign' do

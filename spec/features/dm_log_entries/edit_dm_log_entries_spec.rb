@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.feature 'DM Log Entries', type: :feature do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     login_as(@user, scope: :user)
-    @dm_log_entry = FactoryGirl.create(:dm_log_entry, user: @user)
-    @character = FactoryGirl.create(:character, user: @user, name: 'Test Character')
-    @adventure = FactoryGirl.create(:adventure, name: 'Lost Mines of Phandelver')
+    @dm_log_entry = FactoryBot.create(:dm_log_entry, user: @user)
+    @character = FactoryBot.create(:character, user: @user, name: 'Test Character')
+    @adventure = FactoryBot.create(:adventure, name: 'Lost Mines of Phandelver')
   end
 
   scenario 'Edit a DM Log Entry' do
