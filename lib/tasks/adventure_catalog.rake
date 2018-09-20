@@ -130,4 +130,10 @@ namespace :adventure_catalog do
         adv.destroy if adv
       end
   end
+
+  desc "Delete all adventures"
+  task :delete_all => :environment do
+    deleted = Adventure.delete_all
+    puts "*** Deleted #{deleted} adventures"
+  end
 end
