@@ -1,35 +1,63 @@
-README
-======
+# Adventurer's League Log
 
-Install postgres first. Create user and database for shell login user.
+A computerized log sheet for DnD 5e's Adventurer's League
 
-Save `.env.example` as `.env`
+## Getting Started
 
-SET UP COMMANDS
----------------
+Install dependencies with `bundler`
 
-`sudo apt-get update`
+```sh
+$ bundle install
+```
 
-`sudo apt-get install libpq-dev`
+Ensure postgres is installed, and a `postgres/postgres` superuser is created. You may also need development libraries on Linux.
 
-`bundle install`
+```sh
+$ sudo apt-get update
+$ sudo apt-get install libpq-dev
+```
 
-`bundle exec rake db:create db:migrate`
+Copy `.env.example` as `.env`
 
-`bundle exec phil_columns seed`
+```sh
+$ cp ./.env.example .env
+```
 
-`bundle exec rake adventure_catalog:load`
+Create database, run migrations and seed data.
 
-`bundle exec rake adventure_catalog:clean_dupes`
+```sh
+$ bundle exec rake db:create db:migrate
+$ bundle exec phil_columns seed
+$ bundle exec rake adventure_catalog:load
+$ bundle exec rake adventure_catalog:clean_dupes
+```
 
-DEVISE
+Configure secret key for [devise]().
 
-`bundle exec rake secret` and copy output to `.env` in `SECRET_KEY_BASE=`
+1. Run `bundle exec rake secret`
+1. Copy output to `.env` in `SECRET_KEY_BASE=`
 
-TESTS
+## Run
 
-`bundle exec rspec`
+```sh
+bundle exec rails s
+```
 
-SERVER
+## Tests
 
-`bundle exec rails s`
+The specs require `chromedriver`.
+
+- On mac, install via homebrew using `brew cask install chromedriver`.
+- On linux, install via `apt-get install chromedriver`.
+
+To run the specs using headless chrome (default) use
+
+```sh
+$ bundle exec rake spec
+```
+
+To run the specs (and view/debug them) using desktop chrome use
+
+```sh
+$ CAPYBARA_GUI=1 bundle exec rake spec
+```
