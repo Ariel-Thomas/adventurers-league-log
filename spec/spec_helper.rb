@@ -1,24 +1,7 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
-require 'capybara/rspec'
-require 'capybara/rails'
 require 'database_cleaner'
-
-Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
-end
-Capybara.register_driver :headless_chrome do |app|
-  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    chromeOptions: { args: %w(headless disable-gpu) }
-  )
-
-  Capybara::Selenium::Driver.new app,
-    browser: :chrome,
-    desired_capabilities: capabilities
-end
-Capybara.javascript_driver = ENV['CAPYBARA_GUI'] ? :chrome : :headless_chrome
-Capybara.default_max_wait_time = 6
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
