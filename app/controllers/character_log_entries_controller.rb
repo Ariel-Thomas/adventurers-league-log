@@ -59,8 +59,6 @@ class CharacterLogEntriesController < LogEntriesController
     manage_locations
     manage_player_dms
 
-    puts log_entries_params.to_s
-
     if @log_entry.update_attributes(log_entries_params)
       redirect_to user_character_path(current_user, @character, q: params[:q]),
                   flash: { notice: 'Successfully updated log entry '\

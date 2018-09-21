@@ -83,7 +83,6 @@ class PurchaseLogEntriesController < LogEntriesController
   protected
 
   def load_character
-    puts params.inspect
     @character   = Character.find(params[:character_id])
   end
 
