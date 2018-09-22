@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.feature 'Show Trade Log Entry', type: :feature, js: true do
+RSpec.feature "Show Trade Log Entry", type: :feature, js: true do
   before(:each) do
     @user = FactoryBot.create(:user)
     login_as(@user, scope: :user)
@@ -8,31 +8,22 @@ RSpec.feature 'Show Trade Log Entry', type: :feature, js: true do
     @log_entry  = FactoryBot.create(:character_log_entry)
   end
 
-  context 'Character has no log entries with magic item' do
-    scenario 'Should have none shown on character page' do
-      visit user_character_path(@user, @character)
-
-      expect(page).to have_text('Total Magic Items: 0')
-    end
-  end
-
-  context 'Character has trade log entry with magic item' do
+  context "Character has trade log entry with magic item" do
     before(:each) do
-      @magic_item = FactoryBot.create(:magic_item, name: 'Staff of Power', log_entry: @log_entry, character: @character)
+      @magic_item = FactoryBot.create(:magic_item, name: "Staff of Power", log_entry: @log_entry, character: @character)
       @trade_log_entry = FactoryBot.create(:trade_log_entry, traded_magic_item: @magic_item, characters: [@character])
-      @received_magic_item = FactoryBot.create(:magic_item, name: 'Sword of Awesome', log_entry: @trade_log_entry, character: @character)
+      @received_magic_item = FactoryBot.create(:magic_item, name: "Sword of Awesome", log_entry: @trade_log_entry, character: @character)
 
       @character.log_entries = [@log_entry, @trade_log_entry]
     end
 
-    scenario 'Should be shown on character page' do
+    scenario "Should be shown on character page" do
       visit user_character_path(@user, @character)
 
-      expect(page).to have_text('Total Magic Items: 1')
-      expect(page).to have_text("Magic Items: #{@received_magic_item.name}")
+      expect(page).to have_text("Staff of Power > Sword of Awesome")
     end
 
-    scenario 'Trade log page should have information' do
+    scenario "Trade log page should have information" do
       visit user_character_trade_log_entry_path(@user, @character, @trade_log_entry)
 
       expect(page).to have_text(@trade_log_entry.date_played)
