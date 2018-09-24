@@ -30,8 +30,7 @@ RSpec.feature "Character Log Entries", type: :feature, js: true do
         fill_in "Renown",             with: "44"
         fill_in "Mission",            with: "55"
 
-        check "Manual Entry", allow_label_click: true
-        fill_in "Location",           with: "Origins"
+        set_location "Origins"
         fill_in_editor_field "Some Words"
 
         fill_in "Date Assigned",      with: "" #Hack for calendar popout

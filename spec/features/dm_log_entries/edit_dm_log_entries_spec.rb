@@ -26,8 +26,7 @@ RSpec.feature "DM Log Entries", type: :feature, js: true do
       fill_in "Downtime +/-",       with: "111"
       fill_in "Renown",             with: "44"
       fill_in "Mission",            with: "55"
-      check "Manual Entry", allow_label_click: true, id: "use_location_override"
-      fill_in "Location",           with: "Origins"
+      set_location "Origins"
       fill_in_editor_field "Some Words"
 
       fill_in "Date Assigned",      with: "" #Hack for calendar popout
@@ -90,8 +89,7 @@ RSpec.feature "DM Log Entries", type: :feature, js: true do
         fill_in "Downtime +/-",       with: "111"
         fill_in "Renown",             with: "44"
         fill_in "Mission",            with: "55"
-        check "Manual Entry", allow_label_click: true, id: "use_location_override"
-        fill_in "Location",           with: "Origins"
+        set_location "Origins"
         fill_in_editor_field "Some Words"
 
         fill_in "Date Assigned",      with: "" #Hack for calendar popout
@@ -112,7 +110,6 @@ RSpec.feature "DM Log Entries", type: :feature, js: true do
       expect(page).to_not have_text("DM Log Entries")
 
       click_link "Show"
-      #find_link("Show").trigger("click") # hack to fix previous line
 
       expect(page).to have_text("Lost Mines of Phandelver")
       expect(page).to have_text("22")
