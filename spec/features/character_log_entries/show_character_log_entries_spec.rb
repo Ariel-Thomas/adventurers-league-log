@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.feature 'Character Log Entries', type: :feature do
+RSpec.feature "Character Log Entries", type: :feature do
   before(:each) do
     @user = FactoryBot.create(:user)
     login_as(@user, scope: :user)
@@ -9,23 +9,23 @@ RSpec.feature 'Character Log Entries', type: :feature do
     @character_log_entry.characters = [@character]
   end
 
-  scenario 'Character Log Entry index page should have information' do
+  scenario "Character Log Entry index page should have information" do
     visit user_character_path(@user, @character)
 
-    expect(page).to have_text(@character_log_entry.date_played.strftime('%Y-%m-%d %H:%M'))
+    expect(page).to have_text(@character_log_entry.date_played.strftime("%Y-%m-%d %H:%M"))
     expect(page).to have_text(@character_log_entry.adventure_title)
     expect(page).to have_text(@character_log_entry.session_num)
     expect(page).to have_text(@character_log_entry.xp_gained)
     expect(page).to have_text(@character_log_entry.gp_gained.floor)
-    expect(page).to have_text(@character_log_entry.downtime_gained)
+    expect(page).to have_text(@character_log_entry.downtime_gained.to_i)
   end
 
-  scenario 'Character Log Entry show page should have information' do
+  scenario "Character Log Entry show page should have information" do
     visit user_character_character_log_entry_path(@user, @character, @character_log_entry)
 
     expect(page).to have_text(@character_log_entry.adventure_title)
     expect(page).to have_text(@character_log_entry.session_num)
-    expect(page).to have_text(@character_log_entry.date_played.strftime('%Y-%m-%d %H:%M'))
+    expect(page).to have_text(@character_log_entry.date_played.strftime("%Y-%m-%d %H:%M"))
     expect(page).to have_text(@character_log_entry.xp_gained)
     expect(page).to have_text(@character_log_entry.gp_gained.floor)
     expect(page).to have_text(@character_log_entry.downtime_gained)
