@@ -82,7 +82,8 @@ RSpec.feature "Trade Log Entry page", type: :feature, js: true do
       within(".trade-log") { click_link("Delete") }
       accept_confirm
 
-      expect(page).to have_text("Rod of Wonder, Staff of Power")
+      expect(page).to have_text("Staff of Power")
+      expect(page).to have_text("Rod of Wonder")
 
       expect(page).to_not have_text(@trade_log_entry.date_played)
       expect(page).to_not have_text(@trade_log_entry.magic_items_list(@character))
