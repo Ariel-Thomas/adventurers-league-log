@@ -5,7 +5,7 @@ class MagicItemsController < AuthenticationController
   before_action :load_character
   before_action :load_magic_item, only: [:show, :destroy]
 
-  before_action { add_crumb('Charactes', user_characters_path(@user)) }
+  before_action { add_crumb('Characters', user_characters_path(@user)) }
   before_action(only: [:index, :show]) { add_crumb(@character.name, user_character_path(@user, @character)) }
   before_action(only: [:index, :show]) { add_crumb 'Magic Items', user_character_magic_items_path(@user, @character) }
   before_action(only: [:show])         { add_crumb(@magic_item.name) }
