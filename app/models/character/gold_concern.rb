@@ -12,7 +12,7 @@ module Character::GoldConcern
     return    0 if level <= 1
     return   75 if level <= 4
     return  150 if level <= 10
-    return  559 if level <= 16
+    return  550 if level <= 16
     return 5500
   end
 
