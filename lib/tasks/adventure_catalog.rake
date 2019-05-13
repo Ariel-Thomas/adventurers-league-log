@@ -124,7 +124,8 @@ namespace :adventure_catalog do
       'PHLAN1-1  Sepulture',
       'HILL1-3 Resurgance',
       'ELM1-1  The Sage of Cormathor',
-      'UCON-01 Blood and Fog',].each do |name|
+      'UCON-01 Blood and Fog',
+      'DDHC-LMoP Lost Mine of Phandelver',].each do |name|
         adv = Adventure.find_by(name: name)
         adv.destroy if adv
       end
