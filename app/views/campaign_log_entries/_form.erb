@@ -65,11 +65,11 @@
           </div>
           <div class="form-group col-md-2">
             <%= f.label :renown_gained, 'Renown' %>
-            <%= f.number_field :renown_gained, class: 'form-control', :step => '0.5' %>
+            <%= f.number_field :renown_gained, class: 'form-control', :step => '0.0001' %>
           </div>
           <div class="form-group col-md-2">
             <%= f.label :gp_gained, 'GP +/-' %>
-            <%= f.number_field :gp_gained, class: 'form-control', :step => 'any' %>
+            <%= f.number_field :gp_gained, class: 'form-control', :step => '0.0001' %>
           </div>
         </div>
 

@@ -1,6 +1,14 @@
 CHANGELOG
 ======
 
+v1.8.4
+---------------
+- Fix Tier 3 GP reward
+- Fix password reset URL.
+- Update Content Catalog.
+- Allow for 4 decimal places for Renown or Downtime.
+
+
 v1.8.3
 ---------------
 - Allow tier to be assigned in campaign log entries.
