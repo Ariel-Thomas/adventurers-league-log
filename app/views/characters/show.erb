@@ -27,15 +27,19 @@
     <%= display_attribute "Class", @character.class_and_levels %>
     <%= display_attribute "Background", @character.background %>
     <%= display_attribute "Lifestyle", @character.lifestyle_name %>
+
     <br class='hidden-xs'>
     <%= display_attribute "Current Level", @character.current_level, type: :level %>
-    <%= display_attribute "XP Level",  @character.xp_level if @style == 'both' %>
-    <%= display_attribute "Total XP",  @character.total_xp if @style == 'old' || @style == 'both' %>
-    <%= display_attribute "XP to Level", @character.xp_to_next_level if @style == 'old' || @style == 'both' %>
-    <div class='hidden-xs'><%= display_attribute "XP for Next",  @character.xp_for_next_level if @style == 'old' || @style == 'both' %></div>
 
-    <%= display_attribute "ACP Level", @character.checkpoint_level if @style == 'both' %>
-    <%= display_attribute "ACP to Level", @character.checkpoints_to_next_level if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute "XP Level",  @character.xp_level if @style == 'all' %>
+    <%= display_attribute "Total XP",  @character.total_xp if @style == 'old' || @style == 'all' %>
+    <%= display_attribute "XP to Level", @character.xp_to_next_level if @style == 'old' || @style == 'all' %>
+    <%= display_attribute "XP for Next",  @character.xp_for_next_level if @style == 'old' || @style == 'all' %>
+
+    <%= display_attribute "ACP Level", @character.checkpoint_level if @style == 'all' %>
+    <%= display_attribute "ACP to Level", @character.checkpoints_to_next_level if @style == 'season8' || @style == 'all' %>
+
+    <%= display_attribute "Milestone Level", @character.milestone_level if @style == 'all' %>
 
     <%= display_attribute "Total GP", humanize_decimal(@character.total_gp) %>
     <%= display_attribute "Total Downtime", humanize_decimal(@character.total_downtime) %>
@@ -43,12 +47,16 @@
 
   <div class="col-md-4">
     <%= display_attribute "Faction",  @character.faction_name %>
-    <%= display_attribute "Faction Rank", @character.faction_rank %>
-    <%= display_attribute "Total Renown", humanize_decimal(@character.total_renown) %>
-    <%= display_attribute "Secret Missions", @character.total_secret_missions  if @style == 'old' || @style == 'both'%>
+    <%= display_attribute "Faction Rank", @character.faction_rank if @style == 'season9' || @style == 'all' %>
+
+    <%= display_attribute "Renown Rank", @character.rank_by_renown if @style == 'old' ||  @style == 'season8'|| @style == 'all' %>
+    <%= display_attribute "Total Renown", humanize_decimal(@character.total_renown) if @style == 'old' ||  @style == 'season8'|| @style == 'all' %>
+    <%= display_attribute "Secret Missions", @character.total_secret_missions  if @style == 'old' || @style == 'all'%>
     <% if @style == 'season8' %><br class='hidden-xs'><% end %>
     <br class='hidden-xs'>
-    <%= display_attribute "Treasure CPs", treasure_checkpoints_string(@character.log_entries) if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute "Treasure CPs", treasure_checkpoints_string(@character.log_entries) if @style == 'season8' || @style == 'all' %>
+    <%= display_attribute "Magic Item Count", @character.total_magic_items if @style == 'season9' || @style == 'all' %>
+    <%= display_attribute "Magic Item Limit", @character.magic_item_limit if @style == 'season9' || @style == 'all' %>
     <%= display_attribute (link_to "Magic Items", user_character_magic_items_path(@user, @character)), @magic_items.pluck(:name), type: :array %>
   </div>
 

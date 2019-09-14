@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="form-group col-md-offset-2 col-md-4">
+    <strong>Adventure Title</strong> <br>
+    <%= @log_entry.adventure_title %>
+  </div>
+  <div class="form-group col-md-1">
+    <strong>Tier</strong> <br>
+    <%= @log_entry.treasure_tier %>
+  </div>
+
+  <div class="form-group col-md-1">
+    <strong>Session</strong> <br>
+    <%= @log_entry.session_num %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <strong>Date Played</strong> <br>
+    <%= @log_entry.date_played %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-md-offset-2 col-md-2">
+    <strong>ACP</strong> <br>
+    <%= humanize_decimal @log_entry.advancement_checkpoints %>
+  </div>
+  <div class="form-group col-md-2">
+    <strong>TCP</strong> <br>
+    <%= humanize_decimal @log_entry.treasure_checkpoints %>
+  </div>
+  <div class="form-group col-md-2">
+    <strong>GP +/-</strong> <br>
+    <%= humanize_decimal @log_entry.gp_gained %>
+  </div>
+  <div class="form-group col-md-1">
+    <strong>Downtime</strong> <br>
+    <%= @log_entry.downtime_gained %>
+  </div>
+  <div class="form-group col-md-1">
+    <strong>Renown</strong> <br>
+    <%= @log_entry.renown_gained %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-md-offset-2 col-md-4">
+    <strong>Location Played</strong> <br>
+    <%= @log_entry.location_played %>
+  </div>
+  <div class="form-group col-md-2">
+    <strong>DM Name</strong> <br>
+    <%= @log_entry.dm_name %>
+  </div>
+  <div class="form-group col-md-2">
+    <strong>DM DCI Number</strong> <br>
+    <%= @log_entry.dm_dci_number %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-md-offset-2 col-md-8">
+    <strong>Notes</strong> <br>
+    <%= @log_entry.notes %>
+  </div>
+</div>

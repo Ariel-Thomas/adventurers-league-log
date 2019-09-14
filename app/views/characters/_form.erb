@@ -81,6 +81,14 @@
   </div>
 
   <div class="row">
+    <div class="form-group col-md-offset-3 col-md-3">
+      <%= f.label :round_checkpoints, 'ACP to Milestone Rounding' %>
+      <%= f.select :round_checkpoints, Character.round_checkpoints.keys, {}, { class: "form-control" } %>
+    </div>
+  </div>
+
+
+  <div class="row">
     <div class="form-group col-md-offset-3 col-md-6">
       <%= f.label :publicly_visible, class: 'css3-checkboxes' do
         (f.check_box :publicly_visible) + "<span>Publicly Visible</span>".html_safe

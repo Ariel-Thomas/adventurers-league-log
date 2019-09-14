@@ -14,8 +14,16 @@ class Faction < ActiveRecord::Base
                { numerical_rank: 4, renown: 20, level: 13 },
                { numerical_rank: 5, renown: 30, level: 18 }]
 
-  def rank(renown:, secret_missions:, level:, use_old_rank:)
+  def rank_by_level(level)
+    rank_name get_tier(level)
+  end
+
+  def rank_by_renown(renown:, secret_missions:, level:, use_old_rank:)
     rank_number = numerical_rank(renown, secret_missions, level, use_old_rank)
+    rank_name rank_number
+  end
+
+  def rank_name rank_number
     return "Unknown" if rank_number == 0
 
     faction_rank = faction_ranks.find_by numerical_rank: rank_number
@@ -46,5 +54,18 @@ class Faction < ActiveRecord::Base
     end
 
     return numerical_rank
+  end
+
+  def get_tier(level)
+    case level
+    when 1..4
+      return 1
+    when 5..10
+      return 2
+    when 11..16
+      return 3
+    else
+      return 4
+    end
   end
 end

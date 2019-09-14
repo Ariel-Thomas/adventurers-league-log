@@ -10,7 +10,7 @@ RSpec.feature "Campaign Log Entries", type: :feature, js: true do
     @campaign_log_entry.characters = [@character1, @character2]
   end
 
-  scenario "Campaign Log Entry index page should have information on both character pages" do
+  scenario "Campaign Log Entry index page should have information on all character pages" do
     visit user_character_path(@character1.user, @character1)
 
     expect(page).to have_text(@campaign_log_entry.date_played.strftime("%Y-%m-%d %H:%M"))
@@ -30,7 +30,7 @@ RSpec.feature "Campaign Log Entries", type: :feature, js: true do
     expect(page).to have_text(@campaign_log_entry.downtime_gained.to_i)
   end
 
-  scenario "Campaign Log Entry show page should have information for both characters" do
+  scenario "Campaign Log Entry show page should have information for all characters" do
     visit user_character_campaign_log_entry_path(@character1.user, @character1, @campaign_log_entry)
 
     expect(page).to have_text(@campaign_log_entry.adventure_title)

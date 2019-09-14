@@ -24,6 +24,8 @@ class LogEntry < ActiveRecord::Base
     temp if temp
   end
 
+  enum log_format: [:old, :season8, :season9], _prefix: true
+
   ransack_alias :xp, :xp_gained
   ransack_alias :gp, :gp_gained
   ransack_alias :downtime, :downtime_gained

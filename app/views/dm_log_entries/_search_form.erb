@@ -21,7 +21,7 @@
     <%= f.select :log_assignments_character_id_eq, @characters.map{|character| [character.name, character.id]},  { include_blank: true }, { class: 'form-control' } %>
   </div>
 
-  <% if @style == 'old' || @style == 'both' %>
+  <% if @style == 'old' || @style == 'all' %>
     <div class="form-group col-md-2">
       <%= f.label :xp_gained_gteq, 'XP >=' %>
       <%= f.search_field :xp_gained_gteq,  class: 'form-control' %>
@@ -33,7 +33,7 @@
     </div>
   <% end %>
 
-  <% if @style == 'season8' || @style == 'both' %>
+  <% if @style == 'season8' || @style == 'all' %>
     <div class="form-group col-md-2">
       <%= f.label :advancement_checkpoints_gteq, 'ACP >=' %>
       <%= f.search_field :advancement_checkpoints_gteq,  class: 'form-control' %>
@@ -45,7 +45,7 @@
     </div>
   <% end %>
 
-  <% if @style == 'season8' || @style == 'both' %>
+  <% if @style == 'season8' || @style == 'all' %>
     <div class="form-group col-md-2">
       <%= f.label :treasure_checkpoints_gteq, 'TCP >=' %>
       <%= f.search_field :treasure_checkpoints_gteq,  class: 'form-control' %>
@@ -57,7 +57,7 @@
     </div>
   <% end %>
 
-  <% if @style == 'season8' || @style == 'both' %>
+  <% if @style == 'season8' || @style == 'all' %>
     <div class="form-group col-md-2">
       <%= f.label :treasure_tier_gteq, 'Tier >=' %>
       <%= f.search_field :treasure_tier_gteq,  class: 'form-control' %>
@@ -99,7 +99,7 @@
     <%= f.search_field :renown_gained_lteq,  class: 'form-control' %>
   </div>
 
-  <% if @style == 'old' || @style == 'both' %>
+  <% if @style == 'old' || @style == 'all' %>
     <div class="form-group col-md-2">
       <%= f.label :num_secret_missions_gteq, 'Missions >=' %>
       <%= f.search_field :num_secret_missions_gteq,  class: 'form-control' %>
@@ -111,7 +111,7 @@
     </div>
   <% end %>
 
-  <% if @style == 'old' || @style == 'both' %>
+  <% if @style == 'old' || @style == 'all' %>
     <div class="form-group col-md-2">
       <%= f.label :session_length_hours_gteq, 'Hours >=' %>
       <%= f.search_field :session_length_hours_gteq,  class: 'form-control' %>

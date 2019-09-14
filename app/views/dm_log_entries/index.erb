@@ -5,17 +5,17 @@
 
 <div class="row">
   <div class="col-md-3">
-    <%= display_attribute "Total XP",     @total_xp,                     size: :small if @style == 'old' || @style == 'both' %>
-    <%= display_attribute "Unused XP",    @unused_xp,                    size: :small if @style == 'old' || @style == 'both' %>
-    <%= display_attribute "Total ACP",    humanize_decimal(@total_acp),  size: :small if @style == 'season8' || @style == 'both' %>
-    <%= display_attribute "Unused ACP",   humanize_decimal(@unused_acp), size: :small if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute "Total XP",     @total_xp,                     size: :small if @style == 'old' || @style == 'all' %>
+    <%= display_attribute "Unused XP",    @unused_xp,                    size: :small if @style == 'old' || @style == 'all' %>
+    <%= display_attribute "Total ACP",    humanize_decimal(@total_acp),  size: :small if @style == 'season8' || @style == 'all' %>
+    <%= display_attribute "Unused ACP",   humanize_decimal(@unused_acp), size: :small if @style == 'season8' || @style == 'all' %>
     <%= display_attribute "Total Hours",  @total_hours,                  size: :small %>
     <br>
   </div>
 
   <div class="col-md-3">
-    <%= display_attribute "Total TCP",  humanize_decimal(@total_tcp),  size: :small if @style == 'season8' || @style == 'both' %>
-    <%= display_attribute "Unused TCP", humanize_decimal(@unused_tcp), size: :small if @style == 'season8' || @style == 'both' %>
+    <%= display_attribute "Total TCP",  humanize_decimal(@total_tcp),  size: :small if @style == 'season8' || @style == 'all' %>
+    <%= display_attribute "Unused TCP", humanize_decimal(@unused_tcp), size: :small if @style == 'season8' || @style == 'all' %>
     <%= display_attribute "Total GP",   humanize_decimal(@total_gp),   size: :small %>
     <%= display_attribute "Unused GP",  humanize_decimal(@unused_gp),  size: :small %>
     <br>

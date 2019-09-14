@@ -1,6 +1,7 @@
 class Character < ActiveRecord::Base
   include XPConcern
   include AdvancementCheckpointsConcern
+  include MilestoneConcern
   include GoldConcern
   include FactionConcern
   include LifestyleConcern
@@ -27,9 +28,10 @@ class Character < ActiveRecord::Base
 
   enum conversion_speed: [:normal, :slow], _prefix: true
   enum conversion_type: [:round_up, :round_down], _prefix: true
+  enum round_checkpoints: [:up, :down], _prefix: true
 
   def current_level
-    checkpoint_level
+    milestone_level > 20 ? 20 : milestone_level
   end
 
   def total_renown
@@ -49,7 +51,21 @@ class Character < ActiveRecord::Base
   end
 
   def total_magic_items
-    magic_items.where(purchased: true).where(not_included_in_count: false).count
+    magic_items.purchased.not_traded.where(not_included_in_count: false).count
+  end
+
+  MAX_MAGIC_ITEMS_ARRAY = [1,3,6,10]
+  def magic_item_limit
+    case current_level
+    when 1..4
+      return MAX_MAGIC_ITEMS_ARRAY[0]
+    when 5..10
+      return MAX_MAGIC_ITEMS_ARRAY[1]
+    when 11..16
+      return MAX_MAGIC_ITEMS_ARRAY[2]
+    else
+      return MAX_MAGIC_ITEMS_ARRAY[3]
+    end
   end
 
 end

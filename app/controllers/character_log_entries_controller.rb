@@ -29,7 +29,7 @@ class CharacterLogEntriesController < LogEntriesController
     @log_entry.characters = [@character]
     @log_entry.old_format = @user.character_log_entry_style_old?
     authorize @log_entry
-    @magic_items = [MagicItem.new]
+    @magic_items = [MagicItem.new(purchased: true)]
     @magic_item_count = 0
   end
 
@@ -132,7 +132,8 @@ class CharacterLogEntriesController < LogEntriesController
   def log_entries_params
     params.require(:character_log_entry)
           .permit(:adventure_title, :treasure_tier, :session_num, :date_played,
-                  :old_format, :advancement_checkpoints, :treasure_checkpoints,
+                  :old_format, :log_format, :milestones_gained,
+                  :advancement_checkpoints, :treasure_checkpoints,
                   :xp_gained, :gp_gained, :renown_gained,
                   :downtime_gained, :num_secret_missions,
                   :location_played, :dm_name, :dm_dci_number,

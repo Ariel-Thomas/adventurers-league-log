@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_03_231604) do
+ActiveRecord::Schema.define(version: 2019_09_14_175328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2019_08_03_231604) do
     t.string "character_sheet_url"
     t.integer "conversion_type", default: 0
     t.integer "conversion_speed", default: 0
+    t.integer "round_checkpoints", default: 0
     t.index ["user_id"], name: "index_characters_on_user_id"
   end
 
@@ -116,6 +117,8 @@ ActiveRecord::Schema.define(version: 2019_08_03_231604) do
     t.decimal "tier2_treasure_checkpoints", precision: 6, scale: 1
     t.decimal "tier3_treasure_checkpoints", precision: 6, scale: 1
     t.decimal "tier4_treasure_checkpoints", precision: 6, scale: 1
+    t.integer "milestones_gained"
+    t.integer "log_format", default: 0
     t.index ["campaign_id"], name: "index_log_entries_on_campaign_id"
     t.index ["user_id"], name: "index_log_entries_on_user_id"
   end
