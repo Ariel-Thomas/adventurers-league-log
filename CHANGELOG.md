@@ -1,6 +1,10 @@
 CHANGELOG
 ======
 
+v1.9.1
+---------------
+- Fix not being able to save rounding selection for ACP to Milestone conversion.
+
 v1.9.0
 ---------------
 - Add support for Season 9 to Character Log Entry

@@ -166,6 +166,6 @@ class CharactersController < AuthenticationController
     params.require(:character).permit(:name, :race, :class_and_levels, :faction_override,
                                       :faction_id, :background, :lifestyle_override, :lifestyle_id,
                                       :portrait_url, :character_sheet_url, :publicly_visible,
-                                      :conversion_speed, :conversion_type)
+                                      :conversion_speed, :conversion_type, :round_checkpoints)
   end
 end
