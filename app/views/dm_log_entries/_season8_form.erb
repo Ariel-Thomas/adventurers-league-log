@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-md-offset-2 col-md-5 form-group">
+    <%= f.label :adventure_title, 'Adventure Title' %>
+    <%= f.autocomplete_field :adventure_title, autocomplete_adventure_name_adventures_path, class: 'form-control' %>
+  </div>
+  <div class="form-group col-md-1">
+    <%= f.label :session_num, 'Session' %>
+    <%= f.text_field :session_num, class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= f.label :date_dmed, 'Date DMed' %>
+    <%= f.text_field :date_dmed, class: 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-md-2">
+  </div>
+  <div class="form-group col-md-4">
+  </div>
+  <div class="form-group col-md-4">
+     <%= render partial: 'locations/nested_form', locals: { f: f } %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-md-2">
+  </div>
+  <div class="form-group col-md-2">
+    <%= f.label :advancement_checkpoints, 'Advancement CP' %>
+    <%= f.number_field :advancement_checkpoints, class: 'form-control', :step => '0.5' %>
+  </div>
+  <div class="form-group col-md-2">
+    <%= f.label :treasure_checkpoints, 'Treasure CP' %>
+    <%= f.number_field :treasure_checkpoints, class: 'form-control', :step => '0.5' %>
+  </div>
+  <div class="form-group col-md-1">
+    <%= f.label :downtime_gained, 'Downtime' %>
+    <%= f.number_field :downtime_gained, class: 'form-control', style: "padding-right: 0px", :step => '0.0001' %>
+  </div>
+  <div class="form-group col-md-1">
+    <%= f.label :renown_gained, 'Renown' %>
+    <%= f.number_field :renown_gained, class: 'form-control', :step => '0.0001' %>
+  </div>
+  <div class="form-group col-md-2">
+    <%= f.label :gp_gained, 'GP +/-' %>
+    <%= f.number_field :gp_gained, class: 'form-control', :step => 'any' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-md-2">
+  </div>
+  <div class="form-group col-md-2">
+    <%= f.label :date_played, 'Date Assigned' %>
+    <%= f.text_field :date_played, class: 'form-control' %>
+  </div>
+  <div class="form-group col-md-4">
+    <%= f.label :character_id, 'Character to Apply Rewards' %>
+    <%= f.select :character_id, @characters.map{|character| [character.name, character.id]},  { include_blank: true }, { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= f.label :treasure_tier, 'Tier of Character' %>
+    <%= f.select :treasure_tier, [["1", 1], ["2", 2], ["3", 3], ["4", 4]], { include_blank: true }, { class: 'form-control ' } %>
+  </div>
+</div>

@@ -12,31 +12,49 @@
       <%= render partial: 'dm_log_entries/list_buttons', locals: { q: q } %>
     </div>
   </div>
+
+  <div class='col-xs-2'>
+    <%= select_tag :log_format, options_for_select(["Season9 Format", "Season8 Format", "Old Format"]), { class: 'form-control' } %>
+  </div>
 </div>
 
-<label class='css3-checkboxes'>
-  <%= check_box_tag :old_format, "1", @user.dm_style_old? %>
-  <span class="link-like">Old Format</span>
-</label>
+<div class="row">
+  <div class="season9_format">
+    <%= render partial: 'dm_log_entries/season9_table', locals: {q: q} %>
+  </div>
 
-<div class="new_format">
-  <%= render partial: 'dm_log_entries/table', locals: {q: q} %>
-</div>
+  <div class="season8_format">
+    <%= render partial: 'dm_log_entries/season8_table', locals: {q: q} %>
+  </div>
 
-<div class="old_format">
-  <%= render partial: 'dm_log_entries/old_table', locals: {q: q} %>
+  <div class="old_format">
+    <%= render partial: 'dm_log_entries/old_table', locals: {q: q} %>
+  </div>
 </div>
 
 <script>
-  $('#old_format').change( function(){
-    if($(this).is(':checked')) {
+  $('#log_format').change( function(){
+    format_choice = $(this).val()
+
+    if(format_choice == "Old Format"){
       $(".old_format").removeClass('hide');
-      $(".new_format").addClass('hide');
-    } else {
-      $(".new_format").removeClass('hide');
+      $(".season9_format").addClass('hide');
+      $(".season8_format").addClass('hide');
+    }
+
+    if(format_choice == "Season8 Format"){
+      $(".season8_format").removeClass('hide');
+      $(".season9_format").addClass('hide');
+      $(".old_format").addClass('hide');
+    }
+
+    if(format_choice == "Season9 Format"){
+      $(".season9_format").removeClass('hide');
+      $(".season8_format").addClass('hide');
       $(".old_format").addClass('hide');
     }
   });
 
-  $('#old_format').change();
+  $('#log_format').change();
+
 </script>

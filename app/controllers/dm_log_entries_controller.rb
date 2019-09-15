@@ -47,11 +47,10 @@ class DmLogEntriesController < LogEntriesController
   end
 
   def new
-    @log_entry   = @user.dm_log_entries.new
-    @log_entry.old_format = @user.dm_log_entry_style_old?
+    @log_entry   = @user.dm_log_entries.new(log_format: "season9")
     authorize @log_entry
 
-    @magic_items = [MagicItem.new]
+    @magic_items = [MagicItem.new(purchased: true)]
     @magic_item_count = 0
   end
 
@@ -74,7 +73,7 @@ class DmLogEntriesController < LogEntriesController
 
     session[:return_to] = request.referer
 
-    @magic_items = [MagicItem.new] + @log_entry.magic_items
+    @magic_items = [MagicItem.new(purchased: true)] + @log_entry.magic_items
     @magic_item_count = @log_entry.magic_items.count
   end
 
@@ -145,7 +144,8 @@ class DmLogEntriesController < LogEntriesController
     params.require(:dm_log_entry)
           .permit(:adventure_title, :session_num, :date_dmed,
                   :session_length_hours, :player_level,
-                  :old_format, :advancement_checkpoints, :treasure_checkpoints,
+                  :old_format, :log_format, :dm_reward_choice, :milestones_gained,
+                  :advancement_checkpoints, :treasure_checkpoints,
                   :xp_gained, :gp_gained, :renown_gained,
                   :downtime_gained, :num_secret_missions,
                   :location_played, :dm_name, :dm_dci_number, :notes,
@@ -158,6 +158,9 @@ class DmLogEntriesController < LogEntriesController
     @unused_xp       = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).sum(:xp_gained)
     @total_acp       = @prepaginated_log_entries.sum(:advancement_checkpoints)
     @unused_acp      = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).sum(:advancement_checkpoints)
+
+    @total_cr        = @prepaginated_log_entries.where(dm_reward_choice: :campaign_rewards).count
+    @unused_cr       = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).where(dm_reward_choice: :campaign_rewards).count
 
     @total_tcp       = @prepaginated_log_entries.sum(:treasure_checkpoints)
     @unused_tcp      = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).sum(:treasure_checkpoints)

@@ -24,12 +24,14 @@
   <div class="col-md-3">
     <%= display_attribute "Total Downtime",  humanize_decimal(@total_downtime),  size: :small %>
     <%= display_attribute "Unused Downtime", humanize_decimal(@unused_downtime), size: :small %>
-    <br>
+    <%= display_attribute "Total Renown",  humanize_decimal(@total_renown),  size: :small %>
+    <%= display_attribute "Unused Renown", humanize_decimal(@unused_renown), size: :small %>
   </div>
 
   <div class="col-md-3">
-    <%= display_attribute "Total Renown",  humanize_decimal(@total_renown),  size: :small %>
-    <%= display_attribute "Unused Renown", humanize_decimal(@unused_renown), size: :small %>
+    <%= display_attribute "Campaign Rewards", @total_cr,                 size: :small if @style == 'season9' || @style == 'all' %>
+    <%= display_attribute "Unused CR",    @unused_cr,                    size: :small if @style == 'season9' || @style == 'all' %>
+
   </div>
 </div>
 

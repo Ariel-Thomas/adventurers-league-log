@@ -12,4 +12,6 @@ class DmLogEntry < LogEntry
   def is_dm_log_entry?
     true
   end
+
+  enum dm_reward_choice: [:none, :advancement, :magic_item, :campaign_rewards], _prefix: true
 end

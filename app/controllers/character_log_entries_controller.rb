@@ -49,7 +49,7 @@ class CharacterLogEntriesController < LogEntriesController
 
   def edit
     authorize @log_entry
-    @magic_items = [MagicItem.new] + @log_entry.magic_items
+    @magic_items = [MagicItem.new(purchased: true)] + @log_entry.magic_items
     @magic_item_count = @log_entry.magic_items.count
   end
 

@@ -5,6 +5,13 @@ v1.9.0
 ---------------
 - Add support for Season 9 to Character Log Entry
 - Add support for Season 9 to Campaign Log Entry
+- Add support for Season 9 to DM Log Entry
+
+- TODO: Update Campaign Log Entry show page for Season 9
+- TODO: Update DM Log Entry show page for Season 9
+- TODO: Fix Character Print for Season 9
+- TODO: Fix DM Print for Season 9
+- TODO: Fix Character Export for Season 9
 
 v1.8.4
 ---------------

@@ -1,0 +1,84 @@
+<div class="row">
+  <div class="col-md-offset-2 col-md-5 form-group">
+    <%= f.label :adventure_title, 'Adventure Title' %>
+    <%= f.autocomplete_field :adventure_title, autocomplete_adventure_name_adventures_path, class: 'form-control' %>
+  </div>
+  <div class="form-group col-md-1">
+    <%= f.label :session_num, 'Session' %>
+    <%= f.text_field :session_num, class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= f.label :date_dmed, 'Date DMed' %>
+    <%= f.text_field :date_dmed, class: 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-md-2">
+  </div>
+  <div class="form-group col-md-4">
+  </div>
+  <div class="form-group col-md-4">
+     <%= render partial: 'locations/nested_form', locals: { f: f } %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-md-2"></div>
+  <div class="form-group col-md-2">
+    <%= f.label :dm_reward_choice, 'DM Reward Choice' %>
+    <%= f.select :dm_reward_choice, DmLogEntry.dm_reward_choices.keys,  { include_blank: true }, { class: 'form-control' } %>
+  </div>
+  <div class="form-group col-md-2 advancement_field">
+    <%= f.label :treasure_tier, 'Character Tier' %>
+    <%= f.select :treasure_tier, [["1", 1], ["2", 2], ["3", 3], ["4", 4]], { include_blank: true }, { class: 'form-control ' } %>
+  </div>
+  <div class="form-group col-md-2 advancement_field">
+    <%= f.label :milestones_gained, 'Levels Gained' %>
+    <%= f.number_field :milestones_gained, class: 'form-control' %>
+  </div>
+  <div class="form-group col-md-2 advancement_field">
+    <%= f.label :gp_gained, 'GP +/-' %>
+    <%= f.number_field :gp_gained, class: 'form-control', :step => 'any' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-md-2"></div>
+  <div class="form-group col-md-2">
+    <%= f.label :date_played, 'Date Assigned' %>
+    <%= f.text_field :date_played, class: 'form-control' %>
+  </div>
+  <div class="form-group col-md-4">
+    <%= f.label :character_id, 'Character to Apply Rewards' %>
+    <%= f.select :character_id, @characters.map{|character| [character.name, character.id]},  { include_blank: true }, { class: 'form-control' } %>
+  </div>
+</div>
+
+
+<script>
+  $('#dm_log_entry_treasure_tier').change( function(){
+    tier = $(this).val();
+    gold_gain = 0;
+
+    if(tier == 1) {gold_gain = 80}
+    if(tier == 2) {gold_gain = 240}
+    if(tier == 3) {gold_gain = 1600}
+    if(tier == 4) {gold_gain = 6000}
+    $("#dm_log_entry_milestones_gained").val(1);
+    $("#dm_log_entry_gp_gained").val(gold_gain);
+  });
+
+  $('#dm_log_entry_dm_reward_choice').change( function(){
+    format_choice = $(this).val()
+
+    if(format_choice == "advancement"){
+      $(".advancement_field").removeClass('hide');
+    } else {
+      $(".advancement_field").addClass('hide');
+    }
+  });
+
+  $("#dm_log_entry_dm_reward_choice").change();
+</script>

@@ -1,0 +1,40 @@
+<div class="table-responsive">
+  <table class="table table-bordered table-responsive table-striped">
+    <tr>
+      <th><%= sort_link @search, :date_dmed, "Date", {}, {} %></th>
+      <th><%= sort_link @search, :adventure_title, "Adventure&nbsp;Title".html_safe, {}, {} %></th>
+      <th><%= sort_link @search, :session_num, "Session", {}, {} %></th>
+      <th><%= sort_link @search, :dm_reward_choice, "Reward", {}, {} %></th>
+      <th><%= "Magic&nbsp;Items".html_safe %></th>
+      <th><%= sort_link @search, :log_assignments_character_id, "Character", {}, {} %></th>
+      <th></th>
+    </tr>
+
+    <tbody id='menu_items'>
+      <% @log_entries.each do |log_entry| %>
+        <tr>
+          <td><%= format_date log_entry.date_dmed %></td>
+          <td><%= log_entry.adventure_title %></td>
+          <td><%= log_entry.session_num %></td>
+          <td><%= log_entry.dm_reward_choice %></td>
+          <td><%= log_entry.magic_items_list(@character) %></td>
+          <td><%= link_to_character_if_public log_entry.character, @user, current_user %></td>
+          <td>
+            <%= link_to "<span class='sr-only'>Show</span>".html_safe, [@user, log_entry], class: "fa fa-eye", title: "Show Log Entry" %>
+            <% if (@user == current_user) %>
+              <%= link_to "<span class='sr-only'>Edit</span>".html_safe, [@user, log_entry, action: :edit, q: q], class: "fa fa-pencil-square-o", title: "Edit Log Entry" %>
+              <%= link_to "<span class='sr-only'>Delete</span>".html_safe, [@user, log_entry, q: q], method: :delete, data: { confirm: "Are you sure you want to delete this log entry?" }, class: "fa fa-trash-o", title: "Delete Log Entry" %>
+            <% end %>
+          </td>
+        </tr>
+        <% unless log_entry.notes.empty? %>
+          <tr>
+            <td colspan='11'>
+              <%= markdown(log_entry.notes) %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

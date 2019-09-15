@@ -15,7 +15,7 @@
 
 <script>
 var log_entry_type = "<%= @log_entry_type %>"
-  $('#use_location_override').change( function(){
+  $('[id=use_location_override]').change( function(){
     var formGroupParent = $(this).parent().parent().parent();
     if($(this).is(':checked')) {
       $input_el = formGroupParent.find('input#' + log_entry_type + '_location_played')
@@ -36,5 +36,5 @@ var log_entry_type = "<%= @log_entry_type %>"
     }
   });
 
-  $('#use_location_override').change();
+  $('[id=use_location_override]').change();
 </script>

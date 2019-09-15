@@ -40,7 +40,7 @@ class CampaignLogEntriesController < LogEntriesController
     authorize @log_entry
 
     @log_entry.characters = @campaign.characters
-    @magic_items = [MagicItem.new]
+    @magic_items = [MagicItem.new(purchased: true)]
     @magic_item_count = 0
   end
 
@@ -70,7 +70,7 @@ class CampaignLogEntriesController < LogEntriesController
   def edit
     authorize @log_entry
 
-    @magic_items = [MagicItem.new] + @log_entry.magic_items
+    @magic_items = [MagicItem.new(purchased: true)] + @log_entry.magic_items
     @magic_item_count = @log_entry.magic_items.count
   end
 
