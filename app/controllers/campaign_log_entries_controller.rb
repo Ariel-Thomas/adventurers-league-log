@@ -36,11 +36,10 @@ class CampaignLogEntriesController < LogEntriesController
   end
 
   def new
-    @log_entry   = @campaign.campaign_log_entries.new
+    @log_entry   = @campaign.campaign_log_entries.new(log_format: "season9")
     authorize @log_entry
 
     @log_entry.characters = @campaign.characters
-    @log_entry.old_format = @campaign.campaign_log_entry_style_old?
     @magic_items = [MagicItem.new]
     @magic_item_count = 0
   end
@@ -133,7 +132,8 @@ class CampaignLogEntriesController < LogEntriesController
   def log_entries_params
     params.require(:campaign_log_entry)
           .permit(:adventure_title, :session_num, :date_played,
-                  :old_format, :advancement_checkpoints, :treasure_checkpoints,
+                  :old_format, :log_format, :milestones_gained,
+                  :advancement_checkpoints, :treasure_checkpoints,
                   :xp_gained, :gp_gained, :renown_gained, :downtime_gained,
                   :num_secret_missions, :location_played, :treasure_tier, :notes,
                   character_ids: [],

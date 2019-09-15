@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+v1.9.0
+---------------
+- Add support for Season 9 to Character Log Entry
+- Add support for Season 9 to Campaign Log Entry
+
 v1.8.4
 ---------------
 - Fix Tier 3 GP reward

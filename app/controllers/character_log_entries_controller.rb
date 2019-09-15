@@ -25,9 +25,8 @@ class CharacterLogEntriesController < LogEntriesController
   end
 
   def new
-    @log_entry = @character.character_log_entries.new
+    @log_entry = @character.character_log_entries.new(log_format: "season9")
     @log_entry.characters = [@character]
-    @log_entry.old_format = @user.character_log_entry_style_old?
     authorize @log_entry
     @magic_items = [MagicItem.new(purchased: true)]
     @magic_item_count = 0

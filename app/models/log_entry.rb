@@ -67,6 +67,10 @@ class LogEntry < ActiveRecord::Base
     magic_items.where(not_included_in_count: false).count
   end
 
+  def magic_items_campaign
+    magic_items.pluck(:name).join(', ')
+  end
+
   def magic_items_list(char, opts = {})
     if opts[:show_purchased]
       list = magic_items.where(character: char).map{|item| item.name + (item.purchased || item.purchase_log_entry_id ? "*" : "")}.join(', ')

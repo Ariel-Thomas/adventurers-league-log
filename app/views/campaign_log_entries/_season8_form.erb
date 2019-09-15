@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-6 form_group">
+    <%= f.label :adventure_title, 'Adventure Title' %>
+    <%= f.autocomplete_field :adventure_title, autocomplete_adventure_name_adventures_path, class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= f.label :session_num, 'Session' %>
+    <%= f.text_field :session_num, class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-4">
+    <%= f.label :date_played, 'Date Played' %>
+    <%= f.text_field :date_played, class: 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-md-3">
+    <%= f.label :advancement_checkpoints, 'ACP' %>
+    <%= f.number_field :advancement_checkpoints, class: 'form-control', :step => '0.5' %>
+  </div>
+  <div class="form-group col-md-3">
+    <%= f.label :treasure_checkpoints, 'TCP' %>
+    <%= f.number_field :treasure_checkpoints, class: 'form-control', :step => '0.5' %>
+  </div>
+  <div class="form-group col-md-2">
+    <%= f.label :downtime_gained, 'Downtime' %>
+    <%= f.number_field :downtime_gained, class: 'form-control', style: "padding-right: 0px", :step => '0.5' %>
+  </div>
+  <div class="form-group col-md-2">
+    <%= f.label :renown_gained, 'Renown' %>
+    <%= f.number_field :renown_gained, class: 'form-control', :step => '0.0001' %>
+  </div>
+  <div class="form-group col-md-2">
+    <%= f.label :gp_gained, 'GP +/-' %>
+    <%= f.number_field :gp_gained, class: 'form-control', :step => '0.0001' %>
+  </div>
+</div>
+
+<div class="form-group col-md-3 row" style="margin-right: 8px;">
+  <%= f.label :treasure_tier, 'Tier' %>
+  <%= f.select :treasure_tier, [["1", 1], ["2", 2], ["3", 3], ["4", 4]], { include_blank: true }, { class: 'form-control ' } %>
+</div>
+
+
