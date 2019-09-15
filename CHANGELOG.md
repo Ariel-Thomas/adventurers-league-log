@@ -4,6 +4,7 @@ CHANGELOG
 v1.9.1
 ---------------
 - Fix not being able to save rounding selection for ACP to Milestone conversion.
+- Fix DM Logs not auto populating Date Assigned.
 
 v1.9.0
 ---------------
