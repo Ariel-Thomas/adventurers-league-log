@@ -9,14 +9,16 @@ class AddSeason9Requirements < ActiveRecord::Migration[5.2]
     one_percent = LogEntry.all.count / 100
     puts("Total LogEntries #{total_num}")
 
-    LogEntry.all.each_with_index do |le, i|
-      if le.old_format
-        le.update!(log_format: 0)
-      else
-        le.update!(log_format: 1)
-      end
+    LogEntry.find_in_batches.with_index do |group, batch|
+      group.each{ |le|
+        if le.old_format
+          le.update!(log_format: 0)
+        else
+          le.update!(log_format: 1)
+        end
+      }
 
-      print("#{i / one_percent}% ") if(i % one_percent == 0)
+      puts "Processing group #{batch} / #{total_num / 1000 + 1}"
     end
     puts("END SET LOG FORMAT")
 
