@@ -159,8 +159,8 @@ class DmLogEntriesController < LogEntriesController
     @total_acp       = @prepaginated_log_entries.sum(:advancement_checkpoints)
     @unused_acp      = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).sum(:advancement_checkpoints)
 
-    @total_cr        = @prepaginated_log_entries.where(dm_reward_choice: :campaign_rewards).count
-    @unused_cr       = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).where(dm_reward_choice: :campaign_rewards).count
+    @total_cr        = @prepaginated_log_entries.dm_reward_choice_campaign_rewards.count
+    @unused_cr       = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).dm_reward_choice_campaign_rewards.count
 
     @total_tcp       = @prepaginated_log_entries.sum(:treasure_checkpoints)
     @unused_tcp      = @prepaginated_log_entries.includes(:log_assignments).where(log_assignments: {log_entry_id: nil }).sum(:treasure_checkpoints)
