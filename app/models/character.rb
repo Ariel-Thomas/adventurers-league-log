@@ -3,6 +3,7 @@ class Character < ActiveRecord::Base
   include AdvancementCheckpointsConcern
   include MilestoneConcern
   include GoldConcern
+  include DowntimeConcern
   include FactionConcern
   include LifestyleConcern
 
@@ -29,6 +30,8 @@ class Character < ActiveRecord::Base
   enum conversion_speed: [:normal, :slow], _prefix: true
   enum conversion_type: [:round_up, :round_down], _prefix: true
   enum round_checkpoints: [:up, :down], _prefix: true
+  enum automagic_gold_toggle: [:yes, :no], _prefix: true
+  enum automagic_downtime_toggle: [:yes, :no], _prefix: true
 
   def current_level
     milestone_level > 20 ? 20 : milestone_level
@@ -36,10 +39,6 @@ class Character < ActiveRecord::Base
 
   def total_renown
     log_entries.sum(:renown_gained)
-  end
-
-  def total_downtime
-    log_entries.sum(:downtime_gained)
   end
 
   def total_secret_missions

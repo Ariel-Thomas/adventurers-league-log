@@ -1,6 +1,15 @@
 module Character::GoldConcern
   def total_gp
-    log_entries.sum(:gp_gained) + total_gp_from_levels(checkpoint_level, xp_level)
+    log_entries.sum(:gp_gained) +
+      (add_gold_per_level? ? total_gp_from_levels(checkpoint_level, xp_level) : 0)
+  end
+
+  def add_gold_per_level?
+    if user.automagic_gold_toggle_override_no_override?
+      automagic_gold_toggle_yes?
+    else
+      user.automagic_gold_toggle_override_yes?
+    end
   end
 
   def total_gp_from_levels(high, low)

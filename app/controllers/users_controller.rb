@@ -28,7 +28,11 @@ class UsersController < AuthenticationController
   protected
 
   def user_params
-    params.require(:user).permit(:name, :dci_num, :publicly_visible_characters, :publicly_visible_dm_logs, :receive_emails, :autocalc_default,
+    params.require(:user).permit(:name, :dci_num,
+                                 :publicly_visible_characters, :publicly_visible_dm_logs,
+                                 :receive_emails,
+                                 :autocalc_default, :round_checkpoints_override,
+                                 :automagic_gold_toggle_override, :automagic_downtime_toggle_override,
                                  :character_style, :character_log_entry_style, :magic_item_style, :dm_style, :dm_log_entry_style)
   end
 end

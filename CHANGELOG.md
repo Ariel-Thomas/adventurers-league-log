@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+v1.9.2
+---------------
+- Add toggle for gp gain / level and downtime gain / level
+- Add override for gp gain / level, downtime gain / level and acp to milestone rounding to user details page
+- Readded hour field to DM log.
+
 v1.9.1
 ---------------
 - Fix not being able to save rounding selection for ACP to Milestone conversion.

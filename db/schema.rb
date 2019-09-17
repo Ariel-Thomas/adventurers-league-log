@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_15_021622) do
+ActiveRecord::Schema.define(version: 2019_09_17_150009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 2019_09_15_021622) do
     t.integer "conversion_type", default: 0
     t.integer "conversion_speed", default: 0
     t.integer "round_checkpoints", default: 0
+    t.integer "automagic_gold_toggle", default: 0
+    t.integer "automagic_downtime_toggle", default: 0
     t.index ["user_id"], name: "index_characters_on_user_id"
   end
 
@@ -175,6 +177,9 @@ ActiveRecord::Schema.define(version: 2019_09_15_021622) do
     t.integer "magic_item_style", default: 2
     t.integer "dm_style", default: 2
     t.integer "dm_log_entry_style", default: 1
+    t.integer "round_checkpoints_override", default: 0
+    t.integer "automagic_gold_toggle_override", default: 0
+    t.integer "automagic_downtime_toggle_override", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

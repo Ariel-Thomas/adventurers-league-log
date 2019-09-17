@@ -27,7 +27,10 @@
   </div>
 
   <div class="row">
-    <div class="form-group col-md-offset-3 col-md-2">
+    <div class="col-md-3">
+      <h3 class="pull-right">Display Styles</h3>
+    </div>
+    <div class="form-group col-md-2">
       <%= f.label :character_style, 'Character Page Style' %>
       <%= f.select :character_style, User.character_styles.keys, {}, { class: "form-control" } %>
     </div>
@@ -51,6 +54,26 @@
       <%= f.select :dm_log_entry_style, User.dm_log_entry_styles.keys, {}, { class: "form-control" } %>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <h3 class="pull-right">Character Overrides</h3>
+    </div>
+    <div class="form-group col-md-2">
+      <%= f.label :automagic_gold_toggle_override, 'Automagically Add Gold' %>
+      <%= f.select :automagic_gold_toggle_override, User.automagic_gold_toggle_overrides.keys, {}, { class: "form-control" } %>
+    </div>
+    <div class="form-group col-md-2">
+      <%= f.label :round_checkpoints_override, 'ACP to Milestone Rounding' %>
+      <%= f.select :round_checkpoints_override, User.round_checkpoints_overrides.keys, {}, { class: "form-control" } %>
+    </div>
+    <div class="form-group col-md-2">
+      <%= f.label :automagic_downtime_toggle_override, 'Automagically Add Downtime' %>
+      <%= f.select :automagic_downtime_toggle_override, User.automagic_downtime_toggle_overrides.keys, {}, { class: "form-control" } %>
+    </div>
+
+  </div>
+
 
   <div class="row">
     <div class="form-group col-md-offset-3 col-md-3">

@@ -15,11 +15,18 @@ module Character::MilestoneConcern
     total_stuff = total_checkpoints_from_logs + total_xp
     return 0 if total_stuff == 0
 
-    if round_checkpoints_up?
+    if round_checkpoints_setting_up?
       1
     else
       0
     end
   end
 
+  def round_checkpoints_setting_up?
+    if user.round_checkpoints_override_no_override?
+      round_checkpoints_up?
+    else
+      user.round_checkpoints_override_up?
+    end
+  end
 end

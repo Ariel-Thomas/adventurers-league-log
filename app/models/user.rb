@@ -20,4 +20,10 @@ class User < ActiveRecord::Base
   enum magic_item_style: [:old, :season8, :season9], _prefix: true
   enum dm_style: [:old, :season8, :all, :season9], _prefix: true
   enum dm_log_entry_style: [:old, :season8, :season9], _prefix: true
+
+
+  enum round_checkpoints_override: [:no_override, :up, :down], _prefix: true
+  enum automagic_gold_toggle_override: [:no_override, :yes, :no], _prefix: true
+  enum automagic_downtime_toggle_override: [:no_override, :yes, :no], _prefix: true
+
 end
