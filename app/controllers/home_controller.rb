@@ -14,6 +14,9 @@ class HomeController < ApplicationController
     @log_entries_count       = LogEntry.count
 
     @factions_count          = Faction.all.map { |faction| [faction.name, faction.characters.count] }
+
+    @seasons                 = Character.distinct.pluck(:season).sort
+    @tags                    = Character.distinct.pluck(:tag).sort
   end
 
   def donate

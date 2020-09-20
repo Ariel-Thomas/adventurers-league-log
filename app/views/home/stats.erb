@@ -1,65 +1,68 @@
-<div class="row">
-  <div class="text-center col-md-12">
-    <h2>Stats</h2>
-  </div>
-</div>
-
-
-<div class="row">
-  <div class="text-center col-md-12">
-    <h4>General Stats</h4>
-  </div>
+<div class="text-center col-md-12">
+  <h2>Stats</h2>
 </div>
 
 <div class="row">
-  <div class="text-center col-md-12">
-    <strong>Users Count: </strong>
-    <%= @users_count %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="text-center col-md-12">
-    <em>Public Users: </em>
-    <%= @public_users_count %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="text-center col-md-12">
-    <strong>Characters Count: </strong>
-    <%= @characters_count %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="text-center col-md-12">
-    <em>Public Characters: </em>
-    <%= @public_characters_count %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="text-center col-md-12">
-    <strong>Log Entries Count: </strong>
-    <%= @log_entries_count %>
-  </div>
-</div>
-
-<br>
-
-<div class="row">
-  <div class="text-center col-md-12">
-    <h4>Faction Stats</h4>
-  </div>
-</div>
-
-
-<% @factions_count.each do |faction| %>
-  <div class="row">
+  <div class="text-center col-md-4">
     <div class="text-center col-md-12">
-      <strong><%= faction[0] %>: </strong>
-      <%= faction[1] %>
+      <h4>General Stats</h4>
+    </div>
+
+    <div class="text-center col-md-12">
+      <strong>Users Count: </strong>
+      <%= @users_count %>
+    </div>
+    <div class="text-center col-md-12">
+      <em>Public Users: </em>
+      <%= @public_users_count %>
+    </div>
+    <div class="text-center col-md-12">
+      <strong>Characters Count: </strong>
+      <%= @characters_count %>
+    </div>
+    <div class="text-center col-md-12">
+      <em>Public Characters: </em>
+      <%= @public_characters_count %>
+    </div>
+    <div class="text-center col-md-12">
+      <strong>Log Entries Count: </strong>
+      <%= @log_entries_count %>
+    </div>
+    <div class="text-center col-md-12">
+      <h4>Faction Stats</h4>
+    </div>
+    <% @factions_count.each do |faction| %>
+      <div class="text-center col-md-12">
+        <strong><%= faction[0] %>: </strong>
+        <%= faction[1] %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-4">
+    <div class="table-responsive">
+      <table class="table table-bordered table-responsive table-striped">
+        <tr><th>Seasons</th></tr>
+        <% @seasons.each do |season| %>
+          <tr><td>
+            <%= season %>
+          </td></tr>
+        <% end %>
+      </table>
     </div>
   </div>
-<% end %>
+
+  <div class="col-md-4">
+    <div class="table-responsive">
+      <table class="table table-bordered table-responsive table-striped">
+        <tr><th>Tags</th></tr>
+        <% @tags.each do |tag| %>
+          <tr><td>
+            <%= tag %>
+          </td></tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+</div>
