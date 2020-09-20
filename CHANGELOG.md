@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+v1.10.1
+---------------
+- Fix season and tag querues to only include those by the user.
+
+
 v1.10.0
 ---------------
 - Add season and tag to characters.
