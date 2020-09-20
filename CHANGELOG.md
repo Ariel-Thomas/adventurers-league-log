@@ -1,10 +1,17 @@
 CHANGELOG
 ======
 
+v1.10.0
+---------------
+- Add season and tag to characters.
+- Add ability to query by season and/or tag on characters index.
+- Add indexing for levels to allow for them to be sorted.
+- Update content catalogue.
+
 v1.9.2
 ---------------
-- Add toggle for gp gain / level and downtime gain / level
-- Add override for gp gain / level, downtime gain / level and acp to milestone rounding to user details page
+- Add toggle for gp gain / level and downtime gain / level.
+- Add override for gp gain / level, downtime gain / level and acp to milestone rounding to user details page.
 - Readded hour field to DM log.
 
 v1.9.1

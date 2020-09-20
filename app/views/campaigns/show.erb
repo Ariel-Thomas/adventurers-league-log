@@ -89,6 +89,7 @@
               <th>Player</th>
               <th>Character</th>
               <th>Class</th>
+              <th>Level</th>
             </tr>
 
             <tbody id='menu_items'>
@@ -97,6 +98,7 @@
                   <td><%= character.user.name %></td>
                   <td><%= link_to character.name, user_character_path(character.user, character) %></td>
                   <td><%= character.class_and_levels %></td>
+                  <td><%= character.indexed_level %></td>
                 </tr>
               <% end %>
             </tbody>
