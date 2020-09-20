@@ -19,10 +19,6 @@ class CharactersController < AuthenticationController
     params[:q] = { s: 'id asc' } unless params[:q]
     @search     = Character.where(user_id: @user.id).search(params[:q])
     @characters = @search.result(distinct: false).page params[:page]
-
-    #params[:q] = { s: 'id asc' } unless params[:q]
-    #@search     = Character.where(user_id: @user.id).search(params[:q])
-    #@characters = @search.result(distinct: false).page params[:page]
   end
 
   def show

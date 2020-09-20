@@ -23,10 +23,10 @@ module Character::MilestoneConcern
   end
 
   def round_checkpoints_setting_up?
-    if user.round_checkpoints_override_no_override?
+    if !user || user.round_checkpoints_override_no_override?
       round_checkpoints_up?
     else
-      user.round_checkpoints_override_up?
+      !user || user.round_checkpoints_override_up?
     end
   end
 end

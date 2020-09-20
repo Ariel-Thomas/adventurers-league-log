@@ -25,6 +25,7 @@ class Character < ActiveRecord::Base
   has_many :campaign_participations, dependent: :destroy
   has_many :campaigns, through: :campaign_participations
 
+  before_validation :set_indexed_level
   validates :name, presence: true
 
   enum conversion_speed: [:normal, :slow], _prefix: true
@@ -32,6 +33,10 @@ class Character < ActiveRecord::Base
   enum round_checkpoints: [:up, :down], _prefix: true
   enum automagic_gold_toggle: [:yes, :no], _prefix: true
   enum automagic_downtime_toggle: [:yes, :no], _prefix: true
+
+  def set_indexed_level
+    self.indexed_level = current_level
+  end
 
   def current_level
     milestone_level > 20 ? 20 : milestone_level

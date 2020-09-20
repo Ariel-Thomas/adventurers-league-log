@@ -9,6 +9,9 @@ class LogEntry < ActiveRecord::Base
     characters = [char]
   end
 
+  after_save { characters.map{|c| c.update({})} }
+
+
   belongs_to :user
   has_many   :magic_items, dependent: :destroy
   accepts_nested_attributes_for :magic_items, reject_if: proc { |attributes| attributes[:name].blank? }, allow_destroy: true
