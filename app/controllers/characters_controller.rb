@@ -13,9 +13,16 @@ class CharactersController < AuthenticationController
   def index
     authorize @user, :show_characters?
 
+    @seasons = Character.distinct.pluck(:season).sort()
+    @tags = Character.distinct.pluck(:tag).sort()
+
     params[:q] = { s: 'id asc' } unless params[:q]
     @search     = Character.where(user_id: @user.id).search(params[:q])
     @characters = @search.result(distinct: false).page params[:page]
+
+    #params[:q] = { s: 'id asc' } unless params[:q]
+    #@search     = Character.where(user_id: @user.id).search(params[:q])
+    #@characters = @search.result(distinct: false).page params[:page]
   end
 
   def show
@@ -163,7 +170,7 @@ class CharactersController < AuthenticationController
   end
 
   def character_params
-    params.require(:character).permit(:name, :race, :class_and_levels, :faction_override,
+    params.require(:character).permit(:season, :name, :race, :class_and_levels, :tag, :faction_override,
                                       :faction_id, :background, :lifestyle_override, :lifestyle_id,
                                       :portrait_url, :character_sheet_url, :publicly_visible,
                                       :conversion_speed, :conversion_type, :automagic_gold_toggle,

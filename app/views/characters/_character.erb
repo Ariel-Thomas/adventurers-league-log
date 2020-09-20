@@ -1,0 +1,17 @@
+<tr>
+  <td><%= character.season %></td>
+  <td><%= link_to_character_if_public character, @user, current_user %></td>
+  <td><%= character.race %></td>
+  <td><%= character.class_and_levels %></td>
+  <td><%= character.current_level %></td>
+  <td><%= character.tag %></td>
+  <td>
+    <%= link_to "<span class='sr-only'>Show<span>".html_safe, user_character_path(@user, character), class: "fa fa-eye", title: "Show Character" %>
+    <% if @user == current_user %>
+      <%= link_to "<span class='sr-only'>Edit<span>".html_safe, edit_user_character_path(current_user, character), class: "fa fa-pencil-square-o", title: "Edit Character" %>
+      <%= link_to "<span class='sr-only'>Print<span>".html_safe, print_user_character_path(current_user, character), class: "fa fa-print", target: '_blank', rel: 'noopener noreferrer', title: "Print Character" %>
+      <span style="margin-right:15px"></span>
+      <%= link_to "<span class='sr-only'>Delete<span>".html_safe, user_character_path(current_user, character), method: :delete, data: { confirm: "Are you sure you want to delete #{character.name}?" }, class: "fa fa-trash-o", title: "Delete Character" %>
+    <% end %>
+  </td>
+</tr>

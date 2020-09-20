@@ -1,0 +1,25 @@
+<div class='col-md-12'>
+  <div id='characters_list'>
+    <div class="table-responsive">
+      <table class="table table-bordered table-responsive table-striped">
+        <tr>
+          <th><%= sort_link @search, :season, "Season", {}, {} %></th>
+          <th><%= sort_link @search, :name, "Name", {}, {} %></th>
+          <th><%= sort_link @search, :race, "Race", {}, {} %></th>
+          <th><%= sort_link @search, :class_and_levels, "Class", {}, {} %></th>
+          <th>Level</th>
+          <th><%= sort_link @search, :tag, "Tag", {}, {} %></th>
+          <th></th>
+        </tr>
+
+        <tbody id='menu_items'>
+          <% characters.each do |character| %>
+            <%= render partial: 'characters/character', locals: {character: character} %>
+          <% end %>
+
+          <%= paginate characters %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

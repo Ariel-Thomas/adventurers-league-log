@@ -23,6 +23,7 @@
   </div>
 
   <div class="col-md-4">
+    <%= display_attribute "Season",  @character.season %>
     <%= display_attribute "Race",  @character.race %>
     <%= display_attribute "Class", @character.class_and_levels %>
     <%= display_attribute "Background", @character.background %>
@@ -46,6 +47,7 @@
   </div>
 
   <div class="col-md-4">
+    <%= display_attribute "Tag",  @character.tag %>
     <%= display_attribute "Faction",  @character.faction_name %>
     <%= display_attribute "Faction Rank", @character.faction_rank if @style == 'season9' || @style == 'all' %>
 

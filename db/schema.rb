@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_17_150009) do
+ActiveRecord::Schema.define(version: 2020_09_19_214834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 2019_09_17_150009) do
     t.integer "round_checkpoints", default: 0
     t.integer "automagic_gold_toggle", default: 0
     t.integer "automagic_downtime_toggle", default: 0
+    t.string "season", default: ""
+    t.string "tag", default: ""
     t.index ["user_id"], name: "index_characters_on_user_id"
   end
 

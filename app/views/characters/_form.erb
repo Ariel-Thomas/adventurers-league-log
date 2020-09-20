@@ -1,8 +1,15 @@
 <%= form_for [current_user, @character] do |f| %>
   <div class="row">
     <div class="form-group col-md-offset-3 col-md-6">
+      <%= f.label :season, 'Season' %>
+      <%= f.text_field :season, autofocus: true, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-offset-3 col-md-6">
       <%= f.label :name, 'Name *' %>
-      <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+      <%= f.text_field :name, class: 'form-control' %>
     </div>
   </div>
 
@@ -17,6 +24,13 @@
     <div class="form-group col-md-offset-3 col-md-6">
       <%= f.label :class_and_levels, 'Classes and Levels' %>
       <%= f.text_field :class_and_levels, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-offset-3 col-md-6">
+      <%= f.label :tag, 'Tag' %>
+      <%= f.text_field :tag, autofocus: true, class: 'form-control' %>
     </div>
   </div>
 

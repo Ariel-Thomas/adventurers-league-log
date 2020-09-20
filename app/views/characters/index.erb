@@ -1,44 +1,20 @@
-<div class="row" id="characters-index">
-  <h1 class='col-md-offset-1 col-md-10'>Characters</h1>
+<div id="characters-index">
+  <div class=row>
+    <h1 class="col-md-offset-1 col-md-4">Characters</h1>
 
-  <div class='col-md-offset-1 col-md-10'>
-    <div id='characters_list'>
-      <div class="table-responsive">
-        <table class="table table-bordered table-responsive table-striped">
-          <tr>
-            <th><%= sort_link @search, :name, "Name", {}, {} %></th>
-            <th><%= sort_link @search, :race, "Race", {}, {} %></th>
-            <th><%= sort_link @search, :class_and_levels, "Class", {}, {} %></th>
-            <th>Level</th>
-            <th><%= sort_link @search, :faction_id, "Faction", {}, {} %></th>
-            <th></th>
-          </tr>
-
-          <tbody id='menu_items'>
-            <% @characters.each do |character| %>
-              <tr>
-                <td><%= link_to_character_if_public character, @user, current_user %></td>
-                <td><%= character.race %></td>
-                <td><%= character.class_and_levels %></td>
-                <td><%= character.current_level %></td>
-                <td><%= character.faction_name %></td>
-                <td>
-                  <%= link_to "<span class='sr-only'>Show<span>".html_safe, user_character_path(@user, character), class: "fa fa-eye", title: "Show Character" %>
-                  <% if @user == current_user %>
-                    <%= link_to "<span class='sr-only'>Edit<span>".html_safe, edit_user_character_path(current_user, character), class: "fa fa-pencil-square-o", title: "Edit Character" %>
-                    <%= link_to "<span class='sr-only'>Print<span>".html_safe, print_user_character_path(current_user, character), class: "fa fa-print", target: '_blank', rel: 'noopener noreferrer', title: "Print Character" %>
-                    <span style="margin-right:15px"></span>
-                    <%= link_to "<span class='sr-only'>Delete<span>".html_safe, user_character_path(current_user, character), method: :delete, data: { confirm: "Are you sure you want to delete #{character.name}?" }, class: "fa fa-trash-o", title: "Delete Character" %>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-
-            <%= paginate @characters %>
-          </tbody>
-        </table>
+    <div class="col-md-7" style="margin-top: 15px;">
+      <div class="form-inline pull-right">
+        <%= search_form_for [@user, @search] do |f| %>
+          <%= f.select :season_cont, options_for_select(@seasons, params[:q][:season_cont] ), {include_blank: true}, {class: "form-control"} %>
+          <%= f.select :tag_cont, options_for_select(@tags, params[:q][:tag_cont] ), {include_blank: true}, {class: "form-control"} %>
+          <%= f.submit "Search", class: 'btn btn-default' %>
+        <% end %>
       </div>
     </div>
+  </div>
+
+  <div class="row">
+    <%= render partial: 'characters/list', locals: {characters: @characters} %>
   </div>
 </div>
 
