@@ -15,19 +15,19 @@ ActiveRecord::Schema.define(version: 2020_09_20_003315) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "adventures", id: :serial, force: :cascade do |t|
+  create_table "adventures", force: :cascade do |t|
     t.string "name", null: false
     t.boolean "active", default: true, null: false
     t.integer "position_num"
     t.integer "hours"
   end
 
-  create_table "campaign_participations", id: :serial, force: :cascade do |t|
+  create_table "campaign_participations", force: :cascade do |t|
     t.integer "campaign_id"
     t.integer "character_id"
   end
 
-  create_table "campaigns", id: :serial, force: :cascade do |t|
+  create_table "campaigns", force: :cascade do |t|
     t.string "name"
     t.string "token"
     t.boolean "users_can_join", default: false, null: false
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_09_20_003315) do
     t.integer "campaign_log_entry_style", default: 1
   end
 
-  create_table "characters", id: :serial, force: :cascade do |t|
+  create_table "characters", force: :cascade do |t|
     t.string "name"
     t.string "race"
     t.string "class_and_levels"
@@ -62,39 +62,39 @@ ActiveRecord::Schema.define(version: 2020_09_20_003315) do
     t.index ["user_id"], name: "index_characters_on_user_id"
   end
 
-  create_table "dm_campaign_assignments", id: :serial, force: :cascade do |t|
+  create_table "dm_campaign_assignments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "campaign_id"
   end
 
-  create_table "faction_ranks", id: :serial, force: :cascade do |t|
+  create_table "faction_ranks", force: :cascade do |t|
     t.string "name"
     t.integer "numerical_rank"
     t.integer "faction_id"
   end
 
-  create_table "factions", id: :serial, force: :cascade do |t|
+  create_table "factions", force: :cascade do |t|
     t.string "name"
     t.string "flag_url"
   end
 
-  create_table "lifestyles", id: :serial, force: :cascade do |t|
+  create_table "lifestyles", force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "locations", id: :serial, force: :cascade do |t|
+  create_table "locations", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
   end
 
-  create_table "log_assignments", id: :serial, force: :cascade do |t|
+  create_table "log_assignments", force: :cascade do |t|
     t.integer "character_id"
     t.integer "log_entry_id"
     t.index ["character_id", "log_entry_id"], name: "index_log_assignments_on_character_id_and_log_entry_id", unique: true
     t.index ["log_entry_id", "character_id"], name: "index_log_assignments_on_log_entry_id_and_character_id", unique: true
   end
 
-  create_table "log_entries", id: :serial, force: :cascade do |t|
+  create_table "log_entries", force: :cascade do |t|
     t.datetime "date_played"
     t.string "adventure_title"
     t.integer "session_num"
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 2020_09_20_003315) do
     t.integer "campaign_id"
     t.integer "session_length_hours"
     t.integer "player_level"
-    t.decimal "advancement_checkpoints", precision: 6, scale: 1
+    t.decimal "advancement_checkpoints", precision: 8, scale: 1
     t.decimal "treasure_checkpoints", precision: 6, scale: 1
     t.integer "treasure_tier"
     t.boolean "old_format", default: false, null: false
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 2020_09_20_003315) do
     t.index ["user_id"], name: "index_log_entries_on_user_id"
   end
 
-  create_table "magic_items", id: :serial, force: :cascade do |t|
+  create_table "magic_items", force: :cascade do |t|
     t.string "name"
     t.integer "log_entry_id"
     t.integer "rarity", default: 0, null: false
@@ -146,17 +146,13 @@ ActiveRecord::Schema.define(version: 2020_09_20_003315) do
     t.index ["log_entry_id", "character_id"], name: "index_magic_items_on_log_entry_id_and_character_id"
   end
 
-  create_table "player_dms", id: :serial, force: :cascade do |t|
+  create_table "player_dms", force: :cascade do |t|
     t.string "name"
     t.string "dci"
     t.integer "user_id"
   end
 
-  create_table "schema_seeds", id: false, force: :cascade do |t|
-    t.string "version", limit: 20, null: false
-  end
-
-  create_table "users", id: :serial, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -167,18 +163,18 @@ ActiveRecord::Schema.define(version: 2020_09_20_003315) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "name"
     t.string "dci_num"
     t.boolean "publicly_visible_dm_logs"
     t.boolean "receive_emails"
     t.boolean "publicly_visible_characters"
     t.boolean "autocalc_default", default: true, null: false
-    t.integer "character_style", default: 2
+    t.integer "character_style", default: 1
     t.integer "character_log_entry_style", default: 1
-    t.integer "magic_item_style", default: 2
-    t.integer "dm_style", default: 2
+    t.integer "magic_item_style", default: 1
+    t.integer "dm_style", default: 1
     t.integer "dm_log_entry_style", default: 1
     t.integer "round_checkpoints_override", default: 0
     t.integer "automagic_gold_toggle_override", default: 0
