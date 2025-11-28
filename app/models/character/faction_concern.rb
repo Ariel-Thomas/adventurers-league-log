@@ -14,7 +14,7 @@ module Character::FactionConcern
              secret_missions: total_secret_missions,
              level: current_level,
              use_old_rank: user.character_style_old? }
-    target_faction.rank_by_renown args
+    target_faction.rank_by_renown **args
   end
 
   def faction_name

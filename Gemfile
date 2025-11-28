@@ -1,9 +1,12 @@
 source 'https://rubygems.org'
 
-ruby '2.7.4'
-gem 'rails', '5.2.6'
-gem 'pg', "0.18.4"
+ruby '3.4.7'
+gem 'rails', '6.1.7.10'
+gem 'pg', '1.6.2'
 gem 'puma'
+gem 'mutex_m'
+gem 'file_exists'
+gem 'csv'
 
 gem 'sass-rails'
 gem 'uglifier'
@@ -19,7 +22,7 @@ gem 'devise'
 gem 'pundit'
 
 gem 'ransack'
-gem 'crummy', git: 'https://github.com/knightq/crummy'
+gem 'crummy', git: 'https://github.com/Soluciones/crummy'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem 'font-awesome-rails'
@@ -57,3 +60,4 @@ end
 group :production do
   gem 'rails_12factor'
 end
+
