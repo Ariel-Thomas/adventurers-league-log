@@ -31,7 +31,7 @@ gem 'rails-jquery-autocomplete'
 gem 'momentjs-rails',                  '>= 2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 
-gem 'honeybadger', '~> 2.0'
+gem 'honeybadger', '~> 6.1.3'
 gem 'phil_columns'
 gem 'phil_columns-activerecord', git: 'https://github.com/Ariel-Thomas/phil_columns-activerecord'
 
