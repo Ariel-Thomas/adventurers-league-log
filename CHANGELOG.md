@@ -288,3 +288,8 @@ v1.4.1
 ---------------
 
 - Fix critical bug: Can't set `Date DMed` on DM Log Entry form page.
+
+v1.5.0
+---------------
+
+- Update application for heroku-24 servers
