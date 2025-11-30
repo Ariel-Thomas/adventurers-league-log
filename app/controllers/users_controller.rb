@@ -17,7 +17,7 @@ class UsersController < AuthenticationController
 
     redirect_to(:root) && return unless @user == current_user
 
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       redirect_to user_characters_path(current_user), notice: "Successfully updated user #{@user.email}"
     else
       flash.now[:error] = "Failed to update user #{@user.email}: #{@user.errors.full_messages.join(',')}"

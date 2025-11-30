@@ -79,7 +79,7 @@ class CampaignLogEntriesController < LogEntriesController
     authorize @log_entry
     manage_locations
 
-    if @log_entry.update_attributes(log_entries_params)
+    if @log_entry.update(log_entries_params)
       redirect_to [@user, @campaign],
                   flash: { notice: 'Successfully updated log entry'\
                                    "#{@log_entry.adventure_title}" }

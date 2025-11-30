@@ -57,7 +57,7 @@ class CampaignsController < AuthenticationController
   def update
     authorize @campaign
 
-    if @campaign.update_attributes(campaigns_params)
+    if @campaign.update(campaigns_params)
       @campaign.reset_tokens!
       redirect_to [@user, @campaign], flash: { notice: "Successfully created campaign #{@campaign.name}" }
     else

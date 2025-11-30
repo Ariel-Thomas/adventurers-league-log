@@ -58,7 +58,7 @@ class TradeLogEntriesController < LogEntriesController
     authorize @log_entry
 
     @log_entry.traded_magic_item = @traded_magic_item
-    if @log_entry.update_attributes(log_entries_params)
+    if @log_entry.update(log_entries_params)
       redirect_to user_character_path(current_user, @character, q: params.permit(:q).fetch(:q, nil)),
                   flash: { notice: 'Successfully updated trade log entry' }
     else

@@ -103,7 +103,7 @@ class CharactersController < AuthenticationController
   def update
     authorize @character
 
-    if @character.update_attributes(character_params)
+    if @character.update(character_params)
       redirect_to (session[:return_to] || user_characters_path(@user)),
                   flash: { notice: "Successfully updated character #{@character.name}" }
     else

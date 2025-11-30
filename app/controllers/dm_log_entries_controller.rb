@@ -81,7 +81,7 @@ class DmLogEntriesController < LogEntriesController
     authorize @log_entry
     manage_locations
 
-    if @log_entry.update_attributes(log_entries_params)
+    if @log_entry.update(log_entries_params)
       if session[:return_to]
         redirect_to session[:return_to],
                   flash: { notice: 'Successfully updated log entry '\

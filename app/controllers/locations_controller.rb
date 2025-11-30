@@ -32,7 +32,7 @@ class LocationsController < AuthenticationController
   def update
     authorize @location
 
-    if @location.update_attributes(location_params)
+    if @location.update(location_params)
       redirect_to user_locations_path(@user), flash: { notice: "Successfully updated Location #{@location.name}" }
     else
       flash.now[:error] = "Failed to update Location #{@location.name}: #{@location.errors.full_messages.join(',')}"

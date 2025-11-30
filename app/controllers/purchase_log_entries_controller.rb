@@ -61,7 +61,7 @@ class PurchaseLogEntriesController < LogEntriesController
       end
     end
 
-    if @log_entry.update_attributes(log_entries_params)
+    if @log_entry.update(log_entries_params)
       @log_entry.purchased_magic_item = @new_magic_item
       @log_entry.magic_items = [@log_entry.purchased_magic_item] if @log_entry.purchased_magic_item && !@log_entry.purchased_magic_item.log_entry
       redirect_to user_character_path(current_user, @character, q: params.permit(:q).fetch(:q, nil)),

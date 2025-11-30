@@ -32,7 +32,7 @@ class PlayerDmsController < AuthenticationController
   def update
     authorize @player_dm
 
-    if @player_dm.update_attributes(player_dm_params)
+    if @player_dm.update(player_dm_params)
       redirect_to user_player_dms_path(@user), flash: { notice: "Successfully updated DM #{@player_dm.name}" }
     else
       flash.now[:error] = "Failed to update DM #{@player_dm.name}: #{@player_dm.errors.full_messages.join(',')}"
