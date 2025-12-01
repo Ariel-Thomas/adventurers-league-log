@@ -80,7 +80,7 @@ AdventurersLeagueLog::Application.configure do
 
   Rails.application.routes.default_url_options[:host] = 'www.adventurersleaguelog.com'
 
-  ActionMailer::Base. = {
+  ActionMailer::Base.smtp_settings = {
     :port           => ENV['MAILGUN_SMTP_PORT'],
     :address        => ENV['MAILGUN_SMTP_SERVER'],
     :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
