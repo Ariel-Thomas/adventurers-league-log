@@ -4,6 +4,6 @@ class AdventuresController < ApplicationController
   skip_after_action :verify_authorized, raise: false
 
   def index
-    @adventures = Adventure.all
+    #@adventures = Adventure.all
   end
 end

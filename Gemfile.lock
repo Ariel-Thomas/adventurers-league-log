@@ -80,6 +80,7 @@ GEM
     afm (1.0.0)
     base64 (0.3.0)
     bcrypt (3.1.20)
+    benchmark (0.4.0)
     bigdecimal (3.3.1)
     bootstrap3-datetimepicker-rails (4.0.0)
       momentjs-rails (>= 2.8.1)
@@ -94,6 +95,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    cgi (0.4.2)
     childprocess (5.1.0)
       logger (~> 1.5)
     coderay (1.1.3)
@@ -105,11 +107,9 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     colorize (1.1.0)
-    concurrent-ruby (1.3.4)
+    concurrent-ruby (1.3.5)
     crass (1.0.6)
     csv (3.3.5)
-    database_cleaner (2.1.0)
-      database_cleaner-active_record (>= 2, < 3)
     database_cleaner-active_record (2.2.2)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0)
@@ -126,6 +126,8 @@ GEM
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
+    erb (4.0.4)
+      cgi (>= 0.3.3)
     erubi (1.13.1)
     execjs (2.10.0)
     factory_bot (6.5.0)
@@ -155,6 +157,10 @@ GEM
       ostruct
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
+    io-console (0.8.1)
+    irb (1.14.3)
+      rdoc (>= 4.0.0)
+      reline (>= 0.4.2)
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -195,6 +201,7 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.3)
+    memory_profiler (1.1.0)
     method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.26.2)
@@ -255,6 +262,9 @@ GEM
       pry (>= 0.13, < 0.16)
     pry-rails (0.3.11)
       pry (>= 0.13.0)
+    psych (5.2.2)
+      date
+      stringio
     public_suffix (6.0.2)
     puma (7.1.0)
       nio4r (~> 2.0)
@@ -262,6 +272,8 @@ GEM
       activesupport (>= 3.0.0)
     racc (1.8.1)
     rack (2.2.21)
+    rack-mini-profiler (4.0.1)
+      rack (>= 1.2.0)
     rack-test (2.2.0)
       rack (>= 1.3)
     rails (6.1.7.10)
@@ -305,8 +317,13 @@ GEM
       activerecord (>= 5.2.4)
       activesupport (>= 5.2.4)
       i18n
+    rdoc (6.14.0)
+      erb
+      psych (>= 4.0.0)
     redcarpet (3.6.1)
     regexp_parser (2.11.3)
+    reline (0.6.0)
+      io-console (~> 0.5)
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -323,14 +340,14 @@ GEM
     rspec-mocks (3.13.7)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-rails (5.1.2)
-      actionpack (>= 5.2)
-      activesupport (>= 5.2)
-      railties (>= 5.2)
-      rspec-core (~> 3.10)
-      rspec-expectations (~> 3.10)
-      rspec-mocks (~> 3.10)
-      rspec-support (~> 3.10)
+    rspec-rails (6.1.5)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.13)
+      rspec-expectations (~> 3.13)
+      rspec-mocks (~> 3.13)
+      rspec-support (~> 3.13)
     rspec-support (3.13.6)
     ruby-rc4 (0.1.5)
     rubyzip (3.2.2)
@@ -360,6 +377,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    stringio (3.1.2)
     thor (1.4.0)
     tilt (2.6.1)
     timeout (0.4.4)
@@ -394,6 +412,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  benchmark
   bootstrap3-datetimepicker-rails (~> 4.0.0)
   byebug
   capybara
@@ -401,7 +420,7 @@ DEPENDENCIES
   colorize
   crummy!
   csv
-  database_cleaner
+  database_cleaner-active_record
   devise
   dotenv-rails
   factory_bot_rails
@@ -409,12 +428,14 @@ DEPENDENCIES
   file_exists
   font-awesome-rails
   honeybadger (~> 6.1.3)
+  irb
   jbuilder
   jquery-rails
   jquery-ui-rails
   kaminari
   kaminari-bootstrap
   launchy
+  memory_profiler
   momentjs-rails (>= 2.8.1)
   mutex_m
   pdf-reader
@@ -425,13 +446,15 @@ DEPENDENCIES
   pry-rails
   puma
   pundit
+  rack-mini-profiler
   rails (= 6.1.7.10)
   rails-jquery-autocomplete
   rails_12factor
   ransack
   redcarpet
+  reline
   rspec
-  rspec-rails
+  rspec-rails (~> 6.1.0)
   sass-rails
   selenium-webdriver
   shoulda-matchers

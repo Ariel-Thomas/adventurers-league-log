@@ -15,8 +15,10 @@ RSpec.feature 'Campaigns', type: :feature do
       @character_count = Campaign.count
       visit root_path
 
-      all('a', text: 'Campaigns BETA').first.click
-      click_link 'Delete'
+      all('a', text: 'Campaigns').first.click
+      accept_confirm 'Are you sure' do
+        click_link 'Delete'
+      end
 
       visit user_campaigns_path(@user)
 
@@ -38,7 +40,9 @@ RSpec.feature 'Campaigns', type: :feature do
       visit root_path
 
       all('a', text: 'Campaigns BETA').first.click
-      click_link 'Delete'
+      accept_confirm 'Are you sure' do
+        click_link 'Delete'
+      end
 
       visit user_campaigns_path(@user)
 

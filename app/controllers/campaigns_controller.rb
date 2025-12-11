@@ -25,7 +25,7 @@ class CampaignsController < AuthenticationController
     @characters           = @campaign.characters
 
     params[:q] = { s: 'date_played desc' } unless params[:q]
-    @search      = @campaign.campaign_log_entries.search(params[:q])
+    @search      = @campaign.campaign_log_entries.ransack(params[:q])
     @log_entries = @search.result(distinct: false).page params[:page]
   end
 

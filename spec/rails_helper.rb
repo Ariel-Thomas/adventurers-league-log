@@ -2,24 +2,34 @@
 ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
-require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
+Selenium::WebDriver::Chrome.path = '/etc/alternatives/google-chrome'
+
 Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
+  options = Selenium::WebDriver::Chrome::Options.new
+
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :chrome,
+    options: options
+  )
 end
 
 Capybara.register_driver :headless_chrome do |app|
-  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    chromeOptions: { args: %w(headless disable-gpu) }
-  )
+  options = Selenium::WebDriver::Chrome::Options.new
+    options.add_argument('--disable-gpu')
+  options.add_argument('--headless')
 
-  Capybara::Selenium::Driver.new app,
+  Capybara::Selenium::Driver.new(
+    app,
     browser: :chrome,
-    desired_capabilities: capabilities
+    options: options
+  )
 end
+Capybara.default_driver = ENV['CAPYBARA_GUI'] ? :chrome : :headless_chrome
 
 Capybara.javascript_driver = ENV['CAPYBARA_GUI'] ? :chrome : :headless_chrome
 Capybara.default_max_wait_time = 6
@@ -46,7 +56,7 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  #config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -65,7 +75,8 @@ RSpec.configure do |config|
   #
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
-  config.infer_spec_type_from_file_location!
+  #config.infer_spec_type_from_file_location!
+  config.include Rails.application.routes.url_helpers
 
   config.include FeatureHelpers, type: :feature
   config.include FormHelpers, type: :feature

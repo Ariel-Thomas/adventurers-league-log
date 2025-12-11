@@ -16,14 +16,12 @@ RSpec.feature 'Campaigns', type: :feature do
 
     within('#campaign-form') do
       fill_in 'Name', with: "Curse of Strahd"
-      uncheck   'Users Can Join'
-      uncheck   'DMs Can Join'
-      uncheck   'Publicly Visible'
+      uncheck   'Users Can Join', allow_label_click: true
+      uncheck   'DMs Can Join', allow_label_click: true
+      uncheck   'Publicly Visible', allow_label_click: true
     end
 
     click_button 'Save'
-
-    expect(Campaign.count).to be(@campaigns)
 
     expect(page).to have_text("Curse of Strahd")
     expect(page).to have_text('Users Can Join:
@@ -32,6 +30,8 @@ false')
 false')
     expect(page).to have_text('Publicly Visible:
 false')
+
+    expect(Campaign.count).to be(@campaigns)
 
     expect(page).to have_text(Campaign.last.token)
     expect(page).to have_text(Campaign.last.dm_token)

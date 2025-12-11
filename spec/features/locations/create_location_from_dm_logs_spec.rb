@@ -24,19 +24,21 @@ RSpec.feature "Character Log Entries", type: :feature, js: true do
 
         fill_in "Length (Hours)",     with: "8"
         fill_in "Player Level",       with: "7"
+
+        set_location "Origins"
+
         fill_in "XP Gained",          with: "1001"
         fill_in "GP +/-",             with: "333"
         fill_in "Downtime +/-",       with: "111"
         fill_in "Renown",             with: "44"
         fill_in "Mission",            with: "55"
 
-        set_location "Origins"
-        fill_in_editor_field "Some Words"
-
         fill_in "Date Assigned",      with: "" #Hack for calendar popout
         fill_in "Date Assigned",      with: "2017-08-01 12:00"
         select  "Test Character",     from: "Character to Apply Rewards"
       end
+
+      fill_in_editor_field "Some Words"
 
       click_button "Save"
     end

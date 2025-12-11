@@ -11,12 +11,14 @@ RSpec.feature 'Player Dms', type: :feature do
     @player_dm_count = PlayerDm.count
     visit user_player_dms_path(@user)
 
-    click_link 'Delete'
+    accept_confirm 'Are you sure' do
+      click_link 'Delete'
+    end
     # find_link('Delete').trigger('click') # hack to fix previous line
 
-    expect(PlayerDm.count).to be(@player_dm_count - 1)
-
     expect(page).to have_text("Successfully deleted " + @player_dm.name)
+
+    expect(PlayerDm.count).to be(@player_dm_count - 1)
 
     visit user_player_dms_path(@user)
 

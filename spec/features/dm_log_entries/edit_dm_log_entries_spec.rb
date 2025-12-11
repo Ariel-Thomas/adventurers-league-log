@@ -14,8 +14,8 @@ RSpec.feature "DM Log Entries", type: :feature, js: true do
 
     click_link "Edit", title: "Edit Log Entry"
 
-    within("#edit_dm_log_entry_1") do
-      check "Old Format", allow_label_click: true
+    within("#dm-log-entry-main-form") do
+      #check "Old Format", allow_label_click: true
       fill_in "Adventure Title", with: "Lost Mines of Phandelver"
 
       fill_in "Session",            with: "22"
@@ -27,12 +27,13 @@ RSpec.feature "DM Log Entries", type: :feature, js: true do
       fill_in "Renown",             with: "44"
       fill_in "Mission",            with: "55"
       set_location "Origins"
-      fill_in_editor_field "Some Words"
 
       fill_in "Date Assigned",      with: "" #Hack for calendar popout
       fill_in "Date Assigned",      with: "2017-08-01 12:00"
       select  "Test Character",     from: "Character to Apply Rewards"
     end
+
+    fill_in_editor_field "Some Words"
 
     click_button "Save"
 
@@ -77,8 +78,8 @@ RSpec.feature "DM Log Entries", type: :feature, js: true do
       click_link "Edit Log Entry"
       # find_link("Edit").trigger("click") # hack to fix previous line
 
-      within("#edit_dm_log_entry_1") do
-        check "Old Format", allow_label_click: true
+      within("#dm-log-entry-main-form") do
+        #check "Old Format", allow_label_click: true
         fill_in "Adventure Title", with: "Lost Mines of Phandelver"
 
         fill_in "Session",            with: "22"
@@ -90,12 +91,13 @@ RSpec.feature "DM Log Entries", type: :feature, js: true do
         fill_in "Renown",             with: "44"
         fill_in "Mission",            with: "55"
         set_location "Origins"
-        fill_in_editor_field "Some Words"
 
         fill_in "Date Assigned",      with: "" #Hack for calendar popout
         fill_in "Date Assigned",      with: "2017-08-01 12:00"
         select  "Test Character",     from: "Character to Apply Rewards"
       end
+
+      fill_in_editor_field "Some Words"
 
       click_button "Save"
 

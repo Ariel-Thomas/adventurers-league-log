@@ -22,7 +22,7 @@
   </div>
 
   <div class="col-md-3">
-    <%= display_attribute "Total Downtime",  humanize_decimal(@total_downtime),  size: :small %>
+    <%= display_attribute "Total Downtime",  ("%.01f" % humanize_decimal(@total_downtime)),  size: :small %>
     <%= display_attribute "Unused Downtime", humanize_decimal(@unused_downtime), size: :small %>
     <%= display_attribute "Total Renown",  humanize_decimal(@total_renown),  size: :small %>
     <%= display_attribute "Unused Renown", humanize_decimal(@unused_renown), size: :small %>

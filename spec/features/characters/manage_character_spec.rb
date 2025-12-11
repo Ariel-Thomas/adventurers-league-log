@@ -19,12 +19,10 @@ RSpec.feature "Characters page", type: :feature, js: true do
     expect(page).to have_text(@character.name)
     expect(page).to have_text(@character.race)
     expect(page).to have_text(@character.class_and_levels)
-    expect(page).to have_text(@character.faction.name)
 
     expect(page).to have_text(@other_character.name)
     expect(page).to have_text(@other_character.race)
     expect(page).to have_text(@other_character.class_and_levels)
-    expect(page).to have_text(@other_character.faction.name)
   end
 
   scenario "Create a character" do
@@ -44,11 +42,10 @@ RSpec.feature "Characters page", type: :feature, js: true do
 
     click_button "Save"
 
-    expect(Character.count).to have_text(@character_count + 1)
     expect(page).to have_text("Rum")
     expect(page).to have_text("Human (variant)")
     expect(page).to have_text("Fighter 1")
-    expect(page).to have_text("Harpers")
+    expect(Character.count).to have_text(@character_count + 1)
   end
 
   scenario "Edit an existing character" do

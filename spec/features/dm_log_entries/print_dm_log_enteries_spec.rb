@@ -19,6 +19,6 @@ RSpec.feature 'DM Log Entries', type: :feature do
     expect(page).to have_text(@dm_log_entry.gp_gained.floor)
     expect(page).to have_text(@dm_log_entry.downtime_gained)
     expect(page).to have_text(@dm_log_entry.notes)
-    expect(page).to have_text(@dm_log_entry.date_played.strftime('%Y-%m-%d %H:%M'))
+    expect(page).to have_text(@dm_log_entry.date_dmed.strftime('%Y-%m-%d %H:%M'))
   end
 end

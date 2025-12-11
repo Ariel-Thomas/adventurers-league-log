@@ -36,7 +36,7 @@ class CampaignLogEntriesController < LogEntriesController
   end
 
   def new
-    @log_entry   = @campaign.campaign_log_entries.new(log_format: "season9")
+    @log_entry   = @campaign.campaign_log_entries.new(log_format: @user.character_log_entry_style)
     authorize @log_entry
 
     @log_entry.characters = @campaign.characters

@@ -3,7 +3,7 @@ FactoryBot.define do
     type { TradeLogEntry }
     character { FactoryBot.create :character }
 
-    date_played { Faker::Date.forward(365) }
+    date_played { Faker::Date.forward(days: 365) }
     downtime_gained { -15 }
     notes { Faker::Company.bs }
   end

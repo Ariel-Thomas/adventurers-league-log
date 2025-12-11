@@ -29,18 +29,18 @@ RSpec.feature "DM Log Entries", type: :feature, js: true do
       fill_in "Renown",             with: "44"
       fill_in "Mission",            with: "55"
       set_location "Origins"
-      fill_in_editor_field "Some Words"
 
       fill_in "Date Assigned",      with: "" #Hack for calendar popout
       fill_in "Date Assigned",      with: "2017-08-01 12:00"
       select  "Test Character",     from: "Character to Apply Rewards"
     end
 
+    fill_in_editor_field "Some Words"
+
     click_button "Save"
 
     expect(Character.count).to have_text(@dm_log_entry_count + 1)
 
-    check "Old Format", allow_label_click: true
     expect(page).to have_text("2016-08-01 19:00")
     expect(page).to have_text("Lost Mines of Phandelver")
     expect(page).to have_text("22")
@@ -76,7 +76,7 @@ RSpec.feature "DM Log Entries", type: :feature, js: true do
 
       fill_in "Session",            with: "22"
       fill_in "Length (Hours)",     with: "10"
-      fill_in "Player Level",       with: "7"
+      fill_in("Player Level",       with: "7").send_keys(:tab)
     end
 
     click_button "Save"

@@ -25,7 +25,7 @@ class DmLogEntriesController < LogEntriesController
 
     @hide_assigned_enabled = params[:q][:log_assignments_character_id_null]
 
-    @search                   = @user.dm_log_entries.search(params[:q])
+    @search                   = @user.dm_log_entries.ransack(params[:q])
     @prepaginated_log_entries = @search.result(distinct: false)
     @log_entries              = @prepaginated_log_entries.page params[:page]
     @style                    = @user.dm_style
@@ -47,7 +47,7 @@ class DmLogEntriesController < LogEntriesController
   end
 
   def new
-    @log_entry   = @user.dm_log_entries.new(log_format: "season9")
+    @log_entry   = @user.dm_log_entries.new(log_format:  @user.dm_log_entry_style)
     authorize @log_entry
 
     @magic_items = [MagicItem.new(purchased: true)]

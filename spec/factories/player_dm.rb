@@ -3,6 +3,6 @@ FactoryBot.define do
     user
 
     name { Faker::Name.name }
-    dci  { Faker::Number.number(16) }
+    dci  { Faker::Number.number(digits: 16) }
   end
 end

@@ -28,7 +28,7 @@ class CharacterCsvExporter
       csv << log_entry_attrs
       csv << ['MAGIC ITEM'] + magic_item_attrs
 
-      log_entries.each do |log_entry|
+      log_entries.find_each do |log_entry|
         csv << log_entry_attrs.map{ |attr| log_entry.send(attr) }
 
         if log_entry.class == TradeLogEntry && log_entry.traded_magic_item.present?
@@ -36,7 +36,7 @@ class CharacterCsvExporter
         end
 
         if log_entry.magic_items.present?
-          log_entry.magic_items.each do |magic_item|
+          log_entry.magic_items.find_each do |magic_item|
             csv << ['MAGIC ITEM'] + magic_item_attrs.map{ |attr| magic_item.send(attr) }
           end
         end

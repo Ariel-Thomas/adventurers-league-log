@@ -1,7 +1,7 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
-require 'rspec/rails'
-require 'database_cleaner'
+require 'rails/all'
+require 'database_cleaner/active_record'
 
 RSpec.configure do |config|
   config.include Warden::Test::Helpers
@@ -37,7 +37,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
-    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.strategy = :truncation
   end
 
   config.before(:each, js: true) do
@@ -53,7 +53,5 @@ RSpec.configure do |config|
   end
 
   config.order = 'random'
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
-  config.use_transactional_fixtures = false
-  config.infer_base_class_for_anonymous_controllers = false
+  Kernel.srand config.seed
 end

@@ -18,7 +18,7 @@ class CharactersController < AuthenticationController
     @tags = @user_characters.distinct.pluck(:tag).sort()
 
     params[:q] = { s: 'id asc' } unless params[:q]
-    @search     = @user_characters.search(params[:q])
+    @search     = @user_characters.ransack(params[:q])
     @characters = @search.result(distinct: false).page params[:page]
   end
 
@@ -29,7 +29,7 @@ class CharactersController < AuthenticationController
     params[:q] = { type_not_eq: 'DmLogEntry', s: 'date_played desc' } unless params[:q].present?
     @dm_logs_enabled = params[:q][:type_not_eq] != 'DmLogEntry'
 
-    @search      = @character.log_entries.search(params[:q])
+    @search      = @character.log_entries.ransack(params[:q])
     @log_entries = @search.result(distinct: false).page params[:page]
     @magic_items = @character.magic_items.order(:id).purchased.not_traded
 

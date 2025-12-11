@@ -2,7 +2,7 @@ module Restricted
   extend ActiveSupport::Concern
 
   included do
-    include Pundit
+    include Pundit::Authorization
     after_action :verify_authorized
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
     before_action :authenticate_user!

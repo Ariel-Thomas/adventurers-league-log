@@ -13,8 +13,9 @@ RSpec.feature "DM Log Entries", type: :feature, js: true do
     @dm_log_entry_count = DmLogEntry.count
     visit user_dm_log_entries_path(@user)
 
-    click_link "Delete", title: "Delete Log Entry"
-    accept_confirm
+    accept_confirm do
+      click_link "Delete", title: "Delete Log Entry"
+    end
 
     sleep 1 # Give the controller time to process the deletion
     expect(DmLogEntry.count).to be(@dm_log_entry_count - 1)

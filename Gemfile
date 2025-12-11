@@ -37,16 +37,19 @@ gem 'phil_columns-activerecord', git: 'https://github.com/Ariel-Thomas/phil_colu
 
 gem 'pry-rails'
 gem 'colorize'
+gem 'irb'
+gem 'benchmark'
+gem 'reline'
 
 gem 'pdf-reader'
 
 group :development, :test do
   gem 'rspec'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 6.1.0'
   gem 'shoulda-matchers'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'database_cleaner'
+  gem 'database_cleaner-active_record'
   gem 'launchy'
 
   gem 'capybara'
@@ -60,4 +63,8 @@ end
 group :production do
   gem 'rails_12factor'
 end
+
+gem 'rack-mini-profiler'
+gem 'memory_profiler'
+
 

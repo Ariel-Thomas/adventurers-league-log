@@ -17,7 +17,7 @@ RSpec.feature "Character Log Entries", type: :feature, js: true do
 
     click_link "Edit Log Entry"
 
-    check "Old Format", allow_label_click: true
+    select "old", from: "character_log_entry_log_format"
     within("#edit_character_log_entry_1") do
       fill_in "Adventure Title", with: "Lost Mines of Phandelver"
 

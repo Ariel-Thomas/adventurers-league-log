@@ -25,13 +25,9 @@ RSpec.feature "Campaign Log Entries", type: :feature, js: true do
     scenario "the number of campaign log entries decreases" do
       sleep 1 # Have to allow time for controller to process deletion
       expect(CampaignLogEntry.count).to be(@campaign_log_entry_count - 1)
-    end
 
-    scenario "the flash is displayed with confirmation" do
       expect(page).to have_text("Successfully deleted Campaign Log Entry")
-    end
 
-    scenario "the log no longer shows on the campaign page" do
       visit user_campaign_path(@campaign.user, @campaign)
 
       expect(page).to_not have_text(@campaign_log_entry.date_played.strftime("%Y-%m-%d %H:%M"))
@@ -40,9 +36,7 @@ RSpec.feature "Campaign Log Entries", type: :feature, js: true do
       expect(page).to_not have_text(@campaign_log_entry.xp_gained)
       expect(page).to_not have_text(@campaign_log_entry.gp_gained.floor)
       expect(page).to_not have_text(@campaign_log_entry.downtime_gained)
-    end
 
-    scenario "the log does not show on the character page" do
       visit user_character_path(@character1.user, @character1)
 
       expect(page).to_not have_text(@campaign_log_entry.date_played.strftime("%Y-%m-%d %H:%M"))

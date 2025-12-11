@@ -25,7 +25,6 @@ RSpec.feature "Campaign Log Entries", type: :feature, js: true do
       click_link "New Entry"
 
       within("#campaign-log-entry-main-form") do
-        check "Old Format", allow_label_click: true
         fill_in "Adventure Title", with: "Lost Mines of Phandelver"
 
         fill_in "Session",            with: "22"
@@ -36,9 +35,9 @@ RSpec.feature "Campaign Log Entries", type: :feature, js: true do
         fill_in "Downtime",           with: "111"
         fill_in "Renown",             with: "44"
         fill_in "Mission",            with: "55"
-        set_location "Origins"
-        fill_in_editor_field "Some Words"
       end
+      set_location "Origins"
+      fill_in_editor_field "Some Words"
 
       click_button "Save"
     end

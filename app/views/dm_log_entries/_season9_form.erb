@@ -1,3 +1,4 @@
+<div id='dm-log-entry-main-form'>
 <div class="row">
   <div class="col-md-offset-2 col-md-5 form-group">
     <%= f.label :adventure_title, 'Adventure Title' %>
@@ -58,6 +59,7 @@
     <%= f.label :character_id, 'Character to Apply Rewards' %>
     <%= f.select :character_id, @characters.map{|character| [character.name, character.id]},  { include_blank: true }, { class: 'form-control' } %>
   </div>
+</div>
 </div>
 
 

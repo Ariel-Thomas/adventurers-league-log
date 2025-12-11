@@ -29,23 +29,23 @@ RSpec.feature "Character Log Entries", type: :feature, js: true do
         fill_in "Downtime +/-",       with: "111"
         fill_in "Renown",             with: "44"
         fill_in "Mission",            with: "55"
-
-        set_location "Origins"
-        set_dm_info "Some DM", "66666666"
-
-        fill_in_editor_field "Some Words"
       end
+
+      set_location "Origins"
+      set_dm_info "Some DM", "66666666"
+
+      fill_in_editor_field "Some Words"
 
       click_button "Save"
     end
 
     it "should create a player dm" do
-      expect(PlayerDm.count).to have_text(@player_dms_count + 1)
-
       visit user_player_dms_path(@user)
 
       expect(page).to have_text("Some DM")
       expect(page).to have_text("66666666")
+
+      expect(PlayerDm.count).to have_text(@player_dms_count + 1)
     end
   end
 end

@@ -22,9 +22,9 @@ RSpec.feature "Campaign Log Entries", type: :feature, js: true do
     visit user_campaign_path(@user, @campaign)
 
     click_link "New Entry"
+    select "old", from: "campaign_log_entry_log_format"
 
     within("#campaign-log-entry-main-form") do
-      check "Old Format", allow_label_click: true
       fill_in "Adventure Title", with: "Lost Mines of Phandelver"
 
       fill_in "Session",            with: "22"
@@ -35,15 +35,15 @@ RSpec.feature "Campaign Log Entries", type: :feature, js: true do
       fill_in "Downtime",           with: "111"
       fill_in "Renown",             with: "44"
       fill_in "Mission",            with: "55"
-      set_location "Origins"
-      fill_in_editor_field "Some Words"
     end
+    set_location "Origins"
+    fill_in_editor_field "Some Words"
 
     click_button "Save"
 
     expect(CampaignLogEntry.count).to be(@campaign_entry_count + 1)
 
-    check "Old Format", allow_label_click: true
+    select "Old Format", from: "log_format"
     expect(page).to have_text("2016-08-01 19:00")
     expect(page).to have_text("Lost Mines of Phandelver")
     expect(page).to have_text("22")

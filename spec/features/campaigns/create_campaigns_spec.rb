@@ -16,9 +16,9 @@ RSpec.feature 'Campaigns', type: :feature do
 
     within('#campaign-form') do
       fill_in 'Name', with: "Storm King's Thunder Table 1"
-      check   'Users Can Join'
-      check   'DMs Can Join'
-      check   'Publicly Visible'
+      check   'Users Can Join', allow_label_click: true
+      check   'DMs Can Join', allow_label_click: true
+      check   'Publicly Visible', allow_label_click: true
     end
 
     click_button 'Save'

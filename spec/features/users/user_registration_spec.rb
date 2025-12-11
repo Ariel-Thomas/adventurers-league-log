@@ -22,6 +22,7 @@ RSpec.feature 'User', type: :feature do
 
     visit root_path
 
+    click_link 'user-dropdown'
     click_link 'Log Out'
 
     expect(page).to have_text('Signed out successfully.')
@@ -39,6 +40,7 @@ RSpec.feature 'User', type: :feature do
 
     click_button 'Log in'
 
+    click_link 'user-dropdown'
     click_link 'Log Out'
 
     expect(page).to have_text('Signed out successfully.')
